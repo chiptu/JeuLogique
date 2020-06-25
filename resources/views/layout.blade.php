@@ -7,7 +7,12 @@
     </head>
 
     <body class="h-full ">
+    
     @yield('content')
+    
+
+    <script src="{{ asset('js/app.js') }}"></script>
+
     </body>
 
 </html>
