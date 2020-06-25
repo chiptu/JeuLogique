@@ -4,17 +4,13 @@
 
 <div class ="flex justify-end  h-11/12 ">
 
-        <div class=" w-8/12 bg-black ">
-        
-        </div>
+        <Jeu/>
 
         <div class ="flex w-4/12  bg-red-500 ">
 
-            <div class ="w-1/2 h-full  bg-gray-700 ">
-            </div>
+        <Fonction/>
 
-            <div class ="w-1/2 h-full  bg-green-700 ">
-            </div>
+        <Controle/>
         
 
         </div>
@@ -27,9 +23,22 @@
 
 
 <script>
+
+    import Jeu from './Jeu'
+    import Controle from './Controle'
+    import Fonction from './Fonction'
+
     export default {
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component root mounted.')
         }
+        ,
+        components:
+        {
+            Jeu,
+            Controle,
+            Fonction
+        }
+        
     }
 </script>
