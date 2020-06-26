@@ -161,6 +161,368 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Jeu mounted.');
@@ -752,9 +1114,575 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: " w-8/12 bg-black " })
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: " w-8/12 bg-black " }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "p-12 h-11/12 inline-flex flex-wrap content-center overflow-scroll bg-gray-200"
+        },
+        [
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border rounded p-0 m-0 flex justify-between items-center w-16 h-16 bg-white"
+          })
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
