@@ -21030,6 +21030,10 @@ video {
   height: 91.666667%;
 }
 
+.top-1\/2 {
+  top: 50%;
+}
+
 @media (min-width: 640px){
   .sm\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;
