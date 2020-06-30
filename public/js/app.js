@@ -156,6 +156,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Controle mounted.');
@@ -173,6 +180,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -948,6 +959,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "w-1/2 h-full " }, [
+      _c("div", { staticClass: "text-3xl mr-4 text-white text-center " }, [
+        _vm._v("Contrôle")
+      ]),
+      _vm._v(" "),
       _c(
         "div",
         {
@@ -956,10 +971,6 @@ var staticRenderFns = [
         },
         [
           _c("div", { staticClass: "w-3/12" }, [
-            _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
-              _vm._v("F1")
-            ]),
-            _vm._v(" "),
             _c(
               "button",
               {
@@ -998,14 +1009,23 @@ var staticRenderFns = [
                   _vm._v("F1")
                 ])
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2"
+              },
+              [
+                _c("div", { staticClass: "text-3xl  text-black" }, [
+                  _vm._v("F2")
+                ])
+              ]
             )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "w-3/12" }, [
-            _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
-              _vm._v("F2")
-            ]),
-            _vm._v(" "),
             _c("button", {
               staticClass:
                 "bg-yellow-500 border border-white hover:border-black rounded w-12 h-12 mr-4 "
@@ -1058,6 +1078,10 @@ var staticRenderFns = [
       "div",
       { staticClass: "w-1/2 h-full border-l-2 border-r-2 border-white" },
       [
+        _c("div", { staticClass: "text-3xl mr-4 text-white text-center" }, [
+          _vm._v("Fonction")
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           {

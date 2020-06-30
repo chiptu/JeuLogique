@@ -17,12 +17,18 @@
 
     <footer>
     
-        <div class ="flex h-full w-full justify-center ">
+        <div class ="flex h-1/2 w-full justify-center ">
         
             <div class="text-black">
-                2020 © - Le Guillou Alexandre
+                2020  - Le Guillou Alexandre
             </div>
 
+            
+
+        </div>
+
+        <div class ="flex h-1/2 w-full justify-center ">
+             <a class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 " href ="https://github.com/chiptu/Jeu42"><i class="fa fa-github fa-3x "></i></a>
         </div>
     
     </footer>
