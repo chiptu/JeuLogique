@@ -15,4 +15,16 @@
 
     </body>
 
+    <footer>
+    
+        <div class ="flex h-full w-full justify-center ">
+        
+            <div class="text-black">
+                2020 © - Le Guillou Alexandre
+            </div>
+
+        </div>
+    
+    </footer>
+
 </html>

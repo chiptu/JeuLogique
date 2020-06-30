@@ -107,6 +107,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Controle mounted.');
@@ -136,6 +185,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Fonction mounted.');
@@ -153,6 +244,106 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -749,9 +940,92 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-1/2 h-full  bg-green-700 " })
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-1/2 h-full " }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex flex-row w-full h-full justify-center content-center items-center ml-4"
+        },
+        [
+          _c("div", { staticClass: "w-3/12" }, [
+            _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
+              _vm._v("F1")
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2"
+              },
+              [_c("i", { staticClass: "fa fa-arrow-up fa-2x" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2"
+              },
+              [_c("i", { staticClass: "fa fa-arrow-right fa-2x" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2"
+              },
+              [_c("i", { staticClass: "fa fa-arrow-left fa-2x" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2"
+              },
+              [
+                _c("div", { staticClass: "text-3xl  text-black" }, [
+                  _vm._v("F1")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-3/12" }, [
+            _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
+              _vm._v("F2")
+            ]),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-yellow-500 border border-white hover:border-black rounded w-12 h-12 mr-4 "
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-green-500 border border-white hover:border-black rounded w-12 h-12 mr-4"
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-blue-500 border border-white hover:border-black rounded w-12 h-12 mr-4"
+            })
+          ])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -773,9 +1047,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-1/2 h-full  bg-gray-700 " })
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "w-1/2 h-full border-l-2 border-r-2 border-white" },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex flex-col w-full h-full justify-center content-center ml-4"
+          },
+          [
+            _c("div", { staticClass: "h-3/12" }, [
+              _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
+                _vm._v("F1")
+              ]),
+              _vm._v(" "),
+              _c("button", {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
+              }),
+              _vm._v(" "),
+              _c("button", {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
+              }),
+              _vm._v(" "),
+              _c("button", {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "h-3/12" }, [
+              _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
+                _vm._v("F2")
+              ]),
+              _vm._v(" "),
+              _c("button", {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
+              }),
+              _vm._v(" "),
+              _c("button", {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
+              }),
+              _vm._v(" "),
+              _c("button", {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
+              })
+            ])
+          ]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -804,73 +1140,238 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: " w-8/12 bg-black " }, [
+    return _c("div", { staticClass: " w-8/12  p-12 " }, [
       _c(
         "div",
         {
           staticClass:
-            "p-12 h-11/12 w-full inline-flex flex-wrap content-center overflow-scroll bg-gray-200"
+            " h-1/12 w-full inline-flex  justify-center content-center "
         },
         [
           _c(
             "div",
             {
               staticClass:
-                "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-black"
+                "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
             },
             [_c("i", { staticClass: " fa fa-star text-yellow-500 fa-3x" })]
           ),
           _vm._v(" "),
           _c("div", {
             staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-green-300"
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
           }),
           _vm._v(" "),
           _c(
             "div",
             {
               staticClass:
-                "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-black"
+                "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
             },
             [_c("i", { staticClass: "fa fa-space-shuttle text-white fa-3x" })]
           ),
           _vm._v(" "),
           _c("div", {
             staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-black"
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
           }),
           _vm._v(" "),
           _c("div", {
             staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-black"
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
           }),
           _vm._v(" "),
           _c("div", {
             staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-black"
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
           }),
           _vm._v(" "),
           _c("div", {
             staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-black"
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
           }),
           _vm._v(" "),
           _c("div", {
             staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-black"
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
           }),
           _vm._v(" "),
           _c("div", {
             staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-black"
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
           }),
           _vm._v(" "),
           _c("div", {
             staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-16 h-16 bg-black"
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
           })
         ]
-      )
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "h-1/12 w-full inline-flex  justify-center content-center"
+        },
+        [
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: " h-auto w-full flex  justify-center mt-8 " }, [
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8"
+          },
+          [_c("i", { staticClass: "fa fa-play fa-2x" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8"
+          },
+          [_c("i", { staticClass: "fa fa-pause fa-2x" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8"
+          },
+          [_c("i", { staticClass: "fa fa-stop fa-2x" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8"
+          },
+          [_vm._v("\n                x1\n            ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8"
+          },
+          [_vm._v("\n                x2\n            ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl"
+          },
+          [_vm._v("\n                x4\n            ")]
+        )
+      ])
     ])
   }
 ]
@@ -897,13 +1398,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex justify-end  h-11/12 " },
+    { staticClass: "flex justify-end bg-black h-11/12 " },
     [
       _c("Jeu"),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex w-4/12  bg-red-500 " },
+        { staticClass: "flex w-4/12" },
         [_c("Fonction"), _vm._v(" "), _c("Controle")],
         1
       )

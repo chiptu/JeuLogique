@@ -2,11 +2,11 @@
 
 
 
-<div class ="flex justify-end  h-11/12 ">
+<div class ="flex justify-end bg-black h-11/12 ">
 
         <Jeu/>
 
-        <div class ="flex w-4/12  bg-red-500 ">
+        <div class ="flex w-4/12">
 
         <Fonction/>
 
