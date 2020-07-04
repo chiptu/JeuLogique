@@ -114,36 +114,8 @@
 
         <!--30-->
         
-        <!--Espace bouton-->
 
-            <div class = " h-auto w-full flex  justify-center mt-8 ">
-
-                <button class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8">
-                    <i class="fa fa-play fa-2x"></i>
-                </button>
-
-                <button class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8">
-                    <i class="fa fa-pause fa-2x"></i>
-                </button>
-
-                <button class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8">
-                    <i class="fa fa-stop fa-2x"></i>
-                </button>
-
-                <button class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8">
-                    x1
-                </button>
-
-                <button class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8">
-                    x2
-                </button>
-
-                <button class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl">
-                    x4
-                </button>
-
-            </div>
-
+        <Boutons/>
 
 
     </div>
@@ -153,10 +125,21 @@
 
 <script>
 
+    import Boutons from './Boutons'
+
     
     export default {
         mounted() {
             console.log('Component Jeu mounted.')
         }
+
+                ,
+        components:
+        {
+            Boutons
+        }
+
+
+
     }
 </script>

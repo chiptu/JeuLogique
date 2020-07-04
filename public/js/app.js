@@ -86,6 +86,59 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Boutons.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Boutons.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component Boutons mounted.');
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Controle.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Controle.vue?vue&type=script&lang=js& ***!
@@ -255,6 +308,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Boutons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Boutons */ "./resources/js/components/Boutons.vue");
 //
 //
 //
@@ -380,37 +434,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Jeu mounted.');
+  },
+  components: {
+    Boutons: _Boutons__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -936,6 +966,98 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Boutons.vue?vue&type=template&id=4a3608ad&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Boutons.vue?vue&type=template&id=4a3608ad& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          " h-auto w-full flex  justify-center mt-8 border-t-2 border-white"
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4"
+          },
+          [_c("i", { staticClass: "fa fa-play fa-2x" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4"
+          },
+          [_c("i", { staticClass: "fa fa-pause fa-2x" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4"
+          },
+          [_c("i", { staticClass: "fa fa-stop fa-2x" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4"
+          },
+          [_vm._v("\n            x1\n        ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4"
+          },
+          [_vm._v("\n            x2\n        ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4"
+          },
+          [_vm._v("\n            x4\n        ")]
+        )
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Controle.vue?vue&type=template&id=8c8e6fda&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Controle.vue?vue&type=template&id=8c8e6fda& ***!
@@ -1157,246 +1279,196 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: " w-8/12  p-12 " },
+    [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("Boutons")],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: " w-8/12  p-12 " }, [
-      _c(
-        "div",
-        {
+    return _c(
+      "div",
+      {
+        staticClass:
+          " h-1/12 w-full inline-flex  justify-center content-center "
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+          },
+          [_c("i", { staticClass: " fa fa-star text-yellow-500 fa-3x" })]
+        ),
+        _vm._v(" "),
+        _c("div", {
           staticClass:
-            " h-1/12 w-full inline-flex  justify-center content-center "
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-            },
-            [_c("i", { staticClass: " fa fa-star text-yellow-500 fa-3x" })]
-          ),
-          _vm._v(" "),
-          _c("div", {
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
             staticClass:
               "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-            },
-            [_c("i", { staticClass: "fa fa-space-shuttle text-white fa-3x" })]
-          ),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
+          },
+          [_c("i", { staticClass: "fa fa-space-shuttle text-white fa-3x" })]
+        ),
+        _vm._v(" "),
+        _c("div", {
           staticClass:
-            "h-1/12 w-full inline-flex  justify-center content-center"
-        },
-        [
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass:
-              "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: " h-auto w-full flex  justify-center mt-8 " }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8"
-          },
-          [_c("i", { staticClass: "fa fa-play fa-2x" })]
-        ),
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8"
-          },
-          [_c("i", { staticClass: "fa fa-pause fa-2x" })]
-        ),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8"
-          },
-          [_c("i", { staticClass: "fa fa-stop fa-2x" })]
-        ),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8"
-          },
-          [_vm._v("\n                x1\n            ")]
-        ),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8"
-          },
-          [_vm._v("\n                x2\n            ")]
-        ),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl"
-          },
-          [_vm._v("\n                x4\n            ")]
-        )
-      ])
-    ])
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "h-1/12 w-full inline-flex  justify-center content-center"
+      },
+      [
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black"
+        })
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -13605,6 +13677,75 @@ Vue.component('root-component', __webpack_require__(/*! ./components/RootCompone
 var app = new Vue({
   el: 'root-component'
 });
+
+/***/ }),
+
+/***/ "./resources/js/components/Boutons.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Boutons.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Boutons_vue_vue_type_template_id_4a3608ad___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Boutons.vue?vue&type=template&id=4a3608ad& */ "./resources/js/components/Boutons.vue?vue&type=template&id=4a3608ad&");
+/* harmony import */ var _Boutons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Boutons.vue?vue&type=script&lang=js& */ "./resources/js/components/Boutons.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Boutons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Boutons_vue_vue_type_template_id_4a3608ad___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Boutons_vue_vue_type_template_id_4a3608ad___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Boutons.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Boutons.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Boutons.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Boutons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Boutons.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Boutons.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Boutons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Boutons.vue?vue&type=template&id=4a3608ad&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Boutons.vue?vue&type=template&id=4a3608ad& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Boutons_vue_vue_type_template_id_4a3608ad___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Boutons.vue?vue&type=template&id=4a3608ad& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Boutons.vue?vue&type=template&id=4a3608ad&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Boutons_vue_vue_type_template_id_4a3608ad___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Boutons_vue_vue_type_template_id_4a3608ad___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
