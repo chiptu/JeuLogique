@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/rocket/1',  function () {
+    return view('rocketLevels');
+});
+
+
+Route::post('/rocket/{id}', 'RocketController@levelJson')->name('levelJson');
