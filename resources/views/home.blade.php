@@ -9,10 +9,11 @@
     
     </head>
 
-    <body class="w-full h-full bg-black flex  justify-center items-center">
+    <body class="w-full h-full bg-black flex  justify-center items-center ">
+    
     
     <form action="/rocket/1">
-        <input type="submit" class ="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full" value = "Rocket"/>
+        <input type="submit" class ="relative border rounded p-0 flex flex-col justify-between items-center w-32 h-24 bg-white hover:zoom " value = ""/>
     </form>
 
     
