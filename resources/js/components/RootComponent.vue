@@ -4,13 +4,13 @@
 
 <div class ="flex justify-end bg-black h-11/12 ">
     
-        <Jeu :leveljson = "this.leveljson" />
+        <Jeu :leveljson = "this.parse()" />
 
         <div class ="flex w-4/12">
 
-        <Fonction :leveljson = "this.leveljson" />
+        <Fonction :leveljson = "this.parse()" />
 
-        <Controle :leveljson = "this.leveljson" />
+        <Controle :leveljson = "this.parse()" />
         
         </div>
 
@@ -22,21 +22,13 @@
 
 
 <script>
-   /* Vue.component('blog-post', {
-    props: {
-        author: Person
-        }
-    })*/
 
     
-
     import Jeu from './Jeu'
     import Controle from './Controle'
     import Fonction from './Fonction'
 
     import Vue from 'vue'
-    import axios from 'axios'
-    import VueAxios from 'vue-axios'
 
     
     export default {
@@ -44,7 +36,7 @@
         mounted() {
             console.log('Component root mounted.')
             //this.read()
-            console.log(this.leveljson)
+            console.log(this.parse().lignes.length)
         }
         ,
         components:
@@ -55,15 +47,11 @@
         },
         methods:
         {
-             async read() 
+            parse()
             {
-            const { data } = window.axios.get('/rocket/1');
-
-            console.log("data")
-            console.log(data)
-            console.log("this")
-            console.log(this)
+                return JSON.parse(this.leveljson)
             }
+        
         }
        
     }

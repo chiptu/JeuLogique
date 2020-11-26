@@ -20,7 +20,6 @@ class RocketController extends Controller
         
         $leveljson = $leveljson->levelJson;
        
-        
         return view('rocketLevels',["leveljson"=>$leveljson]);
     }
 }
