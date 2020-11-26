@@ -2,8 +2,7 @@
 @section('content')
 
 
-
-<root-component>
+<root-component leveljson= '{!! json_encode($leveljson) !!}'>
 
 </root-component>
 

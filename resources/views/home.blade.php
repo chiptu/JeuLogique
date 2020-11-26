@@ -12,8 +12,9 @@
     <body class="w-full h-full bg-black flex  justify-center items-center ">
     
     
-    <form action="/rocket/1">
-        <input type="submit" class ="relative border rounded p-0 flex flex-col justify-between items-center w-32 h-24 bg-white hover:zoom " value = ""/>
+    <form action="/rocket/1" class="">
+        <input type="image"  src = "{{ url('/') }}/images/42.png" class ="relative border rounded p-0 flex flex-col justify-between items-center w-1/4 h-1/4 bg-white 
+        transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110  "/>
     </form>
 
     

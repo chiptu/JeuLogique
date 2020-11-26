@@ -17,42 +17,6 @@
                     <i class="fa fa-space-shuttle text-white fa-3x"></i>
                 </div>
                 
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-            
         </div>
 
 
@@ -72,42 +36,8 @@
                 <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
                 </div>
                 
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
 
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                </div>
-
+            
                 
             </div>
 
@@ -129,6 +59,7 @@
 
     
     export default {
+        props: ['leveljson'],
         mounted() {
             console.log('Component Jeu mounted.')
         }

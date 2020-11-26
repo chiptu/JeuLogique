@@ -16,9 +16,12 @@ class RocketController extends Controller
      */
     public function levelJson($id)
     {
+        $leveljson = Niveau::find($id);
         
-
-        return $monJson;
+        $leveljson = $leveljson->levelJson;
+       
+        
+        return view('rocketLevels',["leveljson"=>$leveljson]);
     }
 }
 

@@ -41,7 +41,7 @@
 </html>
 
 <script>
-_token="{{csrf_token()}}";
+/*_token="{{csrf_token()}}";
 
 $( document ).ready(function() {
     var xhr = $.ajax({
@@ -53,6 +53,6 @@ $( document ).ready(function() {
     success: function(data) {
     console.log("je suis dans succes")
     },
-});
+});*/
 
 </script>

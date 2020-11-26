@@ -70,6 +70,7 @@
 
     
     export default {
+        props: ['leveljson'],
         mounted() {
             console.log('Component Controle mounted.')
         }
