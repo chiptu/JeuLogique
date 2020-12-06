@@ -4,7 +4,7 @@
         <div v-for="ligne in leveljson.lignes" :key ="ligne.id" class =" h-1/12 w-full inline-flex  justify-center content-center ">
 
 
-                <div v-for="case in lignes.cases" :key ="case.idCase" class="  relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
+                <div <!-- v-for="case in lignes.cases" :key ="case.idCase" -->class="  relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
                     <i class=" fa fa-star text-yellow-500 fa-3x"></i>
                 </div>
                 
