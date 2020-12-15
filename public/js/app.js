@@ -311,8 +311,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Boutons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Boutons */ "./resources/js/components/Boutons.vue");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -352,7 +361,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component Jeu mounted.');
-    console.log(_typeof(this.leveljson));
+    console.log(this.leveljson);
   },
 
   /*data () {
@@ -1206,8 +1215,62 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: " w-8/12  p-12 " },
+    [
+      _vm._l(_vm.leveljson.lignes, function(ligne) {
+        return _c(
+          "div",
+          {
+            key: ligne.id,
+            staticClass:
+              " h-1/12 w-full inline-flex  justify-center content-center "
+          },
+          _vm._l(ligne.cases, function(maCase) {
+            return _c("div", { key: maCase.idCase }, [
+              maCase.visible
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "  relative border-4 border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full "
+                    },
+                    [
+                      maCase.etoileBool
+                        ? _c("i", {
+                            staticClass: " fa fa-star text-yellow-500 fa-3x"
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      maCase.departBool
+                        ? _c("i", {
+                            staticClass: "fa fa-space-shuttle text-white fa-3x"
+                          })
+                        : _vm._e()
+                    ]
+                  )
+                : _c("div", {
+                    staticClass:
+                      "  relative rounded p-0 m-0 flex justify-center items-center w-20 h-full "
+                  })
+            ])
+          }),
+          0
+        )
+      }),
+      _vm._v(" "),
+      _c("Boutons")
+    ],
+    2
+  )
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 
@@ -1230,7 +1293,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex justify-end bg-black h-11/12 " },
+    { staticClass: "flex justify-end  h-11/12 " },
     [
       _c("Jeu", { attrs: { leveljson: this.parse() } }),
       _vm._v(" "),

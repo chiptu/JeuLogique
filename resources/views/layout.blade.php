@@ -11,6 +11,12 @@
 
     <body class="h-full ">
     
+    <video autoplay muted loop poster="maVideo1.jpg" id="bgvid">
+  
+        <source src="{{ url('/') }}/videos/bgVideo1.mp4" type="video/mp4">
+
+    </video>
+    
     @yield('content')
     
 
@@ -18,7 +24,7 @@
 
     </body>
 
-    <footer>
+    <footer class="">
     
         <div class ="flex h-1/2 w-full justify-center ">
         
@@ -41,18 +47,6 @@
 </html>
 
 <script>
-/*_token="{{csrf_token()}}";
 
-$( document ).ready(function() {
-    var xhr = $.ajax({
-    url: "{{ route('levelJson', ['id' => 1] ) }}",
-    type: 'POST',
-    data: formData,
-    processData: false,
-    contentType: false,
-    success: function(data) {
-    console.log("je suis dans succes")
-    },
-});*/
 
 </script>
