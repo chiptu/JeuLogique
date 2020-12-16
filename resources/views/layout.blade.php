@@ -9,7 +9,7 @@
     
     </head>
 
-    <body class="h-full  ">
+    <body class="h-full overflow-hidden ">
     
     
     
@@ -20,12 +20,13 @@
 
     
 
+
     <footer class="bg-white absolute bottom-0 w-full">
     
         <div class ="flex h-1/2 w-full justify-center ">
         
             <div class="text-black">
-               2020 🄯 - Le Guillou Alexandre 
+               2021 🄯
             </div>
 
             

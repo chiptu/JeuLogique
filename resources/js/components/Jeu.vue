@@ -1,20 +1,8 @@
 
-<!--
-
-<div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                    
-                </div>
-
-                <div class="relative border border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full bg-black">
-                    
-                </div>
-
--->
 
 
 <template>
     <div class=" w-8/12  p-12 ">
-        
         <div v-for="ligne in leveljson.lignes" :key ="ligne.id" class =" h-1/12 w-full inline-flex  justify-center content-center ">
 
                 <div  v-for="maCase in ligne.cases" :key ="maCase.idCase">

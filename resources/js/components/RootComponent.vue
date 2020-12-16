@@ -2,13 +2,19 @@
 
 
 
-<div class ="flex justify-end  h-11/12 ">
+<div class ="flex justify-end  h-11/12 " >
+
+<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
     
         <video autoplay muted loop poster="https://jeu.test/images/bg-black.jpg" id="bgvid" class="w-full h-full">
   
             <source :src="this.video()" type="video/mp4">
 
         </video>
+                
 
         <Jeu :leveljson = "this.parse()" />
 

@@ -216,6 +216,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -324,18 +326,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
@@ -363,6 +353,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Fonction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Fonction */ "./resources/js/components/Fonction.vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1263,6 +1259,20 @@ var render = function() {
     "div",
     { staticClass: "flex justify-end  h-11/12 " },
     [
+      _c("link", {
+        attrs: {
+          href: "https://fonts.googleapis.com/css?family=Lato:300,400,700",
+          rel: "stylesheet",
+          type: "text/css"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "stars" } }),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "stars2" } }),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "stars3" } }),
+      _vm._v(" "),
       _c(
         "video",
         {
