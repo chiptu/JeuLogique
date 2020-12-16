@@ -8,43 +8,23 @@
             <div class ="flex flex-col w-full h-full justify-center content-center ml-4">
 
 
-
                 <div class ="h-3/12">
 
-                    <div class ="text-3xl mr-4 text-white">F1</div>
+                    <div v-for="fonction in leveljson.fonctions" :key ="fonction.idFonction" class =" h-1/12 w-full inline-flex  justify-center content-center mt-12">
+                        
+                        <div class ="text-3xl mr-4 text-white">
+                            F{{fonction.idFonction}}
+                        </div>
 
-                    <button class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4">
-                   
-                    </button>
-                
-                    <button class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4">
-                   
-                    </button>
+                         <div  v-for="monNbCase in fonction.nombreCase" :key ="monNbCase">
 
-                    <button class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4">
-                   
-                    </button>
+                            <button class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4">
+                            </button>
                 
+                        </div>
+
                 </div>
-
-                
-                <div class ="h-3/12">
-
-                    <div class ="text-3xl mr-4 text-white">F2</div>
-
-                    <button class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4">
-                   
-                    </button>
-                
-                    <button class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4">
-                   
-                    </button>
-
-                    <button class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4">
-                   
-                    </button>
-                
-                </div>
+            </div>
 
 
             </div>

@@ -16,7 +16,7 @@ class RocketController extends Controller
      */
     public function levelJson($id)
     {
-        $leveljson = Niveau::find($id);
+        $leveljson = Niveau::find($id); //requete eloquent model niveau
         
         $leveljson = $leveljson->levelJson;
        

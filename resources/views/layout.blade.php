@@ -9,22 +9,18 @@
     
     </head>
 
-    <body class="h-full ">
+    <body class="h-full  ">
     
-    <video autoplay muted loop poster="maVideo1.jpg" id="bgvid">
-  
-        <source src="{{ url('/') }}/videos/bgVideo1.mp4" type="video/mp4">
-
-    </video>
+    
     
     @yield('content')
     
 
     <script src="{{ asset('js/app.js') }}"></script>
 
-    </body>
+    
 
-    <footer class="">
+    <footer class="bg-white absolute bottom-0 w-full">
     
         <div class ="flex h-1/2 w-full justify-center ">
         
@@ -43,6 +39,8 @@
         </div>
     
     </footer>
+
+    </body>
     
 </html>
 

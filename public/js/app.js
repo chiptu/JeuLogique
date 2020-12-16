@@ -272,26 +272,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -361,14 +341,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component Jeu mounted.');
-    console.log(this.leveljson);
   },
-
-  /*data () {
-  return {
-      nbLignes: this.leveljson.lignes.length 
-  }
-  },*/
   components: {
     Boutons: _Boutons__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -413,6 +386,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -420,9 +399,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
-    console.log('Component root mounted.'); //this.read()
-
-    console.log(this.parse().lignes.length);
+    console.log('Component root mounted.');
   },
   components: {
     Jeu: _Jeu__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -432,6 +409,11 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     parse: function parse() {
       return JSON.parse(this.leveljson);
+    },
+    video: function video() {
+      var json = this.parse();
+      var str = "https://jeu.test/videos/" + json.id + ".mp4";
+      return str;
     }
   }
 });
@@ -1129,75 +1111,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "w-1/2 h-full border-l-2 border-r-2 border-white" },
+    [
+      _c("div", { staticClass: "text-3xl mr-4 text-white text-center" }, [
+        _vm._v("Fonction")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex flex-col w-full h-full justify-center content-center ml-4"
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "h-3/12" },
+            _vm._l(_vm.leveljson.fonctions, function(fonction) {
+              return _c(
+                "div",
+                {
+                  key: fonction.idFonction,
+                  staticClass:
+                    " h-1/12 w-full inline-flex  justify-center content-center mt-12"
+                },
+                [
+                  _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
+                    _vm._v(
+                      "\n                    F" +
+                        _vm._s(fonction.idFonction) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(fonction.nombreCase, function(monNbCase) {
+                    return _c("div", { key: monNbCase }, [
+                      _c("button", {
+                        staticClass:
+                          "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
+                      })
+                    ])
+                  })
+                ],
+                2
+              )
+            }),
+            0
+          )
+        ]
+      )
+    ]
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "w-1/2 h-full border-l-2 border-r-2 border-white" },
-      [
-        _c("div", { staticClass: "text-3xl mr-4 text-white text-center" }, [
-          _vm._v("Fonction")
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex flex-col w-full h-full justify-center content-center ml-4"
-          },
-          [
-            _c("div", { staticClass: "h-3/12" }, [
-              _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
-                _vm._v("F1")
-              ]),
-              _vm._v(" "),
-              _c("button", {
-                staticClass:
-                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
-              }),
-              _vm._v(" "),
-              _c("button", {
-                staticClass:
-                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
-              }),
-              _vm._v(" "),
-              _c("button", {
-                staticClass:
-                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "h-3/12" }, [
-              _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
-                _vm._v("F2")
-              ]),
-              _vm._v(" "),
-              _c("button", {
-                staticClass:
-                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
-              }),
-              _vm._v(" "),
-              _c("button", {
-                staticClass:
-                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
-              }),
-              _vm._v(" "),
-              _c("button", {
-                staticClass:
-                  "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4"
-              })
-            ])
-          ]
-        )
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1295,6 +1263,22 @@ var render = function() {
     "div",
     { staticClass: "flex justify-end  h-11/12 " },
     [
+      _c(
+        "video",
+        {
+          staticClass: "w-full h-full",
+          attrs: {
+            autoplay: "",
+            muted: "",
+            loop: "",
+            poster: "https://jeu.test/images/bg-black.jpg",
+            id: "bgvid"
+          },
+          domProps: { muted: true }
+        },
+        [_c("source", { attrs: { src: this.video(), type: "video/mp4" } })]
+      ),
+      _vm._v(" "),
       _c("Jeu", { attrs: { leveljson: this.parse() } }),
       _vm._v(" "),
       _c(

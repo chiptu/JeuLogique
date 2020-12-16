@@ -53,14 +53,7 @@
 
         mounted() {
             console.log('Component Jeu mounted.')
-            console.log(this.leveljson)
         } ,
-
-        /*data () {
-        return {
-            nbLignes: this.leveljson.lignes.length 
-        }
-        },*/
 
         
         components:
