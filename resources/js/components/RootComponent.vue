@@ -2,7 +2,7 @@
 
 
 
-<div class ="flex justify-end  h-11/12 " >
+<div class ="flex justify-end  h-11/12  " >
 
 <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
         <div id="stars"></div>

@@ -9,7 +9,7 @@
     
     </head>
 
-    <body class="h-full overflow-hidden ">
+    <body class="h-full ">
     
     
     
@@ -26,7 +26,7 @@
         <div class ="flex h-1/2 w-full justify-center ">
         
             <div class="text-black">
-               2021 🄯
+                <span class="copyleft">2021 &copy;</span>
             </div>
 
             
@@ -35,7 +35,7 @@
 
         <div class ="flex h-1/2 w-full justify-center ">
              <a class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 " href ="https://github.com/chiptu/JeuLogique">
-                <i class="fab fa-github fa-3x "></i>
+                <i class="fab fa-github  "></i>
             </a>
         </div>
     
