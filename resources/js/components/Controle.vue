@@ -18,11 +18,12 @@
                     </button>
                 
                     <button class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2">
-                        <i class="fa fa-arrow-right fa-2x"></i>
+                        <i class="fa fa-share fa-2x"></i>
                     </button>
 
+
                     <button class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2">
-                        <i class="fa fa-arrow-left fa-2x"></i>
+                        <i class="fas fa-reply fa-2x"></i>
                     </button>
 
                    
