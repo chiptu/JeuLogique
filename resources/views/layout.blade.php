@@ -25,7 +25,11 @@
     
 
         <div class ="flex h-1/2 w-full justify-center ">
-        <span class="copyleft text-black">2021 &copy;</span>
+
+        <div class="text-black mr-2">2021</div>
+
+        <span class="copyleft">&copy;</span>
+
              <a class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ml-5" href ="https://github.com/chiptu/JeuLogique">
                 <i class="fab fa-github  "></i>
             </a>
