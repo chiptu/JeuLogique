@@ -9,7 +9,9 @@
     
     </head>
 
-    <body class="h-full ">
+    <body class="h-full bg-black">
+
+   
     
     
     

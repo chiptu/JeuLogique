@@ -9,12 +9,13 @@
         <div id="stars2"></div>
         <div id="stars3"></div>
     
-        <video autoplay muted loop poster="https://jeu.test/images/bg-black.jpg" id="bgvid" class="w-full h-full">
+       
+        <video autoplay muted loop poster="https://jeu.test/images/bg-black.jpg" id="bgvid" class="w-full h-full absolute top left">
   
             <source :src="this.video()" type="video/mp4">
 
         </video>
-                
+        
 
         <Jeu :leveljson = "this.parse()" />
 
