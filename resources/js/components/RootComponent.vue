@@ -66,7 +66,7 @@
             video()
             {
                 let json = this.parse();
-                let str = "https://jeu.test/videos/"+(json.id)+".mp4";
+                let str = "https://jeu.app/videos/"+(json.id)+".mp4";
                 return str
             }
         }

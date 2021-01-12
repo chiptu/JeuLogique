@@ -5,9 +5,10 @@
     <div class=" w-8/12  p-12 ">
         <div v-for="ligne in leveljson.lignes" :key ="ligne.id" class =" h-1/12 w-full inline-flex  justify-center content-center ">
 
-                <div  v-for="maCase in ligne.cases" :key ="maCase.idCase">
+                <div   v-for="maCase in ligne.cases" :key ="maCase.idCase">
 
-                    <div v-if="maCase.visible" class="  relative border-4 border-gray-500 rounded p-0 m-0 flex justify-center items-center w-20 h-full ">
+                    <div :id="'ligne-' +ligne.idLigne+'-case-'+maCase.idCase" v-if="maCase.visible" 
+                    :class=" 'relative border-4 border-gray-900 rounded p-0 m-0 flex justify-center items-center w-20 h-full  bg-opacity-75 '+maCase.couleur ">
                         <i v-if="maCase.etoileBool" class=" fa fa-star text-yellow-500 fa-3x"></i>
                         <i v-if="maCase.departBool" class="fa fa-space-shuttle text-white fa-3x"></i>
                     </div>
