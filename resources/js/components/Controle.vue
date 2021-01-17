@@ -1,7 +1,7 @@
 
 <template>
     
-    <div class ="w-1/2 h-full ">
+    <div id="component-controle" class ="w-1/2 h-full ">
             
             <div class ="text-3xl mr-4 text-white text-center ">Contrôle</div>
 
@@ -38,21 +38,28 @@
                 
                 <div class ="w-3/12">
 
+                     <button v-if="leveljson.nbCouleur != 0"  id="btn-noColor" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-4 text-3xl" v-on:click="anneau">
+                        \
+                    </button>
                     
+
+
                      <div v-for="couleur in leveljson.nbCouleur" :key ="couleur"  >
 
-                    <button  v-if="couleur == 1" id="btn-green" class="bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4">
+                    <button  v-if="couleur == 1" id="btn-green" class="bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
                    
                     </button>
 
-                    <button  v-if="couleur == 2" id="btn-gray" class="bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 ">
+                    <button  v-if="couleur == 2" id="btn-gray" class="bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
                    
                     </button>
 
-                    <button  v-if="couleur == 3" id="btn-purple" class="bg-gray-900 border border-white hover:border-black rounded w-12 h-12 mr-4">
+                    <button  v-if="couleur == 3" id="btn-purple" class="bg-gray-900 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
                    
                     </button>
                     </div>
+
+
                 
                 </div>
 
@@ -74,6 +81,25 @@
         props: ['leveljson'],
         mounted() {
             console.log('Component Controle mounted.')
+        },
+
+
+
+        methods: {
+            anneau: function (event) {
+            
+            if (event) 
+                {
+                var elements = document.getElementById("component-controle").getElementsByClassName('focus-color');
+
+                while(elements.length > 0)
+                {
+                elements[0].classList.remove('focus-color');
+                }
+
+                $('#'+event.target.id).addClass('focus-color');
+                }
+            }
         }
     }
 </script>

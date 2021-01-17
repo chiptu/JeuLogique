@@ -217,10 +217,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component Controle mounted.');
+  },
+  methods: {
+    anneau: function anneau(event) {
+      if (event) {
+        var elements = document.getElementById("component-controle").getElementsByClassName('focus-color');
+
+        while (elements.length > 0) {
+          elements[0].classList.remove('focus-color');
+        }
+
+        $('#' + event.target.id).addClass('focus-color');
+      }
+    }
   }
 });
 
@@ -277,6 +297,19 @@ __webpack_require__.r(__webpack_exports__);
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component Fonction mounted.');
+  },
+  methods: {
+    anneau2: function anneau2(event) {
+      if (event) {
+        var elements = document.getElementById("component-fonction").getElementsByClassName('focus-color');
+
+        while (elements.length > 0) {
+          elements[0].classList.remove('focus-color');
+        }
+
+        $('#' + event.target.id).addClass('focus-color');
+      }
+    }
   }
 });
 
@@ -292,6 +325,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Boutons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Boutons */ "./resources/js/components/Boutons.vue");
+/* harmony import */ var _ListeActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListeActions */ "./resources/js/components/ListeActions.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -327,13 +366,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component Jeu mounted.');
   },
   components: {
+    Listeactions: _ListeActions__WEBPACK_IMPORTED_MODULE_1__["default"],
     Boutons: _Boutons__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ListeActions.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ListeActions.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component Boutons mounted.');
   }
 });
 
@@ -998,84 +1089,106 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-1/2 h-full " }, [
-    _c("div", { staticClass: "text-3xl mr-4 text-white text-center " }, [
-      _vm._v("Contrôle")
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass:
-          "flex flex-row w-full h-full justify-center content-center items-center ml-4"
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "w-3/12" },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._l(_vm.leveljson.fonctions, function(fonction) {
-              return _c("div", { key: fonction.idFonction }, [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
-                    attrs: { id: "btn-f" + fonction.idFonction }
-                  },
-                  [
-                    _c("div", { staticClass: "text-3xl  text-black" }, [
-                      _vm._v("F" + _vm._s(fonction.idFonction))
-                    ])
-                  ]
-                )
-              ])
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "w-3/12" },
-          _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
-            return _c("div", { key: couleur }, [
-              couleur == 1
-                ? _c("button", {
-                    staticClass:
-                      "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4",
-                    attrs: { id: "btn-green" }
-                  })
+  return _c(
+    "div",
+    { staticClass: "w-1/2 h-full ", attrs: { id: "component-controle" } },
+    [
+      _c("div", { staticClass: "text-3xl mr-4 text-white text-center " }, [
+        _vm._v("Contrôle")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "flex flex-row w-full h-full justify-center content-center items-center ml-4"
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "w-3/12" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._l(_vm.leveljson.fonctions, function(fonction) {
+                return _c("div", { key: fonction.idFonction }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
+                      attrs: { id: "btn-f" + fonction.idFonction }
+                    },
+                    [
+                      _c("div", { staticClass: "text-3xl  text-black" }, [
+                        _vm._v("F" + _vm._s(fonction.idFonction))
+                      ])
+                    ]
+                  )
+                ])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "w-3/12" },
+            [
+              _vm.leveljson.nbCouleur != 0
+                ? _c(
+                    "button",
+                    {
+                      staticClass:
+                        "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-4 text-3xl",
+                      attrs: { id: "btn-noColor" },
+                      on: { click: _vm.anneau }
+                    },
+                    [_vm._v("\n                    \\\n                ")]
+                  )
                 : _vm._e(),
               _vm._v(" "),
-              couleur == 2
-                ? _c("button", {
-                    staticClass:
-                      "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
-                    attrs: { id: "btn-gray" }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              couleur == 3
-                ? _c("button", {
-                    staticClass:
-                      "bg-gray-900 border border-white hover:border-black rounded w-12 h-12 mr-4",
-                    attrs: { id: "btn-purple" }
-                  })
-                : _vm._e()
-            ])
-          }),
-          0
-        )
-      ]
-    )
-  ])
+              _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
+                return _c("div", { key: couleur }, [
+                  couleur == 1
+                    ? _c("button", {
+                        staticClass:
+                          "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
+                        attrs: { id: "btn-green" },
+                        on: { click: _vm.anneau }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  couleur == 2
+                    ? _c("button", {
+                        staticClass:
+                          "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
+                        attrs: { id: "btn-gray" },
+                        on: { click: _vm.anneau }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  couleur == 3
+                    ? _c("button", {
+                        staticClass:
+                          "bg-gray-900 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
+                        attrs: { id: "btn-purple" },
+                        on: { click: _vm.anneau }
+                      })
+                    : _vm._e()
+                ])
+              })
+            ],
+            2
+          )
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -1144,7 +1257,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-1/2 h-full border-l-2 border-r-2 border-white" },
+    {
+      staticClass: "w-1/2 h-full border-l-2 border-r-2 border-white",
+      attrs: { id: "component-fonction" }
+    },
     [
       _c("div", { staticClass: "text-3xl mr-4 text-white text-center" }, [
         _vm._v("Fonction")
@@ -1181,11 +1297,12 @@ var render = function() {
                     return _c("div", { key: monNbCase }, [
                       _c("button", {
                         staticClass:
-                          "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4",
+                          "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4 ",
                         attrs: {
                           id:
                             "btn-f" + fonction.idFonction + "-case-" + monNbCase
-                        }
+                        },
+                        on: { click: _vm.anneau2 }
                       })
                     ])
                   })
@@ -1271,12 +1388,95 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _c("Boutons")
+      _c(
+        "div",
+        { staticClass: "grid grid-cols-2" },
+        [_c("Boutons"), _vm._v(" "), _c("Listeactions")],
+        1
+      )
     ],
     2
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ListeActions.vue?vue&type=template&id=7574df3e&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ListeActions.vue?vue&type=template&id=7574df3e& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          " h-auto w-full flex  justify-center mt-8 border-t-2 border-white"
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white hover: border border-white  rounded w-12 h-12 text-black mr-8 mt-4 ripple",
+            attrs: { id: "listeAction" }
+          },
+          [_c("i", { staticClass: "fas fa-terminal" })]
+        ),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+          attrs: { id: "ListeAction1" }
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+          attrs: { id: "ListeAction2" }
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+          attrs: { id: "ListeAction3" }
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+          attrs: { id: "ListeAction4" }
+        }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass:
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+          attrs: { id: "ListeAction5" }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -13791,6 +13991,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Jeu_vue_vue_type_template_id_9ffd5502___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Jeu_vue_vue_type_template_id_9ffd5502___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ListeActions.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/ListeActions.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListeActions_vue_vue_type_template_id_7574df3e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListeActions.vue?vue&type=template&id=7574df3e& */ "./resources/js/components/ListeActions.vue?vue&type=template&id=7574df3e&");
+/* harmony import */ var _ListeActions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListeActions.vue?vue&type=script&lang=js& */ "./resources/js/components/ListeActions.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ListeActions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListeActions_vue_vue_type_template_id_7574df3e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListeActions_vue_vue_type_template_id_7574df3e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ListeActions.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ListeActions.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/ListeActions.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListeActions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ListeActions.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ListeActions.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListeActions_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ListeActions.vue?vue&type=template&id=7574df3e&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/ListeActions.vue?vue&type=template&id=7574df3e& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListeActions_vue_vue_type_template_id_7574df3e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ListeActions.vue?vue&type=template&id=7574df3e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ListeActions.vue?vue&type=template&id=7574df3e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListeActions_vue_vue_type_template_id_7574df3e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListeActions_vue_vue_type_template_id_7574df3e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

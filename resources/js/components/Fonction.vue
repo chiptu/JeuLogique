@@ -1,7 +1,7 @@
 
 <template>
     
-        <div class ="w-1/2 h-full border-l-2 border-r-2 border-white">
+        <div id="component-fonction" class ="w-1/2 h-full border-l-2 border-r-2 border-white">
 
             <div class ="text-3xl mr-4 text-white text-center">Fonction</div>
 
@@ -18,7 +18,7 @@
 
                          <div  v-for="monNbCase in fonction.nombreCase" :key ="monNbCase">
 
-                            <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4">
+                            <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4 "  v-on:click="anneau2">
                             </button>
                 
                         </div>
@@ -43,6 +43,24 @@
         props: ['leveljson'],
         mounted() {
             console.log('Component Fonction mounted.')
+        },
+
+        methods: {
+            anneau2: function (event) {
+            
+            if (event) 
+                {
+                var elements = document.getElementById("component-fonction").getElementsByClassName('focus-color');
+
+                while(elements.length > 0)
+                {
+                elements[0].classList.remove('focus-color');
+                }
+
+                $('#'+event.target.id).addClass('focus-color');
+                }
+            }
         }
+
     }
 </script>

@@ -22,9 +22,14 @@
                 
         </div>
 
-
+        <div class ="grid grid-cols-2">
 
         <Boutons/>
+
+
+        <Listeactions/>
+
+        </div>
 
 
     </div>
@@ -35,6 +40,7 @@
 <script>
 
     import Boutons from './Boutons'
+    import Listeactions from './ListeActions'
 
     
     export default {
@@ -47,6 +53,7 @@
         
         components:
         {
+            Listeactions,
             Boutons
         }
 
