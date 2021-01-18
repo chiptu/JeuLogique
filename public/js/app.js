@@ -224,6 +224,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -240,6 +241,9 @@ __webpack_require__.r(__webpack_exports__);
 
         $('#' + event.target.id).addClass('focus-color');
       }
+    },
+    command: function command(value) {
+      this.$emit('command', value);
     }
   }
 });
@@ -505,7 +509,28 @@ __webpack_require__.r(__webpack_exports__);
       return str;
     },
     command: function command(value) {
-      console.log(value); // someValue
+      var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
+      var selectColor = document.getElementById("component-controle").getElementsByClassName('focus-color');
+
+      if (selectCase[0] != null) {
+        $("#" + selectCase[0].id).html(''); // $("#"+selectCase[0].id).attr("class","bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4 ")
+
+        console.log(value);
+
+        if (value == 1 || value == 2 || value == 3) // cas ou la case est une fonction
+          {
+            $("#" + selectCase[0].id).append('<div class ="text-3xl  pointer-events-none text-black">' + "F" + value + '</div>');
+          } else // cas ou la case est une fleche
+          {
+            $("#" + selectCase[0].id).append("<i class='fas " + value + " fa-2x'</i>");
+          }
+        /*if (selectColor[0] !=null || selectColor[0].id != "btn-noColor")// cas avec couleur 
+        {
+             $("#"+selectCase[0].id).attr("class"," "+selectColor[0].id+" border border-white hover:border-black rounded w-12 h-12 text-black mr-4 ")
+             
+        }*/
+
+      }
     }
   }
 });
@@ -1120,20 +1145,13 @@ var render = function() {
                   attrs: { id: "btn-up" },
                   on: {
                     click: function($event) {
-                      return _vm.$emit("enlarge-text")
+                      return _vm.command(
+                        "fa fa-arrow-up fa-2x pointer-events-none"
+                      )
                     }
                   }
                 },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-arrow-up fa-2x",
-                    on: {
-                      click: function($event) {
-                        return _vm.$emit("enlarge-text")
-                      }
-                    }
-                  })
-                ]
+                [_c("i", { staticClass: "fa fa-arrow-up fa-2x" })]
               ),
               _vm._v(" "),
               _c(
@@ -1144,15 +1162,13 @@ var render = function() {
                   attrs: { id: "btn-right" },
                   on: {
                     click: function($event) {
-                      return _vm.$emit("enlarge-text")
+                      return _vm.command(
+                        "fa fa-share fa-2x pointer-events-none"
+                      )
                     }
                   }
                 },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-share fa-2x pointer-events-none"
-                  })
-                ]
+                [_c("i", { staticClass: "fa fa-share fa-2x " })]
               ),
               _vm._v(" "),
               _c(
@@ -1163,7 +1179,9 @@ var render = function() {
                   attrs: { id: "btn-left" },
                   on: {
                     click: function($event) {
-                      return _vm.$emit("enlarge-text")
+                      return _vm.command(
+                        "fas fa-reply fa-2x pointer-events-none"
+                      )
                     }
                   }
                 },
@@ -1177,7 +1195,12 @@ var render = function() {
                     {
                       staticClass:
                         "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
-                      attrs: { id: "btn-f" + fonction.idFonction }
+                      attrs: { id: "btn-f" + fonction.idFonction },
+                      on: {
+                        click: function($event) {
+                          return _vm.command(fonction.idFonction)
+                        }
+                      }
                     },
                     [
                       _c("div", { staticClass: "text-3xl  text-black" }, [
@@ -1195,26 +1218,13 @@ var render = function() {
             "div",
             { staticClass: "w-3/12" },
             [
-              _vm.leveljson.nbCouleur != 0
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-4 text-3xl",
-                      attrs: { id: "btn-noColor" },
-                      on: { click: _vm.anneau }
-                    },
-                    [_vm._v("\n                    \\\n                ")]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
               _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
                 return _c("div", { key: couleur }, [
                   couleur == 1
                     ? _c("button", {
                         staticClass:
                           "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
-                        attrs: { id: "btn-green" },
+                        attrs: { id: "bg-gray-400" },
                         on: { click: _vm.anneau }
                       })
                     : _vm._e(),
@@ -1223,7 +1233,7 @@ var render = function() {
                     ? _c("button", {
                         staticClass:
                           "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
-                        attrs: { id: "btn-gray" },
+                        attrs: { id: "bg-gray-600" },
                         on: { click: _vm.anneau }
                       })
                     : _vm._e(),
@@ -1232,12 +1242,21 @@ var render = function() {
                     ? _c("button", {
                         staticClass:
                           "bg-gray-900 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
-                        attrs: { id: "btn-purple" },
+                        attrs: { id: "bg-gray-900" },
                         on: { click: _vm.anneau }
                       })
                     : _vm._e()
                 ])
-              })
+              }),
+              _vm._v(" "),
+              _vm.leveljson.nbCouleur != 0
+                ? _c("button", {
+                    staticClass:
+                      "bg-black border border-white hover:border-black rounded w-12 h-12 mr-4 mt-4 text-3xl",
+                    attrs: { id: "btn-noColor" },
+                    on: { click: _vm.anneau }
+                  })
+                : _vm._e()
             ],
             2
           )
@@ -1549,7 +1568,7 @@ var render = function() {
           _vm._v(" "),
           _c("Controle", {
             attrs: { leveljson: this.parse() },
-            on: { clicked: _vm.command }
+            on: { command: _vm.command }
           })
         ],
         1

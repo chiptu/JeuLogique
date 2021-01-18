@@ -23,7 +23,7 @@
 
             <Fonction :leveljson = "this.parse()" />
 
-            <Controle :leveljson = "this.parse()" @clicked="command" />
+            <Controle :leveljson = "this.parse()" @command="command"/>
         
         </div>
 
@@ -70,7 +70,34 @@
                 return str
             },
             command(value) {
-                console.log(value) // someValue
+                
+                var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
+                var selectColor = document.getElementById("component-controle").getElementsByClassName('focus-color');
+
+
+                if (selectCase[0] != null)
+                {
+                    $("#"+selectCase[0].id).html('');
+                   // $("#"+selectCase[0].id).attr("class","bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4 ")
+                    
+                        console.log(value)
+                        if (value == 1 || value ==2 || value ==3) // cas ou la case est une fonction
+                        {
+                            $("#"+selectCase[0].id).append('<div class ="text-3xl  pointer-events-none text-black">'+"F"+value+'</div>')
+                        }
+                        else // cas ou la case est une fleche
+                        {
+                            $("#"+selectCase[0].id).append("<i class='fas "+ value +" fa-2x'</i>")
+                        }
+                        
+                    /*if (selectColor[0] !=null || selectColor[0].id != "btn-noColor")// cas avec couleur 
+                    {
+                         $("#"+selectCase[0].id).attr("class"," "+selectColor[0].id+" border border-white hover:border-black rounded w-12 h-12 text-black mr-4 ")
+                         
+                    }*/
+                }
+
+
             }
         }
        

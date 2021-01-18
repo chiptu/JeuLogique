@@ -13,22 +13,22 @@
 
                     
 
-                    <button id="btn-up" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="$emit('enlarge-text')">
-                        <i class="fa fa-arrow-up fa-2x" v-on:click="$emit('enlarge-text')"></i>
+                    <button id="btn-up" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="command('fa fa-arrow-up fa-2x pointer-events-none')">
+                        <i class="fa fa-arrow-up fa-2x"></i>
                     </button>
                 
-                    <button id="btn-right" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="$emit('enlarge-text')">
-                        <i class="fa fa-share fa-2x pointer-events-none"></i>
+                    <button id="btn-right" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="command('fa fa-share fa-2x pointer-events-none')">
+                        <i class="fa fa-share fa-2x "></i>
                     </button>
 
 
-                    <button id="btn-left" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="$emit('enlarge-text')">
+                    <button id="btn-left" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="command('fas fa-reply fa-2x pointer-events-none')">
                         <i class="fas fa-reply fa-2x"></i>
                     </button>
 
                    
                     <div v-for="fonction in leveljson.fonctions" :key ="fonction.idFonction"  >
-                     <button :id="'btn-f' +fonction.idFonction" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2">
+                     <button :id="'btn-f' +fonction.idFonction" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="command(fonction.idFonction)">
                         <div class ="text-3xl  text-black">F{{fonction.idFonction}}</div>
                     </button>
                     </div>
@@ -37,27 +37,28 @@
 
                 
                 <div class ="w-3/12">
-
-                     <button v-if="leveljson.nbCouleur != 0"  id="btn-noColor" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-4 text-3xl" v-on:click="anneau">
-                        \
-                    </button>
                     
 
 
                      <div v-for="couleur in leveljson.nbCouleur" :key ="couleur"  >
 
-                    <button  v-if="couleur == 1" id="btn-green" class="bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
-                   
-                    </button>
+                        <button  v-if="couleur == 1" id="bg-gray-400" class="bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
+                    
+                        </button>
 
-                    <button  v-if="couleur == 2" id="btn-gray" class="bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
-                   
-                    </button>
+                        <button  v-if="couleur == 2" id="bg-gray-600" class="bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
+                    
+                        </button>
 
-                    <button  v-if="couleur == 3" id="btn-purple" class="bg-gray-900 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
-                   
-                    </button>
+                        <button  v-if="couleur == 3" id="bg-gray-900" class="bg-gray-900 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
+                    
+                        </button>
                     </div>
+
+
+                    <button v-if="leveljson.nbCouleur != 0"  id="btn-noColor" class="bg-black border border-white hover:border-black rounded w-12 h-12 mr-4 mt-4 text-3xl" v-on:click="anneau">
+                        
+                    </button>
 
 
                 
@@ -101,6 +102,12 @@
                     $('#'+event.target.id).addClass('focus-color');
                 }
             },
+
+
+            command(value)
+            {
+                this.$emit('command',value);
+            }
 
             
            
