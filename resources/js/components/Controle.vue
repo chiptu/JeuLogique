@@ -13,16 +13,16 @@
 
                     
 
-                    <button id="btn-up" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2">
-                        <i class="fa fa-arrow-up fa-2x"></i>
+                    <button id="btn-up" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="$emit('enlarge-text')">
+                        <i class="fa fa-arrow-up fa-2x" v-on:click="$emit('enlarge-text')"></i>
                     </button>
                 
-                    <button id="btn-right" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2">
-                        <i class="fa fa-share fa-2x"></i>
+                    <button id="btn-right" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="$emit('enlarge-text')">
+                        <i class="fa fa-share fa-2x pointer-events-none"></i>
                     </button>
 
 
-                    <button id="btn-left" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2">
+                    <button id="btn-left" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2" v-on:click="$emit('enlarge-text')">
                         <i class="fas fa-reply fa-2x"></i>
                     </button>
 
@@ -86,20 +86,26 @@
 
 
         methods: {
-            anneau: function (event) {
+
+            anneau: function (event) 
+            {
+                if (event) 
+                {
+                    var elements = document.getElementById("component-controle").getElementsByClassName('focus-color');
+
+                    while(elements.length > 0)
+                    {
+                    elements[0].classList.remove('focus-color');
+                    }
+
+                    $('#'+event.target.id).addClass('focus-color');
+                }
+            },
+
             
-            if (event) 
-                {
-                var elements = document.getElementById("component-controle").getElementsByClassName('focus-color');
+           
+  
 
-                while(elements.length > 0)
-                {
-                elements[0].classList.remove('focus-color');
-                }
-
-                $('#'+event.target.id).addClass('focus-color');
-                }
-            }
         }
     }
 </script>

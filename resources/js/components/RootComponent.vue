@@ -10,7 +10,7 @@
         <div id="stars3"></div>
     
        
-        <video autoplay muted loop poster="https://jeu.test/images/bg-black.jpg" id="bgvid" class="w-full h-full absolute top left">
+        <video autoplay muted loop  id="bgvid" class="w-full h-full absolute top left">
   
             <source :src="this.video()" type="video/mp4">
 
@@ -23,7 +23,7 @@
 
             <Fonction :leveljson = "this.parse()" />
 
-            <Controle :leveljson = "this.parse()" />
+            <Controle :leveljson = "this.parse()" @clicked="command" />
         
         </div>
 
@@ -68,6 +68,9 @@
                 let json = this.parse();
                 let str = "https://jeu.app/videos/"+(json.id)+".mp4";
                 return str
+            },
+            command(value) {
+                console.log(value) // someValue
             }
         }
        

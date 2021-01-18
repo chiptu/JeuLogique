@@ -422,6 +422,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Boutons mounted.');
@@ -502,6 +503,9 @@ __webpack_require__.r(__webpack_exports__);
       var json = this.parse();
       var str = "https://jeu.app/videos/" + json.id + ".mp4";
       return str;
+    },
+    command: function command(value) {
+      console.log(value); // someValue
     }
   }
 });
@@ -1108,11 +1112,63 @@ var render = function() {
             "div",
             { staticClass: "w-3/12" },
             [
-              _vm._m(0),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
+                  attrs: { id: "btn-up" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$emit("enlarge-text")
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-arrow-up fa-2x",
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("enlarge-text")
+                      }
+                    }
+                  })
+                ]
+              ),
               _vm._v(" "),
-              _vm._m(1),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
+                  attrs: { id: "btn-right" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$emit("enlarge-text")
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-share fa-2x pointer-events-none"
+                  })
+                ]
+              ),
               _vm._v(" "),
-              _vm._m(2),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
+                  attrs: { id: "btn-left" },
+                  on: {
+                    click: function($event) {
+                      return _vm.$emit("enlarge-text")
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-reply fa-2x" })]
+              ),
               _vm._v(" "),
               _vm._l(_vm.leveljson.fonctions, function(fonction) {
                 return _c("div", { key: fonction.idFonction }, [
@@ -1190,50 +1246,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
-        attrs: { id: "btn-up" }
-      },
-      [_c("i", { staticClass: "fa fa-arrow-up fa-2x" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
-        attrs: { id: "btn-right" }
-      },
-      [_c("i", { staticClass: "fa fa-share fa-2x" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
-        attrs: { id: "btn-left" }
-      },
-      [_c("i", { staticClass: "fas fa-reply fa-2x" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1438,39 +1451,39 @@ var staticRenderFns = [
           "button",
           {
             staticClass:
-              "bg-white hover: border border-white  rounded w-12 h-12 text-black mr-8 mt-4 ripple",
+              " bg-white hover: border border-white  rounded w-12 h-12 text-black mr-8 mt-4 pointer-events-none",
             attrs: { id: "listeAction" }
           },
           [_c("i", { staticClass: "fas fa-terminal" })]
         ),
         _vm._v(" "),
-        _c("div", {
+        _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction1" }
         }),
         _vm._v(" "),
-        _c("div", {
+        _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction2" }
         }),
         _vm._v(" "),
-        _c("div", {
+        _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction3" }
         }),
         _vm._v(" "),
-        _c("div", {
+        _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction4" }
         }),
         _vm._v(" "),
-        _c("div", {
+        _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1",
+            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction5" }
         })
       ]
@@ -1520,13 +1533,7 @@ var render = function() {
         "video",
         {
           staticClass: "w-full h-full absolute top left",
-          attrs: {
-            autoplay: "",
-            muted: "",
-            loop: "",
-            poster: "https://jeu.test/images/bg-black.jpg",
-            id: "bgvid"
-          },
+          attrs: { autoplay: "", muted: "", loop: "", id: "bgvid" },
           domProps: { muted: true }
         },
         [_c("source", { attrs: { src: this.video(), type: "video/mp4" } })]
@@ -1540,7 +1547,10 @@ var render = function() {
         [
           _c("Fonction", { attrs: { leveljson: this.parse() } }),
           _vm._v(" "),
-          _c("Controle", { attrs: { leveljson: this.parse() } })
+          _c("Controle", {
+            attrs: { leveljson: this.parse() },
+            on: { clicked: _vm.command }
+          })
         ],
         1
       )
