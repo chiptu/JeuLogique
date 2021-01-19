@@ -56,7 +56,7 @@
                     </div>
 
 
-                    <button v-if="leveljson.nbCouleur != 0"  id="btn-noColor" class="bg-black border border-white hover:border-black rounded w-12 h-12 mr-4 mt-4 text-3xl" v-on:click="anneau">
+                    <button v-if="leveljson.nbCouleur != 0"  id="btn-noColor" class="bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl" v-on:click="anneau">
                         
                     </button>
 

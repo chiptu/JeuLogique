@@ -18,7 +18,7 @@
 
                          <div  v-for="monNbCase in fonction.nombreCase" :key ="monNbCase">
 
-                            <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4 "  v-on:click="anneau2">
+                            <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="bg-black border border-white  rounded w-12 h-12 text-white mr-4 "  v-on:click="anneau2">
                             </button>
                 
                         </div>

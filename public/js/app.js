@@ -513,23 +513,22 @@ __webpack_require__.r(__webpack_exports__);
       var selectColor = document.getElementById("component-controle").getElementsByClassName('focus-color');
 
       if (selectCase[0] != null) {
-        $("#" + selectCase[0].id).html(''); // $("#"+selectCase[0].id).attr("class","bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4 ")
-
-        console.log(value);
+        selectCase[0].innerHTML = "";
 
         if (value == 1 || value == 2 || value == 3) // cas ou la case est une fonction
           {
-            $("#" + selectCase[0].id).append('<div class ="text-3xl  pointer-events-none text-black">' + "F" + value + '</div>');
+            $("#" + selectCase[0].id).append('<div class ="text-3xl  pointer-events-none ">' + "F" + value + '</div>');
           } else // cas ou la case est une fleche
           {
             $("#" + selectCase[0].id).append("<i class='fas " + value + " fa-2x'</i>");
           }
-        /*if (selectColor[0] !=null || selectColor[0].id != "btn-noColor")// cas avec couleur 
-        {
-             $("#"+selectCase[0].id).attr("class"," "+selectColor[0].id+" border border-white hover:border-black rounded w-12 h-12 text-black mr-4 ")
-             
-        }*/
 
+        if (selectColor[0] != null || selectColor[0].id != "btn-noColor") // cas avec couleur 
+          {
+            selectCase[0].className = selectColor[0].id + " border border-white hover:border-black rounded w-12 h-12 text-white mr-4 focus-color";
+          } else {
+          selectCase[0].className = "bg-yellow-500 border border-white hover:border-black rounded w-12 h-12 text-white focus-color mr-4";
+        }
       }
     }
   }
@@ -1252,7 +1251,7 @@ var render = function() {
               _vm.leveljson.nbCouleur != 0
                 ? _c("button", {
                     staticClass:
-                      "bg-black border border-white hover:border-black rounded w-12 h-12 mr-4 mt-4 text-3xl",
+                      "bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl",
                     attrs: { id: "btn-noColor" },
                     on: { click: _vm.anneau }
                   })
@@ -1329,7 +1328,7 @@ var render = function() {
                     return _c("div", { key: monNbCase }, [
                       _c("button", {
                         staticClass:
-                          "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mr-4 ",
+                          "bg-black border border-white  rounded w-12 h-12 text-white mr-4 ",
                         attrs: {
                           id:
                             "btn-f" + fonction.idFonction + "-case-" + monNbCase
