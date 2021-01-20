@@ -241,6 +241,9 @@ __webpack_require__.r(__webpack_exports__);
 
         $('#' + event.target.id).addClass('focus-color');
       }
+
+      console.log("anneau");
+      this.command("color");
     },
     command: function command(value) {
       this.$emit('command', value);
@@ -509,27 +512,35 @@ __webpack_require__.r(__webpack_exports__);
       return str;
     },
     command: function command(value) {
+      console.log("debut command");
       var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
       var selectColor = document.getElementById("component-controle").getElementsByClassName('focus-color');
 
       if (selectCase[0] != null) {
-        selectCase[0].innerHTML = "";
+        console.log("Si case selectionne non nul");
+
+        if (selectColor[0] != null) // cas avec couleur 
+          {
+            selectCase[0].className = selectColor[0].id + " border border-white hover:border-black rounded w-12 h-12 text-white mr-4 focus-color";
+            console.log("Si case a une couleur");
+          }
 
         if (value == 1 || value == 2 || value == 3) // cas ou la case est une fonction
           {
+            selectCase[0].innerHTML = "";
             $("#" + selectCase[0].id).append('<div class ="text-3xl  pointer-events-none ">' + "F" + value + '</div>');
-          } else // cas ou la case est une fleche
-          {
-            $("#" + selectCase[0].id).append("<i class='fas " + value + " fa-2x'</i>");
+            console.log("Si case est une fonction");
           }
 
-        if (selectColor[0] != null || selectColor[0].id != "btn-noColor") // cas avec couleur 
+        if (value == "fa fa-arrow-up fa-2x pointer-events-none" || value == "fa fa-share fa-2x pointer-events-none" || value == "fas fa-reply fa-2x pointer-events-none") // cas ou la case est une fleche
           {
-            selectCase[0].className = selectColor[0].id + " border border-white hover:border-black rounded w-12 h-12 text-white mr-4 focus-color";
-          } else {
-          selectCase[0].className = "bg-yellow-500 border border-white hover:border-black rounded w-12 h-12 text-white focus-color mr-4";
-        }
+            selectCase[0].innerHTML = "";
+            $("#" + selectCase[0].id).append("<i class='fas " + value + " fa-2x'</i>");
+            console.log("Si case est une fleche");
+          }
       }
+
+      console.log("finc fct command");
     }
   }
 });
@@ -1252,7 +1263,7 @@ var render = function() {
                 ? _c("button", {
                     staticClass:
                       "bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl",
-                    attrs: { id: "btn-noColor" },
+                    attrs: { id: "bg-black" },
                     on: { click: _vm.anneau }
                   })
                 : _vm._e()
