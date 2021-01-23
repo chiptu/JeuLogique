@@ -24,7 +24,7 @@
 
         <div class ="grid grid-cols-2">
 
-        <Boutons/>
+        <Boutons @time="time"/>
 
 
         <Listeactions/>
@@ -55,9 +55,15 @@
         {
             Listeactions,
             Boutons
+        },
+
+        methods:
+        {
+            time(value)
+            {
+                this.$emit('time',value);
+            }
         }
-
-
 
     }
 </script>

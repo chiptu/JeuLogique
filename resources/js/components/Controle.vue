@@ -50,7 +50,7 @@
                     
                         </button>
 
-                        <button  v-if="couleur == 3" id="bg-gray-900" class="bg-gray-900 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
+                        <button  v-if="couleur == 3" id="bg-gray-800" class="bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 " v-on:click="anneau">
                     
                         </button>
                     </div>
@@ -101,7 +101,6 @@
 
                     $('#'+event.target.id).addClass('focus-color');
                 }
-                console.log("anneau")
                 this.command("color");
             },
 

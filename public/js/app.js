@@ -134,6 +134,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Boutons mounted.');
+  },
+  methods: {
+    time: function time(value) {
+      this.$emit('time', value);
+    }
   }
 });
 
@@ -242,7 +247,6 @@ __webpack_require__.r(__webpack_exports__);
         $('#' + event.target.id).addClass('focus-color');
       }
 
-      console.log("anneau");
       this.command("color");
     },
     command: function command(value) {
@@ -382,6 +386,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Listeactions: _ListeActions__WEBPACK_IMPORTED_MODULE_1__["default"],
     Boutons: _Boutons__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    time: function time(value) {
+      this.$emit('time', value);
+    }
   }
 });
 
@@ -493,6 +502,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      delayTime: 1
+    };
+  },
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component root mounted.');
@@ -511,36 +525,103 @@ __webpack_require__.r(__webpack_exports__);
       var str = "https://jeu.app/videos/" + json.id + ".mp4";
       return str;
     },
+    play: function play() {},
+    time: function time(value) {
+      this.delayTime = value;
+    },
     command: function command(value) {
-      console.log("debut command");
       var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
       var selectColor = document.getElementById("component-controle").getElementsByClassName('focus-color');
 
       if (selectCase[0] != null) {
-        console.log("Si case selectionne non nul");
-
         if (selectColor[0] != null) // cas avec couleur 
           {
             selectCase[0].className = selectColor[0].id + " border border-white hover:border-black rounded w-12 h-12 text-white mr-4 focus-color";
-            console.log("Si case a une couleur");
           }
 
         if (value == 1 || value == 2 || value == 3) // cas ou la case est une fonction
           {
             selectCase[0].innerHTML = "";
-            $("#" + selectCase[0].id).append('<div class ="text-3xl  pointer-events-none ">' + "F" + value + '</div>');
-            console.log("Si case est une fonction");
+            $("#" + selectCase[0].id).append('<div class ="text-3xl ' + "F" + value + ' pointer-events-none ">' + "F" + value + '</div>');
           }
 
         if (value == "fa fa-arrow-up fa-2x pointer-events-none" || value == "fa fa-share fa-2x pointer-events-none" || value == "fas fa-reply fa-2x pointer-events-none") // cas ou la case est une fleche
           {
             selectCase[0].innerHTML = "";
             $("#" + selectCase[0].id).append("<i class='fas " + value + " fa-2x'</i>");
-            console.log("Si case est une fleche");
           }
       }
 
-      console.log("finc fct command");
+      this.updateAction();
+    },
+    updateAction: function updateAction() {
+      var monTableau = this.getFonctions();
+
+      for (var i = 0; i < monTableau[0].cases.length; i++) {
+        var monAction = monTableau[0].cases[i].action;
+        var actionListe = document.getElementById("ListeAction" + (i + 1));
+        actionListe.className = monTableau[0].cases[i].couleur + " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none";
+        actionListe.innerHTML = "";
+
+        if (monAction != null) {
+          if (monAction.includes("F1") || monAction.includes("F2") || monAction.includes("F3") || monAction.includes("F4")) {
+            var place = monAction.indexOf("F");
+            $("#" + actionListe.id).append('<div class ="text-3xl ' + "F" + monAction[place + 1] + ' pointer-events-none ">' + "F" + monAction[place + 1] + '</div>');
+          } else {
+            $("#" + actionListe.id).append('<i class="' + monAction + '"</i>');
+          }
+        }
+      }
+    },
+    getFonctions: function getFonctions() // Renvoie tableau objet fonction [ {id:1,cases:[ {action:f1,couleur:aucune} , {action:gauche,couleur:blanc} ] },]
+    {
+      var monjson = this.parse();
+      var monTableau = [];
+
+      for (var fonction in monjson.fonctions) {
+        var monObjet = {
+          id: parseInt(fonction, 10) + 1,
+          cases: []
+        };
+        var mesCases = [];
+
+        for (var i = 0; i < monjson.fonctions[fonction].nombreCase; i++) //recup by id avec i et fonction // recup info icone ? recup info color ?
+        {
+          var Case = document.getElementById("btn-f" + (parseInt(fonction, 10) + 1) + "-case-" + (i + 1));
+          var caseEnfant = Case.childNodes;
+          var maCase = {
+            action: null,
+            couleur: null
+          };
+
+          if (caseEnfant[0] != null) {
+            maCase.action = caseEnfant[0].className;
+          }
+
+          if (Case.classList.contains('bg-black')) {
+            maCase.couleur = 'bg-black';
+          }
+
+          if (Case.classList.contains('bg-gray-400')) {
+            maCase.couleur = 'bg-gray-400';
+          }
+
+          if (Case.classList.contains('bg-gray-600')) {
+            maCase.couleur = 'bg-gray-600';
+          }
+
+          if (Case.classList.contains('bg-gray-800')) {
+            maCase.couleur = 'bg-gray-800';
+          }
+
+          mesCases[i] = maCase;
+        }
+
+        monObjet.cases = mesCases;
+        monTableau[fonction] = monObjet;
+      }
+
+      return monTableau;
     }
   }
 });
@@ -1030,7 +1111,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass:
+        " h-auto w-full flex  justify-center mt-8 border-t-2 border-white"
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple",
+          attrs: { id: "speed1" },
+          on: {
+            click: function($event) {
+              return _vm.time("1")
+            }
+          }
+        },
+        [_vm._v("\n            x1\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple",
+          attrs: { id: "speed2" },
+          on: {
+            click: function($event) {
+              return _vm.time("0.5")
+            }
+          }
+        },
+        [_vm._v("\n            x2\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple",
+          attrs: { id: "speed4" },
+          on: {
+            click: function($event) {
+              return _vm.time("0.25")
+            }
+          }
+        },
+        [_vm._v("\n            x4\n        ")]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -1038,72 +1177,41 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
+      "button",
       {
         staticClass:
-          " h-auto w-full flex  justify-center mt-8 border-t-2 border-white"
+          "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
+        attrs: { id: "start" }
       },
-      [
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
-            attrs: { id: "start" }
-          },
-          [_c("i", { staticClass: "fa fa-play fa-2x" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
-            attrs: { id: "pause" }
-          },
-          [_c("i", { staticClass: "fa fa-pause fa-2x" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
-            attrs: { id: "stop" }
-          },
-          [_c("i", { staticClass: "fa fa-stop fa-2x" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple",
-            attrs: { id: "speed1" }
-          },
-          [_vm._v("\n            x1\n        ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple",
-            attrs: { id: "speed2" }
-          },
-          [_vm._v("\n            x2\n        ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple",
-            attrs: { id: "speed4" }
-          },
-          [_vm._v("\n            x4\n        ")]
-        )
-      ]
+      [_c("i", { staticClass: "fa fa-play fa-2x" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass:
+          "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
+        attrs: { id: "pause" }
+      },
+      [_c("i", { staticClass: "fa fa-pause fa-2x" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass:
+          "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
+        attrs: { id: "stop" }
+      },
+      [_c("i", { staticClass: "fa fa-stop fa-2x" })]
     )
   }
 ]
@@ -1251,8 +1359,8 @@ var render = function() {
                   couleur == 3
                     ? _c("button", {
                         staticClass:
-                          "bg-gray-900 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
-                        attrs: { id: "bg-gray-900" },
+                          "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
+                        attrs: { id: "bg-gray-800" },
                         on: { click: _vm.anneau }
                       })
                     : _vm._e()
@@ -1433,7 +1541,11 @@ var render = function() {
       _c(
         "div",
         { staticClass: "grid grid-cols-2" },
-        [_c("Boutons"), _vm._v(" "), _c("Listeactions")],
+        [
+          _c("Boutons", { on: { time: _vm.time } }),
+          _vm._v(" "),
+          _c("Listeactions")
+        ],
         1
       )
     ],
@@ -1480,7 +1592,7 @@ var staticRenderFns = [
           "button",
           {
             staticClass:
-              " bg-white hover: border border-white  rounded w-12 h-12 text-black mr-8 mt-4 pointer-events-none",
+              "bg-black  hover: border border-white  rounded w-12 h-12 text-white mr-8 mt-4 pointer-events-none",
             attrs: { id: "listeAction" }
           },
           [_c("i", { staticClass: "fas fa-terminal" })]
@@ -1488,31 +1600,31 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
+            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction1" }
         }),
         _vm._v(" "),
         _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
+            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction2" }
         }),
         _vm._v(" "),
         _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
+            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction3" }
         }),
         _vm._v(" "),
         _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
+            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction4" }
         }),
         _vm._v(" "),
         _c("button", {
           staticClass:
-            "bg-white border border-white hover:border-black rounded w-12 h-12 text-black mt-4 mr-1 pointer-events-none",
+            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
           attrs: { id: "ListeAction5" }
         })
       ]
@@ -1568,7 +1680,7 @@ var render = function() {
         [_c("source", { attrs: { src: this.video(), type: "video/mp4" } })]
       ),
       _vm._v(" "),
-      _c("Jeu", { attrs: { leveljson: this.parse() } }),
+      _c("Jeu", { attrs: { leveljson: this.parse() }, on: { time: _vm.time } }),
       _vm._v(" "),
       _c(
         "div",

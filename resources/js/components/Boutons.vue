@@ -16,15 +16,15 @@
                     <i class="fa fa-stop fa-2x"></i>
                 </button>
 
-                <button id="speed1" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple">
+                <button id="speed1" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple" v-on:click="time('1')">
                     x1
                 </button>
 
-                <button id="speed2" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple">
+                <button id="speed2" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple" v-on:click="time('0.5')">
                     x2
                 </button>
 
-                <button id="speed4" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple">
+                <button id="speed4" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple" v-on:click="time('0.25')">
                     x4
                 </button>
 
@@ -40,6 +40,17 @@
     export default {
         mounted() {
             console.log('Component Boutons mounted.')
+        },
+
+        methods:
+        {
+
+        time(value)
+            {
+                this.$emit('time',value);
+            },
+
         }
+
     }
 </script>
