@@ -525,9 +525,28 @@ __webpack_require__.r(__webpack_exports__);
       var str = "https://jeu.app/videos/" + json.id + ".mp4";
       return str;
     },
-    play: function play() {},
     time: function time(value) {
       this.delayTime = value;
+    },
+    play: function play() {
+      var mesFonctions = this.getFonctions();
+      console.log(mesFonctions);
+      var grilleJeu = document.getElementById("grilleJeu").childNodes; // console.log(grilleuJeu);
+
+      this.rocketPosition(grilleJeu);
+      setTimeout(function () {}, 1000);
+    },
+    rocketPosition: function rocketPosition(grilleJeu) {
+      for (var i = 0; i < 10; i++) {
+        for (var j = 0; j < 10; j++) {
+          if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null) {
+            console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0]);
+            console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
+            console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[2]);
+          }
+        } //console.log(grilleJeu[i])
+
+      }
     },
     command: function command(value) {
       var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
@@ -553,6 +572,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.updateAction();
+      this.play();
     },
     updateAction: function updateAction() {
       var monTableau = this.getFonctions();
@@ -1491,7 +1511,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " w-8/12  p-12 " },
+    { staticClass: " w-8/12  p-12 ", attrs: { id: "grilleJeu" } },
     [
       _vm._l(_vm.leveljson.lignes, function(ligne) {
         return _c(

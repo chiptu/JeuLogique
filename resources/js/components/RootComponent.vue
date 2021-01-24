@@ -77,14 +77,49 @@
                 return str
             },
 
-            play()
-            {
-
-            },
-
             time(value)
             {
                 this.delayTime = value;
+            },
+
+            play()
+            {
+               var mesFonctions = this.getFonctions()
+               console.log(mesFonctions);
+
+               var grilleJeu = document.getElementById("grilleJeu").childNodes;
+
+               
+               // console.log(grilleuJeu);
+               
+
+               this.rocketPosition(grilleJeu)
+
+
+               setTimeout(function(){
+                
+               
+                }, 1000);
+
+            },
+
+            rocketPosition(grilleJeu)
+            {
+                 for (var i = 0; i< 10;i++)
+                 {
+                     for (var j = 0; j< 10;j++)
+                    {
+                    
+                     if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null)
+                     {
+                        console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0])
+                         console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1])
+                         console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[2])
+                     }
+
+                    }
+                    //console.log(grilleJeu[i])
+                 }
             },
 
             command(value) {
@@ -94,7 +129,6 @@
 
                 if (selectCase[0] != null)
                 {
-
                     if (selectColor[0] !=null )// cas avec couleur 
                     {
                          selectCase[0].className =  selectColor[0].id+ " border border-white hover:border-black rounded w-12 h-12 text-white mr-4 focus-color";   
@@ -111,9 +145,9 @@
                         selectCase[0].innerHTML = "";
                         $("#"+selectCase[0].id).append("<i class='fas "+ value +" fa-2x'</i>")
                     }
-                    
                 }
                this.updateAction();
+               this.play();
 
             },
 
@@ -145,10 +179,8 @@
                             $("#"+actionListe.id).append('<i class="' + monAction +'"</i>' )
                         }
                     }
-                   
                     
                 }
-
             },
 
             getFonctions()  // Renvoie tableau objet fonction [ {id:1,cases:[ {action:f1,couleur:aucune} , {action:gauche,couleur:blanc} ] },]
