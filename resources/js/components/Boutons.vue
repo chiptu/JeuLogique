@@ -4,7 +4,7 @@
 
             <div class = " h-auto w-full flex  justify-center mt-8 border-t-2 border-white">
 
-                <button id="start" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple">
+                <button id="start" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple" v-on:click="play()">
                     <i class="fa fa-play fa-2x"></i>
                 </button>
 
@@ -48,6 +48,11 @@
         time(value)
             {
                 this.$emit('time',value);
+            },
+        
+        play()
+            {
+                this.$emit('play');
             },
 
         }

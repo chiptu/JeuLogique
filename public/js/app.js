@@ -138,6 +138,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     time: function time(value) {
       this.$emit('time', value);
+    },
+    play: function play() {
+      this.$emit('play');
     }
   }
 });
@@ -390,6 +393,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     time: function time(value) {
       this.$emit('time', value);
+    },
+    play: function play() {
+      this.$emit('play');
     }
   }
 });
@@ -405,6 +411,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -530,25 +540,65 @@ __webpack_require__.r(__webpack_exports__);
     },
     play: function play() {
       var mesFonctions = this.getFonctions();
-      console.log(mesFonctions);
-      var grilleJeu = document.getElementById("grilleJeu").childNodes; // console.log(grilleuJeu);
+      var grilleJeu = document.getElementById("grilleJeu").childNodes;
+      var position = this.infoGrille(grilleJeu); // console.log(mesFonctions);
+      // console.log(grilleJeu);
+      // console.log(position);
 
-      this.rocketPosition(grilleJeu);
+      this.getLastAction();
       setTimeout(function () {}, 1000);
     },
-    rocketPosition: function rocketPosition(grilleJeu) {
+    getLastAction: function getLastAction() // Retourne la derniere action et desempile le reste
+    {
+      var tableauAction = [];
+
+      for (var i = 0; i < 5; i++) {
+        var actionListe = document.getElementById("ListeAction" + (i + 1));
+        tableauAction.push(actionListe);
+      }
+
+      var result = tableauAction[0].childNodes[0]; //console.log(tableauAction[0].id);
+
+      var tableauSave = tableauAction;
+      console.log("1 eme remplacement");
+      tableauAction[0].replaceChild(tableauSave[1].childNodes[0], tableauAction[0].childNodes[0]);
+      console.log("2 eme remplacement");
+      console.log(tableauSave[2].childNodes[0]);
+      console.log(tableauSave[1].childNodes[0]);
+      tableauAction[1].replaceChild(tableauSave[2].childNodes[0], tableauAction[1].childNodes[0]);
+      console.log("3 eme remplacement");
+      tableauAction[2].replaceChild(tableauSave[3].childNodes[0], tableauAction[2].childNodes[0]);
+      console.log("4 eme remplacement");
+      tableauAction[3].replaceChild(tableauSave[4].childNodes[0], tableauAction[3].childNodes[0]); //console.log(tableauAction);
+
+      return result;
+    },
+    infoGrille: function infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant (si 0 = gagne)
+    {
+      var position = {
+        vaisseau: [],
+        nbEtoile: 0
+      };
+
       for (var i = 0; i < 10; i++) {
         for (var j = 0; j < 10; j++) {
           if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null) {
-            console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0]);
-            console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
-            console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[2]);
-          }
-        } //console.log(grilleJeu[i])
+            if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star")) {
+              position.nbEtoile++;
+            }
 
+            if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className.includes("fa-space-shuttle")) {
+              position.vaisseau.push(i);
+              position.vaisseau.push(j);
+            }
+          }
+        }
       }
+
+      return position;
     },
     command: function command(value) {
+      // Quand une action est assigne à une fonction
       var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
       var selectColor = document.getElementById("component-controle").getElementsByClassName('focus-color');
 
@@ -572,9 +622,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.updateAction();
-      this.play();
     },
-    updateAction: function updateAction() {
+    updateAction: function updateAction() // Liste Action qui recupere et s actualise sur F1
+    {
       var monTableau = this.getFonctions();
 
       for (var i = 0; i < monTableau[0].cases.length; i++) {
@@ -1138,11 +1188,24 @@ var render = function() {
         " h-auto w-full flex  justify-center mt-8 border-t-2 border-white"
     },
     [
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
+          attrs: { id: "start" },
+          on: {
+            click: function($event) {
+              return _vm.play()
+            }
+          }
+        },
+        [_c("i", { staticClass: "fa fa-play fa-2x" })]
+      ),
+      _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
       _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2),
       _vm._v(" "),
       _c(
         "button",
@@ -1192,20 +1255,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
-        attrs: { id: "start" }
-      },
-      [_c("i", { staticClass: "fa fa-play fa-2x" })]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -1562,7 +1611,7 @@ var render = function() {
         "div",
         { staticClass: "grid grid-cols-2" },
         [
-          _c("Boutons", { on: { time: _vm.time } }),
+          _c("Boutons", { on: { time: _vm.time, play: _vm.play } }),
           _vm._v(" "),
           _c("Listeactions")
         ],
@@ -1618,35 +1667,55 @@ var staticRenderFns = [
           [_c("i", { staticClass: "fas fa-terminal" })]
         ),
         _vm._v(" "),
-        _c("button", {
-          staticClass:
-            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-          attrs: { id: "ListeAction1" }
-        }),
+        _c(
+          "button",
+          {
+            staticClass:
+              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
+            attrs: { id: "ListeAction1" }
+          },
+          [_c("div", {})]
+        ),
         _vm._v(" "),
-        _c("button", {
-          staticClass:
-            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-          attrs: { id: "ListeAction2" }
-        }),
+        _c(
+          "button",
+          {
+            staticClass:
+              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
+            attrs: { id: "ListeAction2" }
+          },
+          [_c("div", {})]
+        ),
         _vm._v(" "),
-        _c("button", {
-          staticClass:
-            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-          attrs: { id: "ListeAction3" }
-        }),
+        _c(
+          "button",
+          {
+            staticClass:
+              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
+            attrs: { id: "ListeAction3" }
+          },
+          [_c("div", {})]
+        ),
         _vm._v(" "),
-        _c("button", {
-          staticClass:
-            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-          attrs: { id: "ListeAction4" }
-        }),
+        _c(
+          "button",
+          {
+            staticClass:
+              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
+            attrs: { id: "ListeAction4" }
+          },
+          [_c("div", {})]
+        ),
         _vm._v(" "),
-        _c("button", {
-          staticClass:
-            " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-          attrs: { id: "ListeAction5" }
-        })
+        _c(
+          "button",
+          {
+            staticClass:
+              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
+            attrs: { id: "ListeAction5" }
+          },
+          [_c("div", {})]
+        )
       ]
     )
   }
@@ -1700,7 +1769,10 @@ var render = function() {
         [_c("source", { attrs: { src: this.video(), type: "video/mp4" } })]
       ),
       _vm._v(" "),
-      _c("Jeu", { attrs: { leveljson: this.parse() }, on: { time: _vm.time } }),
+      _c("Jeu", {
+        attrs: { leveljson: this.parse() },
+        on: { time: _vm.time, play: _vm.play }
+      }),
       _vm._v(" "),
       _c(
         "div",

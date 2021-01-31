@@ -17,7 +17,7 @@
         </video>
         
 
-        <Jeu :leveljson = "this.parse()" @time="time"/>
+        <Jeu :leveljson = "this.parse()" @time="time" @play="play"/>
 
         <div class ="flex w-4/12">
 
@@ -79,22 +79,24 @@
 
             time(value)
             {
+                
                 this.delayTime = value;
             },
 
             play()
             {
                var mesFonctions = this.getFonctions()
-               console.log(mesFonctions);
+               
 
                var grilleJeu = document.getElementById("grilleJeu").childNodes;
 
-               
-               // console.log(grilleuJeu);
-               
+               var position = this.infoGrille(grilleJeu);
 
-               this.rocketPosition(grilleJeu)
+              // console.log(mesFonctions);
+              // console.log(grilleJeu);
+              // console.log(position);
 
+                this.getLastAction();
 
                setTimeout(function(){
                 
@@ -103,8 +105,45 @@
 
             },
 
-            rocketPosition(grilleJeu)
+             getLastAction()// Retourne la derniere action et desempile le reste
             {
+                var tableauAction =[];
+
+                for (var i = 0; i< 5;i++)
+                {
+                    var actionListe = document.getElementById("ListeAction"+(i+1));
+                    tableauAction.push(actionListe);
+                    
+                    
+                }
+                var result = tableauAction[0].childNodes[0];
+
+                //console.log(tableauAction[0].id);
+                var tableauSave = tableauAction;
+
+                console.log("1 eme remplacement")
+                tableauAction[0].replaceChild(tableauSave[1].childNodes[0],tableauAction[0].childNodes[0]); 
+                console.log("2 eme remplacement")
+                console.log(tableauSave[2].childNodes[0])
+                console.log(tableauSave[1].childNodes[0])
+
+                tableauAction[1].replaceChild(tableauSave[2].childNodes[0],tableauAction[1].childNodes[0]); 
+                console.log("3 eme remplacement")
+                tableauAction[2].replaceChild(tableauSave[3].childNodes[0],tableauAction[2].childNodes[0]); 
+                console.log("4 eme remplacement")
+                tableauAction[3].replaceChild(tableauSave[4].childNodes[0],tableauAction[3].childNodes[0]); 
+                
+               
+
+                //console.log(tableauAction);
+
+                return result;
+            },
+
+            infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant (si 0 = gagne)
+            {
+                var position = {vaisseau:[],nbEtoile:0}
+
                  for (var i = 0; i< 10;i++)
                  {
                      for (var j = 0; j< 10;j++)
@@ -112,17 +151,26 @@
                     
                      if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null)
                      {
-                        console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0])
-                         console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1])
-                         console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[2])
+                        
+                         
+                         if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star"))
+                         {
+                             position.nbEtoile ++;
+                         }
+                         if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className !=null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className.includes("fa-space-shuttle"))
+                         {
+                             position.vaisseau.push(i);
+                             position.vaisseau.push(j);
+                         }
                      }
 
                     }
-                    //console.log(grilleJeu[i])
+                    
                  }
+                 return position;
             },
 
-            command(value) {
+            command(value) {    // Quand une action est assigne à une fonction
 
                 var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
                 var selectColor = document.getElementById("component-controle").getElementsByClassName('focus-color');
@@ -147,12 +195,12 @@
                     }
                 }
                this.updateAction();
-               this.play();
+               
 
             },
 
 
-            updateAction()
+            updateAction()// Liste Action qui recupere et s actualise sur F1
             {
                 var monTableau = this.getFonctions();
 

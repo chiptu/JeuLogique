@@ -9,19 +9,23 @@
                 </button>
 
                 <button id="ListeAction1" class=" border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none">
-                    
+                    <div class=""></div>
                 </button>
 
                 <button id="ListeAction2" class=" border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none">
+                    <div class=""></div>
                 </button>
 
                 <button id="ListeAction3" class=" border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none">
+                    <div class=""></div>
                 </button>
 
                 <button id="ListeAction4" class=" border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none">
+                    <div class=""></div>
                 </button>
 
                 <button id="ListeAction5" class=" border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none">
+                    <div class=""></div>
                 </button>
 
                
