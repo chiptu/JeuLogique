@@ -449,6 +449,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Boutons mounted.');
@@ -542,34 +554,101 @@ __webpack_require__.r(__webpack_exports__);
       var mesFonctions = this.getFonctions();
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
       var position = this.infoGrille(grilleJeu); // console.log(mesFonctions);
-      // console.log(grilleJeu);
-      // console.log(position);
+      //console.log(grilleJeu);
+      //console.log(position);
 
-      this.getLastAction();
+      this.setRotatiton(grilleJeu, position.vaisseau[0], position.vaisseau[1], "right");
+      this.setShuttle(grilleJeu, position.vaisseau[0], position.vaisseau[1], position.vaisseau[0] + 1, position.vaisseau[1] + 1);
       setTimeout(function () {}, 1000);
+    },
+    setRotatiton: function setRotatiton(grilleJeu, a, b, direction) // Fais une rotation de 90 en 90 avec la position du vaisseau et la direction
+    {
+      if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.contains("fa-rotate-90")) {
+        if (direction == "right") {
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-90", "fa-rotate-180");
+        }
+
+        if (direction == "left") {
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.remove("fa-rotate-90");
+        }
+      } else if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.contains("fa-rotate-180")) {
+        if (direction == "right") {
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-180", "fa-rotate-270");
+        }
+
+        if (direction == "left") {
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-180", "fa-rotate-90");
+        }
+      } else if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.contains("fa-rotate-270")) {
+        if (direction == "right") {
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.remove("fa-rotate-270");
+        }
+
+        if (direction == "left") {
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-270", "fa-rotate-180");
+        }
+      } else {
+        if (direction == "right") {
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.add("fa-rotate-90");
+        }
+
+        if (direction == "left") {
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.add("fa-rotate-270");
+        }
+      }
+    },
+    setShuttle: function setShuttle(grilleJeu, a, b, c, d) // Repositionne le vaisseau (a,b = ancienne position à supprimer, c,d = nouvelle position)
+    {
+      var shuttleClass = grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].className;
+      grilleJeu[b].childNodes[a].childNodes[0].innerHTML = "";
+      grilleJeu[c].childNodes[d].childNodes[0].removeChild(grilleJeu[c].childNodes[d].childNodes[0].childNodes[0]);
+      var newShuttle = document.createElement("i");
+      newShuttle.className = shuttleClass;
+      grilleJeu[c].childNodes[d].childNodes[0].appendChild(newShuttle);
+      var grilleJeu = document.getElementById("grilleJeu").childNodes;
+      console.log(this.infoGrille(grilleJeu));
     },
     getLastAction: function getLastAction() // Retourne la derniere action et desempile le reste
     {
       var tableauAction = [];
 
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < 8; i++) {
         var actionListe = document.getElementById("ListeAction" + (i + 1));
         tableauAction.push(actionListe);
       }
 
-      var result = tableauAction[0].childNodes[0]; //console.log(tableauAction[0].id);
-
+      var result = tableauAction[0].childNodes[0];
       var tableauSave = tableauAction;
-      console.log("1 eme remplacement");
-      tableauAction[0].replaceChild(tableauSave[1].childNodes[0], tableauAction[0].childNodes[0]);
-      console.log("2 eme remplacement");
-      console.log(tableauSave[2].childNodes[0]);
-      console.log(tableauSave[1].childNodes[0]);
-      tableauAction[1].replaceChild(tableauSave[2].childNodes[0], tableauAction[1].childNodes[0]);
-      console.log("3 eme remplacement");
-      tableauAction[2].replaceChild(tableauSave[3].childNodes[0], tableauAction[2].childNodes[0]);
-      console.log("4 eme remplacement");
-      tableauAction[3].replaceChild(tableauSave[4].childNodes[0], tableauAction[3].childNodes[0]); //console.log(tableauAction);
+
+      if (tableauSave[1].childNodes[0] == null) // dans le cas où il reste uniquement une action
+        {
+          tableauAction[0].removeChild(tableauAction[0].childNodes[0]);
+          tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " ");
+        } else // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
+        {
+          tableauAction[0].replaceChild(tableauSave[1].childNodes[0], tableauAction[0].childNodes[0]);
+          tableauAction[0].className = tableauSave[1].className;
+          ;
+
+          for (var i = 0; i < 8; i++) {
+            var couleur = " ";
+
+            if (tableauSave[i + 2].classList.contains('bg-gray-400')) {
+              couleur = 'bg-gray-400';
+            }
+
+            if (tableauSave[i + 2].classList.contains('bg-gray-600')) {
+              couleur = 'bg-gray-600';
+            }
+
+            if (tableauSave[i + 2].classList.contains('bg-gray-800')) {
+              couleur = 'bg-gray-800';
+            }
+
+            tableauAction[i + 1].className = tableauAction[i + 2].className.replace(/(^|\s)bg-\S+/g, couleur);
+            tableauAction[i + 1].appendChild(tableauSave[i + 2].childNodes[0]);
+          }
+        }
 
       return result;
     },
@@ -588,8 +667,8 @@ __webpack_require__.r(__webpack_exports__);
             }
 
             if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className.includes("fa-space-shuttle")) {
-              position.vaisseau.push(i);
               position.vaisseau.push(j);
+              position.vaisseau.push(i);
             }
           }
         }
@@ -1713,6 +1792,36 @@ var staticRenderFns = [
             staticClass:
               " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
             attrs: { id: "ListeAction5" }
+          },
+          [_c("div", {})]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
+            attrs: { id: "ListeAction6" }
+          },
+          [_c("div", {})]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
+            attrs: { id: "ListeAction7" }
+          },
+          [_c("div", {})]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
+            attrs: { id: "ListeAction8" }
           },
           [_c("div", {})]
         )

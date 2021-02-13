@@ -28,6 +28,18 @@
                     <div class=""></div>
                 </button>
 
+                <button id="ListeAction6" class=" border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none">
+                    <div class=""></div>
+                </button>
+
+                <button id="ListeAction7" class=" border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none">
+                    <div class=""></div>
+                </button>
+
+                <button id="ListeAction8" class=" border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none">
+                    <div class=""></div>
+                </button>
+
                
 
             </div>
