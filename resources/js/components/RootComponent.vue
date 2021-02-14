@@ -9,6 +9,78 @@
         <div id="stars2"></div>
         <div id="stars3"></div>
     
+
+
+    <!--<article class="card card--mercury">
+    <div class="card__planet">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+</article>
+<article class="card card--venus">
+    <div class="card__planet">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+</article>
+<article class="card card--earth">
+    <div class="card__planet">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+</article>-->
+
+    <div class="card__planet mt-48">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+<!--
+<article class="card card--jupiter">
+    <div class="card__planet">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+</article>
+<article class="card card--saturn">
+    <div class="card__planet">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+</article>
+<article class="card card--uranus">
+    <div class="card__planet">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+</article>
+<article class="card card--neptune">
+    <div class="card__planet">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+</article>
+<article class="card card--pluto">
+    <div class="card__planet">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+</article>
+<article class="card card--sun">
+    <div class="card__planet">
+        <div class="planet__atmosphere">
+            <div class="planet__surface"></div>
+        </div>
+    </div>
+</article>-->
        
         <video autoplay muted loop  id="bgvid" class="w-full h-full absolute top left">
   

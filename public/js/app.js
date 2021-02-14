@@ -519,6 +519,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1407,7 +1479,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
+                    "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
                   attrs: { id: "btn-up" },
                   on: {
                     click: function($event) {
@@ -1424,7 +1496,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
+                    "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
                   attrs: { id: "btn-right" },
                   on: {
                     click: function($event) {
@@ -1441,7 +1513,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
+                    "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
                   attrs: { id: "btn-left" },
                   on: {
                     click: function($event) {
@@ -1460,7 +1532,7 @@ var render = function() {
                     "button",
                     {
                       staticClass:
-                        "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2",
+                        "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
                       attrs: { id: "btn-f" + fonction.idFonction },
                       on: {
                         click: function($event) {
@@ -1489,7 +1561,7 @@ var render = function() {
                   couleur == 1
                     ? _c("button", {
                         staticClass:
-                          "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
+                          "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
                         attrs: { id: "bg-gray-400" },
                         on: { click: _vm.anneau }
                       })
@@ -1498,7 +1570,7 @@ var render = function() {
                   couleur == 2
                     ? _c("button", {
                         staticClass:
-                          "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
+                          "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
                         attrs: { id: "bg-gray-600" },
                         on: { click: _vm.anneau }
                       })
@@ -1507,7 +1579,7 @@ var render = function() {
                   couleur == 3
                     ? _c("button", {
                         staticClass:
-                          "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 ",
+                          "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
                         attrs: { id: "bg-gray-800" },
                         on: { click: _vm.anneau }
                       })
@@ -1518,7 +1590,7 @@ var render = function() {
               _vm.leveljson.nbCouleur != 0
                 ? _c("button", {
                     staticClass:
-                      "bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl",
+                      "bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl important",
                     attrs: { id: "bg-black" },
                     on: { click: _vm.anneau }
                   })
@@ -1555,10 +1627,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "w-1/2 h-full border-l-2 border-r-2 border-white",
-      attrs: { id: "component-fonction" }
-    },
+    { staticClass: "w-1/2 h-full ", attrs: { id: "component-fonction" } },
     [
       _c("div", { staticClass: "text-3xl mr-4 text-white text-center" }, [
         _vm._v("Fonction")
@@ -1583,19 +1652,23 @@ var render = function() {
                     " h-1/12 w-full inline-flex  justify-center content-center mt-12"
                 },
                 [
-                  _c("div", { staticClass: "text-3xl mr-4 text-white" }, [
-                    _vm._v(
-                      "\n                    F" +
-                        _vm._s(fonction.idFonction) +
-                        "\n                "
-                    )
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "text-3xl mr-4 text-white important" },
+                    [
+                      _vm._v(
+                        "\n                    F" +
+                          _vm._s(fonction.idFonction) +
+                          "\n                "
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _vm._l(fonction.nombreCase, function(monNbCase) {
                     return _c("div", { key: monNbCase }, [
                       _c("button", {
                         staticClass:
-                          "bg-black border border-white  rounded w-12 h-12 text-white mr-4 ",
+                          "bg-black border border-white  rounded w-12 h-12 text-white mr-4 important",
                         attrs: {
                           id:
                             "btn-f" + fonction.idFonction + "-case-" + monNbCase
@@ -1868,6 +1941,8 @@ var render = function() {
       _vm._v(" "),
       _c("div", { attrs: { id: "stars3" } }),
       _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
       _c(
         "video",
         {
@@ -1900,7 +1975,18 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card__planet mt-48" }, [
+      _c("div", { staticClass: "planet__atmosphere" }, [
+        _c("div", { staticClass: "planet__surface" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -9,7 +9,7 @@
     
     </head>
 
-    <body class="h-full bg-black">
+    <body class="h-full bg-black overflow-hidden">
 
    
     

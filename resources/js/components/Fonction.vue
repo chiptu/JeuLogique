@@ -1,7 +1,7 @@
 
 <template>
     
-        <div id="component-fonction" class ="w-1/2 h-full border-l-2 border-r-2 border-white">
+        <div id="component-fonction" class ="w-1/2 h-full ">
 
             <div class ="text-3xl mr-4 text-white text-center">Fonction</div>
 
@@ -12,13 +12,13 @@
 
                     <div v-for="fonction in leveljson.fonctions" :key ="fonction.idFonction" class =" h-1/12 w-full inline-flex  justify-center content-center mt-12">
                         
-                        <div class ="text-3xl mr-4 text-white">
+                        <div class ="text-3xl mr-4 text-white important">
                             F{{fonction.idFonction}}
                         </div>
 
                          <div  v-for="monNbCase in fonction.nombreCase" :key ="monNbCase">
 
-                            <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="bg-black border border-white  rounded w-12 h-12 text-white mr-4 "  v-on:click="anneau2">
+                            <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="bg-black border border-white  rounded w-12 h-12 text-white mr-4 important"  v-on:click="anneau2">
                             </button>
                 
                         </div>
