@@ -24,7 +24,7 @@
 
         <div class ="grid grid-cols-2">
 
-        <Boutons @time="time" @play="play"/>
+        <Boutons @time="time" @play="play" @stop="stop"/>
 
 
         <Listeactions/>
@@ -66,6 +66,10 @@
             play()
             {
                 this.$emit('play');
+            },
+            stop()
+            {
+                this.$emit('stop');
             }
         }
 

@@ -139,6 +139,9 @@ __webpack_require__.r(__webpack_exports__);
     time: function time(value) {
       this.$emit('time', value);
     },
+    stop: function stop() {
+      this.$emit('stop');
+    },
     play: function play() {
       this.$emit('play');
     }
@@ -396,6 +399,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     play: function play() {
       this.$emit('play');
+    },
+    stop: function stop() {
+      this.$emit('stop');
     }
   }
 });
@@ -604,6 +610,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component root mounted.');
+    var grilleJeu = document.getElementById("grilleJeu").childNodes;
+    this.nettoyageGrille(grilleJeu);
+    this.nettoyageGrille(grilleJeu);
   },
   components: {
     Jeu: _Jeu__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -622,63 +631,108 @@ __webpack_require__.r(__webpack_exports__);
     time: function time(value) {
       this.delayTime = value;
     },
-    play: function play() {
-      var mesFonctions = this.getFonctions();
+    stop: function stop() {
+      this.resetShuttle(); //this.clearFunctions();
+    },
+    resetShuttle: function resetShuttle() {
+      console.log("method reset");
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
-      var position = this.infoGrille(grilleJeu); // console.log(mesFonctions);
-      //console.log(grilleJeu);
-      //console.log(position);
+      var position = this.infoGrille(grilleJeu);
+      console.log("apres grille");
+      var position2 = this.getShuttleStart();
+      var shuttleClass = "fa fa-space-shuttle text-white fa-3x";
+      var newShuttle = document.createElement("i");
+      newShuttle.className = shuttleClass;
 
-      this.setRotatiton(grilleJeu, position.vaisseau[0], position.vaisseau[1], "right");
+      if (position.vaisseau.length != 0) {
+        this.setShuttle(grilleJeu, position.vaisseau[0], position.vaisseau[1], position2[0], position2[1]);
+        grilleJeu[position2[0]].childNodes[position2[1]].childNodes[0].childNodes[0].remove();
+      }
+
+      grilleJeu[position2[0]].childNodes[position2[1]].childNodes[0].appendChild(newShuttle);
+    },
+    play: function play() {
+      console.log("debut fct play");
+      var mesFonctions = this.getFonctions();
+      console.log("avant grillejeu");
+      var grilleJeu = document.getElementById("grilleJeu").childNodes;
+      console.log("avant position");
+      var position = this.infoGrille(grilleJeu); // console.log({mesFonctions,grilleJeu,position});
+
+      console.log("avant rotation"); //console.log(position);
+
+      this.setRotation(grilleJeu, position.vaisseau[0], position.vaisseau[1], "right");
+      console.log("avant repositionnement vaisseau ");
       this.setShuttle(grilleJeu, position.vaisseau[0], position.vaisseau[1], position.vaisseau[0] + 1, position.vaisseau[1] + 1);
       setTimeout(function () {}, 1000);
     },
-    setRotatiton: function setRotatiton(grilleJeu, a, b, direction) // Fais une rotation de 90 en 90 avec la position du vaisseau et la direction
+    setRotation: function setRotation(grilleJeu, a, b, direction) // Fais une rotation de 90 en 90 avec la position du vaisseau et la direction
     {
-      if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.contains("fa-rotate-90")) {
+      console.log("debut setRotation"); //console.log({grilleJeu,a,b,direction});
+      //console.log(grilleJeu[b]);
+
+      if (grilleJeu[b].childNodes[a].childNodes[0] == null) {
+        var i = 0;
+      } else {
+        var i = 1;
+      }
+
+      var test = grilleJeu[b].childNodes[a].childNodes[0].childNodes[0]; //console.log({ test, i});
+
+      if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-90")) {
         if (direction == "right") {
-          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-90", "fa-rotate-180");
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.replace("fa-rotate-90", "fa-rotate-180");
         }
 
         if (direction == "left") {
-          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.remove("fa-rotate-90");
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.remove("fa-rotate-90");
         }
-      } else if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.contains("fa-rotate-180")) {
+      } else if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-180")) {
         if (direction == "right") {
-          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-180", "fa-rotate-270");
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.replace("fa-rotate-180", "fa-rotate-270");
         }
 
         if (direction == "left") {
-          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-180", "fa-rotate-90");
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.replace("fa-rotate-180", "fa-rotate-90");
         }
-      } else if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.contains("fa-rotate-270")) {
+      } else if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-270")) {
         if (direction == "right") {
-          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.remove("fa-rotate-270");
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.remove("fa-rotate-270");
         }
 
         if (direction == "left") {
-          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-270", "fa-rotate-180");
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.replace("fa-rotate-270", "fa-rotate-180");
         }
       } else {
         if (direction == "right") {
-          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.add("fa-rotate-90");
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.add("fa-rotate-90");
         }
 
         if (direction == "left") {
-          grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.add("fa-rotate-270");
+          grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.add("fa-rotate-270");
         }
       }
     },
-    setShuttle: function setShuttle(grilleJeu, a, b, c, d) // Repositionne le vaisseau (a,b = ancienne position à supprimer, c,d = nouvelle position)
+    setShuttle: function setShuttle(grilleJeu, a, b, c, d) // Repositionne le vaisseau (a,b = ancienne position à supprimer, c,d = nouvelle position) abcisse puis ordonnee
     {
-      var shuttleClass = grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].className;
-      grilleJeu[b].childNodes[a].childNodes[0].innerHTML = "";
-      grilleJeu[c].childNodes[d].childNodes[0].removeChild(grilleJeu[c].childNodes[d].childNodes[0].childNodes[0]);
+      console.log("debut setShuttle"); //console.log({grilleJeu, a,b,c,d});
+
+      var shuttleClass = grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].className; //console.log(shuttleClass);
+
+      grilleJeu[b].childNodes[a].childNodes[0].innerHTML = ""; //console.log(grilleJeu[d].childNodes[c].childNodes[0]);
+
+      if (grilleJeu[d].childNodes[c].childNodes[0].childNodes[0] != null) {
+        grilleJeu[d].childNodes[c].childNodes[0].removeChild(grilleJeu[d].childNodes[c].childNodes[0].childNodes[0]);
+      } //let comment = document.createComment("");
+      //let comment2 = document.createComment("");
+      //grilleJeu[b].childNodes[a].childNodes[0].appendChild(comment);
+      //grilleJeu[b].childNodes[a].childNodes[0].appendChild(comment2);
+
+
       var newShuttle = document.createElement("i");
       newShuttle.className = shuttleClass;
-      grilleJeu[c].childNodes[d].childNodes[0].appendChild(newShuttle);
-      var grilleJeu = document.getElementById("grilleJeu").childNodes;
-      console.log(this.infoGrille(grilleJeu));
+      grilleJeu[d].childNodes[c].childNodes[0].appendChild(newShuttle);
+      var grilleJeu = document.getElementById("grilleJeu").childNodes; //console.log(this.infoGrille(grilleJeu));
     },
     getLastAction: function getLastAction() // Retourne la derniere action et desempile le reste
     {
@@ -724,6 +778,21 @@ __webpack_require__.r(__webpack_exports__);
 
       return result;
     },
+    nettoyageGrille: function nettoyageGrille(grilleJeu) //dans les divs de la grille efface les commentaires sauf pour etoile
+    {
+      NodeList.prototype.forEach = Array.prototype.forEach;
+
+      for (var i = 0; i < 10; i++) {
+        for (var j = 0; j < 10; j++) {
+          var children = grilleJeu[i].childNodes[j].childNodes[0].childNodes;
+          children.forEach(function (item) {
+            if (item.nodeType == 3 || item.nodeType == 8) {
+              item.remove();
+            }
+          });
+        }
+      }
+    },
     infoGrille: function infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant (si 0 = gagne)
     {
       var position = {
@@ -734,11 +803,14 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0; i < 10; i++) {
         for (var j = 0; j < 10; j++) {
           if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null) {
+            //console.log("dans info grille");
+            //console.log(grilleJeu[i].childNodes[j].childNodes[0]);
+            //console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0]);
             if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star")) {
               position.nbEtoile++;
             }
 
-            if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className.includes("fa-space-shuttle")) {
+            if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-space-shuttle")) {
               position.vaisseau.push(j);
               position.vaisseau.push(i);
             }
@@ -746,6 +818,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
+      console.log({
+        position: position
+      });
       return position;
     },
     command: function command(value) {
@@ -843,6 +918,25 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return monTableau;
+    },
+    getShuttleStart: function getShuttleStart() {
+      var json = this.parse();
+      var tab = [];
+
+      for (var i = 0; i < 10; i++) {
+        for (var j = 0; j < 10; j++) {
+          if (json.lignes[i].cases[j].departBool == true) {
+            console.log({
+              i: i,
+              j: j
+            });
+            tab.push(json.lignes[i].cases[j].idCase - 1);
+            tab.push(json.lignes[i].idLigne - 1);
+          }
+        }
+      }
+
+      return tab;
     }
   }
 });
@@ -1334,16 +1428,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass:
-        " h-auto w-full flex  justify-center mt-8 border-t-2 border-white"
-    },
+    { staticClass: " h-auto w-full flex  justify-center mt-8 important" },
     [
       _c(
         "button",
         {
           staticClass:
-            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
+            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important",
           attrs: { id: "start" },
           on: {
             click: function($event) {
@@ -1356,13 +1447,26 @@ var render = function() {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _vm._m(1),
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important",
+          attrs: { id: "stop" },
+          on: {
+            click: function($event) {
+              return _vm.stop()
+            }
+          }
+        },
+        [_c("i", { staticClass: "fa fa-stop fa-2x" })]
+      ),
       _vm._v(" "),
       _c(
         "button",
         {
           staticClass:
-            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple",
+            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple important",
           attrs: { id: "speed1" },
           on: {
             click: function($event) {
@@ -1377,7 +1481,7 @@ var render = function() {
         "button",
         {
           staticClass:
-            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple",
+            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple important",
           attrs: { id: "speed2" },
           on: {
             click: function($event) {
@@ -1392,7 +1496,7 @@ var render = function() {
         "button",
         {
           staticClass:
-            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple",
+            "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important",
           attrs: { id: "speed4" },
           on: {
             click: function($event) {
@@ -1414,24 +1518,10 @@ var staticRenderFns = [
       "button",
       {
         staticClass:
-          "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
+          "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important",
         attrs: { id: "pause" }
       },
       [_c("i", { staticClass: "fa fa-pause fa-2x" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple",
-        attrs: { id: "stop" }
-      },
-      [_c("i", { staticClass: "fa fa-stop fa-2x" })]
     )
   }
 ]
@@ -1763,7 +1853,9 @@ var render = function() {
         "div",
         { staticClass: "grid grid-cols-2" },
         [
-          _c("Boutons", { on: { time: _vm.time, play: _vm.play } }),
+          _c("Boutons", {
+            on: { time: _vm.time, play: _vm.play, stop: _vm.stop }
+          }),
           _vm._v(" "),
           _c("Listeactions")
         ],
@@ -1804,10 +1896,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      {
-        staticClass:
-          " h-auto w-full flex  justify-center mt-8 border-t-2 border-white"
-      },
+      { staticClass: " h-auto w-full flex  justify-center mt-8 " },
       [
         _c(
           "button",
@@ -1955,7 +2044,7 @@ var render = function() {
       _vm._v(" "),
       _c("Jeu", {
         attrs: { leveljson: this.parse() },
-        on: { time: _vm.time, play: _vm.play }
+        on: { time: _vm.time, play: _vm.play, stop: _vm.stop }
       }),
       _vm._v(" "),
       _c(

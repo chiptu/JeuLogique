@@ -89,7 +89,7 @@
         </video>
         
 
-        <Jeu :leveljson = "this.parse()" @time="time" @play="play"/>
+        <Jeu :leveljson = "this.parse()" @time="time" @play="play" @stop="stop"/>
 
         <div class ="flex w-4/12">
 
@@ -127,7 +127,12 @@
         props: ['leveljson'],
         mounted() {
             console.log('Component root mounted.')
-            
+
+            var grilleJeu = document.getElementById("grilleJeu").childNodes;
+
+            this.nettoyageGrille(grilleJeu);
+            this.nettoyageGrille(grilleJeu);
+           
         }
         ,
         components:
@@ -154,23 +159,60 @@
                 
                 this.delayTime = value;
             },
+            stop()
+            {
+                this.resetShuttle();
+                //this.clearFunctions();
+            },
+            resetShuttle()
+            {
+                console.log("method reset");
+                var grilleJeu = document.getElementById("grilleJeu").childNodes;
+
+                var position = this.infoGrille(grilleJeu);
+                console.log("apres grille");
+                var position2 = this.getShuttleStart();  
+
+
+
+                let shuttleClass = "fa fa-space-shuttle text-white fa-3x"
+
+                let newShuttle = document.createElement("i");
+
+                newShuttle.className = shuttleClass;
+               
+               if (position.vaisseau.length !=0)
+               {
+                   this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position2[0],position2[1]);
+                   grilleJeu[position2[0]].childNodes[position2[1]].childNodes[0].childNodes[0].remove();
+               }
+               
+
+                
+                
+                grilleJeu[position2[0]].childNodes[position2[1]].childNodes[0].appendChild(newShuttle); 
+
+            },
 
             play()
             {
+                console.log("debut fct play");
                var mesFonctions = this.getFonctions()
                
-
+                console.log("avant grillejeu");
                var grilleJeu = document.getElementById("grilleJeu").childNodes;
 
+                console.log("avant position");
                var position = this.infoGrille(grilleJeu);
 
-              // console.log(mesFonctions);
-              //console.log(grilleJeu);
-               //console.log(position);
+              // console.log({mesFonctions,grilleJeu,position});
 
-               this.setRotatiton(grilleJeu,position.vaisseau[0],position.vaisseau[1],"right");
+                console.log("avant rotation");
+                //console.log(position);
+               this.setRotation(grilleJeu,position.vaisseau[0],position.vaisseau[1],"right");
 
-             this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
+                console.log("avant repositionnement vaisseau ");
+                this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
 
                setTimeout(function(){
                 
@@ -179,51 +221,84 @@
 
             },
 
-            setRotatiton(grilleJeu,a,b,direction) // Fais une rotation de 90 en 90 avec la position du vaisseau et la direction
+            setRotation(grilleJeu,a,b,direction) // Fais une rotation de 90 en 90 avec la position du vaisseau et la direction
             {
-                
-                if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.contains("fa-rotate-90"))
+                console.log("debut setRotation");
+                //console.log({grilleJeu,a,b,direction});
+                //console.log(grilleJeu[b]);
+                if (grilleJeu[b].childNodes[a].childNodes[0] == null )
                 {
-                    if (direction =="right")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-90","fa-rotate-180")}
 
-                    if (direction =="left")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.remove("fa-rotate-90")}
-                }
-                else if ( grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.contains("fa-rotate-180") )
-                {
-                    if (direction =="right")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-180","fa-rotate-270")}
-
-                    if (direction =="left")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-180","fa-rotate-90")}
-                }
-                else if ( grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.contains("fa-rotate-270") )
-                {
-                    if (direction =="right")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.remove("fa-rotate-270")}
-
-                    if (direction =="left")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.replace("fa-rotate-270","fa-rotate-180")}
+                    var i = 0;
                 }
                 else
                 {
-                    if (direction =="right")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.add("fa-rotate-90")}
+                    var i = 1;
+                }
+                var test =grilleJeu[b].childNodes[a].childNodes[0].childNodes[0];
+                //console.log({ test, i});
+                if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-90"))
+                {
+                    if (direction =="right")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.replace("fa-rotate-90","fa-rotate-180")}
 
-                    if (direction =="left")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].classList.add("fa-rotate-270")}
+                    if (direction =="left")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.remove("fa-rotate-90")}
+                }
+                else if ( grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-180") )
+                {
+                    if (direction =="right")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.replace("fa-rotate-180","fa-rotate-270")}
+
+                    if (direction =="left")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.replace("fa-rotate-180","fa-rotate-90")}
+                }
+                else if ( grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-270") )
+                {
+                    if (direction =="right")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.remove("fa-rotate-270")}
+
+                    if (direction =="left")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.replace("fa-rotate-270","fa-rotate-180")}
+                }
+                else
+                {
+                    if (direction =="right")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.add("fa-rotate-90")}
+
+                    if (direction =="left")    {  grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.add("fa-rotate-270")}
                 }
                 
                 
             },
 
-            setShuttle(grilleJeu,a,b,c,d) // Repositionne le vaisseau (a,b = ancienne position à supprimer, c,d = nouvelle position)
+            setShuttle(grilleJeu,a,b,c,d) // Repositionne le vaisseau (a,b = ancienne position à supprimer, c,d = nouvelle position) abcisse puis ordonnee
             {
+                console.log("debut setShuttle")
+                //console.log({grilleJeu, a,b,c,d});
                 
-                let shuttleClass = grilleJeu[b].childNodes[a].childNodes[0].childNodes[2].className;
+                let shuttleClass = grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].className;
+    
+                //console.log(shuttleClass);
+
                 grilleJeu[b].childNodes[a].childNodes[0].innerHTML = "";
 
-                grilleJeu[c].childNodes[d].childNodes[0].removeChild(grilleJeu[c].childNodes[d].childNodes[0].childNodes[0]);
+                //console.log(grilleJeu[d].childNodes[c].childNodes[0]);
+                if (grilleJeu[d].childNodes[c].childNodes[0].childNodes[0] != null)
+                {
+                    
+                    grilleJeu[d].childNodes[c].childNodes[0].removeChild(grilleJeu[d].childNodes[c].childNodes[0].childNodes[0]);
+                }
+                
+                //let comment = document.createComment("");
+                //let comment2 = document.createComment("");
 
+                //grilleJeu[b].childNodes[a].childNodes[0].appendChild(comment);
+                //grilleJeu[b].childNodes[a].childNodes[0].appendChild(comment2);
+
+                
                 let newShuttle = document.createElement("i");
+
                 newShuttle.className = shuttleClass;
-                grilleJeu[c].childNodes[d].childNodes[0].appendChild(newShuttle); 
+                
+                grilleJeu[d].childNodes[c].childNodes[0].appendChild(newShuttle); 
+                
 
                 var grilleJeu = document.getElementById("grilleJeu").childNodes;
-                console.log(this.infoGrille(grilleJeu));
+                //console.log(this.infoGrille(grilleJeu));
 
             },
 
@@ -277,6 +352,26 @@
                 
                 return result;
             },
+            nettoyageGrille(grilleJeu) //dans les divs de la grille efface les commentaires sauf pour etoile
+            {
+                NodeList.prototype.forEach = Array.prototype.forEach
+
+
+                  for (var i = 0; i< 10;i++)
+                 {
+                     for (var j = 0; j< 10;j++)
+                    {
+                        var children = grilleJeu[i].childNodes[j].childNodes[0].childNodes;
+                        children.forEach(function(item){
+                            if (item.nodeType == 3 ||  item.nodeType == 8)
+                            {
+                                item.remove();
+                            }
+                        });
+                    }
+                 }
+
+            },
 
             infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant (si 0 = gagne)
             {
@@ -289,22 +384,28 @@
                     
                      if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null)
                      {
-                        
+                        //console.log("dans info grille");
+                        //console.log(grilleJeu[i].childNodes[j].childNodes[0]);
+                        //console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0]);
                          
                          if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star"))
                          {
                              position.nbEtoile ++;
                          }
-                         if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className !=null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[2].className.includes("fa-space-shuttle"))
+                        
+                         if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] !=null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-space-shuttle"))
                          {
                              position.vaisseau.push(j);
                              position.vaisseau.push(i);
                          }
+            
                      }
 
                     }
                     
                  }
+                 
+                 console.log({position});
                  return position;
             },
 
@@ -412,6 +513,27 @@
 
                 } 
                 return monTableau;
+            },
+
+            getShuttleStart()
+            {
+                var json =this.parse();
+                var tab=[];
+                
+                for (var i=0; i< 10;  i++) 
+                {
+                    for (var j=0; j< 10 ; j++ ) 
+                    {       
+                        if (json.lignes[i].cases[j].departBool ==true)
+                        {
+                            console.log({i,j})
+                            tab.push(json.lignes[i].cases[j].idCase-1);
+                            tab.push(json.lignes[i].idLigne-1);
+                            
+                        }
+                    }
+                }
+                return tab;
             },
 
 

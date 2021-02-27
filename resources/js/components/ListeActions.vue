@@ -2,7 +2,7 @@
         
         <!--Espace bouton-->
 
-            <div class = " h-auto w-full flex  justify-center mt-8 border-t-2 border-white">
+            <div class = " h-auto w-full flex  justify-center mt-8 ">
 
                 <button id="listeAction" class="bg-black  hover: border border-white  rounded w-12 h-12 text-white mr-8 mt-4 pointer-events-none">
                     <i class="fas fa-terminal"></i>
