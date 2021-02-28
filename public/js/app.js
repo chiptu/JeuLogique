@@ -637,19 +637,20 @@ __webpack_require__.r(__webpack_exports__);
     resetShuttle: function resetShuttle() {
       console.log("method reset");
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
-      var position = this.infoGrille(grilleJeu);
-      console.log("apres grille");
-      var position2 = this.getShuttleStart();
+      var position = this.infoGrille(grilleJeu); //console.log("apres grille");
+
+      var position2 = this.getShuttleStart(); //console.log({position,position2});
+
       var shuttleClass = "fa fa-space-shuttle text-white fa-3x";
       var newShuttle = document.createElement("i");
       newShuttle.className = shuttleClass;
 
       if (position.vaisseau.length != 0) {
         this.setShuttle(grilleJeu, position.vaisseau[0], position.vaisseau[1], position2[0], position2[1]);
-        grilleJeu[position2[0]].childNodes[position2[1]].childNodes[0].childNodes[0].remove();
       }
 
-      grilleJeu[position2[0]].childNodes[position2[1]].childNodes[0].appendChild(newShuttle);
+      grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
+      grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle);
     },
     play: function play() {
       console.log("debut fct play");
@@ -664,6 +665,7 @@ __webpack_require__.r(__webpack_exports__);
       this.setRotation(grilleJeu, position.vaisseau[0], position.vaisseau[1], "right");
       console.log("avant repositionnement vaisseau ");
       this.setShuttle(grilleJeu, position.vaisseau[0], position.vaisseau[1], position.vaisseau[0] + 1, position.vaisseau[1] + 1);
+      console.log(this.getLastAction());
       setTimeout(function () {}, 1000);
     },
     setRotation: function setRotation(grilleJeu, a, b, direction) // Fais une rotation de 90 en 90 avec la position du vaisseau et la direction
@@ -722,12 +724,12 @@ __webpack_require__.r(__webpack_exports__);
       grilleJeu[b].childNodes[a].childNodes[0].innerHTML = ""; //console.log(grilleJeu[d].childNodes[c].childNodes[0]);
 
       if (grilleJeu[d].childNodes[c].childNodes[0].childNodes[0] != null) {
-        grilleJeu[d].childNodes[c].childNodes[0].removeChild(grilleJeu[d].childNodes[c].childNodes[0].childNodes[0]);
-      } //let comment = document.createComment("");
-      //let comment2 = document.createComment("");
-      //grilleJeu[b].childNodes[a].childNodes[0].appendChild(comment);
-      //grilleJeu[b].childNodes[a].childNodes[0].appendChild(comment2);
-
+        try {
+          grilleJeu[d].childNodes[c].childNodes[0].removeChild(grilleJeu[d].childNodes[c].childNodes[0].childNodes[0]);
+        } catch (error) {
+          console.log("remove setshuttle du reset remove pb");
+        }
+      }
 
       var newShuttle = document.createElement("i");
       newShuttle.className = shuttleClass;
@@ -743,38 +745,44 @@ __webpack_require__.r(__webpack_exports__);
         tableauAction.push(actionListe);
       }
 
-      var result = tableauAction[0].childNodes[0];
-      var tableauSave = tableauAction;
+      try {
+        var result = tableauAction[0].childNodes[0];
+        var tableauSave = tableauAction;
 
-      if (tableauSave[1].childNodes[0] == null) // dans le cas où il reste uniquement une action
-        {
-          tableauAction[0].removeChild(tableauAction[0].childNodes[0]);
-          tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " ");
-        } else // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
-        {
-          tableauAction[0].replaceChild(tableauSave[1].childNodes[0], tableauAction[0].childNodes[0]);
-          tableauAction[0].className = tableauSave[1].className;
-          ;
+        if (tableauSave[1].childNodes[0] == null) // dans le cas où il reste uniquement une action
+          {
+            tableauAction[0].removeChild(tableauAction[0].childNodes[0]);
+            tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " ");
+          } else // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
+          {
+            tableauAction[0].replaceChild(tableauSave[1].childNodes[0], tableauAction[0].childNodes[0]);
+            tableauAction[0].className = tableauSave[1].className;
+            ;
 
-          for (var i = 0; i < 8; i++) {
-            var couleur = " ";
+            for (var i = 0; i < 8; i++) {
+              var couleur = " ";
 
-            if (tableauSave[i + 2].classList.contains('bg-gray-400')) {
-              couleur = 'bg-gray-400';
+              if (tableauSave[i + 2].classList.contains('bg-gray-400')) {
+                couleur = 'bg-gray-400';
+              }
+
+              if (tableauSave[i + 2].classList.contains('bg-gray-600')) {
+                couleur = 'bg-gray-600';
+              }
+
+              if (tableauSave[i + 2].classList.contains('bg-gray-800')) {
+                couleur = 'bg-gray-800';
+              }
+
+              tableauAction[i + 1].className = tableauAction[i + 2].className.replace(/(^|\s)bg-\S+/g, couleur);
+              tableauAction[i + 1].appendChild(tableauSave[i + 2].childNodes[0]);
             }
-
-            if (tableauSave[i + 2].classList.contains('bg-gray-600')) {
-              couleur = 'bg-gray-600';
-            }
-
-            if (tableauSave[i + 2].classList.contains('bg-gray-800')) {
-              couleur = 'bg-gray-800';
-            }
-
-            tableauAction[i + 1].className = tableauAction[i + 2].className.replace(/(^|\s)bg-\S+/g, couleur);
-            tableauAction[i + 1].appendChild(tableauSave[i + 2].childNodes[0]);
           }
-        }
+      } catch (error) {
+        //console.log(error);
+        console.log("getLastAction vide ou erreur");
+        return null;
+      }
 
       return result;
     },
@@ -816,11 +824,9 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      }
+      } //console.log({position});
 
-      console.log({
-        position: position
-      });
+
       return position;
     },
     command: function command(value) {
@@ -926,10 +932,7 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0; i < 10; i++) {
         for (var j = 0; j < 10; j++) {
           if (json.lignes[i].cases[j].departBool == true) {
-            console.log({
-              i: i,
-              j: j
-            });
+            //console.log({i,j})
             tab.push(json.lignes[i].cases[j].idCase - 1);
             tab.push(json.lignes[i].idLigne - 1);
           }

@@ -156,7 +156,6 @@
 
             time(value)
             {
-                
                 this.delayTime = value;
             },
             stop()
@@ -170,10 +169,10 @@
                 var grilleJeu = document.getElementById("grilleJeu").childNodes;
 
                 var position = this.infoGrille(grilleJeu);
-                console.log("apres grille");
+                //console.log("apres grille");
                 var position2 = this.getShuttleStart();  
 
-
+                //console.log({position,position2});
 
                 let shuttleClass = "fa fa-space-shuttle text-white fa-3x"
 
@@ -184,13 +183,13 @@
                if (position.vaisseau.length !=0)
                {
                    this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position2[0],position2[1]);
-                   grilleJeu[position2[0]].childNodes[position2[1]].childNodes[0].childNodes[0].remove();
+                   
                }
                
-
+               
+               grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
                 
-                
-                grilleJeu[position2[0]].childNodes[position2[1]].childNodes[0].appendChild(newShuttle); 
+               grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle); 
 
             },
 
@@ -213,6 +212,8 @@
 
                 console.log("avant repositionnement vaisseau ");
                 this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
+
+                console.log(this.getLastAction());
 
                setTimeout(function(){
                 
@@ -279,16 +280,12 @@
                 //console.log(grilleJeu[d].childNodes[c].childNodes[0]);
                 if (grilleJeu[d].childNodes[c].childNodes[0].childNodes[0] != null)
                 {
-                    
-                    grilleJeu[d].childNodes[c].childNodes[0].removeChild(grilleJeu[d].childNodes[c].childNodes[0].childNodes[0]);
+                    try{
+                        grilleJeu[d].childNodes[c].childNodes[0].removeChild(grilleJeu[d].childNodes[c].childNodes[0].childNodes[0]);
+                    }catch(error){
+                        console.log("remove setshuttle du reset remove pb");
+                    }
                 }
-                
-                //let comment = document.createComment("");
-                //let comment2 = document.createComment("");
-
-                //grilleJeu[b].childNodes[a].childNodes[0].appendChild(comment);
-                //grilleJeu[b].childNodes[a].childNodes[0].appendChild(comment2);
-
                 
                 let newShuttle = document.createElement("i");
 
@@ -311,44 +308,54 @@
                     var actionListe = document.getElementById("ListeAction"+(i+1));
                     tableauAction.push(actionListe);
                 }
-               
-                var result = tableauAction[0].childNodes[0];
+                
+               try
+                {
+                    var result = tableauAction[0].childNodes[0];
 
-                var tableauSave = tableauAction;
-                if (tableauSave[1].childNodes[0]== null) // dans le cas où il reste uniquement une action
-                {
-                    tableauAction[0].removeChild(tableauAction[0].childNodes[0]); 
-                    tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " ");
-                }
-                else    // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
-                {
-                    
-                    tableauAction[0].replaceChild(tableauSave[1].childNodes[0],tableauAction[0].childNodes[0]); 
-                    tableauAction[0].className = tableauSave[1].className;;
-                    for (var i = 0; i< 8;i++)
+                    var tableauSave = tableauAction;
+                    if (tableauSave[1].childNodes[0]== null) // dans le cas où il reste uniquement une action
                     {
-                        let couleur = " ";
-                        
-                        if (tableauSave[i+2].classList.contains('bg-gray-400'))
-                        {
-                            couleur = 'bg-gray-400' 
-                        }
-                        if (tableauSave[i+2].classList.contains('bg-gray-600'))
-                        {
-                            couleur = 'bg-gray-600' 
-                        }
-                        if (tableauSave[i+2].classList.contains('bg-gray-800'))
-                        {
-                            couleur = 'bg-gray-800' 
-                        }
-     
-                        tableauAction[i+1].className = tableauAction[i+2].className.replace(/(^|\s)bg-\S+/g, couleur);
-                        
-                        tableauAction[i+1].appendChild(tableauSave[i+2].childNodes[0]);       
-                       
+                        tableauAction[0].removeChild(tableauAction[0].childNodes[0]); 
+                        tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " ");
                     }
+                    else    // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
+                    {
+                        
+                        tableauAction[0].replaceChild(tableauSave[1].childNodes[0],tableauAction[0].childNodes[0]); 
+                        tableauAction[0].className = tableauSave[1].className;;
+                        for (var i = 0; i< 8;i++)
+                        {
+                            let couleur = " ";
+                            
+                            if (tableauSave[i+2].classList.contains('bg-gray-400'))
+                            {
+                                couleur = 'bg-gray-400' 
+                            }
+                            if (tableauSave[i+2].classList.contains('bg-gray-600'))
+                            {
+                                couleur = 'bg-gray-600' 
+                            }
+                            if (tableauSave[i+2].classList.contains('bg-gray-800'))
+                            {
+                                couleur = 'bg-gray-800' 
+                            }
+        
+                            tableauAction[i+1].className = tableauAction[i+2].className.replace(/(^|\s)bg-\S+/g, couleur);
+                            
+                            tableauAction[i+1].appendChild(tableauSave[i+2].childNodes[0]);       
+                        
+                        }
 
-                }
+                    }
+                    
+            }
+            catch(error)
+            {
+                //console.log(error);
+                console.log("getLastAction vide ou erreur");
+                return null;
+            }
                 
                 return result;
             },
@@ -405,7 +412,7 @@
                     
                  }
                  
-                 console.log({position});
+                 //console.log({position});
                  return position;
             },
 
@@ -526,7 +533,7 @@
                     {       
                         if (json.lignes[i].cases[j].departBool ==true)
                         {
-                            console.log({i,j})
+                            //console.log({i,j})
                             tab.push(json.lignes[i].cases[j].idCase-1);
                             tab.push(json.lignes[i].idLigne-1);
                             
