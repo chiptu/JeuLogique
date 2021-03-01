@@ -632,41 +632,28 @@ __webpack_require__.r(__webpack_exports__);
       this.delayTime = value;
     },
     stop: function stop() {
-      this.resetShuttle(); //this.clearFunctions();
-    },
-    resetShuttle: function resetShuttle() {
-      console.log("method reset");
-      var grilleJeu = document.getElementById("grilleJeu").childNodes;
-      var position = this.infoGrille(grilleJeu); //console.log("apres grille");
-
-      var position2 = this.getShuttleStart(); //console.log({position,position2});
-
-      var shuttleClass = "fa fa-space-shuttle text-white fa-3x";
-      var newShuttle = document.createElement("i");
-      newShuttle.className = shuttleClass;
-
-      if (position.vaisseau.length != 0) {
-        this.setShuttle(grilleJeu, position.vaisseau[0], position.vaisseau[1], position2[0], position2[1]);
-      }
-
-      grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
-      grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle);
+      this.resetShuttle();
+      this.updateAction();
     },
     play: function play() {
       console.log("debut fct play");
-      var mesFonctions = this.getFonctions();
       console.log("avant grillejeu");
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
       console.log("avant position");
       var position = this.infoGrille(grilleJeu); // console.log({mesFonctions,grilleJeu,position});
 
+      console.log("avant action");
+      this.getMovement();
       console.log("avant rotation"); //console.log(position);
 
       this.setRotation(grilleJeu, position.vaisseau[0], position.vaisseau[1], "right");
       console.log("avant repositionnement vaisseau ");
       this.setShuttle(grilleJeu, position.vaisseau[0], position.vaisseau[1], position.vaisseau[0] + 1, position.vaisseau[1] + 1);
-      console.log(this.getLastAction());
       setTimeout(function () {}, 1000);
+    },
+    getMovement: function getMovement() {
+      var element = this.getLastAction();
+      console.log(element);
     },
     setRotation: function setRotation(grilleJeu, a, b, direction) // Fais une rotation de 90 en 90 avec la position du vaisseau et la direction
     {
@@ -736,7 +723,7 @@ __webpack_require__.r(__webpack_exports__);
       grilleJeu[d].childNodes[c].childNodes[0].appendChild(newShuttle);
       var grilleJeu = document.getElementById("grilleJeu").childNodes; //console.log(this.infoGrille(grilleJeu));
     },
-    getLastAction: function getLastAction() // Retourne la derniere action et desempile le reste
+    getLastAction: function getLastAction() // Retourne la derniere action avec couleur et desempile le reste
     {
       var tableauAction = [];
 
@@ -746,21 +733,50 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       try {
-        var result = tableauAction[0].childNodes[0];
+        var result = [];
+        result.push(tableauAction[0].childNodes[0]); //console.log({result,tableauAction});
+
         var tableauSave = tableauAction;
 
         if (tableauSave[1].childNodes[0] == null) // dans le cas où il reste uniquement une action
           {
-            tableauAction[0].removeChild(tableauAction[0].childNodes[0]);
+            if (tableauSave[0].classList.contains('bg-gray-400')) {
+              result.push('bg-gray-400');
+            }
+
+            if (tableauSave[0].classList.contains('bg-gray-600')) {
+              result.push('bg-gray-600');
+            }
+
+            if (tableauSave[0].classList.contains('bg-gray-800')) {
+              result.push('bg-gray-800');
+            }
+
+            if (tableauSave[0].firstChild) {
+              tableauAction[0].removeChild(tableauAction[0].childNodes[0]);
+            }
+
             tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " ");
           } else // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
           {
+            if (tableauSave[0].classList.contains('bg-gray-400')) {
+              result.push('bg-gray-400');
+            }
+
+            if (tableauSave[0].classList.contains('bg-gray-600')) {
+              result.push('bg-gray-600');
+            }
+
+            if (tableauSave[0].classList.contains('bg-gray-800')) {
+              result.push('bg-gray-800');
+            }
+
             tableauAction[0].replaceChild(tableauSave[1].childNodes[0], tableauAction[0].childNodes[0]);
             tableauAction[0].className = tableauSave[1].className;
             ;
 
             for (var i = 0; i < 8; i++) {
-              var couleur = " ";
+              var couleur = " "; /////// On a deux series de if l une pour avoir la couleur de l action l autre pour desempiler les couleurs
 
               if (tableauSave[i + 2].classList.contains('bg-gray-400')) {
                 couleur = 'bg-gray-400';
@@ -775,13 +791,16 @@ __webpack_require__.r(__webpack_exports__);
               }
 
               tableauAction[i + 1].className = tableauAction[i + 2].className.replace(/(^|\s)bg-\S+/g, couleur);
-              tableauAction[i + 1].appendChild(tableauSave[i + 2].childNodes[0]);
+
+              if (tableauSave[i + 2].firstChild) {
+                tableauAction[i + 1].appendChild(tableauSave[i + 2].childNodes[0]);
+              }
             }
           }
       } catch (error) {
         //console.log(error);
         console.log("getLastAction vide ou erreur");
-        return null;
+        return result;
       }
 
       return result;
@@ -925,7 +944,27 @@ __webpack_require__.r(__webpack_exports__);
 
       return monTableau;
     },
-    getShuttleStart: function getShuttleStart() {
+    resetShuttle: function resetShuttle() // repositionne le vaisseau à son point de depart en enlevant toute rotation
+    {
+      console.log("method reset");
+      var grilleJeu = document.getElementById("grilleJeu").childNodes;
+      var position = this.infoGrille(grilleJeu); //console.log("apres grille");
+
+      var position2 = this.getShuttleStart(); //console.log({position,position2});
+
+      var shuttleClass = "fa fa-space-shuttle text-white fa-3x";
+      var newShuttle = document.createElement("i");
+      newShuttle.className = shuttleClass;
+
+      if (position.vaisseau.length != 0) {
+        this.setShuttle(grilleJeu, position.vaisseau[0], position.vaisseau[1], position2[0], position2[1]);
+      }
+
+      grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
+      grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle);
+    },
+    getShuttleStart: function getShuttleStart() // renvoie la position de depart du vaisseau en parcourant le json originel
+    {
       var json = this.parse();
       var tab = [];
 
@@ -940,6 +979,27 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return tab;
+    },
+    clearFunctions: function clearFunctions() // Nettoie les cases fonctions
+    {
+      console.log("clearfunctions");
+      var monjson = this.parse();
+      var monTableau = [];
+
+      for (var fonction in monjson.fonctions) {
+        for (var i = 0; i < monjson.fonctions[fonction].nombreCase; i++) //recup by id avec i et fonction // recup info icone ? recup info color ?
+        {
+          var element = document.getElementById("btn-f" + (parseInt(fonction, 10) + 1) + "-case-" + (i + 1));
+
+          if (element.childNodes[0] != null) {
+            element.removeChild(element.childNodes[0]);
+          }
+
+          element.className = "bg-black border border-white rounded w-12 h-12 text-white mr-4";
+        }
+      }
+
+      this.updateAction();
     }
   }
 });
