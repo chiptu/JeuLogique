@@ -168,7 +168,7 @@
             play()
             {
                 console.log("debut fct play");
-               
+               // VERIFIER ICI EN 1er si win 
                 console.log("avant grillejeu");
                var grilleJeu = document.getElementById("grilleJeu").childNodes;
 
@@ -178,7 +178,7 @@
               // console.log({mesFonctions,grilleJeu,position});
             
                 console.log("avant action");
-                this.getMovement();
+                this.getAction(grilleJeu,position.vaisseau[0],position.vaisseau[1]);
 
                 console.log("avant rotation");
                 //console.log(position);
@@ -195,27 +195,44 @@
 
             },
 
-            getMovement()
+            getAction(grilleJeu,a,b)
             {
-            var element = this.getLastAction();
-            console.log(element);
+                var action = this.getLastAction();
+                console.log("dans action ");
+                console.log({action, a,b, grilleJeu});
+                console.log(action[0]);
+                if (action[0] == null) // plus  d action = lose
+                {
+                     console.log("////////plus d action");
+                     //this.stop();
+                     return null
+                }
+
+                if (action[0] !=null ) // action 
+                {
+                    console.log("////////action");
+                    if (action[1] != null ) // cas avec couleur
+                    {
+                        console.log(grilleJeu[b].childNodes[a].childNodes[0]);
+                        console.log("/////////couleur existe");
+                    }
+
+                    if (action[1] == null ) // cas sans couleur
+                    {
+                        console.log("///////// couleur n existe pas");
+                    }
+                }  
+                
+
             },
+
 
             setRotation(grilleJeu,a,b,direction) // Fais une rotation de 90 en 90 avec la position du vaisseau et la direction
             {
                 console.log("debut setRotation");
                 //console.log({grilleJeu,a,b,direction});
                 //console.log(grilleJeu[b]);
-                if (grilleJeu[b].childNodes[a].childNodes[0] == null )
-                {
-
-                    var i = 0;
-                }
-                else
-                {
-                    var i = 1;
-                }
-                var test =grilleJeu[b].childNodes[a].childNodes[0].childNodes[0];
+                //var test =grilleJeu[b].childNodes[a].childNodes[0].childNodes[0];
                 //console.log({ test, i});
                 if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-90"))
                 {
@@ -360,7 +377,6 @@
                             }
 
                                  
-                        
                         }
 
                     }
@@ -370,9 +386,14 @@
             {
                 //console.log(error);
                 console.log("getLastAction vide ou erreur");
-                return result;
-            }
                 
+            }
+            
+                if (result[0].className =="")
+                {
+                    result[0] = null;
+                }
+
                 return result;
             },
             nettoyageGrille(grilleJeu) //dans les divs de la grille efface les commentaires sauf pour etoile
@@ -441,7 +462,7 @@
                 {
                     if (selectColor[0] !=null )// cas avec couleur 
                     {
-                         selectCase[0].className =  selectColor[0].id+ " border border-white hover:border-black rounded w-12 h-12 text-white mr-4 focus-color";   
+                         selectCase[0].className =  selectColor[0].id+ " border border-white rounded w-12 h-12 text-white mr-4 focus-color important";   
                     }
                     
                     if (value == 1 || value ==2 || value ==3) // cas ou la case est une fonction
@@ -473,7 +494,7 @@
 
                     var actionListe = document.getElementById("ListeAction"+(i+1));
                     
-                    actionListe.className = monTableau[0].cases[i].couleur+ " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none"
+                    actionListe.className = monTableau[0].cases[i].couleur+ " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none "
                     actionListe.innerHTML = "";
 
                     if (monAction != null)
