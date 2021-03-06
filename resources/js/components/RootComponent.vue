@@ -180,13 +180,14 @@
                 console.log("avant action");
                 this.getAction(grilleJeu,position.vaisseau[0],position.vaisseau[1]);
 
-                console.log("avant rotation");
+                
                 //console.log(position);
-                this.setRotation(grilleJeu,position.vaisseau[0],position.vaisseau[1],"right");
+                
 
-                console.log("avant repositionnement vaisseau ");
-                this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
+                //console.log("avant repositionnement vaisseau ");
+                //this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
 
+                
 
                 setTimeout(function(){
                 
@@ -213,17 +214,96 @@
                     console.log("////////action");
                     if (action[1] != null ) // cas avec couleur
                     {
-                        console.log(grilleJeu[b].childNodes[a].childNodes[0]);
+                        
                         console.log("/////////couleur existe");
+                        console.log(grilleJeu[b].childNodes[a].childNodes[0].className);
+                        console.log( !grilleJeu[b].childNodes[a].childNodes[0].className.includes("bg-gray") );
+                        console.log( grilleJeu[b].childNodes[a].childNodes[0].classList.contains(action[1]) );
+                        if ( grilleJeu[b].childNodes[a].childNodes[0].classList.contains(action[1]) ||   
+                            !grilleJeu[b].childNodes[a].childNodes[0].className.includes("bg-gray")) // si la couleur est respecte ou si absence de couleur
+                        {
+                            console.log("condition couleur verifie");
+
+                            if (action[0].className.includes("share"))
+                            {
+                                this.setRotation(grilleJeu,a,b,"right");
+                            }
+                            if (action[0].className.includes("reply"))
+                            {
+                                this.setRotation(grilleJeu,a,b,"left");
+                            }
+                            if (action[0].className.includes("arrow-up"))
+                            {
+                                this.move(grilleJeu,a,b);
+                            }
+                        }
+
                     }
 
                     if (action[1] == null ) // cas sans couleur
                     {
                         console.log("///////// couleur n existe pas");
+                        if (action[0].className.includes("share"))
+                        {
+                            this.setRotation(grilleJeu,a,b,"right");
+                        }
+                        if (action[0].className.includes("reply"))
+                        {
+                            this.setRotation(grilleJeu,a,b,"left");
+                        }
+                        if (action[0].className.includes("arrow-up"))
+                        {
+                            this.move(grilleJeu,a,b);
+                        }
                     }
                 }  
                 
 
+            },
+
+            movementPossible(grilleJeu,a,b) // verifie si une position va en dehors du jeu visible ou de la grille
+            {
+                console.log("debut movement possible");
+                console.log({a,b});
+                //console.log(!grilleJeu[b].childNodes[a].childNodes[0].className.includes("border"));
+                if (a >9 || b>9 || a<0 || b<0)
+                {
+                    console.log("mouvement sort du cadre")
+                    return false;
+                }
+                if ( !grilleJeu[b].childNodes[a].childNodes[0].className.includes("border") )
+                {
+                    console.log("mouvement sort du jeu visible")
+                    return false
+                }
+                return true;
+            },
+
+            move (grilleJeu, a,b)
+            {
+                console.log("debut move ")
+                
+
+                if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-90"))// mouvement bas
+                {
+                    if (this.movementPossible(grilleJeu,a,b+1) == false) { this.stop(); }
+                    else {this.setShuttle(grilleJeu,a,b,a,b+1);}
+                }
+                else if ( grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-180") ) //mouvement gauche
+                {
+                    if (this.movementPossible(grilleJeu,a-1,b) == false) { this.stop(); }
+                   else {this.setShuttle(grilleJeu,a,b,a-1,b);}
+                }
+                else if ( grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-270") ) // mouvement haut
+                {
+                    if (this.movementPossible(grilleJeu,a,b-1) == false) { this.stop(); }
+                   else{ this.setShuttle(grilleJeu,a,b,a,b-1);}
+                }
+                else // mouvement droite
+                {
+                    if (this.movementPossible(grilleJeu,a+1,b) == false) { this.stop(); }
+                  else {this.setShuttle(grilleJeu,a,b,a+1,b);}
+                }
             },
 
 
@@ -298,6 +378,7 @@
              getLastAction()// Retourne la derniere action avec couleur et desempile le reste
             {
                 var tableauAction =[];
+                console.log("debut Last Action");
 
                 for (var i = 0; i< 8;i++)
                 {
@@ -309,7 +390,7 @@
                 {
                     var result = [];
                     result.push(tableauAction[0].childNodes[0]);
-                    //console.log({result,tableauAction});
+                    console.log({result,tableauAction});
                     var tableauSave = tableauAction;
                     if (tableauSave[1].childNodes[0]== null) // dans le cas où il reste uniquement une action
                     {
@@ -389,13 +470,9 @@
                 
             }
             
-                if (result[0].className =="")
-                {
-                    result[0] = null;
-                }
-
                 return result;
             },
+
             nettoyageGrille(grilleJeu) //dans les divs de la grille efface les commentaires sauf pour etoile
             {
                 NodeList.prototype.forEach = Array.prototype.forEach
@@ -478,6 +555,7 @@
                     }
                 }
                this.updateAction();
+               this.stop();
                
 
             },
@@ -485,6 +563,7 @@
 
             updateAction()// Liste Action qui recupere et s actualise sur F1
             {
+                console.log("update action");
                 var monTableau = this.getFonctions();
 
                 for (var i = 0; i< monTableau[0].cases.length;i++)
@@ -561,14 +640,14 @@
 
             resetShuttle() // repositionne le vaisseau à son point de depart en enlevant toute rotation
             {
-                console.log("method reset");
+                console.log("method reset shuttle");
                 var grilleJeu = document.getElementById("grilleJeu").childNodes;
 
                 var position = this.infoGrille(grilleJeu);
                 //console.log("apres grille");
                 var position2 = this.getShuttleStart();  
 
-                //console.log({position,position2});
+                console.log({position,position2});
 
                 let shuttleClass = "fa fa-space-shuttle text-white fa-3x"
 
@@ -581,7 +660,7 @@
                    this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position2[0],position2[1]);
                }
                
-               
+             
                grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
                 
                grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle); 
@@ -609,7 +688,7 @@
                 return tab;
             },
 
-            clearFunctions()  // Nettoie les cases fonctions
+            clearFunctions()  // Nettoie les cases fonctions, peut être inutile
             {
                 console.log("clearfunctions");
                 var monjson = this.parse();
