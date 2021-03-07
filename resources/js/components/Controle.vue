@@ -3,7 +3,7 @@
     
     <div id="component-controle" class ="w-1/2 h-full ">
             
-            <div class ="text-3xl mr-4 text-white text-center ">Contrôle</div>
+          
 
             <div class ="flex flex-row w-full h-full justify-center content-center items-center ml-4">
 
@@ -32,6 +32,10 @@
                         <div class ="text-3xl  text-black">F{{fonction.idFonction}}</div>
                     </button>
                     </div>
+
+                    <button id="btn-left" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important" v-on:click="command('null')">
+                        
+                    </button>
                   
                 </div>
 

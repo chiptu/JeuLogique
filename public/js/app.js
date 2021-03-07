@@ -236,6 +236,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -310,12 +314,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component Fonction mounted.');
   },
   methods: {
+    clearFunctions: function clearFunctions() {
+      console.log("dans fonctions.vue");
+      this.$emit('clearFunctions');
+    },
     anneau2: function anneau2(event) {
       if (event) {
         var elements = document.getElementById("component-fonction").getElementsByClassName('focus-color');
@@ -417,6 +435,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -641,7 +670,16 @@ __webpack_require__.r(__webpack_exports__);
       console.log("avant grillejeu");
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
       console.log("avant position");
-      var position = this.infoGrille(grilleJeu); // console.log({mesFonctions,grilleJeu,position});
+      var position = this.infoGrille(grilleJeu);
+      console.log({
+        grilleJeu: grilleJeu,
+        position: position
+      });
+
+      if (position.nbEtoile == 0) {
+        console.log("win");
+        this.win();
+      }
 
       console.log("avant action");
       this.getAction(grilleJeu, position.vaisseau[0], position.vaisseau[1]); //console.log(position);
@@ -650,21 +688,17 @@ __webpack_require__.r(__webpack_exports__);
 
       setTimeout(function () {}, 1000);
     },
+    win: function win() // Charger le niveau avec le json suivant
+    {},
     getAction: function getAction(grilleJeu, a, b) {
       var action = this.getLastAction();
-      console.log("dans action ");
-      console.log({
-        action: action,
-        a: a,
-        b: b,
-        grilleJeu: grilleJeu
-      });
-      console.log(action[0]);
+      console.log("dans action "); //console.log({action, a,b, grilleJeu});
+      //console.log(action[0]);
 
       if (action[0] == null) // plus  d action = lose
         {
-          console.log("////////plus d action"); //this.stop();
-
+          console.log("////////plus d action");
+          this.stop();
           return null;
         }
 
@@ -717,11 +751,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     movementPossible: function movementPossible(grilleJeu, a, b) // verifie si une position va en dehors du jeu visible ou de la grille
     {
-      console.log("debut movement possible");
-      console.log({
-        a: a,
-        b: b
-      }); //console.log(!grilleJeu[b].childNodes[a].childNodes[0].className.includes("border"));
+      console.log("debut movement possible"); //console.log({a,b});
+      //console.log(!grilleJeu[b].childNodes[a].childNodes[0].className.includes("border"));
 
       if (a > 9 || b > 9 || a < 0 || b < 0) {
         console.log("mouvement sort du cadre");
@@ -980,6 +1011,12 @@ __webpack_require__.r(__webpack_exports__);
             selectCase[0].innerHTML = "";
             $("#" + selectCase[0].id).append("<i class='fas " + value + " fa-2x'</i>");
           }
+
+        if (value == "null") // cas ou la case est une fleche
+          {
+            selectCase[0].innerHTML = "";
+            $("#" + selectCase[0].id).append("");
+          }
       }
 
       this.updateAction();
@@ -993,7 +1030,7 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0; i < monTableau[0].cases.length; i++) {
         var monAction = monTableau[0].cases[i].action;
         var actionListe = document.getElementById("ListeAction" + (i + 1));
-        actionListe.className = monTableau[0].cases[i].couleur + " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none ";
+        actionListe.className = monTableau[0].cases[i].couleur + " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none ";
         actionListe.innerHTML = "";
 
         if (monAction != null) {
@@ -1062,11 +1099,8 @@ __webpack_require__.r(__webpack_exports__);
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
       var position = this.infoGrille(grilleJeu); //console.log("apres grille");
 
-      var position2 = this.getShuttleStart();
-      console.log({
-        position: position,
-        position2: position2
-      });
+      var position2 = this.getShuttleStart(); //console.log({position,position2});
+
       var shuttleClass = "fa fa-space-shuttle text-white fa-3x";
       var newShuttle = document.createElement("i");
       newShuttle.className = shuttleClass;
@@ -1110,7 +1144,7 @@ __webpack_require__.r(__webpack_exports__);
             element.removeChild(element.childNodes[0]);
           }
 
-          element.className = "bg-black border border-white rounded w-12 h-12 text-white mr-4";
+          element.className = "bg-black border border-white rounded w-12 h-12 text-white mr-4 important";
         }
       }
 
@@ -1728,10 +1762,6 @@ var render = function() {
     "div",
     { staticClass: "w-1/2 h-full ", attrs: { id: "component-controle" } },
     [
-      _c("div", { staticClass: "text-3xl mr-4 text-white text-center " }, [
-        _vm._v("Contrôle")
-      ]),
-      _vm._v(" "),
       _c(
         "div",
         {
@@ -1815,6 +1845,17 @@ var render = function() {
                     ]
                   )
                 ])
+              }),
+              _vm._v(" "),
+              _c("button", {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
+                attrs: { id: "btn-left" },
+                on: {
+                  click: function($event) {
+                    return _vm.command("null")
+                  }
+                }
               })
             ],
             2
@@ -1897,62 +1938,60 @@ var render = function() {
     "div",
     { staticClass: "w-1/2 h-full ", attrs: { id: "component-fonction" } },
     [
-      _c("div", { staticClass: "text-3xl mr-4 text-white text-center" }, [
-        _vm._v("Fonction")
-      ]),
-      _vm._v(" "),
       _c(
         "div",
         {
           staticClass:
-            "flex flex-col w-full h-full justify-center content-center ml-4"
+            "flex flex-col  w-full h-full justify-center content-center ml-4"
         },
-        [
-          _c(
+        _vm._l(_vm.leveljson.fonctions, function(fonction) {
+          return _c(
             "div",
-            { staticClass: "h-3/12" },
-            _vm._l(_vm.leveljson.fonctions, function(fonction) {
-              return _c(
-                "div",
-                {
-                  key: fonction.idFonction,
-                  staticClass:
-                    " h-1/12 w-full inline-flex  justify-center content-center mt-12"
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "text-3xl mr-4 text-white important" },
-                    [
-                      _vm._v(
-                        "\n                    F" +
-                          _vm._s(fonction.idFonction) +
-                          "\n                "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._l(fonction.nombreCase, function(monNbCase) {
-                    return _c("div", { key: monNbCase }, [
-                      _c("button", {
-                        staticClass:
-                          "bg-black border border-white  rounded w-12 h-12 text-white mr-4 important",
-                        attrs: {
-                          id:
-                            "btn-f" + fonction.idFonction + "-case-" + monNbCase
-                        },
-                        on: { click: _vm.anneau2 }
-                      })
-                    ])
+            { key: fonction.idFonction },
+            [
+              _c("div", { staticClass: "text-3xl mr-4 text-white important" }, [
+                _vm._v(
+                  "\n                    F" +
+                    _vm._s(fonction.idFonction) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _vm._l(fonction.nombreCase, function(monNbCase) {
+                return _c("div", { key: monNbCase }, [
+                  _c("button", {
+                    staticClass:
+                      "bg-black border border-white  rounded w-12 h-12 text-white mr-4 important",
+                    attrs: {
+                      id: "btn-f" + fonction.idFonction + "-case-" + monNbCase
+                    },
+                    on: { click: _vm.anneau2 }
                   })
-                ],
-                2
-              )
-            }),
-            0
+                ])
+              })
+            ],
+            2
           )
-        ]
-      )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "h-auto w-full flex  justify-center" }, [
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 ",
+            attrs: { id: "btn-clean" },
+            on: {
+              click: function($event) {
+                return _vm.clearFunctions()
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-undo " })]
+        )
+      ])
     ]
   )
 }
@@ -2074,96 +2113,85 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: " h-auto w-full flex  justify-center mt-8 " },
+      { staticClass: "flex justify-center mt-8 items-center  " },
       [
         _c(
-          "button",
+          "div",
           {
-            staticClass:
-              "bg-black  hover: border border-white  rounded w-12 h-12 text-white mr-8 mt-4 pointer-events-none",
-            attrs: { id: "listeAction" }
+            staticClass: "overflow-x-auto  overflow-y-hidden  h-24 important",
+            staticStyle: { width: "50em", "white-space": "nowrap" }
           },
-          [_c("i", { staticClass: "fas fa-terminal" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-            attrs: { id: "ListeAction1" }
-          },
-          [_c("div", {})]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-            attrs: { id: "ListeAction2" }
-          },
-          [_c("div", {})]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-            attrs: { id: "ListeAction3" }
-          },
-          [_c("div", {})]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-            attrs: { id: "ListeAction4" }
-          },
-          [_c("div", {})]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-            attrs: { id: "ListeAction5" }
-          },
-          [_c("div", {})]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-            attrs: { id: "ListeAction6" }
-          },
-          [_c("div", {})]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-            attrs: { id: "ListeAction7" }
-          },
-          [_c("div", {})]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none",
-            attrs: { id: "ListeAction8" }
-          },
-          [_c("div", {})]
+          [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+                attrs: { id: "listeAction" }
+              },
+              [_c("i", { staticClass: "relative fas fa-terminal" })]
+            ),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+              attrs: { id: "ListeAction1" }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+              attrs: { id: "ListeAction2" }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
+              attrs: { id: "ListeAction3" }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+              attrs: { id: "ListeAction4" }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
+              attrs: { id: "ListeAction5" }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+              attrs: { id: "ListeAction6" }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
+              attrs: { id: "ListeAction7" }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
+              attrs: { id: "ListeAction8" }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+              attrs: { id: "ListeAction9" }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass:
+                "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+              attrs: { id: "ListeAction10" }
+            })
+          ]
         )
       ]
     )
@@ -2229,7 +2257,10 @@ var render = function() {
         "div",
         { staticClass: "flex w-4/12" },
         [
-          _c("Fonction", { attrs: { leveljson: this.parse() } }),
+          _c("Fonction", {
+            attrs: { leveljson: this.parse() },
+            on: { clearFunctions: _vm.clearFunctions }
+          }),
           _vm._v(" "),
           _c("Controle", {
             attrs: { leveljson: this.parse() },

@@ -93,7 +93,7 @@
 
         <div class ="flex w-4/12">
 
-            <Fonction :leveljson = "this.parse()" />
+            <Fonction :leveljson = "this.parse()" @clearFunctions="clearFunctions" />
 
             <Controle :leveljson = "this.parse()" @command="command"/>
         
@@ -168,6 +168,7 @@
             play()
             {
                 console.log("debut fct play");
+
                // VERIFIER ICI EN 1er si win 
                 console.log("avant grillejeu");
                var grilleJeu = document.getElementById("grilleJeu").childNodes;
@@ -175,7 +176,12 @@
                 console.log("avant position");
                var position = this.infoGrille(grilleJeu);
 
-              // console.log({mesFonctions,grilleJeu,position});
+               console.log({grilleJeu,position});
+               if (position.nbEtoile ==0)
+               {
+                   console.log("win");
+                   this.win();
+               }
             
                 console.log("avant action");
                 this.getAction(grilleJeu,position.vaisseau[0],position.vaisseau[1]);
@@ -196,16 +202,21 @@
 
             },
 
+            win() // Charger le niveau avec le json suivant
+            {
+
+            },
+
             getAction(grilleJeu,a,b)
             {
                 var action = this.getLastAction();
                 console.log("dans action ");
-                console.log({action, a,b, grilleJeu});
-                console.log(action[0]);
+                //console.log({action, a,b, grilleJeu});
+                //console.log(action[0]);
                 if (action[0] == null) // plus  d action = lose
                 {
                      console.log("////////plus d action");
-                     //this.stop();
+                     this.stop();
                      return null
                 }
 
@@ -264,7 +275,7 @@
             movementPossible(grilleJeu,a,b) // verifie si une position va en dehors du jeu visible ou de la grille
             {
                 console.log("debut movement possible");
-                console.log({a,b});
+                //console.log({a,b});
                 //console.log(!grilleJeu[b].childNodes[a].childNodes[0].className.includes("border"));
                 if (a >9 || b>9 || a<0 || b<0)
                 {
@@ -553,6 +564,11 @@
                         selectCase[0].innerHTML = "";
                         $("#"+selectCase[0].id).append("<i class='fas "+ value +" fa-2x'</i>")
                     }
+                    if (value == "null") // cas ou la case est une fleche
+                    {
+                        selectCase[0].innerHTML = "";
+                        $("#"+selectCase[0].id).append("")
+                    }
                 }
                this.updateAction();
                this.stop();
@@ -573,7 +589,7 @@
 
                     var actionListe = document.getElementById("ListeAction"+(i+1));
                     
-                    actionListe.className = monTableau[0].cases[i].couleur+ " border border-white hover:border-black rounded w-12 h-12 text-white mt-4 mr-1 pointer-events-none "
+                    actionListe.className = monTableau[0].cases[i].couleur+ " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none "
                     actionListe.innerHTML = "";
 
                     if (monAction != null)
@@ -647,7 +663,7 @@
                 //console.log("apres grille");
                 var position2 = this.getShuttleStart();  
 
-                console.log({position,position2});
+                //console.log({position,position2});
 
                 let shuttleClass = "fa fa-space-shuttle text-white fa-3x"
 
@@ -703,7 +719,7 @@
                        {
                            element.removeChild(element.childNodes[0]);
                        } 
-                       element.className = "bg-black border border-white rounded w-12 h-12 text-white mr-4";
+                       element.className = "bg-black border border-white rounded w-12 h-12 text-white mr-4 important";
                        
                    }
                 }
