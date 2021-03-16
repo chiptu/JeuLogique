@@ -2,7 +2,7 @@
         
         <!--Espace bouton-->
 
-            <div class = " h-auto w-full flex  justify-center mt-8 important">
+            <div class = " h-auto w-full flex  justify-center mt-8 important ">
 
                 <button id="start" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important" v-on:click="play()">
                     <i class="fa fa-play fa-2x"></i>

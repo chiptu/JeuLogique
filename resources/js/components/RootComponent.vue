@@ -167,7 +167,7 @@
 
             play()
             {
-                console.log("debut fct play");
+                console.log("debut fct play ");
 
                // VERIFIER ICI EN 1er si win 
                 console.log("avant grillejeu");
@@ -230,10 +230,9 @@
                         console.log(grilleJeu[b].childNodes[a].childNodes[0].className);
                         console.log( !grilleJeu[b].childNodes[a].childNodes[0].className.includes("bg-gray") );
                         console.log( grilleJeu[b].childNodes[a].childNodes[0].classList.contains(action[1]) );
-                        if ( grilleJeu[b].childNodes[a].childNodes[0].classList.contains(action[1]) ||   
-                            !grilleJeu[b].childNodes[a].childNodes[0].className.includes("bg-gray")) // si la couleur est respecte ou si absence de couleur
+                        if ( grilleJeu[b].childNodes[a].childNodes[0].classList.contains(action[1]) ) // si la couleur est respecte ou si absence de couleur
                         {
-                            console.log("condition couleur verifie");
+                            console.log("condition couleur verifie test");
 
                             if (action[0].className.includes("share"))
                             {
@@ -253,7 +252,7 @@
 
                     if (action[1] == null ) // cas sans couleur
                     {
-                        console.log("///////// couleur n existe pas");
+                        console.log("///////// couleur n existe pas test");
                         if (action[0].className.includes("share"))
                         {
                             this.setRotation(grilleJeu,a,b,"right");
@@ -562,12 +561,13 @@
                     if (value == "fa fa-arrow-up fa-2x pointer-events-none" || value == "fa fa-share fa-2x pointer-events-none" || value == "fas fa-reply fa-2x pointer-events-none") // cas ou la case est une fleche
                     {
                         selectCase[0].innerHTML = "";
-                        $("#"+selectCase[0].id).append("<i class='fas "+ value +" fa-2x'</i>")
+                        $("#"+selectCase[0].id).append("<i class='fas "+ value +" fa-2x'></i>")
                     }
-                    if (value == "null") // cas ou la case est une fleche
+                    if (value == "null") // cas ou la case est reinitialise
                     {
                         selectCase[0].innerHTML = "";
-                        $("#"+selectCase[0].id).append("")
+                        $("#"+selectCase[0].id).append("<i></i>")
+
                     }
                 }
                this.updateAction();
@@ -591,6 +591,7 @@
                     
                     actionListe.className = monTableau[0].cases[i].couleur+ " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none "
                     actionListe.innerHTML = "";
+                    
 
                     if (monAction != null)
                     {
@@ -602,8 +603,12 @@
                         }
                         else
                         {
-                            $("#"+actionListe.id).append('<i class="' + monAction +'"</i>' )
+                            $("#"+actionListe.id).append('<i class="' + monAction +'"></i>' )
                         }
+                    }
+                    else
+                    {   
+                        $("#"+actionListe.id).append('<i></i>' )
                     }
                     
                 }
