@@ -170,13 +170,13 @@
                 console.log("debut fct play ");
 
                // VERIFIER ICI EN 1er si win 
-                console.log("avant grillejeu");
+                
                var grilleJeu = document.getElementById("grilleJeu").childNodes;
 
-                console.log("avant position");
+                console.log("avant infoGrille");
                var position = this.infoGrille(grilleJeu);
 
-               console.log({grilleJeu,position});
+               //console.log({grilleJeu,position});
                if (position.nbEtoile ==0)
                {
                    console.log("win");
@@ -212,8 +212,8 @@
                 var action = this.getLastAction();
                 console.log("dans action ");
                 //console.log({action, a,b, grilleJeu});
-                //console.log(action[0]);
-                if (action[0] == null) // plus  d action = lose
+                //console.log(action[0].className);
+                if (action[0].className == "") // plus  d action = lose
                 {
                      console.log("////////plus d action");
                      this.stop();
@@ -390,7 +390,7 @@
                 var tableauAction =[];
                 console.log("debut Last Action");
 
-                for (var i = 0; i< 8;i++)
+                for (var i = 0; i< 10;i++) // on recupere le tableau des actions
                 {
                     var actionListe = document.getElementById("ListeAction"+(i+1));
                     tableauAction.push(actionListe);
@@ -400,7 +400,7 @@
                 {
                     var result = [];
                     result.push(tableauAction[0].childNodes[0]);
-                    console.log({result,tableauAction});
+                    //console.log({result,tableauAction});
                     var tableauSave = tableauAction;
                     if (tableauSave[1].childNodes[0]== null) // dans le cas où il reste uniquement une action
                     {
@@ -421,7 +421,7 @@
                             tableauAction[0].removeChild(tableauAction[0].childNodes[0]); 
                         }
                         
-                        tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " ");
+                        tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " "); // on enleve tout ce qui commentce par bg (couleurs)
 
                     }
                     else    // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
@@ -441,7 +441,7 @@
                         
                         tableauAction[0].replaceChild(tableauSave[1].childNodes[0],tableauAction[0].childNodes[0]); 
                         tableauAction[0].className = tableauSave[1].className;;
-                        for (var i = 0; i< 8;i++)
+                        for (var i = 0; i< 10;i++)
                         {
                             let couleur = " ";
                             
@@ -475,7 +475,7 @@
             }
             catch(error)
             {
-                //console.log(error);
+                console.log(error);
                 console.log("getLastAction vide ou erreur");
                 
             }
@@ -549,7 +549,7 @@
                 {
                     if (selectColor[0] !=null )// cas avec couleur 
                     {
-                         selectCase[0].className =  selectColor[0].id+ " border border-white rounded w-12 h-12 text-white mr-4 focus-color important";   
+                         selectCase[0].className =  selectColor[0].id+ " mt-4 border border-white rounded w-12 h-12 text-white mr-4 focus-color important";   
                     }
                     
                     if (value == 1 || value ==2 || value ==3) // cas ou la case est une fonction
@@ -688,7 +688,7 @@
 
             },
 
-            getShuttleStart() // renvoie la position de depart du vaisseau en parcourant le json originel
+            getShuttleStart() // renvoie la position de depart du vaisseau en parcourant le json originel pour remettre le jeu a zerp
             {
                 var json =this.parse();
                 var tab=[];
@@ -709,7 +709,7 @@
                 return tab;
             },
 
-            clearFunctions()  // Nettoie les cases fonctions, peut être inutile
+            clearFunctions()  // Nettoie les cases fonctions, bouton nettoyer fonctipn
             {
                 console.log("clearfunctions");
                 var monjson = this.parse();
@@ -724,7 +724,7 @@
                        {
                            element.removeChild(element.childNodes[0]);
                        } 
-                       element.className = "bg-black border border-white rounded w-12 h-12 text-white mr-4 important";
+                       element.className = "mt-4 bg-black border border-white  rounded w-12 h-12 text-white mr-4 important";
                        
                    }
                 }

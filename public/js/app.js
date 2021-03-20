@@ -327,6 +327,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -672,14 +683,9 @@ __webpack_require__.r(__webpack_exports__);
     play: function play() {
       console.log("debut fct play "); // VERIFIER ICI EN 1er si win 
 
-      console.log("avant grillejeu");
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
-      console.log("avant position");
-      var position = this.infoGrille(grilleJeu);
-      console.log({
-        grilleJeu: grilleJeu,
-        position: position
-      });
+      console.log("avant infoGrille");
+      var position = this.infoGrille(grilleJeu); //console.log({grilleJeu,position});
 
       if (position.nbEtoile == 0) {
         console.log("win");
@@ -698,9 +704,9 @@ __webpack_require__.r(__webpack_exports__);
     getAction: function getAction(grilleJeu, a, b) {
       var action = this.getLastAction();
       console.log("dans action "); //console.log({action, a,b, grilleJeu});
-      //console.log(action[0]);
+      //console.log(action[0].className);
 
-      if (action[0] == null) // plus  d action = lose
+      if (action[0].className == "") // plus  d action = lose
         {
           console.log("////////plus d action");
           this.stop();
@@ -871,18 +877,16 @@ __webpack_require__.r(__webpack_exports__);
       var tableauAction = [];
       console.log("debut Last Action");
 
-      for (var i = 0; i < 8; i++) {
+      for (var i = 0; i < 10; i++) // on recupere le tableau des actions
+      {
         var actionListe = document.getElementById("ListeAction" + (i + 1));
         tableauAction.push(actionListe);
       }
 
       try {
         var result = [];
-        result.push(tableauAction[0].childNodes[0]);
-        console.log({
-          result: result,
-          tableauAction: tableauAction
-        });
+        result.push(tableauAction[0].childNodes[0]); //console.log({result,tableauAction});
+
         var tableauSave = tableauAction;
 
         if (tableauSave[1].childNodes[0] == null) // dans le cas où il reste uniquement une action
@@ -903,7 +907,7 @@ __webpack_require__.r(__webpack_exports__);
               tableauAction[0].removeChild(tableauAction[0].childNodes[0]);
             }
 
-            tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " ");
+            tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " "); // on enleve tout ce qui commentce par bg (couleurs)
           } else // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
           {
             if (tableauSave[0].classList.contains('bg-gray-400')) {
@@ -922,7 +926,7 @@ __webpack_require__.r(__webpack_exports__);
             tableauAction[0].className = tableauSave[1].className;
             ;
 
-            for (var i = 0; i < 8; i++) {
+            for (var i = 0; i < 10; i++) {
               var couleur = " "; /////// On a deux series de if l une pour avoir la couleur de l action l autre pour desempiler les couleurs
 
               if (tableauSave[i + 2].classList.contains('bg-gray-400')) {
@@ -945,7 +949,7 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
       } catch (error) {
-        //console.log(error);
+        console.log(error);
         console.log("getLastAction vide ou erreur");
       }
 
@@ -1002,7 +1006,7 @@ __webpack_require__.r(__webpack_exports__);
       if (selectCase[0] != null) {
         if (selectColor[0] != null) // cas avec couleur 
           {
-            selectCase[0].className = selectColor[0].id + " border border-white rounded w-12 h-12 text-white mr-4 focus-color important";
+            selectCase[0].className = selectColor[0].id + " mt-4 border border-white rounded w-12 h-12 text-white mr-4 focus-color important";
           }
 
         if (value == 1 || value == 2 || value == 3) // cas ou la case est une fonction
@@ -1119,7 +1123,7 @@ __webpack_require__.r(__webpack_exports__);
       grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
       grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle);
     },
-    getShuttleStart: function getShuttleStart() // renvoie la position de depart du vaisseau en parcourant le json originel
+    getShuttleStart: function getShuttleStart() // renvoie la position de depart du vaisseau en parcourant le json originel pour remettre le jeu a zerp
     {
       var json = this.parse();
       var tab = [];
@@ -1136,7 +1140,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return tab;
     },
-    clearFunctions: function clearFunctions() // Nettoie les cases fonctions, peut être inutile
+    clearFunctions: function clearFunctions() // Nettoie les cases fonctions, bouton nettoyer fonctipn
     {
       console.log("clearfunctions");
       var monjson = this.parse();
@@ -1151,7 +1155,7 @@ __webpack_require__.r(__webpack_exports__);
             element.removeChild(element.childNodes[0]);
           }
 
-          element.className = "bg-black border border-white rounded w-12 h-12 text-white mr-4 important";
+          element.className = "mt-4 bg-black border border-white  rounded w-12 h-12 text-white mr-4 important";
         }
       }
 
@@ -1954,72 +1958,87 @@ var render = function() {
         [
           _c(
             "div",
-            { staticClass: "h-3/12  " },
-            [
-              _vm._l(_vm.leveljson.fonctions, function(fonction) {
-                return _c(
-                  "div",
-                  {
-                    key: fonction.idFonction,
-                    staticClass:
-                      "  w-full inline-flex justify-center content-center overflow-x-auto h-24 important ",
-                    staticStyle: { "white-space": "nowrap" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "text-3xl mr-4 text-white important mt-4"
-                      },
-                      [
-                        _vm._v(
-                          "\n                            F" +
-                            _vm._s(fonction.idFonction) +
-                            "\n                        "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm._l(fonction.nombreCase, function(monNbCase) {
-                      return _c("div", { key: monNbCase }, [
-                        _c("button", {
-                          staticClass:
-                            "mt-4 bg-black border border-white  rounded w-12 h-12 text-white mr-4 important",
-                          attrs: {
-                            id:
-                              "btn-f" +
-                              fonction.idFonction +
-                              "-case-" +
-                              monNbCase
+            { staticClass: "h-3/12 " },
+            _vm._l(_vm.leveljson.fonctions, function(fonction) {
+              return _c(
+                "div",
+                {
+                  key: fonction.idFonction,
+                  staticClass:
+                    "flex flex-row  w-full  justify-center content-center overflow-x-auto h-24 important ",
+                  staticStyle: { "white-space": "nowrap" }
+                },
+                [
+                  fonction.nombreCase > 5
+                    ? _c("div", [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              " ml-64 text-3xl mr-4 text-white important mt-4"
                           },
-                          on: { click: _vm.anneau2 }
-                        })
+                          [
+                            _vm._v(
+                              "\n                            F" +
+                                _vm._s(fonction.idFonction) +
+                                "\n                        "
+                            )
+                          ]
+                        )
                       ])
-                    })
-                  ],
-                  2
-                )
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "h-auto w-full flex  justify-center" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 ",
-                    attrs: { id: "btn-clean" },
-                    on: {
-                      click: function($event) {
-                        return _vm.clearFunctions()
-                      }
-                    }
-                  },
-                  [_c("i", { staticClass: "fas fa-undo " })]
-                )
-              ])
-            ],
-            2
-          )
+                    : _c("div", [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "ml-10 text-3xl mr-4 text-white important mt-4"
+                          },
+                          [
+                            _vm._v(
+                              "\n                            F" +
+                                _vm._s(fonction.idFonction) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ]),
+                  _vm._v(" "),
+                  _vm._l(fonction.nombreCase, function(monNbCase) {
+                    return _c("div", { key: monNbCase }, [
+                      _c("button", {
+                        staticClass:
+                          "mt-4  border border-white  rounded w-12 h-12 text-white mr-4 important",
+                        attrs: {
+                          id:
+                            "btn-f" + fonction.idFonction + "-case-" + monNbCase
+                        },
+                        on: { click: _vm.anneau2 }
+                      })
+                    ])
+                  })
+                ],
+                2
+              )
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "h-auto w-full flex  justify-center" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "ml-10 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 ",
+                attrs: { id: "btn-clean" },
+                on: {
+                  click: function($event) {
+                    return _vm.clearFunctions()
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-undo " })]
+            )
+          ])
         ]
       )
     ]
@@ -2166,7 +2185,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
                 attrs: { id: "ListeAction1" }
               },
               [_c("i")]
@@ -2176,7 +2195,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
                 attrs: { id: "ListeAction2" }
               },
               [_c("i")]
@@ -2186,7 +2205,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
                 attrs: { id: "ListeAction3" }
               },
               [_c("i")]
@@ -2196,7 +2215,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
                 attrs: { id: "ListeAction4" }
               },
               [_c("i")]
@@ -2206,7 +2225,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
                 attrs: { id: "ListeAction5" }
               },
               [_c("i")]
@@ -2216,7 +2235,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
                 attrs: { id: "ListeAction6" }
               },
               [_c("i")]
@@ -2226,7 +2245,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
                 attrs: { id: "ListeAction7" }
               },
               [_c("i")]
@@ -2236,7 +2255,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
                 attrs: { id: "ListeAction8" }
               },
               [_c("i")]
@@ -2246,7 +2265,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
                 attrs: { id: "ListeAction9" }
               },
               [_c("i")]
@@ -2256,7 +2275,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass:
-                  "bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
+                  " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
                 attrs: { id: "ListeAction10" }
               },
               [_c("i")]
