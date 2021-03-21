@@ -881,54 +881,56 @@ __webpack_require__.r(__webpack_exports__);
       {
         var actionListe = document.getElementById("ListeAction" + (i + 1));
         tableauAction.push(actionListe);
-      }
+      } //try
+      //{
 
-      try {
-        var result = [];
-        result.push(tableauAction[0].childNodes[0]); //console.log({result,tableauAction});
 
-        var tableauSave = tableauAction;
+      var result = [];
+      result.push(tableauAction[0].childNodes[0]); //console.log({result,tableauAction});
 
-        if (tableauSave[1].childNodes[0] == null) // dans le cas où il reste uniquement une action
-          {
-            if (tableauSave[0].classList.contains('bg-gray-400')) {
-              result.push('bg-gray-400');
-            }
+      var tableauSave = tableauAction;
 
-            if (tableauSave[0].classList.contains('bg-gray-600')) {
-              result.push('bg-gray-600');
-            }
+      if (tableauSave[1].childNodes[0] == null) // dans le cas où il reste uniquement une action
+        {
+          if (tableauSave[0].classList.contains('bg-gray-400')) {
+            result.push('bg-gray-400');
+          }
 
-            if (tableauSave[0].classList.contains('bg-gray-800')) {
-              result.push('bg-gray-800');
-            }
+          if (tableauSave[0].classList.contains('bg-gray-600')) {
+            result.push('bg-gray-600');
+          }
 
-            if (tableauSave[0].firstChild) {
-              tableauAction[0].removeChild(tableauAction[0].childNodes[0]);
-            }
+          if (tableauSave[0].classList.contains('bg-gray-800')) {
+            result.push('bg-gray-800');
+          }
 
-            tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " "); // on enleve tout ce qui commentce par bg (couleurs)
-          } else // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
-          {
-            if (tableauSave[0].classList.contains('bg-gray-400')) {
-              result.push('bg-gray-400');
-            }
+          if (tableauSave[0].firstChild) {
+            tableauAction[0].removeChild(tableauAction[0].childNodes[0]);
+          }
 
-            if (tableauSave[0].classList.contains('bg-gray-600')) {
-              result.push('bg-gray-600');
-            }
+          tableauAction[0].className = tableauAction[0].className.replace(/(^|\s)bg-\S+/g, " "); // on enleve tout ce qui commentce par bg (couleurs)
+        } else // dans le cas ou il reste plusieurs actions on desempile le contenu et la couleur dans le classname
+        {
+          if (tableauSave[0].classList.contains('bg-gray-400')) {
+            result.push('bg-gray-400');
+          }
 
-            if (tableauSave[0].classList.contains('bg-gray-800')) {
-              result.push('bg-gray-800');
-            }
+          if (tableauSave[0].classList.contains('bg-gray-600')) {
+            result.push('bg-gray-600');
+          }
 
-            tableauAction[0].replaceChild(tableauSave[1].childNodes[0], tableauAction[0].childNodes[0]);
-            tableauAction[0].className = tableauSave[1].className;
-            ;
+          if (tableauSave[0].classList.contains('bg-gray-800')) {
+            result.push('bg-gray-800');
+          }
 
-            for (var i = 0; i < 10; i++) {
-              var couleur = " "; /////// On a deux series de if l une pour avoir la couleur de l action l autre pour desempiler les couleurs
+          tableauAction[0].replaceChild(tableauSave[1].childNodes[0], tableauAction[0].childNodes[0]);
+          tableauAction[0].className = tableauSave[1].className; //console.log({tableauAction});
 
+          for (var i = 0; i < 10; i++) {
+            var couleur = " ";
+
+            try {
+              /////// On a deux series de if l une pour avoir la couleur de l action l autre pour desempiler les couleurs
               if (tableauSave[i + 2].classList.contains('bg-gray-400')) {
                 couleur = 'bg-gray-400';
               }
@@ -946,12 +948,24 @@ __webpack_require__.r(__webpack_exports__);
               if (tableauSave[i + 2].firstChild) {
                 tableauAction[i + 1].appendChild(tableauSave[i + 2].childNodes[0]);
               }
+            } catch (error) {
+              //console.log({error,i});
+              if (i == 8) {
+                var icon = document.createElement("i"); //console.log(tableauAction[i+1]);
+
+                tableauAction[i + 1].appendChild(icon);
+              }
             }
           }
-      } catch (error) {
-        console.log(error);
-        console.log("getLastAction vide ou erreur");
-      }
+        } //}
+
+      /*catch(error)
+      {
+          console.log(error);
+          console.log("getLastAction vide ou erreur");
+          
+      }*/
+
 
       return result;
     },

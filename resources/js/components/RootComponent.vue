@@ -396,8 +396,8 @@
                     tableauAction.push(actionListe);
                 }
                 
-               try
-                {
+               //try
+                //{
                     var result = [];
                     result.push(tableauAction[0].childNodes[0]);
                     //console.log({result,tableauAction});
@@ -440,45 +440,62 @@
                         }
                         
                         tableauAction[0].replaceChild(tableauSave[1].childNodes[0],tableauAction[0].childNodes[0]); 
-                        tableauAction[0].className = tableauSave[1].className;;
+                        tableauAction[0].className = tableauSave[1].className;
+                        
+                        //console.log({tableauAction});
                         for (var i = 0; i< 10;i++)
                         {
                             let couleur = " ";
                             
+                            try
+                            {
+                                /////// On a deux series de if l une pour avoir la couleur de l action l autre pour desempiler les couleurs
+                                if (tableauSave[i+2].classList.contains('bg-gray-400'))
+                                {
+                                    couleur = 'bg-gray-400' 
+                                }
+                                if (tableauSave[i+2].classList.contains('bg-gray-600'))
+                                {
+                                    couleur = 'bg-gray-600' 
+                                }
+                                if (tableauSave[i+2].classList.contains('bg-gray-800'))
+                                {
+                                    couleur = 'bg-gray-800' 
+                                }
+            
+                                tableauAction[i+1].className = tableauAction[i+2].className.replace(/(^|\s)bg-\S+/g, couleur);
+                                
+                                if (tableauSave[i+2].firstChild)
+                                {
+                                    tableauAction[i+1].appendChild(tableauSave[i+2].childNodes[0]);  
+                                }
+                            }
+                            catch(error)
+                            {
+                                
+                                //console.log({error,i});
+                                if (i ==8)
+                                {
+                                    let icon = document.createElement("i");
+                                    //console.log(tableauAction[i+1]);
+                                    tableauAction[i+1].appendChild(icon);
+                                }
+                                
+                            }
                             
-                            /////// On a deux series de if l une pour avoir la couleur de l action l autre pour desempiler les couleurs
-                             if (tableauSave[i+2].classList.contains('bg-gray-400'))
-                            {
-                                couleur = 'bg-gray-400' 
-                            }
-                            if (tableauSave[i+2].classList.contains('bg-gray-600'))
-                            {
-                                couleur = 'bg-gray-600' 
-                            }
-                            if (tableauSave[i+2].classList.contains('bg-gray-800'))
-                            {
-                                couleur = 'bg-gray-800' 
-                            }
-        
-                            tableauAction[i+1].className = tableauAction[i+2].className.replace(/(^|\s)bg-\S+/g, couleur);
-                            
-                            if (tableauSave[i+2].firstChild)
-                            {
-                                tableauAction[i+1].appendChild(tableauSave[i+2].childNodes[0]);  
-                            }
 
                                  
                         }
 
                     }
                     
-            }
-            catch(error)
+            //}
+            /*catch(error)
             {
                 console.log(error);
                 console.log("getLastAction vide ou erreur");
                 
-            }
+            }*/
             
                 return result;
             },
