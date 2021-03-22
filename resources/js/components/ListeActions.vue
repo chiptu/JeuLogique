@@ -4,7 +4,9 @@
 
             <div class = "flex justify-center  mt-8 items-center  " >
                 
-                <div class ="overflow-x-auto  h-24 important inset-y-1/2" style ="width: 50em;  white-space: nowrap;">
+                <div id= "mesActions"
+                class ="overflow-x-auto  h-24 important inset-y-1/2" 
+                style ="width: 50em;  white-space: nowrap;">
 
                     <button id="listeAction" class=" bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none">
                         <i class="relative fas fa-terminal"></i>

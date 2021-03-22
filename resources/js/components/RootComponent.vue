@@ -193,7 +193,10 @@
                 //console.log("avant repositionnement vaisseau ");
                 //this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
 
+                //console.log("avant ajout case action");
+                //this.ajouterCaseAction();
                 
+                //this.CleanListeAction();
 
                 setTimeout(function(){
                 
@@ -746,7 +749,106 @@
                    }
                 }
                 this.updateAction();
-            }
+            },
+
+            ajouterCaseAction() // ajout une case vide dans la liste d action
+            {
+                console.log("ajout case action");
+                var mesActions = document.getElementById("mesActions");
+
+                let nbCaseAction = this.countTotalAction();
+
+
+                let element = document.createElement("button");
+
+                element.id = "ListeAction"+(nbCaseAction+1);
+
+                element.className =" border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none ";
+                
+                
+                let element2 = document.createElement("i");
+
+                element.appendChild(element2);
+
+
+                mesActions.appendChild(element);
+                
+            },
+
+            countTotalAction() // compte le nombre total d action dans la liste
+            {
+                console.log("count case action total");
+                var mesActions = document.getElementById("mesActions");
+
+                let nbCaseActions = mesActions.childElementCount-1;
+
+                return nbCaseActions;
+            },
+
+            countUsedAction() // compte le nombre d action non vide
+            {
+                console.log("count case action non vide");
+
+                var mesActions = document.getElementById("mesActions");
+
+                console.log(mesActions);
+
+                for (var i = 0; i < mesActions.childNodes.length; i++) // si il n y a pas de classe a l icon ou au div(f1) alors case vide
+                {
+                    if (mesActions.childNodes[i].childNodes[0] != null )
+                    {
+                        console.log(mesActions.childNodes[i].childNodes[0]);
+                        console.log(mesActions.childNodes[i].childNodes[0].className);
+
+                        if (mesActions.childNodes[i].childNodes[0].className == "")
+                        {
+                            return (i/2)-1 ;
+                        }
+                        
+                    }
+                    
+                }
+
+            },
+
+            CleanListeAction()
+            {
+                console.log("clean liste action");
+
+                var mesActions = document.getElementById("mesActions");
+                console.log({mesActions});
+                mesActions.innerHTML ='';
+
+                let element = document.createElement("button");
+
+                element.id = "listeAction";
+
+                element.className =" bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none";
+                
+                let element2 = document.createElement("i");
+
+                element2.className = "relative fas fa-terminal";
+
+                element.appendChild(element2);
+
+                mesActions.appendChild(element);
+
+                 for (var i = 1; i <11; i++) 
+                {
+                let element = document.createElement("button");
+
+                element.id = "ListeAction"+i;
+
+                element.className =" border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none";
+                    
+                let element2 = document.createElement("i");
+
+                element.appendChild(element2);
+
+                mesActions.appendChild(element);
+
+                }
+            },
 
 
 

@@ -512,6 +512,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component Boutons mounted.');
@@ -696,6 +698,9 @@ __webpack_require__.r(__webpack_exports__);
       this.getAction(grilleJeu, position.vaisseau[0], position.vaisseau[1]); //console.log(position);
       //console.log("avant repositionnement vaisseau ");
       //this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
+      //console.log("avant ajout case action");
+      //this.ajouterCaseAction();
+      //this.CleanListeAction();
 
       setTimeout(function () {}, 1000);
     },
@@ -1174,6 +1179,71 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.updateAction();
+    },
+    ajouterCaseAction: function ajouterCaseAction() // ajout une case vide dans la liste d action
+    {
+      console.log("ajout case action");
+      var mesActions = document.getElementById("mesActions");
+      var nbCaseAction = this.countTotalAction();
+      var element = document.createElement("button");
+      element.id = "ListeAction" + (nbCaseAction + 1);
+      element.className = " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none ";
+      var element2 = document.createElement("i");
+      element.appendChild(element2);
+      mesActions.appendChild(element);
+    },
+    countTotalAction: function countTotalAction() // compte le nombre total d action dans la liste
+    {
+      console.log("count case action total");
+      var mesActions = document.getElementById("mesActions");
+      var nbCaseActions = mesActions.childElementCount - 1;
+      return nbCaseActions;
+    },
+    countUsedAction: function countUsedAction() // compte le nombre d action non vide
+    {
+      console.log("count case action non vide");
+      var mesActions = document.getElementById("mesActions");
+      console.log(mesActions);
+
+      for (var i = 0; i < mesActions.childNodes.length; i++) // si il n y a pas de classe a l icon ou au div(f1) alors case vide
+      {
+        if (mesActions.childNodes[i].childNodes[0] != null) {
+          console.log(mesActions.childNodes[i].childNodes[0]);
+          console.log(mesActions.childNodes[i].childNodes[0].className);
+
+          if (mesActions.childNodes[i].childNodes[0].className == "") {
+            return i / 2 - 1;
+          }
+        }
+      }
+    },
+    CleanListeAction: function CleanListeAction() {
+      console.log("clean liste action");
+      var mesActions = document.getElementById("mesActions");
+      console.log({
+        mesActions: mesActions
+      });
+      mesActions.innerHTML = '';
+      var element = document.createElement("button");
+      element.id = "listeAction";
+      element.className = " bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none";
+      var element2 = document.createElement("i");
+      element2.className = "relative fas fa-terminal";
+      element.appendChild(element2);
+      mesActions.appendChild(element);
+
+      for (var i = 1; i < 11; i++) {
+        var _element = document.createElement("button");
+
+        _element.id = "ListeAction" + i;
+        _element.className = " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none";
+
+        var _element2 = document.createElement("i");
+
+        _element.appendChild(_element2);
+
+        mesActions.appendChild(_element);
+      }
     }
   }
 });
@@ -2182,7 +2252,8 @@ var staticRenderFns = [
           "div",
           {
             staticClass: "overflow-x-auto  h-24 important inset-y-1/2",
-            staticStyle: { width: "50em", "white-space": "nowrap" }
+            staticStyle: { width: "50em", "white-space": "nowrap" },
+            attrs: { id: "mesActions" }
           },
           [
             _c(
