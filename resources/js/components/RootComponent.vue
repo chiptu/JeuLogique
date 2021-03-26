@@ -161,6 +161,7 @@
             stop()
             {
                 this.resetShuttle();
+                //this.CleanListeAction();
                 this.updateAction();
             },
             
@@ -230,9 +231,9 @@
                     {
                         
                         console.log("/////////couleur existe");
-                        console.log(grilleJeu[b].childNodes[a].childNodes[0].className);
-                        console.log( !grilleJeu[b].childNodes[a].childNodes[0].className.includes("bg-gray") );
-                        console.log( grilleJeu[b].childNodes[a].childNodes[0].classList.contains(action[1]) );
+                        //console.log(grilleJeu[b].childNodes[a].childNodes[0].className);
+                        //console.log( !grilleJeu[b].childNodes[a].childNodes[0].className.includes("bg-gray") );
+                        //console.log( grilleJeu[b].childNodes[a].childNodes[0].classList.contains(action[1]) );
                         if ( grilleJeu[b].childNodes[a].childNodes[0].classList.contains(action[1]) ) // si la couleur est respecte ou si absence de couleur
                         {
                             console.log("condition couleur verifie test");
@@ -255,7 +256,8 @@
 
                     if (action[1] == null ) // cas sans couleur
                     {
-                        console.log("///////// couleur n existe pas test");
+                        console.log("///////// couleur n existe pas ");
+                        
                         if (action[0].className.includes("share"))
                         {
                             this.setRotation(grilleJeu,a,b,"right");
@@ -267,6 +269,10 @@
                         if (action[0].className.includes("arrow-up"))
                         {
                             this.move(grilleJeu,a,b);
+                        }
+                        if (action[0].className.includes("F"))
+                        {
+                            this.updateFunctionAction( parseInt(action[0].innerHTML[1]) );
                         }
                     }
                 }  
@@ -292,9 +298,63 @@
                 return true;
             },
 
-            move (grilleJeu, a,b)
+            updateFunctionAction(numFunction) // Quand une action tombe sur f on empile le contenu de f
             {
-                console.log("debut move ")
+                console.log("update function action");
+                var monTableau = this.getFonctions();
+
+                var nbAction = this.countUsedAction();
+                var nbActionTotal = this.countTotalAction();
+
+                var difference = nbActionTotal - (monTableau[numFunction-1].cases.length + nbAction);
+
+                if (difference < 0)
+                {
+                   for (var i=0; i <= Math.abs(difference);i++)
+                   {
+                       console.log("Ajout case");
+                       console.log({difference});
+                       this.ajouterCaseAction();
+                   }
+                }
+                console.log(monTableau[numFunction-1].cases.length);
+                console.log({nbAction,nbActionTotal,numFunction});
+
+                for (var i = 0; i< monTableau[numFunction-1].cases.length;i++)
+                {
+                   
+                    var monAction = monTableau[numFunction-1].cases[i].action;
+
+                    var actionListe = document.getElementById("ListeAction"+(nbAction+i+1));
+                    
+                    actionListe.className = monTableau[numFunction-1].cases[i].couleur+ " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none "
+                    actionListe.innerHTML = "";
+                    
+
+                    if (monAction != null)
+                    {
+                         if  (monAction.includes("F"))
+                        {
+                            let place = monAction.indexOf("F");
+                            
+                            $("#"+actionListe.id).append('<div class ="text-3xl '+ "F"+monAction[place+1] +' pointer-events-none ">'+"F"+monAction[place+1] +'</div>')
+                        }
+                        else
+                        {
+                            $("#"+actionListe.id).append('<i class="' + monAction +'"></i>' )
+                        }
+                    }
+                    else
+                    {   
+                        $("#"+actionListe.id).append('<i></i>' )
+                    }
+                    
+                }
+            },
+
+            move (grilleJeu, a,b)// fais un mouvement avec les positions actuelles
+            {
+                console.log("debut move ");
                 
 
                 if (grilleJeu[b].childNodes[a].childNodes[0].childNodes[0].classList.contains("fa-rotate-90"))// mouvement bas
@@ -615,7 +675,8 @@
 
                     if (monAction != null)
                     {
-                         if  (monAction.includes("F1") || monAction.includes("F2") || monAction.includes("F3") || monAction.includes("F4"))
+                         //if  (monAction.includes("F1") || monAction.includes("F2") || monAction.includes("F3") || monAction.includes("F4"))
+                         if  (monAction.includes("F"))
                         {
                             let place = monAction.indexOf("F");
                             
@@ -777,7 +838,7 @@
 
             countTotalAction() // compte le nombre total d action dans la liste
             {
-                console.log("count case action total");
+                //console.log("count case action total");
                 var mesActions = document.getElementById("mesActions");
 
                 let nbCaseActions = mesActions.childElementCount-1;
@@ -791,14 +852,14 @@
 
                 var mesActions = document.getElementById("mesActions");
 
-                console.log(mesActions);
+                //console.log(mesActions);
 
                 for (var i = 0; i < mesActions.childNodes.length; i++) // si il n y a pas de classe a l icon ou au div(f1) alors case vide
                 {
                     if (mesActions.childNodes[i].childNodes[0] != null )
                     {
-                        console.log(mesActions.childNodes[i].childNodes[0]);
-                        console.log(mesActions.childNodes[i].childNodes[0].className);
+                        //console.log(mesActions.childNodes[i].childNodes[0]);
+                        //console.log(mesActions.childNodes[i].childNodes[0].className);
 
                         if (mesActions.childNodes[i].childNodes[0].className == "")
                         {
