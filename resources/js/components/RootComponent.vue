@@ -128,11 +128,13 @@
         mounted() {
             console.log('Component root mounted.')
 
-            var grilleJeu = document.getElementById("grilleJeu").childNodes;
+            let grilleJeu = document.getElementById("grilleJeu").childNodes;
 
             this.nettoyageGrille(grilleJeu);
             this.nettoyageGrille(grilleJeu);
-           
+            this.nettoyageListeAction();
+
+
         }
         ,
         components:
@@ -161,8 +163,8 @@
             stop()
             {
                 this.resetShuttle();
-                //this.CleanListeAction();
-                this.updateAction();
+                this.cleanListeAction();
+                this.updateFunctionAction(1);
             },
             
 
@@ -172,10 +174,10 @@
 
                // VERIFIER ICI EN 1er si win 
                 
-               var grilleJeu = document.getElementById("grilleJeu").childNodes;
+               let grilleJeu = document.getElementById("grilleJeu").childNodes;
 
                 console.log("avant infoGrille");
-               var position = this.infoGrille(grilleJeu);
+               let position = this.infoGrille(grilleJeu);
 
                //console.log({grilleJeu,position});
                if (position.nbEtoile ==0)
@@ -197,7 +199,9 @@
                 //console.log("avant ajout case action");
                 //this.ajouterCaseAction();
                 
-                //this.CleanListeAction();
+                
+
+                this.countUsedAction();
 
                 setTimeout(function(){
                 
@@ -213,7 +217,7 @@
 
             getAction(grilleJeu,a,b)
             {
-                var action = this.getLastAction();
+                let action = this.getLastAction();
                 console.log("dans action ");
                 //console.log({action, a,b, grilleJeu});
                 //console.log(action[0].className);
@@ -301,31 +305,35 @@
             updateFunctionAction(numFunction) // Quand une action tombe sur f on empile le contenu de f
             {
                 console.log("update function action");
-                var monTableau = this.getFonctions();
+                let monTableau = this.getFonctions();
 
-                var nbAction = this.countUsedAction();
-                var nbActionTotal = this.countTotalAction();
+                let nbAction = this.countUsedAction();
+                let nbActionTotal = this.countTotalAction();
 
-                var difference = nbActionTotal - (monTableau[numFunction-1].cases.length + nbAction);
+                let difference = nbActionTotal - (monTableau[numFunction-1].cases.length + nbAction);
 
                 if (difference < 0)
                 {
-                   for (var i=0; i <= Math.abs(difference);i++)
+                   for (var i=0; i < Math.abs(difference);i++)
                    {
                        console.log("Ajout case");
                        console.log({difference});
                        this.ajouterCaseAction();
                    }
                 }
-                console.log(monTableau[numFunction-1].cases.length);
-                console.log({nbAction,nbActionTotal,numFunction});
+                //console.log({monTableau});
+                //console.log("longueur de la fonction "+numFunction)
+                //console.log(monTableau[numFunction-1].cases.length);
+                //console.log({nbAction,nbActionTotal,numFunction});
 
                 for (var i = 0; i< monTableau[numFunction-1].cases.length;i++)
                 {
                    
-                    var monAction = monTableau[numFunction-1].cases[i].action;
+                    let monAction = monTableau[numFunction-1].cases[i].action;
 
-                    var actionListe = document.getElementById("ListeAction"+(nbAction+i+1));
+                    let actionListe = document.getElementById("ListeAction"+(i+1));
+
+                    //console.log({monAction, actionListe, i});
                     
                     actionListe.className = monTableau[numFunction-1].cases[i].couleur+ " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none "
                     actionListe.innerHTML = "";
@@ -443,28 +451,32 @@
                 grilleJeu[d].childNodes[c].childNodes[0].appendChild(newShuttle); 
                 
 
-                var grilleJeu = document.getElementById("grilleJeu").childNodes;
+                //var grilleJeu = document.getElementById("grilleJeu").childNodes;
                 //console.log(this.infoGrille(grilleJeu));
 
             },
 
              getLastAction()// Retourne la derniere action avec couleur et desempile le reste
             {
-                var tableauAction =[];
+                let tableauAction =[];
                 console.log("debut Last Action");
 
-                for (var i = 0; i< 10;i++) // on recupere le tableau des actions
+                let nbActionTotal = this.countTotalAction();
+
+                //console.log({nbActionTotal});
+
+                for (var i = 0; i< nbActionTotal;i++) // on recupere le tableau des actions
                 {
-                    var actionListe = document.getElementById("ListeAction"+(i+1));
+                    let actionListe = document.getElementById("ListeAction"+(i+1));
                     tableauAction.push(actionListe);
                 }
                 
                //try
                 //{
-                    var result = [];
+                    let result = [];
                     result.push(tableauAction[0].childNodes[0]);
                     //console.log({result,tableauAction});
-                    var tableauSave = tableauAction;
+                    let tableauSave = tableauAction;
                     if (tableauSave[1].childNodes[0]== null) // dans le cas où il reste uniquement une action
                     {
                         if (tableauSave[0].classList.contains('bg-gray-400'))
@@ -506,7 +518,7 @@
                         tableauAction[0].className = tableauSave[1].className;
                         
                         //console.log({tableauAction});
-                        for (var i = 0; i< 10;i++)
+                        for (var i = 0; i< nbActionTotal;i++)
                         {
                             let couleur = " ";
                             
@@ -537,7 +549,7 @@
                             {
                                 
                                 //console.log({error,i});
-                                if (i ==8)
+                                if (i ==nbActionTotal-2)
                                 {
                                     let icon = document.createElement("i");
                                     //console.log(tableauAction[i+1]);
@@ -582,6 +594,28 @@
                     }
                  }
 
+            },
+            nettoyageListeAction() //dans les divs de la grille efface les text sauf pour etoile
+            {
+                //console.log("Nettoyage liste action");
+
+                let mesActions = document.getElementById("mesActions");
+
+                //console.log(mesActions);
+                //console.log("longueur mes actions childnodes length");
+                //console.log(mesActions.childNodes);
+
+                for (var i = 0; i < mesActions.childNodes.length; i++) // si il n y a pas de classe a l icon ou au div(f1) alors case vide
+                {
+                   
+                    if (mesActions.childNodes[i].nodeType == 3 )
+                    {
+                        mesActions.childNodes[i].remove();
+                    }
+                        
+                }
+                //let mesActions2 = document.getElementById("mesActions");
+                //console.log(mesActions2.childNodes);
             },
 
             infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant (si 0 = gagne)
@@ -650,7 +684,7 @@
 
                     }
                 }
-               this.updateAction();
+               this.updateFunctionAction(1);
                this.stop();
                
 
@@ -697,18 +731,18 @@
 
             getFonctions()  // Renvoie tableau objet fonction [ {id:1,cases:[ {action:f1,couleur:aucune} , {action:gauche,couleur:blanc} ] },]
             {
-                var monjson = this.parse();
-                var monTableau = []
+                let monjson = this.parse();
+                let monTableau = []
                 for (var fonction in monjson.fonctions)
                 {
-                    var monObjet = {id: parseInt(fonction,10)+1,cases:[]}
-                    var mesCases =[];
+                    let monObjet = {id: parseInt(fonction,10)+1,cases:[]}
+                    let mesCases =[];
                    for (var i = 0; i < monjson.fonctions[fonction].nombreCase; i++) //recup by id avec i et fonction // recup info icone ? recup info color ?
                    {
-                       var Case = document.getElementById("btn-f"+(parseInt(fonction,10)+1)+"-case-"+(i+1));
-                       var caseEnfant = Case.childNodes;
+                       let Case = document.getElementById("btn-f"+(parseInt(fonction,10)+1)+"-case-"+(i+1));
+                       let caseEnfant = Case.childNodes;
 
-                       var maCase = {action:null,couleur:null}
+                       let maCase = {action:null,couleur:null}
 
                         if (caseEnfant [0] != null )
                         {
@@ -731,7 +765,11 @@
                        {
                            maCase.couleur = 'bg-gray-800' 
                        }
-                        mesCases[i]=maCase;
+                       if (maCase.action !=null)
+                       {
+                        mesCases.push(maCase);
+                       }
+                        
                    }
                     monObjet.cases=mesCases;
                     monTableau[fonction] = monObjet;
@@ -771,8 +809,8 @@
 
             getShuttleStart() // renvoie la position de depart du vaisseau en parcourant le json originel pour remettre le jeu a zerp
             {
-                var json =this.parse();
-                var tab=[];
+                let json =this.parse();
+                let tab=[];
                 
                 for (var i=0; i< 10;  i++) 
                 {
@@ -793,14 +831,14 @@
             clearFunctions()  // Nettoie les cases fonctions, bouton nettoyer fonctipn
             {
                 console.log("clearfunctions");
-                var monjson = this.parse();
-                var monTableau = []
+                let monjson = this.parse();
+                let monTableau = []
                 for (var fonction in monjson.fonctions)
                 {
                    
                    for (var i = 0; i < monjson.fonctions[fonction].nombreCase; i++) //recup by id avec i et fonction // recup info icone ? recup info color ?
                    {
-                       var element = document.getElementById("btn-f"+(parseInt(fonction,10)+1)+"-case-"+(i+1));
+                       let element = document.getElementById("btn-f"+(parseInt(fonction,10)+1)+"-case-"+(i+1));
                        if (element.childNodes[0] != null)
                        {
                            element.removeChild(element.childNodes[0]);
@@ -809,13 +847,13 @@
                        
                    }
                 }
-                this.updateAction();
+                this.cleanListeAction();
             },
 
             ajouterCaseAction() // ajout une case vide dans la liste d action
             {
                 console.log("ajout case action");
-                var mesActions = document.getElementById("mesActions");
+                let mesActions = document.getElementById("mesActions");
 
                 let nbCaseAction = this.countTotalAction();
 
@@ -839,7 +877,7 @@
             countTotalAction() // compte le nombre total d action dans la liste
             {
                 //console.log("count case action total");
-                var mesActions = document.getElementById("mesActions");
+                let mesActions = document.getElementById("mesActions");
 
                 let nbCaseActions = mesActions.childElementCount-1;
 
@@ -850,20 +888,26 @@
             {
                 console.log("count case action non vide");
 
-                var mesActions = document.getElementById("mesActions");
+                let mesActions = document.getElementById("mesActions");
 
                 //console.log(mesActions);
+                //console.log("longueur mes actions childnodes length");
+                //console.log(mesActions.childNodes);
 
                 for (var i = 0; i < mesActions.childNodes.length; i++) // si il n y a pas de classe a l icon ou au div(f1) alors case vide
                 {
+                    //console.log(mesActions.childNodes[i]);
                     if (mesActions.childNodes[i].childNodes[0] != null )
                     {
                         //console.log(mesActions.childNodes[i].childNodes[0]);
                         //console.log(mesActions.childNodes[i].childNodes[0].className);
+                        //console.log({i});
+                       
 
                         if (mesActions.childNodes[i].childNodes[0].className == "")
                         {
-                            return (i/2)-1 ;
+                            //console.log("i final "+ i);
+                            return (i-1) ;
                         }
                         
                     }
@@ -872,12 +916,12 @@
 
             },
 
-            CleanListeAction()
+            cleanListeAction()
             {
                 console.log("clean liste action");
 
-                var mesActions = document.getElementById("mesActions");
-                console.log({mesActions});
+                let mesActions = document.getElementById("mesActions");
+                //console.log({mesActions});
                 mesActions.innerHTML ='';
 
                 let element = document.createElement("button");

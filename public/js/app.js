@@ -345,7 +345,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     clearFunctions: function clearFunctions() {
-      console.log("dans fonctions.vue");
+      //console.log("dans fonctions.vue");
       this.$emit('clearFunctions');
     },
     anneau2: function anneau2(event) {
@@ -660,6 +660,7 @@ __webpack_require__.r(__webpack_exports__);
     var grilleJeu = document.getElementById("grilleJeu").childNodes;
     this.nettoyageGrille(grilleJeu);
     this.nettoyageGrille(grilleJeu);
+    this.nettoyageListeAction();
   },
   components: {
     Jeu: _Jeu__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -679,9 +680,9 @@ __webpack_require__.r(__webpack_exports__);
       this.delayTime = value;
     },
     stop: function stop() {
-      this.resetShuttle(); //this.CleanListeAction();
-
-      this.updateAction();
+      this.resetShuttle();
+      this.cleanListeAction();
+      this.updateFunctionAction(1);
     },
     play: function play() {
       console.log("debut fct play "); // VERIFIER ICI EN 1er si win 
@@ -701,8 +702,8 @@ __webpack_require__.r(__webpack_exports__);
       //this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
       //console.log("avant ajout case action");
       //this.ajouterCaseAction();
-      //this.CleanListeAction();
 
+      this.countUsedAction();
       setTimeout(function () {}, 1000);
     },
     win: function win() // Charger le niveau avec le json suivant
@@ -795,25 +796,23 @@ __webpack_require__.r(__webpack_exports__);
       var difference = nbActionTotal - (monTableau[numFunction - 1].cases.length + nbAction);
 
       if (difference < 0) {
-        for (var i = 0; i <= Math.abs(difference); i++) {
+        for (var i = 0; i < Math.abs(difference); i++) {
           console.log("Ajout case");
           console.log({
             difference: difference
           });
           this.ajouterCaseAction();
         }
-      }
+      } //console.log({monTableau});
+      //console.log("longueur de la fonction "+numFunction)
+      //console.log(monTableau[numFunction-1].cases.length);
+      //console.log({nbAction,nbActionTotal,numFunction});
 
-      console.log(monTableau[numFunction - 1].cases.length);
-      console.log({
-        nbAction: nbAction,
-        nbActionTotal: nbActionTotal,
-        numFunction: numFunction
-      });
 
       for (var i = 0; i < monTableau[numFunction - 1].cases.length; i++) {
         var monAction = monTableau[numFunction - 1].cases[i].action;
-        var actionListe = document.getElementById("ListeAction" + (nbAction + i + 1));
+        var actionListe = document.getElementById("ListeAction" + (i + 1)); //console.log({monAction, actionListe, i});
+
         actionListe.className = monTableau[numFunction - 1].cases[i].couleur + " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none ";
         actionListe.innerHTML = "";
 
@@ -922,15 +921,16 @@ __webpack_require__.r(__webpack_exports__);
 
       var newShuttle = document.createElement("i");
       newShuttle.className = shuttleClass;
-      grilleJeu[d].childNodes[c].childNodes[0].appendChild(newShuttle);
-      var grilleJeu = document.getElementById("grilleJeu").childNodes; //console.log(this.infoGrille(grilleJeu));
+      grilleJeu[d].childNodes[c].childNodes[0].appendChild(newShuttle); //var grilleJeu = document.getElementById("grilleJeu").childNodes;
+      //console.log(this.infoGrille(grilleJeu));
     },
     getLastAction: function getLastAction() // Retourne la derniere action avec couleur et desempile le reste
     {
       var tableauAction = [];
       console.log("debut Last Action");
+      var nbActionTotal = this.countTotalAction(); //console.log({nbActionTotal});
 
-      for (var i = 0; i < 10; i++) // on recupere le tableau des actions
+      for (var i = 0; i < nbActionTotal; i++) // on recupere le tableau des actions
       {
         var actionListe = document.getElementById("ListeAction" + (i + 1));
         tableauAction.push(actionListe);
@@ -979,7 +979,7 @@ __webpack_require__.r(__webpack_exports__);
           tableauAction[0].replaceChild(tableauSave[1].childNodes[0], tableauAction[0].childNodes[0]);
           tableauAction[0].className = tableauSave[1].className; //console.log({tableauAction});
 
-          for (var i = 0; i < 10; i++) {
+          for (var i = 0; i < nbActionTotal; i++) {
             var couleur = " ";
 
             try {
@@ -1003,7 +1003,7 @@ __webpack_require__.r(__webpack_exports__);
               }
             } catch (error) {
               //console.log({error,i});
-              if (i == 8) {
+              if (i == nbActionTotal - 2) {
                 var icon = document.createElement("i"); //console.log(tableauAction[i+1]);
 
                 tableauAction[i + 1].appendChild(icon);
@@ -1036,6 +1036,22 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       }
+    },
+    nettoyageListeAction: function nettoyageListeAction() //dans les divs de la grille efface les text sauf pour etoile
+    {
+      //console.log("Nettoyage liste action");
+      var mesActions = document.getElementById("mesActions"); //console.log(mesActions);
+      //console.log("longueur mes actions childnodes length");
+      //console.log(mesActions.childNodes);
+
+      for (var i = 0; i < mesActions.childNodes.length; i++) // si il n y a pas de classe a l icon ou au div(f1) alors case vide
+      {
+        if (mesActions.childNodes[i].nodeType == 3) {
+          mesActions.childNodes[i].remove();
+        }
+      } //let mesActions2 = document.getElementById("mesActions");
+      //console.log(mesActions2.childNodes);
+
     },
     infoGrille: function infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant (si 0 = gagne)
     {
@@ -1095,7 +1111,7 @@ __webpack_require__.r(__webpack_exports__);
           }
       }
 
-      this.updateAction();
+      this.updateFunctionAction(1);
       this.stop();
     },
     updateAction: function updateAction() // Liste Action qui recupere et s actualise sur F1
@@ -1163,7 +1179,9 @@ __webpack_require__.r(__webpack_exports__);
             maCase.couleur = 'bg-gray-800';
           }
 
-          mesCases[i] = maCase;
+          if (maCase.action != null) {
+            mesCases.push(maCase);
+          }
         }
 
         monObjet.cases = mesCases;
@@ -1227,7 +1245,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      this.updateAction();
+      this.cleanListeAction();
     },
     ajouterCaseAction: function ajouterCaseAction() // ajout une case vide dans la liste d action
     {
@@ -1252,24 +1270,27 @@ __webpack_require__.r(__webpack_exports__);
     {
       console.log("count case action non vide");
       var mesActions = document.getElementById("mesActions"); //console.log(mesActions);
+      //console.log("longueur mes actions childnodes length");
+      //console.log(mesActions.childNodes);
 
       for (var i = 0; i < mesActions.childNodes.length; i++) // si il n y a pas de classe a l icon ou au div(f1) alors case vide
       {
+        //console.log(mesActions.childNodes[i]);
         if (mesActions.childNodes[i].childNodes[0] != null) {
           //console.log(mesActions.childNodes[i].childNodes[0]);
           //console.log(mesActions.childNodes[i].childNodes[0].className);
+          //console.log({i});
           if (mesActions.childNodes[i].childNodes[0].className == "") {
-            return i / 2 - 1;
+            //console.log("i final "+ i);
+            return i - 1;
           }
         }
       }
     },
-    CleanListeAction: function CleanListeAction() {
+    cleanListeAction: function cleanListeAction() {
       console.log("clean liste action");
-      var mesActions = document.getElementById("mesActions");
-      console.log({
-        mesActions: mesActions
-      });
+      var mesActions = document.getElementById("mesActions"); //console.log({mesActions});
+
       mesActions.innerHTML = '';
       var element = document.createElement("button");
       element.id = "listeAction";
@@ -15026,15 +15047,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************!*\
   !*** ./resources/js/components/RootComponent.vue ***!
   \***************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RootComponent_vue_vue_type_template_id_e2f3bf40___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RootComponent.vue?vue&type=template&id=e2f3bf40& */ "./resources/js/components/RootComponent.vue?vue&type=template&id=e2f3bf40&");
 /* harmony import */ var _RootComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RootComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/RootComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _RootComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _RootComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -15064,7 +15084,7 @@ component.options.__file = "resources/js/components/RootComponent.vue"
 /*!****************************************************************************!*\
   !*** ./resources/js/components/RootComponent.vue?vue&type=script&lang=js& ***!
   \****************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -73,7 +73,7 @@
 
             clearFunctions()
             {
-            console.log("dans fonctions.vue");
+            //console.log("dans fonctions.vue");
             this.$emit('clearFunctions');
             },
 
