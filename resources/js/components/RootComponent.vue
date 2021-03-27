@@ -330,18 +330,18 @@
                 {
                     let nbActionFonction = monTableau[numFunction-1].cases.length;
                     console.log(nbActionFonction);
-                    for (var i = nbAction+nbActionFonction; i> nbActionFonction ;i--)
+                    for (var i = nbAction; i> 0 ;i--)
                     {
                    
                         console.log("placement après");
-                        console.log(i);
-                        console.log(nbActionFonction+i);
+                        console.log("i: "+i);
+                        console.log(nbActionFonction);
 
                         let tab =[];
 
-                        let actionListe = document.getElementById("ListeAction"+(i+nbActionFonction));
+                        let actionListe = document.getElementById("ListeAction"+(i));
 
-                        let actionListe2 = document.getElementById("ListeAction"+(i));
+                        let actionListe2 = document.getElementById("ListeAction"+(i+nbActionFonction));
 
                         //let actionListe2 = document.getElementById("ListeAction"+(nbAction+i+1));
 
@@ -350,7 +350,10 @@
                         console.log({actionListe,actionListe2})
                         
                         //actionListe2.childNodes[0] = actionListe.childNodes[0]; 
-                        actionListe2.replaceChild(actionListe.childNodes[0],actionListe2.childNodes[0])
+                        actionListe2.replaceChild(actionListe.childNodes[0],actionListe2.childNodes[0]) //new old
+
+                        let icon = document.createElement("i");
+                        actionListe.appendChild(icon);
 
                     }
                 }                

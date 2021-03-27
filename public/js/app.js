@@ -682,7 +682,7 @@ __webpack_require__.r(__webpack_exports__);
     stop: function stop() {
       this.resetShuttle();
       this.cleanListeAction();
-      this.updateFunctionAction(1);
+      this.updateFunctionAction(1, false);
     },
     play: function play() {
       console.log("debut fct play "); // VERIFIER ICI EN 1er si win 
@@ -765,7 +765,7 @@ __webpack_require__.r(__webpack_exports__);
               }
 
               if (action[0].className.includes("F")) {
-                this.updateFunctionAction(parseInt(action[0].innerHTML[1]));
+                this.updateFunctionAction(parseInt(action[0].innerHTML[1]), true);
               }
             }
         }
@@ -787,7 +787,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return true;
     },
-    updateFunctionAction: function updateFunctionAction(numFunction) // Quand une action tombe sur f on empile le contenu de f
+    updateFunctionAction: function updateFunctionAction(numFunction, desempilement) // Quand une action tombe sur f on empile le contenu de f
     {
       console.log("update function action");
       var monTableau = this.getFonctions();
@@ -806,25 +806,58 @@ __webpack_require__.r(__webpack_exports__);
       } //console.log({monTableau});
       //console.log("longueur de la fonction "+numFunction)
       //console.log(monTableau[numFunction-1].cases.length);
-      //console.log({nbAction,nbActionTotal,numFunction});
 
+
+      console.log({
+        nbAction: nbAction,
+        nbActionTotal: nbActionTotal,
+        numFunction: numFunction
+      });
+
+      if (nbAction != 0 && desempilement == true) // si il reste des actions apres l appel de fct on les placent apres la fonction
+        {
+          var nbActionFonction = monTableau[numFunction - 1].cases.length;
+          console.log(nbActionFonction);
+
+          for (var i = nbAction; i > 0; i--) {
+            console.log("placement après");
+            console.log("i: " + i);
+            console.log(nbActionFonction);
+            var tab = [];
+            var actionListe = document.getElementById("ListeAction" + i);
+            var actionListe2 = document.getElementById("ListeAction" + (i + nbActionFonction)); //let actionListe2 = document.getElementById("ListeAction"+(nbAction+i+1));
+
+            tab.push(actionListe, actionListe2);
+            console.log({
+              actionListe: actionListe,
+              actionListe2: actionListe2
+            }); //actionListe2.childNodes[0] = actionListe.childNodes[0]; 
+
+            actionListe2.replaceChild(actionListe.childNodes[0], actionListe2.childNodes[0]); //new old
+
+            var icon = document.createElement("i");
+            actionListe.appendChild(icon);
+          }
+        }
 
       for (var i = 0; i < monTableau[numFunction - 1].cases.length; i++) {
         var monAction = monTableau[numFunction - 1].cases[i].action;
-        var actionListe = document.getElementById("ListeAction" + (i + 1)); //console.log({monAction, actionListe, i});
 
-        actionListe.className = monTableau[numFunction - 1].cases[i].couleur + " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none ";
-        actionListe.innerHTML = "";
+        var _actionListe = document.getElementById("ListeAction" + (i + 1)); //console.log({monAction, actionListe, i});
+
+
+        _actionListe.className = monTableau[numFunction - 1].cases[i].couleur + " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none ";
+        _actionListe.innerHTML = "";
 
         if (monAction != null) {
           if (monAction.includes("F")) {
             var place = monAction.indexOf("F");
-            $("#" + actionListe.id).append('<div class ="text-3xl ' + "F" + monAction[place + 1] + ' pointer-events-none ">' + "F" + monAction[place + 1] + '</div>');
+            $("#" + _actionListe.id).append('<div class ="text-3xl ' + "F" + monAction[place + 1] + ' pointer-events-none ">' + "F" + monAction[place + 1] + '</div>');
           } else {
-            $("#" + actionListe.id).append('<i class="' + monAction + '"></i>');
+            $("#" + _actionListe.id).append('<i class="' + monAction + '"></i>');
           }
         } else {
-          $("#" + actionListe.id).append('<i></i>');
+          $("#" + _actionListe.id).append('<i></i>');
         }
       }
     },
@@ -1111,7 +1144,7 @@ __webpack_require__.r(__webpack_exports__);
           }
       }
 
-      this.updateFunctionAction(1);
+      this.updateFunctionAction(1, false);
       this.stop();
     },
     updateAction: function updateAction() // Liste Action qui recupere et s actualise sur F1
