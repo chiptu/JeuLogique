@@ -4,6 +4,8 @@
 
 <div class ="flex justify-end  h-11/12  " >
 
+    
+
 <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
         <div id="stars"></div>
         <div id="stars2"></div>
@@ -87,6 +89,7 @@
             <source :src="this.video()" type="video/mp4">
 
         </video>
+
         
 
         <Jeu :leveljson = "this.parse()" @time="time" @play="play" @stop="stop"/>
@@ -122,6 +125,7 @@
         {
             return {
                 delayTime:1,
+                boolStop:true,
             }
         },
         props: ['leveljson'],
@@ -134,7 +138,7 @@
             this.nettoyageGrille(grilleJeu);
             this.nettoyageListeAction();
 
-
+           
         }
         ,
         components:
@@ -162,9 +166,12 @@
             },
             stop()
             {
+                this.boolStop=true;
+
                 this.resetShuttle();
                 this.cleanListeAction();
                 this.updateFunctionAction(1, false);
+
             },
             
 
@@ -173,6 +180,7 @@
                 console.log("debut fct play ");
 
                // VERIFIER ICI EN 1er si win 
+               this.boolStop= false;
                 
                let grilleJeu = document.getElementById("grilleJeu").childNodes;
 
@@ -188,31 +196,24 @@
             
                 console.log("avant action");
                 this.getAction(grilleJeu,position.vaisseau[0],position.vaisseau[1]);
-
                 
-                //console.log(position);
-                
-
-                //console.log("avant repositionnement vaisseau ");
-                //this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
-
-                //console.log("avant ajout case action");
-                //this.ajouterCaseAction();
-                
-                
-
-                this.countUsedAction();
-
-                setTimeout(function(){
+            
+                setTimeout( () => {
+                    
+                    if(this.boolStop == false)
+                    {
+                        this.play();
+                    }
                 
                
-                }, 1000);
+                }, 1000/this.delayTime);
 
             },
 
             win() // Charger le niveau avec le json suivant
             {
-
+                
+                document.location.replace( "https://jeu.test/rocket/"+( parseInt(this.parse().id)+1 ) );
             },
 
             getAction(grilleJeu,a,b)

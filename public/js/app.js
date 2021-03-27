@@ -414,6 +414,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -449,6 +457,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -644,6 +653,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -651,7 +663,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      delayTime: 1
+      delayTime: 1,
+      boolStop: true
     };
   },
   props: ['leveljson'],
@@ -680,13 +693,17 @@ __webpack_require__.r(__webpack_exports__);
       this.delayTime = value;
     },
     stop: function stop() {
+      this.boolStop = true;
       this.resetShuttle();
       this.cleanListeAction();
       this.updateFunctionAction(1, false);
     },
     play: function play() {
+      var _this = this;
+
       console.log("debut fct play "); // VERIFIER ICI EN 1er si win 
 
+      this.boolStop = false;
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
       console.log("avant infoGrille");
       var position = this.infoGrille(grilleJeu); //console.log({grilleJeu,position});
@@ -697,17 +714,17 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       console.log("avant action");
-      this.getAction(grilleJeu, position.vaisseau[0], position.vaisseau[1]); //console.log(position);
-      //console.log("avant repositionnement vaisseau ");
-      //this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position.vaisseau[0]+1,position.vaisseau[1]+1);
-      //console.log("avant ajout case action");
-      //this.ajouterCaseAction();
-
-      this.countUsedAction();
-      setTimeout(function () {}, 1000);
+      this.getAction(grilleJeu, position.vaisseau[0], position.vaisseau[1]);
+      setTimeout(function () {
+        if (_this.boolStop == false) {
+          _this.play();
+        }
+      }, 1000 / this.delayTime);
     },
     win: function win() // Charger le niveau avec le json suivant
-    {},
+    {
+      document.location.replace("https://jeu.test/rocket/" + (parseInt(this.parse().id) + 1));
+    },
     getAction: function getAction(grilleJeu, a, b) {
       var action = this.getLastAction();
       console.log("dans action "); //console.log({action, a,b, grilleJeu});
@@ -1893,7 +1910,7 @@ var render = function() {
           attrs: { id: "speed2" },
           on: {
             click: function($event) {
-              return _vm.time("0.5")
+              return _vm.time("2")
             }
           }
         },
@@ -1908,7 +1925,7 @@ var render = function() {
           attrs: { id: "speed4" },
           on: {
             click: function($event) {
-              return _vm.time("0.25")
+              return _vm.time("4")
             }
           }
         },
@@ -2141,6 +2158,20 @@ var render = function() {
             "flex flex-col w-full h-full justify-center content-center ml-4"
         },
         [
+          _c(
+            "div",
+            {
+              staticClass: "text-yellow-200 text-xl text-center mb-12 important"
+            },
+            [
+              _vm._v(
+                "\n            🚀 Level " +
+                  _vm._s(_vm.leveljson.id) +
+                  " ⭐\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
           _c(
             "div",
             { staticClass: "h-3/12 " },

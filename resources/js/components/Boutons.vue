@@ -20,11 +20,11 @@
                     x1
                 </button>
 
-                <button id="speed2" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple important" v-on:click="time('0.5')">
+                <button id="speed2" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple important" v-on:click="time('2')">
                     x2
                 </button>
 
-                <button id="speed4" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important" v-on:click="time('0.25')">
+                <button id="speed4" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important" v-on:click="time('4')">
                     x4
                 </button>
 

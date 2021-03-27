@@ -7,11 +7,11 @@
 
         <div class ="flex flex-col w-full h-full justify-center content-center ml-4">
 
-
+            <div class="text-yellow-200 text-xl text-center mb-12 important">
+                🚀 Level {{leveljson.id}} ⭐
+            </div>
+        
             <div class ="h-3/12 "> 
-
-                    
-
                     
 
                         <div v-for="fonction in leveljson.fonctions" :key ="fonction.idFonction" 
