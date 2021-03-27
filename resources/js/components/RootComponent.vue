@@ -164,7 +164,7 @@
             {
                 this.resetShuttle();
                 this.cleanListeAction();
-                this.updateFunctionAction(1);
+                this.updateFunctionAction(1, false);
             },
             
 
@@ -276,7 +276,7 @@
                         }
                         if (action[0].className.includes("F"))
                         {
-                            this.updateFunctionAction( parseInt(action[0].innerHTML[1]) );
+                            this.updateFunctionAction( parseInt(action[0].innerHTML[1]), true );
                         }
                     }
                 }  
@@ -302,7 +302,7 @@
                 return true;
             },
 
-            updateFunctionAction(numFunction) // Quand une action tombe sur f on empile le contenu de f
+            updateFunctionAction(numFunction, desempilement) // Quand une action tombe sur f on empile le contenu de f
             {
                 console.log("update function action");
                 let monTableau = this.getFonctions();
@@ -324,7 +324,36 @@
                 //console.log({monTableau});
                 //console.log("longueur de la fonction "+numFunction)
                 //console.log(monTableau[numFunction-1].cases.length);
-                //console.log({nbAction,nbActionTotal,numFunction});
+                console.log({nbAction,nbActionTotal,numFunction});
+
+                if (nbAction != 0 && desempilement ==true) // si il reste des actions apres l appel de fct on les placent apres la fonction
+                {
+                    let nbActionFonction = monTableau[numFunction-1].cases.length;
+                    console.log(nbActionFonction);
+                    for (var i = nbAction+nbActionFonction; i> nbActionFonction ;i--)
+                    {
+                   
+                        console.log("placement après");
+                        console.log(i);
+                        console.log(nbActionFonction+i);
+
+                        let tab =[];
+
+                        let actionListe = document.getElementById("ListeAction"+(i+nbActionFonction));
+
+                        let actionListe2 = document.getElementById("ListeAction"+(i));
+
+                        //let actionListe2 = document.getElementById("ListeAction"+(nbAction+i+1));
+
+                        tab.push(actionListe, actionListe2)
+
+                        console.log({actionListe,actionListe2})
+                        
+                        //actionListe2.childNodes[0] = actionListe.childNodes[0]; 
+                        actionListe2.replaceChild(actionListe.childNodes[0],actionListe2.childNodes[0])
+
+                    }
+                }                
 
                 for (var i = 0; i< monTableau[numFunction-1].cases.length;i++)
                 {
@@ -684,7 +713,7 @@
 
                     }
                 }
-               this.updateFunctionAction(1);
+               this.updateFunctionAction(1, false);
                this.stop();
                
 
