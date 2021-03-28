@@ -325,18 +325,18 @@
                 //console.log({monTableau});
                 //console.log("longueur de la fonction "+numFunction)
                 //console.log(monTableau[numFunction-1].cases.length);
-                console.log({nbAction,nbActionTotal,numFunction});
+                //console.log({nbAction,nbActionTotal,numFunction});
 
                 if (nbAction != 0 && desempilement ==true) // si il reste des actions apres l appel de fct on les placent apres la fonction
                 {
                     let nbActionFonction = monTableau[numFunction-1].cases.length;
-                    console.log(nbActionFonction);
+                    //console.log(nbActionFonction);
                     for (var i = nbAction; i> 0 ;i--)
                     {
                    
-                        console.log("placement après");
-                        console.log("i: "+i);
-                        console.log(nbActionFonction);
+                        //console.log("placement après");
+                        //console.log("i: "+i);
+                        //console.log(nbActionFonction);
 
                         let tab =[];
 
@@ -348,7 +348,7 @@
 
                         tab.push(actionListe, actionListe2)
 
-                        console.log({actionListe,actionListe2})
+                        //console.log({actionListe,actionListe2})
                         
                         //actionListe2.childNodes[0] = actionListe.childNodes[0]; 
                         actionListe2.replaceChild(actionListe.childNodes[0],actionListe2.childNodes[0]) //new old
@@ -628,7 +628,7 @@
                  }
 
             },
-            nettoyageListeAction() //dans les divs de la grille efface les text sauf pour etoile
+            nettoyageListeAction() //dans les divs de lliste action efface le text
             {
                 //console.log("Nettoyage liste action");
 
@@ -651,7 +651,7 @@
                 //console.log(mesActions2.childNodes);
             },
 
-            infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant (si 0 = gagne)
+            infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant 
             {
                 var position = {vaisseau:[],nbEtoile:0}
 
@@ -723,44 +723,6 @@
 
             },
 
-
-            updateAction()// Liste Action qui recupere et s actualise sur F1
-            {
-                console.log("update action");
-                var monTableau = this.getFonctions();
-
-                for (var i = 0; i< monTableau[0].cases.length;i++)
-                {
-                   
-                    var monAction = monTableau[0].cases[i].action;
-
-                    var actionListe = document.getElementById("ListeAction"+(i+1));
-                    
-                    actionListe.className = monTableau[0].cases[i].couleur+ " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none "
-                    actionListe.innerHTML = "";
-                    
-
-                    if (monAction != null)
-                    {
-                         //if  (monAction.includes("F1") || monAction.includes("F2") || monAction.includes("F3") || monAction.includes("F4"))
-                         if  (monAction.includes("F"))
-                        {
-                            let place = monAction.indexOf("F");
-                            
-                            $("#"+actionListe.id).append('<div class ="text-3xl '+ "F"+monAction[place+1] +' pointer-events-none ">'+"F"+monAction[place+1] +'</div>')
-                        }
-                        else
-                        {
-                            $("#"+actionListe.id).append('<i class="' + monAction +'"></i>' )
-                        }
-                    }
-                    else
-                    {   
-                        $("#"+actionListe.id).append('<i></i>' )
-                    }
-                    
-                }
-            },
 
             getFonctions()  // Renvoie tableau objet fonction [ {id:1,cases:[ {action:f1,couleur:aucune} , {action:gauche,couleur:blanc} ] },]
             {
@@ -861,7 +823,7 @@
                 return tab;
             },
 
-            clearFunctions()  // Nettoie les cases fonctions, bouton nettoyer fonctipn
+            clearFunctions()  // Nettoie les cases fonctions, bouton nettoyer fonction
             {
                 console.log("clearfunctions");
                 let monjson = this.parse();
@@ -949,7 +911,7 @@
 
             },
 
-            cleanListeAction()
+            cleanListeAction() // reinitialise la liste d action
             {
                 console.log("clean liste action");
 

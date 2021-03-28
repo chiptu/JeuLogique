@@ -823,32 +823,23 @@ __webpack_require__.r(__webpack_exports__);
       } //console.log({monTableau});
       //console.log("longueur de la fonction "+numFunction)
       //console.log(monTableau[numFunction-1].cases.length);
+      //console.log({nbAction,nbActionTotal,numFunction});
 
-
-      console.log({
-        nbAction: nbAction,
-        nbActionTotal: nbActionTotal,
-        numFunction: numFunction
-      });
 
       if (nbAction != 0 && desempilement == true) // si il reste des actions apres l appel de fct on les placent apres la fonction
         {
-          var nbActionFonction = monTableau[numFunction - 1].cases.length;
-          console.log(nbActionFonction);
+          var nbActionFonction = monTableau[numFunction - 1].cases.length; //console.log(nbActionFonction);
 
           for (var i = nbAction; i > 0; i--) {
-            console.log("placement après");
-            console.log("i: " + i);
-            console.log(nbActionFonction);
+            //console.log("placement après");
+            //console.log("i: "+i);
+            //console.log(nbActionFonction);
             var tab = [];
             var actionListe = document.getElementById("ListeAction" + i);
             var actionListe2 = document.getElementById("ListeAction" + (i + nbActionFonction)); //let actionListe2 = document.getElementById("ListeAction"+(nbAction+i+1));
 
-            tab.push(actionListe, actionListe2);
-            console.log({
-              actionListe: actionListe,
-              actionListe2: actionListe2
-            }); //actionListe2.childNodes[0] = actionListe.childNodes[0]; 
+            tab.push(actionListe, actionListe2); //console.log({actionListe,actionListe2})
+            //actionListe2.childNodes[0] = actionListe.childNodes[0]; 
 
             actionListe2.replaceChild(actionListe.childNodes[0], actionListe2.childNodes[0]); //new old
 
@@ -1087,7 +1078,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    nettoyageListeAction: function nettoyageListeAction() //dans les divs de la grille efface les text sauf pour etoile
+    nettoyageListeAction: function nettoyageListeAction() //dans les divs de lliste action efface le text
     {
       //console.log("Nettoyage liste action");
       var mesActions = document.getElementById("mesActions"); //console.log(mesActions);
@@ -1103,7 +1094,7 @@ __webpack_require__.r(__webpack_exports__);
       //console.log(mesActions2.childNodes);
 
     },
-    infoGrille: function infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant (si 0 = gagne)
+    infoGrille: function infoGrille(grilleJeu) // Retourne la position du vaisseau et le nb d etoile restant 
     {
       var position = {
         vaisseau: [],
@@ -1163,30 +1154,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.updateFunctionAction(1, false);
       this.stop();
-    },
-    updateAction: function updateAction() // Liste Action qui recupere et s actualise sur F1
-    {
-      console.log("update action");
-      var monTableau = this.getFonctions();
-
-      for (var i = 0; i < monTableau[0].cases.length; i++) {
-        var monAction = monTableau[0].cases[i].action;
-        var actionListe = document.getElementById("ListeAction" + (i + 1));
-        actionListe.className = monTableau[0].cases[i].couleur + " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none ";
-        actionListe.innerHTML = "";
-
-        if (monAction != null) {
-          //if  (monAction.includes("F1") || monAction.includes("F2") || monAction.includes("F3") || monAction.includes("F4"))
-          if (monAction.includes("F")) {
-            var place = monAction.indexOf("F");
-            $("#" + actionListe.id).append('<div class ="text-3xl ' + "F" + monAction[place + 1] + ' pointer-events-none ">' + "F" + monAction[place + 1] + '</div>');
-          } else {
-            $("#" + actionListe.id).append('<i class="' + monAction + '"></i>');
-          }
-        } else {
-          $("#" + actionListe.id).append('<i></i>');
-        }
-      }
     },
     getFonctions: function getFonctions() // Renvoie tableau objet fonction [ {id:1,cases:[ {action:f1,couleur:aucune} , {action:gauche,couleur:blanc} ] },]
     {
@@ -1276,7 +1243,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return tab;
     },
-    clearFunctions: function clearFunctions() // Nettoie les cases fonctions, bouton nettoyer fonctipn
+    clearFunctions: function clearFunctions() // Nettoie les cases fonctions, bouton nettoyer fonction
     {
       console.log("clearfunctions");
       var monjson = this.parse();
@@ -1337,7 +1304,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    cleanListeAction: function cleanListeAction() {
+    cleanListeAction: function cleanListeAction() // reinitialise la liste d action
+    {
       console.log("clean liste action");
       var mesActions = document.getElementById("mesActions"); //console.log({mesActions});
 
@@ -1922,14 +1890,14 @@ var render = function() {
         {
           staticClass:
             "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important",
-          attrs: { id: "speed4" },
+          attrs: { id: "speed8" },
           on: {
             click: function($event) {
-              return _vm.time("4")
+              return _vm.time("8")
             }
           }
         },
-        [_vm._v("\n            x4\n        ")]
+        [_vm._v("\n            x8\n        ")]
       )
     ]
   )
@@ -2185,7 +2153,7 @@ var render = function() {
                   staticStyle: { "white-space": "nowrap" }
                 },
                 [
-                  fonction.nombreCase > 5
+                  fonction.nombreCase > 4
                     ? _c("div", [
                         _c(
                           "div",
@@ -2207,7 +2175,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "ml-10 text-3xl mr-4 text-white important mt-4"
+                              "ml-16 text-3xl mr-4 text-white important mt-4"
                           },
                           [
                             _vm._v(

@@ -17,13 +17,13 @@
                         <div v-for="fonction in leveljson.fonctions" :key ="fonction.idFonction" 
                         class ="flex flex-row  w-full  justify-center content-center overflow-x-auto h-24 important " style =" white-space: nowrap;">
                         
-                        <div v-if ="fonction.nombreCase > 5">
+                        <div v-if ="fonction.nombreCase > 4">
                             <div class =" ml-64 text-3xl mr-4 text-white important mt-4">
                                 F{{fonction.idFonction}}
                             </div>
                         </div>
                         <div v-else>
-                            <div class ="ml-10 text-3xl mr-4 text-white important mt-4">
+                            <div class ="ml-16 text-3xl mr-4 text-white important mt-4">
                                 F{{fonction.idFonction}}
                             </div>
                         </div>
