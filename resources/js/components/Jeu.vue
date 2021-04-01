@@ -14,7 +14,7 @@
                     <div :id="'ligne-' +ligne.idLigne+'-case-'+maCase.idCase" v-if="maCase.visible" 
                     :class=" 'relative border-4 border-gray-900 rounded p-0 m-0 flex justify-center items-center w-20 h-full  bg-opacity-75 '+maCase.couleur ">
                         <i v-if="maCase.etoileBool" class=" fa fa-star text-yellow-500 fa-3x"></i>
-                        <i v-if="maCase.departBool" class="fa fa-space-shuttle text-white fa-3x"></i>
+                        <i v-if="maCase.departBool" :class="'fa fa-space-shuttle text-white fa-3x ' +leveljson.rotationStart"></i>
                     </div>
 
                     <div v-else class="  relative rounded p-0 m-0 flex justify-center items-center w-20 h-full ">

@@ -240,6 +240,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -725,7 +727,8 @@ __webpack_require__.r(__webpack_exports__);
     {
       document.location.replace("https://jeu.test/rocket/" + (parseInt(this.parse().id) + 1));
     },
-    getAction: function getAction(grilleJeu, a, b) {
+    getAction: function getAction(grilleJeu, a, b) // ici on verifie la couleur et l action pour appeller la fct de l action
+    {
       var action = this.getLastAction();
       console.log("dans action "); //console.log({action, a,b, grilleJeu});
       //console.log(action[0].className);
@@ -761,6 +764,10 @@ __webpack_require__.r(__webpack_exports__);
 
                   if (action[0].className.includes("arrow-up")) {
                     this.move(grilleJeu, a, b);
+                  }
+
+                  if (action[0].className.includes("F")) {
+                    this.updateFunctionAction(parseInt(action[0].innerHTML[1]), true);
                   }
                 }
             }
@@ -1153,7 +1160,10 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.updateFunctionAction(1, false);
-      this.stop();
+
+      if (this.boolStop == false) {
+        this.stop();
+      }
     },
     getFonctions: function getFonctions() // Renvoie tableau objet fonction [ {id:1,cases:[ {action:f1,couleur:aucune} , {action:gauche,couleur:blanc} ] },]
     {
@@ -1215,7 +1225,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var position2 = this.getShuttleStart(); //console.log({position,position2});
 
-      var shuttleClass = "fa fa-space-shuttle text-white fa-3x";
+      var shuttleClass = "fa fa-space-shuttle text-white fa-3x " + this.parse().rotationStart;
       var newShuttle = document.createElement("i");
       newShuttle.className = shuttleClass;
 
@@ -2060,8 +2070,8 @@ var render = function() {
                   couleur == 2
                     ? _c("button", {
                         staticClass:
-                          "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
-                        attrs: { id: "bg-gray-600" },
+                          "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
+                        attrs: { id: "bg-gray-800" },
                         on: { click: _vm.anneau }
                       })
                     : _vm._e(),
@@ -2069,8 +2079,8 @@ var render = function() {
                   couleur == 3
                     ? _c("button", {
                         staticClass:
-                          "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
-                        attrs: { id: "bg-gray-800" },
+                          "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
+                        attrs: { id: "bg-gray-600" },
                         on: { click: _vm.anneau }
                       })
                     : _vm._e()
@@ -2284,7 +2294,9 @@ var render = function() {
                       _vm._v(" "),
                       maCase.departBool
                         ? _c("i", {
-                            staticClass: "fa fa-space-shuttle text-white fa-3x"
+                            class:
+                              "fa fa-space-shuttle text-white fa-3x " +
+                              _vm.leveljson.rotationStart
                           })
                         : _vm._e()
                     ]

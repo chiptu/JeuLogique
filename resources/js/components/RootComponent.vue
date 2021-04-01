@@ -216,7 +216,7 @@
                 document.location.replace( "https://jeu.test/rocket/"+( parseInt(this.parse().id)+1 ) );
             },
 
-            getAction(grilleJeu,a,b)
+            getAction(grilleJeu,a,b) // ici on verifie la couleur et l action pour appeller la fct de l action
             {
                 let action = this.getLastAction();
                 console.log("dans action ");
@@ -254,6 +254,10 @@
                             if (action[0].className.includes("arrow-up"))
                             {
                                 this.move(grilleJeu,a,b);
+                            }
+                            if (action[0].className.includes("F"))
+                            {
+                                this.updateFunctionAction( parseInt(action[0].innerHTML[1]), true );
                             }
                         }
 
@@ -718,7 +722,11 @@
                     }
                 }
                this.updateFunctionAction(1, false);
-               this.stop();
+               
+               if(this.boolStop == false)
+                {
+                    this.stop();
+                }
                
 
             },
@@ -784,7 +792,7 @@
 
                 //console.log({position,position2});
 
-                let shuttleClass = "fa fa-space-shuttle text-white fa-3x"
+                let shuttleClass = "fa fa-space-shuttle text-white fa-3x "+this.parse().rotationStart;
 
                 let newShuttle = document.createElement("i");
 

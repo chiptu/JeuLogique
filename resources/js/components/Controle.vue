@@ -50,13 +50,15 @@
                     
                         </button>
 
-                        <button  v-if="couleur == 2" id="bg-gray-600" class="bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important" v-on:click="anneau">
+                        <button  v-if="couleur == 2" id="bg-gray-800" class="bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important" v-on:click="anneau">
                     
                         </button>
 
-                        <button  v-if="couleur == 3" id="bg-gray-800" class="bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important" v-on:click="anneau">
+                        <button  v-if="couleur == 3" id="bg-gray-600" class="bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important" v-on:click="anneau">
                     
                         </button>
+
+                        
                     </div>
 
 
