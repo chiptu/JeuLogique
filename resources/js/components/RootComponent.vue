@@ -156,7 +156,7 @@
             video()
             {
                 let json = this.parse();
-                let str = "https://jeu.app/videos/"+(json.id)+".mp4";
+                let str = "https://jeu.test/videos/"+(json.id)+".mp4";
                 return str
             },
 
@@ -169,6 +169,7 @@
                 this.boolStop=true;
 
                 this.resetShuttle();
+                this.resetStars();
                 this.cleanListeAction();
                 this.updateFunctionAction(1, false);
 
@@ -829,6 +830,62 @@
                     }
                 }
                 return tab;
+            },
+
+
+            getStarsStart() // renvoie la position de depart du vaisseau en parcourant le json originel pour remettre le jeu a zerp
+            {
+                let json =this.parse();
+                let tab=[];
+                
+                for (var i=0; i< 10;  i++) 
+                {
+                    for (var j=0; j< 10 ; j++ ) 
+                    {       
+                        if (json.lignes[i].cases[j].etoileBool ==true)
+                        {
+                            //console.log({i,j})
+                            let etoile = {i:json.lignes[i].cases[j].idCase-1,j:json.lignes[i].idLigne-1}
+                            tab.push(etoile);
+                            
+                        }
+                    }
+                }
+                return tab;
+            },
+
+            resetStars() // repositionne le vaisseau à son point de depart en enlevant toute rotation
+            {
+                console.log("method reset stars");
+                var grilleJeu = document.getElementById("grilleJeu").childNodes;
+
+                //console.log("apres grille");
+                var position = this.getStarsStart();  
+
+                console.log({position});
+
+                //console.log({position,position2});
+
+                let starClass = " fa fa-star text-yellow-500 fa-3x ";
+
+                let newStar = document.createElement("i");
+
+                newStar.className = starClass;
+               
+             
+               for (var i=0; i<position.length; i++)
+               {
+                   
+                   if (grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0] == null)
+                   {
+                       grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].appendChild(newStar); 
+                   }
+                  
+                   
+               }
+
+               
+
             },
 
             clearFunctions()  // Nettoie les cases fonctions, bouton nettoyer fonction

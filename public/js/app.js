@@ -688,7 +688,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     video: function video() {
       var json = this.parse();
-      var str = "https://jeu.app/videos/" + json.id + ".mp4";
+      var str = "https://jeu.test/videos/" + json.id + ".mp4";
       return str;
     },
     time: function time(value) {
@@ -697,6 +697,7 @@ __webpack_require__.r(__webpack_exports__);
     stop: function stop() {
       this.boolStop = true;
       this.resetShuttle();
+      this.resetStars();
       this.cleanListeAction();
       this.updateFunctionAction(1, false);
     },
@@ -1252,6 +1253,46 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return tab;
+    },
+    getStarsStart: function getStarsStart() // renvoie la position de depart du vaisseau en parcourant le json originel pour remettre le jeu a zerp
+    {
+      var json = this.parse();
+      var tab = [];
+
+      for (var i = 0; i < 10; i++) {
+        for (var j = 0; j < 10; j++) {
+          if (json.lignes[i].cases[j].etoileBool == true) {
+            //console.log({i,j})
+            var etoile = {
+              i: json.lignes[i].cases[j].idCase - 1,
+              j: json.lignes[i].idLigne - 1
+            };
+            tab.push(etoile);
+          }
+        }
+      }
+
+      return tab;
+    },
+    resetStars: function resetStars() // repositionne le vaisseau à son point de depart en enlevant toute rotation
+    {
+      console.log("method reset stars");
+      var grilleJeu = document.getElementById("grilleJeu").childNodes; //console.log("apres grille");
+
+      var position = this.getStarsStart();
+      console.log({
+        position: position
+      }); //console.log({position,position2});
+
+      var starClass = " fa fa-star text-yellow-500 fa-3x ";
+      var newStar = document.createElement("i");
+      newStar.className = starClass;
+
+      for (var i = 0; i < position.length; i++) {
+        if (grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0] == null) {
+          grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].appendChild(newStar);
+        }
+      }
     },
     clearFunctions: function clearFunctions() // Nettoie les cases fonctions, bouton nettoyer fonction
     {
