@@ -1,7 +1,7 @@
 
 <template>
     
-    <div id="component-fonction" class ="w-1/2 h-full ">
+    <div id="component-fonction" class =" h-full ">
 
          
 
@@ -11,19 +11,19 @@
                 🚀 Level {{leveljson.id}} ⭐
             </div>
         
-            <div class ="h-3/12 "> 
+            <div class ="h-3/12 mr-8"> 
                     
 
                         <div v-for="fonction in leveljson.fonctions" :key ="fonction.idFonction" 
                         class ="flex flex-row  w-full  justify-center content-center overflow-x-auto h-24 important " style =" white-space: nowrap;">
                         
                         <div v-if ="fonction.nombreCase > 4">
-                            <div class =" ml-64 text-3xl mr-4 text-white important mt-4">
+                            <div class =" ml-16 text-3xl mr-4 text-white important mt-4">
                                 F{{fonction.idFonction}}
                             </div>
                         </div>
                         <div v-else>
-                            <div class ="ml-16 text-3xl mr-4 text-white important mt-4">
+                            <div class ="ml-8 text-3xl mr-4 text-white important mt-4">
                                 F{{fonction.idFonction}}
                             </div>
                         </div>
@@ -45,7 +45,7 @@
 
             <div class ="h-auto w-full flex  justify-center">
 
-                <button id="btn-clean" class="ml-10 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 " v-on:click="clearFunctions()">
+                <button id="btn-clean" class="ml-10 mt-24 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 " v-on:click="clearFunctions()">
                     <i class="fas fa-undo "></i>
                 </button>
             </div>

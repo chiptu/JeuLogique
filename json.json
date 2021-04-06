@@ -6,14 +6,14 @@
                 {
                     "idCase": 1,
                     "couleur": "",
-                    "visible": false,
-                    "departBool": false,
+                    "visible": true,
+                    "departBool": true,
                     "etoileBool": false
                 },
                 {
                     "idCase": 2,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -88,14 +88,14 @@
                 {
                     "idCase": 2,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 3,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -170,14 +170,14 @@
                 {
                     "idCase": 3,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 4,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -252,14 +252,14 @@
                 {
                     "idCase": 4,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 5,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -305,29 +305,29 @@
             "cases": [
                 {
                     "idCase": 1,
-                    "couleur": "bg-gray-400",
-                    "visible": true,
+                    "couleur": "",
+                    "visible": false,
                     "departBool": false,
-                    "etoileBool": true
+                    "etoileBool": false
                 },
                 {
                     "idCase": 2,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 3,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 4,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -348,29 +348,29 @@
                 {
                     "idCase": 7,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 8,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 9,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 10,
                     "couleur": "",
-                    "visible": true,
-                    "departBool": true,
+                    "visible": false,
+                    "departBool": false,
                     "etoileBool": false
                 }
             ],
@@ -416,14 +416,14 @@
                 {
                     "idCase": 6,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 7,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -444,9 +444,9 @@
                 {
                     "idCase": 10,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
-                    "etoileBool": true
+                    "etoileBool": false
                 }
             ],
             "idLigne": 6
@@ -498,14 +498,14 @@
                 {
                     "idCase": 7,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 8,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -580,14 +580,14 @@
                 {
                     "idCase": 8,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 9,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -662,9 +662,9 @@
                 {
                     "idCase": 9,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
-                    "etoileBool": false
+                    "etoileBool": true
                 },
                 {
                     "idCase": 10,
@@ -755,13 +755,10 @@
     "fonctions": [
         {
             "idFonction": 1,
-            "nombreCase": 3
-        },
-        {
-            "idFonction": 2,
-            "nombreCase": 4
+            "nombreCase": 5
         }
+        
     ],
-    "nbCouleur": 1,
-    "rotationStart": "fa-rotate-180"
+    "nbCouleur": 0
+   
 }

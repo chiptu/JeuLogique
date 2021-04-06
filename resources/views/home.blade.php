@@ -127,7 +127,7 @@ animation: fadeIn ease 5s;
 
 /// FADE IMAGE
 var i=0;
-var tabImage =["https://jeu.test/images/tesla.jpg","https://jeu.test/images/vaisseau.jpg"];
+var tabImage =["https://jeu.app/images/tesla.jpg","https://jeu.app/images/vaisseau.jpg"];
 var intervalId = window.setInterval(function(){
     i++;
     console.log({i,tabImage});

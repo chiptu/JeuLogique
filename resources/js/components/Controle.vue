@@ -1,7 +1,7 @@
 
 <template>
     
-    <div id="component-controle" class ="w-1/2 h-full ">
+    <div id="component-controle" class =" h-full ">
             
           
 
@@ -9,7 +9,7 @@
 
                 
 
-                <div class ="w-3/12">
+                <div class ="w-2/12 ml-16">
 
                     
 

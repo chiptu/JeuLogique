@@ -658,6 +658,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -688,7 +692,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     video: function video() {
       var json = this.parse();
-      var str = "https://jeu.test/videos/" + json.id + ".mp4";
+      var str = "https://jeu.app/videos/" + json.id + ".mp4";
       return str;
     },
     time: function time(value) {
@@ -726,7 +730,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     win: function win() // Charger le niveau avec le json suivant
     {
-      document.location.replace("https://jeu.test/rocket/" + (parseInt(this.parse().id) + 1));
+      document.location.replace("https://jeu.app/rocket/" + (parseInt(this.parse().id) + 1));
     },
     getAction: function getAction(grilleJeu, a, b) // ici on verifie la couleur et l action pour appeller la fct de l action
     {
@@ -1992,7 +1996,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-1/2 h-full ", attrs: { id: "component-controle" } },
+    { staticClass: " h-full ", attrs: { id: "component-controle" } },
     [
       _c(
         "div",
@@ -2003,7 +2007,7 @@ var render = function() {
         [
           _c(
             "div",
-            { staticClass: "w-3/12" },
+            { staticClass: "w-2/12 ml-16" },
             [
               _c(
                 "button",
@@ -2168,7 +2172,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-1/2 h-full ", attrs: { id: "component-fonction" } },
+    { staticClass: " h-full ", attrs: { id: "component-fonction" } },
     [
       _c(
         "div",
@@ -2193,7 +2197,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "h-3/12 " },
+            { staticClass: "h-3/12 mr-8" },
             _vm._l(_vm.leveljson.fonctions, function(fonction) {
               return _c(
                 "div",
@@ -2210,7 +2214,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              " ml-64 text-3xl mr-4 text-white important mt-4"
+                              " ml-16 text-3xl mr-4 text-white important mt-4"
                           },
                           [
                             _vm._v(
@@ -2226,7 +2230,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "ml-16 text-3xl mr-4 text-white important mt-4"
+                              "ml-8 text-3xl mr-4 text-white important mt-4"
                           },
                           [
                             _vm._v(
@@ -2263,7 +2267,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "ml-10 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 ",
+                  "ml-10 mt-24 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 ",
                 attrs: { id: "btn-clean" },
                 on: {
                   click: function($event) {
@@ -2565,16 +2569,6 @@ var render = function() {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _c(
-        "video",
-        {
-          staticClass: "w-full h-full absolute top left",
-          attrs: { autoplay: "", muted: "", loop: "", id: "bgvid" },
-          domProps: { muted: true }
-        },
-        [_c("source", { attrs: { src: this.video(), type: "video/mp4" } })]
-      ),
-      _vm._v(" "),
       _c("Jeu", {
         attrs: { leveljson: this.parse() },
         on: { time: _vm.time, play: _vm.play, stop: _vm.stop }
@@ -2582,7 +2576,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "flex w-4/12" },
+        { staticClass: "flex w-4/12 flex-col" },
         [
           _c("Fonction", {
             attrs: { leveljson: this.parse() },

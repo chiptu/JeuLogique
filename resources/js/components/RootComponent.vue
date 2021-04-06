@@ -84,21 +84,25 @@
     </div>
 </article>-->
        
-        <video autoplay muted loop  id="bgvid" class="w-full h-full absolute top left">
-  
-            <source :src="this.video()" type="video/mp4">
-
-        </video>
+        
 
         
 
         <Jeu :leveljson = "this.parse()" @time="time" @play="play" @stop="stop"/>
 
-        <div class ="flex w-4/12">
+        <div class ="flex w-4/12 flex-col">
 
-            <Fonction :leveljson = "this.parse()" @clearFunctions="clearFunctions" />
+            
 
-            <Controle :leveljson = "this.parse()" @command="command"/>
+                <Fonction :leveljson = "this.parse()" @clearFunctions="clearFunctions" />
+
+            
+            
+            
+                <Controle :leveljson = "this.parse()" @command="command"/>
+            
+
+            
         
         </div>
 
@@ -156,7 +160,7 @@
             video()
             {
                 let json = this.parse();
-                let str = "https://jeu.test/videos/"+(json.id)+".mp4";
+                let str = "https://jeu.app/videos/"+(json.id)+".mp4";
                 return str
             },
 
@@ -214,7 +218,7 @@
             win() // Charger le niveau avec le json suivant
             {
                 
-                document.location.replace( "https://jeu.test/rocket/"+( parseInt(this.parse().id)+1 ) );
+                document.location.replace( "https://jeu.app/rocket/"+( parseInt(this.parse().id)+1 ) );
             },
 
             getAction(grilleJeu,a,b) // ici on verifie la couleur et l action pour appeller la fct de l action
