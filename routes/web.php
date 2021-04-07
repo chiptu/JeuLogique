@@ -25,3 +25,11 @@ Route::get('/', function () {
 Route::post('/rocket/{id}', 'RocketController@levelJson')->name('levelJson');*/
 
 Route::get('/rocket/{id}', 'RocketController@levelJson')->name('levelJson');
+
+
+Route::get('/bravo-glados', function () {
+    return view('secret');
+});
+
+
+Route::post('/bravo-glados', 'SecretController')->name('secret');
