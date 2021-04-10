@@ -242,6 +242,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -358,7 +388,7 @@ __webpack_require__.r(__webpack_exports__);
           elements[0].classList.remove('focus-color');
         }
 
-        $('#' + event.target.id).addClass('focus-color');
+        $("#" + event.target.id).addClass('focus-color');
       }
     }
   }
@@ -657,11 +687,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -774,6 +799,10 @@ __webpack_require__.r(__webpack_exports__);
                   if (action[0].className.includes("F")) {
                     this.updateFunctionAction(parseInt(action[0].innerHTML[1]), true);
                   }
+
+                  if (action[0].className.includes("paint")) {
+                    this.paint(grilleJeu, a, b, action[0].className);
+                  }
                 }
             }
 
@@ -795,6 +824,10 @@ __webpack_require__.r(__webpack_exports__);
 
               if (action[0].className.includes("F")) {
                 this.updateFunctionAction(parseInt(action[0].innerHTML[1]), true);
+              }
+
+              if (action[0].className.includes("paint")) {
+                this.paint(grilleJeu, a, b, action[0].className);
               }
             }
         }
@@ -1136,6 +1169,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     command: function command(value) {
       // Quand une action est assigne à une fonction
+      console.log("fct command"); //console.log({value});
+
       var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
       var selectColor = document.getElementById("component-controle").getElementsByClassName('focus-color');
 
@@ -1149,12 +1184,19 @@ __webpack_require__.r(__webpack_exports__);
           {
             selectCase[0].innerHTML = "";
             $("#" + selectCase[0].id).append('<div class ="text-3xl ' + "F" + value + ' pointer-events-none ">' + "F" + value + '</div>');
+            return null; // fais bugge le .includes sinon
           }
 
         if (value == "fa fa-arrow-up fa-2x pointer-events-none" || value == "fa fa-share fa-2x pointer-events-none" || value == "fas fa-reply fa-2x pointer-events-none") // cas ou la case est une fleche
           {
             selectCase[0].innerHTML = "";
-            $("#" + selectCase[0].id).append("<i class='fas " + value + " fa-2x'></i>");
+            $("#" + selectCase[0].id).append("<i class=' " + value + " '></i>");
+          }
+
+        if (value.includes("paint")) // cas ou la case est une fleche
+          {
+            selectCase[0].innerHTML = "";
+            $("#" + selectCase[0].id).append("<i class='" + value + "'></i>");
           }
 
         if (value == "null") // cas ou la case est reinitialise
@@ -1340,7 +1382,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     countUsedAction: function countUsedAction() // compte le nombre d action non vide
     {
-      console.log("count case action non vide");
+      //console.log("count case action non vide");
       var mesActions = document.getElementById("mesActions"); //console.log(mesActions);
       //console.log("longueur mes actions childnodes length");
       //console.log(mesActions.childNodes);
@@ -1385,6 +1427,22 @@ __webpack_require__.r(__webpack_exports__);
 
         mesActions.appendChild(_element);
       }
+    },
+    paint: function paint(grilleJeu, a, b, paintClasse) {
+      console.log({
+        grilleJeu: grilleJeu,
+        a: a,
+        b: b,
+        paintClasse: paintClasse
+      });
+      console.log("paint"); //"DATE:20091201T220000\r\nSUMMARY:Dad's birthday".match(/^SUMMARY\:(.*)$/gm);
+
+      var color = paintClasse.match(/(^|\s)text-\S+/g)[0];
+      color = color.replace("text", "bg");
+      var maClasse = grilleJeu[b].childNodes[a].childNodes[0].className;
+      maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
+      maClasse = maClasse + color;
+      grilleJeu[b].childNodes[a].childNodes[0].className = maClasse;
     }
   }
 });
@@ -2099,7 +2157,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "w-3/12" },
+            { staticClass: "w-2/12" },
             [
               _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
                 return _c("div", { key: couleur }, [
@@ -2139,6 +2197,112 @@ var render = function() {
                     attrs: { id: "bg-black" },
                     on: { click: _vm.anneau }
                   })
+                : _vm._e()
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "w-2/12" },
+            [
+              _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
+                return _c("div", { key: couleur }, [
+                  couleur == 1
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
+                          attrs: { id: "paint-gray-400" },
+                          on: {
+                            click: function($event) {
+                              return _vm.command(
+                                "fas fa-paint-roller  fa-2x text-gray-400 pointer-events-none"
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass:
+                              "fas fa-paint-roller fa-2x text-gray-400"
+                          })
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  couleur == 2
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
+                          attrs: { id: "paint-gray-800" },
+                          on: {
+                            click: function($event) {
+                              return _vm.command(
+                                "fas fa-paint-roller fa-2x text-gray-800 pointer-events-none"
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass:
+                              "fas fa-paint-roller fa-2x text-gray-800"
+                          })
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  couleur == 3
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
+                          attrs: { id: "paint-gray-600" },
+                          on: {
+                            click: function($event) {
+                              return _vm.command(
+                                "fas fa-paint-roller fa-2x text-gray-600 pointer-events-none"
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass:
+                              "fas fa-paint-roller fa-2x text-gray-600"
+                          })
+                        ]
+                      )
+                    : _vm._e()
+                ])
+              }),
+              _vm._v(" "),
+              _vm.leveljson.nbCouleur != 0
+                ? _c(
+                    "button",
+                    {
+                      staticClass:
+                        "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
+                      attrs: { id: "paint-black" },
+                      on: {
+                        click: function($event) {
+                          return _vm.command(
+                            "fas fa-paint-roller fa-2x text-black pointer-events-none"
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-paint-roller fa-2x text-black"
+                      })
+                    ]
+                  )
                 : _vm._e()
             ],
             2

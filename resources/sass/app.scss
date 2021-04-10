@@ -361,7 +361,15 @@ $solarSystem: ("mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus
 
 
 
+/*.fa-paint-roller g g path {
+  stroke: white;
+  stroke-width: 10;
+}*/
 
+
+.fa-paint-roller {
+  text-shadow: 0 0 3px #fff;
+}
 
 
 video#bgvid {

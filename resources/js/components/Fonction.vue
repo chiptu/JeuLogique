@@ -81,14 +81,16 @@
             
             if (event) 
                 {
-                var elements = document.getElementById("component-fonction").getElementsByClassName('focus-color');
+                    var elements = document.getElementById("component-fonction").getElementsByClassName('focus-color');
 
-                while(elements.length > 0)
-                {
-                elements[0].classList.remove('focus-color');
-                }
+                    while(elements.length > 0)
+                    {
+                        elements[0].classList.remove('focus-color');
+                    }
+                    
 
-                $('#'+event.target.id).addClass('focus-color');
+
+                    $("#"+event.target.id).addClass('focus-color');
                 }
             }
         },

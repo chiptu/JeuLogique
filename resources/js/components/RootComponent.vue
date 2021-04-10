@@ -258,6 +258,10 @@
                             {
                                 this.updateFunctionAction( parseInt(action[0].innerHTML[1]), true );
                             }
+                            if (action[0].className.includes("paint"))
+                            {
+                                this.paint(grilleJeu,a,b,action[0].className);
+                            }
                         }
 
                     }
@@ -281,6 +285,10 @@
                         if (action[0].className.includes("F"))
                         {
                             this.updateFunctionAction( parseInt(action[0].innerHTML[1]), true );
+                        }
+                        if (action[0].className.includes("paint"))
+                        {
+                            this.paint(grilleJeu,a,b,action[0].className);
                         }
                     }
                 }  
@@ -692,6 +700,9 @@
 
             command(value) {    // Quand une action est assigne à une fonction
 
+                console.log("fct command");
+                //console.log({value});
+
                 var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
                 var selectColor = document.getElementById("component-controle").getElementsByClassName('focus-color');
 
@@ -705,13 +716,19 @@
                     if (value == 1 || value ==2 || value ==3) // cas ou la case est une fonction
                     {
                         selectCase[0].innerHTML = "";
-                        $("#"+selectCase[0].id).append('<div class ="text-3xl '+ "F"+value +' pointer-events-none ">'+"F"+value+'</div>')
+                        $("#"+selectCase[0].id).append('<div class ="text-3xl '+ "F"+value +' pointer-events-none ">'+"F"+value+'</div>');
+                        return null; // fais bugge le .includes sinon
                     }
                     
                     if (value == "fa fa-arrow-up fa-2x pointer-events-none" || value == "fa fa-share fa-2x pointer-events-none" || value == "fas fa-reply fa-2x pointer-events-none") // cas ou la case est une fleche
                     {
                         selectCase[0].innerHTML = "";
-                        $("#"+selectCase[0].id).append("<i class='fas "+ value +" fa-2x'></i>")
+                        $("#"+selectCase[0].id).append("<i class=' "+ value +" '></i>")
+                    }
+                    if (value.includes("paint")) // cas ou la case est une fleche
+                    {
+                        selectCase[0].innerHTML = "";
+                        $("#"+selectCase[0].id).append("<i class='"+ value +"'></i>")
                     }
                     if (value == "null") // cas ou la case est reinitialise
                     {
@@ -944,7 +961,7 @@
 
             countUsedAction() // compte le nombre d action non vide
             {
-                console.log("count case action non vide");
+                //console.log("count case action non vide");
 
                 let mesActions = document.getElementById("mesActions");
 
@@ -996,23 +1013,43 @@
 
                 mesActions.appendChild(element);
 
-                 for (var i = 1; i <11; i++) 
+                for (var i = 1; i <11; i++) 
                 {
-                let element = document.createElement("button");
+                    let element = document.createElement("button");
 
-                element.id = "ListeAction"+i;
+                    element.id = "ListeAction"+i;
 
-                element.className =" border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none";
-                    
-                let element2 = document.createElement("i");
+                    element.className =" border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none";
+                        
+                    let element2 = document.createElement("i");
 
-                element.appendChild(element2);
+                    element.appendChild(element2);
 
-                mesActions.appendChild(element);
+                    mesActions.appendChild(element);
 
-            }
+                }
             
             },
+
+            paint(grilleJeu,a,b,paintClasse)
+            {
+                console.log({grilleJeu,a,b,paintClasse});
+
+                console.log("paint")
+
+                //"DATE:20091201T220000\r\nSUMMARY:Dad's birthday".match(/^SUMMARY\:(.*)$/gm);
+                let color = paintClasse.match(/(^|\s)text-\S+/g)[0];
+                color = color.replace("text","bg");
+
+                let maClasse = grilleJeu[b].childNodes[a].childNodes[0].className;
+
+                maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
+
+                maClasse = maClasse + color;
+
+                grilleJeu[b].childNodes[a].childNodes[0].className = maClasse;
+
+            }
 
 
 
@@ -1028,3 +1065,4 @@
 
     
 </script>
+
