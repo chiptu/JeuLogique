@@ -169,8 +169,11 @@
 
                 this.resetShuttle();
                 this.resetStars();
+                this.resetPaint();
                 this.cleanListeAction();
                 this.updateFunctionAction(1, false);
+
+
 
             },
             
@@ -698,7 +701,8 @@
                  return position;
             },
 
-            command(value) {    // Quand une action est assigne à une fonction
+            command(value) // Quand une action est assigne à une fonction
+            {    
 
                 console.log("fct command");
                 //console.log({value});
@@ -717,7 +721,6 @@
                     {
                         selectCase[0].innerHTML = "";
                         $("#"+selectCase[0].id).append('<div class ="text-3xl '+ "F"+value +' pointer-events-none ">'+"F"+value+'</div>');
-                        return null; // fais bugge le .includes sinon
                     }
                     
                     if (value == "fa fa-arrow-up fa-2x pointer-events-none" || value == "fa fa-share fa-2x pointer-events-none" || value == "fas fa-reply fa-2x pointer-events-none") // cas ou la case est une fleche
@@ -725,10 +728,13 @@
                         selectCase[0].innerHTML = "";
                         $("#"+selectCase[0].id).append("<i class=' "+ value +" '></i>")
                     }
-                    if (value.includes("paint")) // cas ou la case est une fleche
+                    if (typeof(value) !=='number')
                     {
-                        selectCase[0].innerHTML = "";
-                        $("#"+selectCase[0].id).append("<i class='"+ value +"'></i>")
+                        if (value.includes("paint")) // cas ou la case est une fleche
+                        {
+                            selectCase[0].innerHTML = "";
+                            $("#"+selectCase[0].id).append("<i class='"+ value +"'></i>")
+                        }
                     }
                     if (value == "null") // cas ou la case est reinitialise
                     {
@@ -1031,9 +1037,9 @@
             
             },
 
-            paint(grilleJeu,a,b,paintClasse)
+            paint(grilleJeu,a,b,paintClasse) // action peindre qui change la couleur d une case 
             {
-                console.log({grilleJeu,a,b,paintClasse});
+                //console.log({grilleJeu,a,b,paintClasse});
 
                 console.log("paint")
 
@@ -1045,11 +1051,53 @@
 
                 maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
 
-                maClasse = maClasse + color;
+                maClasse = maClasse +" bg-opacity-75 " +color;
 
                 grilleJeu[b].childNodes[a].childNodes[0].className = maClasse;
 
-            }
+            },
+
+            resetPaint() // reinitialise aux couleurs des cases initiales
+            {
+                console.log("method reset colors");
+
+                let json =this.parse();
+
+                var grilleJeu = document.getElementById("grilleJeu").childNodes;
+
+                 for (var i = 0; i< 10;i++)
+                 {
+                    for (var j = 0; j< 10;j++)
+                    {
+                        if (grilleJeu[i].childNodes[j].childNodes[0].className.includes("border"))
+                        {
+                            //console.log(grilleJeu[i].childNodes[j].childNodes[0].className);
+
+                            let color = grilleJeu[i].childNodes[j].childNodes[0].className.match(/(^|\s)bg-\S+/g)[1];
+                            color = color.trimStart();
+                            
+                            let oldColor = json.lignes[i].cases[j].couleur;
+                            
+                            if (oldColor != color)
+                            {
+                                //console.log("remplacement")
+                                //console.log({oldColor,color});
+                                let maClasse = grilleJeu[i].childNodes[j].childNodes[0].className;
+
+                                maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
+
+                                maClasse = maClasse +" bg-opacity-75 " + oldColor;
+
+                                grilleJeu[i].childNodes[j].childNodes[0].className = maClasse;
+                            }
+
+                        }
+                    
+
+                    }
+
+                 }
+            },
 
 
 

@@ -727,6 +727,7 @@ __webpack_require__.r(__webpack_exports__);
       this.boolStop = true;
       this.resetShuttle();
       this.resetStars();
+      this.resetPaint();
       this.cleanListeAction();
       this.updateFunctionAction(1, false);
     },
@@ -1167,8 +1168,8 @@ __webpack_require__.r(__webpack_exports__);
 
       return position;
     },
-    command: function command(value) {
-      // Quand une action est assigne à une fonction
+    command: function command(value) // Quand une action est assigne à une fonction
+    {
       console.log("fct command"); //console.log({value});
 
       var selectCase = document.getElementById("component-fonction").getElementsByClassName('focus-color');
@@ -1184,7 +1185,6 @@ __webpack_require__.r(__webpack_exports__);
           {
             selectCase[0].innerHTML = "";
             $("#" + selectCase[0].id).append('<div class ="text-3xl ' + "F" + value + ' pointer-events-none ">' + "F" + value + '</div>');
-            return null; // fais bugge le .includes sinon
           }
 
         if (value == "fa fa-arrow-up fa-2x pointer-events-none" || value == "fa fa-share fa-2x pointer-events-none" || value == "fas fa-reply fa-2x pointer-events-none") // cas ou la case est une fleche
@@ -1193,11 +1193,13 @@ __webpack_require__.r(__webpack_exports__);
             $("#" + selectCase[0].id).append("<i class=' " + value + " '></i>");
           }
 
-        if (value.includes("paint")) // cas ou la case est une fleche
-          {
-            selectCase[0].innerHTML = "";
-            $("#" + selectCase[0].id).append("<i class='" + value + "'></i>");
-          }
+        if (typeof value !== 'number') {
+          if (value.includes("paint")) // cas ou la case est une fleche
+            {
+              selectCase[0].innerHTML = "";
+              $("#" + selectCase[0].id).append("<i class='" + value + "'></i>");
+            }
+        }
 
         if (value == "null") // cas ou la case est reinitialise
           {
@@ -1428,21 +1430,43 @@ __webpack_require__.r(__webpack_exports__);
         mesActions.appendChild(_element);
       }
     },
-    paint: function paint(grilleJeu, a, b, paintClasse) {
-      console.log({
-        grilleJeu: grilleJeu,
-        a: a,
-        b: b,
-        paintClasse: paintClasse
-      });
+    paint: function paint(grilleJeu, a, b, paintClasse) // action peindre qui change la couleur d une case 
+    {
+      //console.log({grilleJeu,a,b,paintClasse});
       console.log("paint"); //"DATE:20091201T220000\r\nSUMMARY:Dad's birthday".match(/^SUMMARY\:(.*)$/gm);
 
       var color = paintClasse.match(/(^|\s)text-\S+/g)[0];
       color = color.replace("text", "bg");
       var maClasse = grilleJeu[b].childNodes[a].childNodes[0].className;
       maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
-      maClasse = maClasse + color;
+      maClasse = maClasse + " bg-opacity-75 " + color;
       grilleJeu[b].childNodes[a].childNodes[0].className = maClasse;
+    },
+    resetPaint: function resetPaint() // reinitialise aux couleurs des cases initiales
+    {
+      console.log("method reset colors");
+      var json = this.parse();
+      var grilleJeu = document.getElementById("grilleJeu").childNodes;
+
+      for (var i = 0; i < 10; i++) {
+        for (var j = 0; j < 10; j++) {
+          if (grilleJeu[i].childNodes[j].childNodes[0].className.includes("border")) {
+            //console.log(grilleJeu[i].childNodes[j].childNodes[0].className);
+            var color = grilleJeu[i].childNodes[j].childNodes[0].className.match(/(^|\s)bg-\S+/g)[1];
+            color = color.trimStart();
+            var oldColor = json.lignes[i].cases[j].couleur;
+
+            if (oldColor != color) {
+              //console.log("remplacement")
+              //console.log({oldColor,color});
+              var maClasse = grilleJeu[i].childNodes[j].childNodes[0].className;
+              maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
+              maClasse = maClasse + " bg-opacity-75 " + oldColor;
+              grilleJeu[i].childNodes[j].childNodes[0].className = maClasse;
+            }
+          }
+        }
+      }
     }
   }
 });
