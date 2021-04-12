@@ -8,7 +8,7 @@
         <div class ="flex flex-col w-full h-full justify-center content-center ml-4">
 
             <div class="text-yellow-200 text-xl text-center mb-12 important">
-                🚀 Level {{leveljson.id}} ⭐
+                🚀 Level {{leveljson.id}} ⭐ 
             </div>
         
             <div class ="h-3/12 mr-8"> 

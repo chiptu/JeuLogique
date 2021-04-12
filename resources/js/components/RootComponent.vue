@@ -165,6 +165,7 @@
             },
             stop()
             {
+                console.log("fonction stop")
                 this.boolStop=true;
 
                 this.resetShuttle();
@@ -215,7 +216,16 @@
 
             win() // Charger le niveau avec le json suivant
             {
-                document.location.replace( "https://jeu.app/rocket/"+( parseInt(this.parse().id)+1 ) );
+                let numero = parseInt(this.parse().id)+1;
+                if ( numero < 11)
+                {
+                    document.location.replace( "https://jeu.app/rocket/"+numero);
+                }
+                else
+                {
+                    document.location.replace( "https://jeu.app/win");
+                }
+                
             },
 
             getAction(grilleJeu,a,b) // ici on verifie la couleur et l action pour appeller la fct de l action
@@ -747,6 +757,7 @@
                
                if(this.boolStop == false)
                 {
+                    console.log("stop car action touche en jeu");
                     this.stop();
                 }
                
@@ -883,31 +894,37 @@
                 //console.log("apres grille");
                 var position = this.getStarsStart();  
 
-                console.log({position});
+                //console.log({position});
 
                 //console.log({position,position2});
-
-                let starClass = " fa fa-star text-yellow-500 fa-3x ";
-
-                let newStar = document.createElement("i");
-
-                newStar.className = starClass;
                
-                console.log({newStar});
+               
+                
 
                for (var i=0; i<position.length; i++)
                {
-                   console.log({i});
-                   console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0]);
-                   console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0]);
+                   let starClass = " fa fa-star text-yellow-500 fa-3x ";
+
+                   let newStar = document.createElement("i");
+
+                   newStar.className = starClass;
+
+                   //console.log({newStar});
+
+                   //console.log({i});
+                   //console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0]);
+                   //console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0]);
                    
                    if (grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0] == null)
                    {
-                       console.log("dans le if");
+                       //console.log("dans le if");
                        let element = grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0];
                        element.appendChild(newStar);
+
+                       //console.log({element})
                    }
-                  
+
+                  //console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0]);
                    
                }
 
@@ -1065,7 +1082,7 @@
 
             resetPaint() // reinitialise aux couleurs des cases initiales
             {
-                console.log("method reset colors");
+                console.log("method reset paint");
 
                 let json =this.parse();
 
@@ -1078,24 +1095,44 @@
                         if (grilleJeu[i].childNodes[j].childNodes[0].className.includes("border"))
                         {
                             //console.log(grilleJeu[i].childNodes[j].childNodes[0].className);
+                            //console.log(grilleJeu[i].childNodes[j].childNodes[0]);
 
                             let color = grilleJeu[i].childNodes[j].childNodes[0].className.match(/(^|\s)bg-\S+/g)[1];
-                            color = color.trimStart();
-                            
-                            let oldColor = json.lignes[i].cases[j].couleur;
-                            
-                            if (oldColor != color)
+
+                            if (color == null) // cas sans couleur 
                             {
-                                //console.log("remplacement")
-                                //console.log({oldColor,color});
+
                                 let maClasse = grilleJeu[i].childNodes[j].childNodes[0].className;
 
                                 maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
 
-                                maClasse = maClasse +" bg-opacity-75 " + oldColor;
+                                grilleJeu[i].childNodes[j].childNodes[0].className = maClasse +" bg-opacity-75 ";
 
-                                grilleJeu[i].childNodes[j].childNodes[0].className = maClasse;
                             }
+                            else // cas avec couleur
+                            {
+
+                                color = color.trimStart();
+                                
+                                let oldColor = json.lignes[i].cases[j].couleur;
+                                
+                                if (oldColor != color) // si la couleur a ete change
+                                {
+                                    //console.log("remplacement")
+                                    //console.log({oldColor,color});
+
+                                    let maClasse = grilleJeu[i].childNodes[j].childNodes[0].className;
+
+                                    maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
+
+                                    maClasse = maClasse +" bg-opacity-75 " + oldColor;
+
+                                    grilleJeu[i].childNodes[j].childNodes[0].className = maClasse;
+                                }
+
+                            }
+
+                            
 
                         }
                     

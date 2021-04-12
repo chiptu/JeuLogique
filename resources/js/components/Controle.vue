@@ -39,6 +39,35 @@
                   
                 </div>
 
+
+                <div v-if="leveljson.paint" class ="w-2/12">
+
+
+                    <div v-for="couleur in leveljson.nbCouleur" :key ="couleur"  >
+
+                        <button v-if="couleur == 1" id="paint-gray-400" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important " v-on:click="command('fas fa-paint-roller  fa-2x text-gray-400 pointer-events-none')">
+                            <i class="fas fa-paint-roller fa-2x text-gray-400"></i>
+                        </button>
+
+                        <button v-if="couleur == 2" id="paint-gray-800" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important " v-on:click="command('fas fa-paint-roller fa-2x text-gray-800 pointer-events-none')">
+                            <i class="fas fa-paint-roller fa-2x text-gray-800"></i>
+                        </button>
+
+                        <button v-if="couleur == 3" id="paint-gray-600" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important " v-on:click="command('fas fa-paint-roller fa-2x text-gray-600 pointer-events-none')">
+                            <i class="fas fa-paint-roller fa-2x text-gray-600"></i>
+                        </button>
+
+                        
+                    </div>
+
+
+                   <button v-if="leveljson.nbCouleur != 0" id="paint-black" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important " v-on:click="command('fas fa-paint-roller fa-2x text-black pointer-events-none')">
+                            <i class="fas fa-paint-roller fa-2x text-black"></i>
+                    </button>
+                    
+
+                </div>
+
                 
                 <div v-if="leveljson.nbCouleur!=0" class ="w-2/12">
                     
@@ -71,34 +100,6 @@
                 </div>
 
 
-
-                <div v-if="leveljson.paint" class ="w-2/12">
-
-
-                    <div v-for="couleur in leveljson.nbCouleur" :key ="couleur"  >
-
-                        <button v-if="couleur == 1" id="paint-gray-400" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important " v-on:click="command('fas fa-paint-roller  fa-2x text-gray-400 pointer-events-none')">
-                            <i class="fas fa-paint-roller fa-2x text-gray-400"></i>
-                        </button>
-
-                        <button v-if="couleur == 2" id="paint-gray-800" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important " v-on:click="command('fas fa-paint-roller fa-2x text-gray-800 pointer-events-none')">
-                            <i class="fas fa-paint-roller fa-2x text-gray-800"></i>
-                        </button>
-
-                        <button v-if="couleur == 3" id="paint-gray-600" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important " v-on:click="command('fas fa-paint-roller fa-2x text-gray-600 pointer-events-none')">
-                            <i class="fas fa-paint-roller fa-2x text-gray-600"></i>
-                        </button>
-
-                        
-                    </div>
-
-
-                   <button v-if="leveljson.nbCouleur != 0" id="paint-black" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important " v-on:click="command('fas fa-paint-roller fa-2x text-black pointer-events-none')">
-                            <i class="fas fa-paint-roller fa-2x text-black"></i>
-                    </button>
-                    
-
-                </div>
 
 
             </div>

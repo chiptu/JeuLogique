@@ -48,8 +48,8 @@
         <i class="ml-5 fab fa-steam fa-3x"></i>
 
             
-        <div class ="text ml-5">
-        Illustrations par Mr cervide
+        <div class ="text-xs ml-5">
+        Illustrations par Philipon Thomas
         </div>
 
         </div>

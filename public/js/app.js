@@ -272,6 +272,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -724,6 +725,7 @@ __webpack_require__.r(__webpack_exports__);
       this.delayTime = value;
     },
     stop: function stop() {
+      console.log("fonction stop");
       this.boolStop = true;
       this.resetShuttle();
       this.resetStars();
@@ -756,7 +758,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     win: function win() // Charger le niveau avec le json suivant
     {
-      document.location.replace("https://jeu.app/rocket/" + (parseInt(this.parse().id) + 1));
+      var numero = parseInt(this.parse().id) + 1;
+
+      if (numero < 11) {
+        document.location.replace("https://jeu.app/rocket/" + numero);
+      } else {
+        document.location.replace("https://jeu.app/win");
+      }
     },
     getAction: function getAction(grilleJeu, a, b) // ici on verifie la couleur et l action pour appeller la fct de l action
     {
@@ -1211,6 +1219,7 @@ __webpack_require__.r(__webpack_exports__);
       this.updateFunctionAction(1, false);
 
       if (this.boolStop == false) {
+        console.log("stop car action touche en jeu");
         this.stop();
       }
     },
@@ -1327,30 +1336,23 @@ __webpack_require__.r(__webpack_exports__);
       console.log("method reset stars");
       var grilleJeu = document.getElementById("grilleJeu").childNodes; //console.log("apres grille");
 
-      var position = this.getStarsStart();
-      console.log({
-        position: position
-      }); //console.log({position,position2});
-
-      var starClass = " fa fa-star text-yellow-500 fa-3x ";
-      var newStar = document.createElement("i");
-      newStar.className = starClass;
-      console.log({
-        newStar: newStar
-      });
+      var position = this.getStarsStart(); //console.log({position});
+      //console.log({position,position2});
 
       for (var i = 0; i < position.length; i++) {
-        console.log({
-          i: i
-        });
-        console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0]);
-        console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0]);
+        var starClass = " fa fa-star text-yellow-500 fa-3x ";
+        var newStar = document.createElement("i");
+        newStar.className = starClass; //console.log({newStar});
+        //console.log({i});
+        //console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0]);
+        //console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0]);
 
         if (grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0] == null) {
-          console.log("dans le if");
+          //console.log("dans le if");
           var element = grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0];
-          element.appendChild(newStar);
-        }
+          element.appendChild(newStar); //console.log({element})
+        } //console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0]);
+
       }
     },
     clearFunctions: function clearFunctions() // Nettoie les cases fonctions, bouton nettoyer fonction
@@ -1455,7 +1457,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     resetPaint: function resetPaint() // reinitialise aux couleurs des cases initiales
     {
-      console.log("method reset colors");
+      console.log("method reset paint");
       var json = this.parse();
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
 
@@ -1463,18 +1465,29 @@ __webpack_require__.r(__webpack_exports__);
         for (var j = 0; j < 10; j++) {
           if (grilleJeu[i].childNodes[j].childNodes[0].className.includes("border")) {
             //console.log(grilleJeu[i].childNodes[j].childNodes[0].className);
+            //console.log(grilleJeu[i].childNodes[j].childNodes[0]);
             var color = grilleJeu[i].childNodes[j].childNodes[0].className.match(/(^|\s)bg-\S+/g)[1];
-            color = color.trimStart();
-            var oldColor = json.lignes[i].cases[j].couleur;
 
-            if (oldColor != color) {
-              //console.log("remplacement")
-              //console.log({oldColor,color});
-              var maClasse = grilleJeu[i].childNodes[j].childNodes[0].className;
-              maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
-              maClasse = maClasse + " bg-opacity-75 " + oldColor;
-              grilleJeu[i].childNodes[j].childNodes[0].className = maClasse;
-            }
+            if (color == null) // cas sans couleur 
+              {
+                var maClasse = grilleJeu[i].childNodes[j].childNodes[0].className;
+                maClasse = maClasse.replace(/(^|\s)bg-\S+/g, "");
+                grilleJeu[i].childNodes[j].childNodes[0].className = maClasse + " bg-opacity-75 ";
+              } else // cas avec couleur
+              {
+                color = color.trimStart();
+                var oldColor = json.lignes[i].cases[j].couleur;
+
+                if (oldColor != color) // si la couleur a ete change
+                  {
+                    //console.log("remplacement")
+                    //console.log({oldColor,color});
+                    var _maClasse = grilleJeu[i].childNodes[j].childNodes[0].className;
+                    _maClasse = _maClasse.replace(/(^|\s)bg-\S+/g, "");
+                    _maClasse = _maClasse + " bg-opacity-75 " + oldColor;
+                    grilleJeu[i].childNodes[j].childNodes[0].className = _maClasse;
+                  }
+              }
           }
         }
       }
@@ -2190,55 +2203,6 @@ var render = function() {
             2
           ),
           _vm._v(" "),
-          _vm.leveljson.nbCouleur != 0
-            ? _c(
-                "div",
-                { staticClass: "w-2/12" },
-                [
-                  _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
-                    return _c("div", { key: couleur }, [
-                      couleur == 1
-                        ? _c("button", {
-                            staticClass:
-                              "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
-                            attrs: { id: "bg-gray-400" },
-                            on: { click: _vm.anneau }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      couleur == 2
-                        ? _c("button", {
-                            staticClass:
-                              "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
-                            attrs: { id: "bg-gray-800" },
-                            on: { click: _vm.anneau }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      couleur == 3
-                        ? _c("button", {
-                            staticClass:
-                              "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
-                            attrs: { id: "bg-gray-600" },
-                            on: { click: _vm.anneau }
-                          })
-                        : _vm._e()
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _vm.leveljson.nbCouleur != 0
-                    ? _c("button", {
-                        staticClass:
-                          "bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl important",
-                        attrs: { id: "bg-black" },
-                        on: { click: _vm.anneau }
-                      })
-                    : _vm._e()
-                ],
-                2
-              )
-            : _vm._e(),
-          _vm._v(" "),
           _vm.leveljson.paint
             ? _c(
                 "div",
@@ -2345,6 +2309,55 @@ var render = function() {
                 ],
                 2
               )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.leveljson.nbCouleur != 0
+            ? _c(
+                "div",
+                { staticClass: "w-2/12" },
+                [
+                  _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
+                    return _c("div", { key: couleur }, [
+                      couleur == 1
+                        ? _c("button", {
+                            staticClass:
+                              "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
+                            attrs: { id: "bg-gray-400" },
+                            on: { click: _vm.anneau }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      couleur == 2
+                        ? _c("button", {
+                            staticClass:
+                              "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
+                            attrs: { id: "bg-gray-800" },
+                            on: { click: _vm.anneau }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      couleur == 3
+                        ? _c("button", {
+                            staticClass:
+                              "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
+                            attrs: { id: "bg-gray-600" },
+                            on: { click: _vm.anneau }
+                          })
+                        : _vm._e()
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _vm.leveljson.nbCouleur != 0
+                    ? _c("button", {
+                        staticClass:
+                          "bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl important",
+                        attrs: { id: "bg-black" },
+                        on: { click: _vm.anneau }
+                      })
+                    : _vm._e()
+                ],
+                2
+              )
             : _vm._e()
         ]
       )
@@ -2393,7 +2406,7 @@ var render = function() {
               _vm._v(
                 "\n            🚀 Level " +
                   _vm._s(_vm.leveljson.id) +
-                  " ⭐\n        "
+                  " ⭐ \n        "
               )
             ]
           ),

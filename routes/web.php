@@ -31,5 +31,9 @@ Route::get('/bravo-glados', function () {
     return view('secret');
 });
 
-
 Route::post('/bravo-glados', 'SecretController')->name('secret');
+
+
+Route::get('/win', function () {
+    return view('win');
+});
