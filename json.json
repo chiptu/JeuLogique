@@ -1,19 +1,19 @@
 {
-    "id": 10,
+    "id": 8,
     "lignes": [
         {
             "cases": [
                 {
                     "idCase": 1,
                     "couleur": "",
-                    "visible": true,
-                    "departBool": true,
+                    "visible": false,
+                    "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 2,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -88,14 +88,14 @@
                 {
                     "idCase": 2,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 3,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -170,14 +170,14 @@
                 {
                     "idCase": 3,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 4,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -252,14 +252,14 @@
                 {
                     "idCase": 4,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 5,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -305,35 +305,35 @@
             "cases": [
                 {
                     "idCase": 1,
-                    "couleur": "",
-                    "visible": false,
+                    "couleur": "bg-gray-400",
+                    "visible": true,
                     "departBool": false,
-                    "etoileBool": false
+                    "etoileBool": true
                 },
                 {
                     "idCase": 2,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 3,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 4,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 5,
-                    "couleur": "",
+                    "couleur": "bg-gray-800",
                     "visible": true,
                     "departBool": false,
                     "etoileBool": false
@@ -348,23 +348,23 @@
                 {
                     "idCase": 7,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 8,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 9,
-                    "couleur": "",
-                    "visible": false,
+                    "couleur": "bg-gray-400",
+                    "visible": true,
                     "departBool": false,
-                    "etoileBool": false
+                    "etoileBool": true
                 },
                 {
                     "idCase": 10,
@@ -409,21 +409,21 @@
                 {
                     "idCase": 5,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 6,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 7,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -484,7 +484,7 @@
                 {
                     "idCase": 5,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -498,14 +498,14 @@
                 {
                     "idCase": 7,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 8,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -559,7 +559,7 @@
                 {
                     "idCase": 5,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -580,14 +580,14 @@
                 {
                     "idCase": 8,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
                 {
                     "idCase": 9,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -634,7 +634,7 @@
                 {
                     "idCase": 5,
                     "couleur": "",
-                    "visible": false,
+                    "visible": true,
                     "departBool": false,
                     "etoileBool": false
                 },
@@ -662,9 +662,9 @@
                 {
                     "idCase": 9,
                     "couleur": "",
-                    "visible": true,
+                    "visible": false,
                     "departBool": false,
-                    "etoileBool": true
+                    "etoileBool": false
                 },
                 {
                     "idCase": 10,
@@ -708,9 +708,9 @@
                 },
                 {
                     "idCase": 5,
-                    "couleur": "",
-                    "visible": false,
-                    "departBool": false,
+                    "couleur": "bg-gray-400",
+                    "visible": true,
+                    "departBool": true,
                     "etoileBool": false
                 },
                 {
@@ -755,10 +755,10 @@
     "fonctions": [
         {
             "idFonction": 1,
-            "nombreCase": 5
+            "nombreCase": 6
         }
-        
     ],
-    "nbCouleur": 0
-   
+    "nbCouleur": 2,
+    "rotationStart": "fa-rotate-270",
+    "paint":true
 }

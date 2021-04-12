@@ -40,7 +40,7 @@
                 </div>
 
                 
-                <div class ="w-2/12">
+                <div v-if="leveljson.nbCouleur!=0" class ="w-2/12">
                     
 
 
@@ -72,7 +72,7 @@
 
 
 
-                <div class ="w-2/12">
+                <div v-if="leveljson.paint" class ="w-2/12">
 
 
                     <div v-for="couleur in leveljson.nbCouleur" :key ="couleur"  >

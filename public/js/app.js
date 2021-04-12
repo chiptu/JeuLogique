@@ -1302,7 +1302,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return tab;
     },
-    getStarsStart: function getStarsStart() // renvoie la position de depart du vaisseau en parcourant le json originel pour remettre le jeu a zerp
+    getStarsStart: function getStarsStart() // renvoie la position de depart des etoiles en parcourant le json originel pour remettre le jeu a zerp
     {
       var json = this.parse();
       var tab = [];
@@ -1322,7 +1322,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return tab;
     },
-    resetStars: function resetStars() // repositionne le vaisseau à son point de depart en enlevant toute rotation
+    resetStars: function resetStars() // repositionne les étoiles à son point de depart en enlevant toute rotation
     {
       console.log("method reset stars");
       var grilleJeu = document.getElementById("grilleJeu").childNodes; //console.log("apres grille");
@@ -1335,10 +1335,21 @@ __webpack_require__.r(__webpack_exports__);
       var starClass = " fa fa-star text-yellow-500 fa-3x ";
       var newStar = document.createElement("i");
       newStar.className = starClass;
+      console.log({
+        newStar: newStar
+      });
 
       for (var i = 0; i < position.length; i++) {
+        console.log({
+          i: i
+        });
+        console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0]);
+        console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0]);
+
         if (grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0] == null) {
-          grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].appendChild(newStar);
+          console.log("dans le if");
+          var element = grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0];
+          element.appendChild(newStar);
         }
       }
     },
@@ -2179,158 +2190,162 @@ var render = function() {
             2
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "w-2/12" },
-            [
-              _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
-                return _c("div", { key: couleur }, [
-                  couleur == 1
-                    ? _c("button", {
-                        staticClass:
-                          "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
-                        attrs: { id: "bg-gray-400" },
-                        on: { click: _vm.anneau }
-                      })
-                    : _vm._e(),
+          _vm.leveljson.nbCouleur != 0
+            ? _c(
+                "div",
+                { staticClass: "w-2/12" },
+                [
+                  _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
+                    return _c("div", { key: couleur }, [
+                      couleur == 1
+                        ? _c("button", {
+                            staticClass:
+                              "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
+                            attrs: { id: "bg-gray-400" },
+                            on: { click: _vm.anneau }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      couleur == 2
+                        ? _c("button", {
+                            staticClass:
+                              "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
+                            attrs: { id: "bg-gray-800" },
+                            on: { click: _vm.anneau }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      couleur == 3
+                        ? _c("button", {
+                            staticClass:
+                              "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
+                            attrs: { id: "bg-gray-600" },
+                            on: { click: _vm.anneau }
+                          })
+                        : _vm._e()
+                    ])
+                  }),
                   _vm._v(" "),
-                  couleur == 2
+                  _vm.leveljson.nbCouleur != 0
                     ? _c("button", {
                         staticClass:
-                          "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
-                        attrs: { id: "bg-gray-800" },
-                        on: { click: _vm.anneau }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  couleur == 3
-                    ? _c("button", {
-                        staticClass:
-                          "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
-                        attrs: { id: "bg-gray-600" },
+                          "bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl important",
+                        attrs: { id: "bg-black" },
                         on: { click: _vm.anneau }
                       })
                     : _vm._e()
-                ])
-              }),
-              _vm._v(" "),
-              _vm.leveljson.nbCouleur != 0
-                ? _c("button", {
-                    staticClass:
-                      "bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl important",
-                    attrs: { id: "bg-black" },
-                    on: { click: _vm.anneau }
-                  })
-                : _vm._e()
-            ],
-            2
-          ),
+                ],
+                2
+              )
+            : _vm._e(),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "w-2/12" },
-            [
-              _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
-                return _c("div", { key: couleur }, [
-                  couleur == 1
-                    ? _c(
-                        "button",
-                        {
-                          staticClass:
-                            "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
-                          attrs: { id: "paint-gray-400" },
-                          on: {
-                            click: function($event) {
-                              return _vm.command(
-                                "fas fa-paint-roller  fa-2x text-gray-400 pointer-events-none"
-                              )
-                            }
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass:
-                              "fas fa-paint-roller fa-2x text-gray-400"
-                          })
-                        ]
-                      )
-                    : _vm._e(),
+          _vm.leveljson.paint
+            ? _c(
+                "div",
+                { staticClass: "w-2/12" },
+                [
+                  _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
+                    return _c("div", { key: couleur }, [
+                      couleur == 1
+                        ? _c(
+                            "button",
+                            {
+                              staticClass:
+                                "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
+                              attrs: { id: "paint-gray-400" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.command(
+                                    "fas fa-paint-roller  fa-2x text-gray-400 pointer-events-none"
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass:
+                                  "fas fa-paint-roller fa-2x text-gray-400"
+                              })
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      couleur == 2
+                        ? _c(
+                            "button",
+                            {
+                              staticClass:
+                                "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
+                              attrs: { id: "paint-gray-800" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.command(
+                                    "fas fa-paint-roller fa-2x text-gray-800 pointer-events-none"
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass:
+                                  "fas fa-paint-roller fa-2x text-gray-800"
+                              })
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      couleur == 3
+                        ? _c(
+                            "button",
+                            {
+                              staticClass:
+                                "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
+                              attrs: { id: "paint-gray-600" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.command(
+                                    "fas fa-paint-roller fa-2x text-gray-600 pointer-events-none"
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass:
+                                  "fas fa-paint-roller fa-2x text-gray-600"
+                              })
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  }),
                   _vm._v(" "),
-                  couleur == 2
+                  _vm.leveljson.nbCouleur != 0
                     ? _c(
                         "button",
                         {
                           staticClass:
                             "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
-                          attrs: { id: "paint-gray-800" },
+                          attrs: { id: "paint-black" },
                           on: {
                             click: function($event) {
                               return _vm.command(
-                                "fas fa-paint-roller fa-2x text-gray-800 pointer-events-none"
+                                "fas fa-paint-roller fa-2x text-black pointer-events-none"
                               )
                             }
                           }
                         },
                         [
                           _c("i", {
-                            staticClass:
-                              "fas fa-paint-roller fa-2x text-gray-800"
-                          })
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  couleur == 3
-                    ? _c(
-                        "button",
-                        {
-                          staticClass:
-                            "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
-                          attrs: { id: "paint-gray-600" },
-                          on: {
-                            click: function($event) {
-                              return _vm.command(
-                                "fas fa-paint-roller fa-2x text-gray-600 pointer-events-none"
-                              )
-                            }
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass:
-                              "fas fa-paint-roller fa-2x text-gray-600"
+                            staticClass: "fas fa-paint-roller fa-2x text-black"
                           })
                         ]
                       )
                     : _vm._e()
-                ])
-              }),
-              _vm._v(" "),
-              _vm.leveljson.nbCouleur != 0
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
-                      attrs: { id: "paint-black" },
-                      on: {
-                        click: function($event) {
-                          return _vm.command(
-                            "fas fa-paint-roller fa-2x text-black pointer-events-none"
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-paint-roller fa-2x text-black"
-                      })
-                    ]
-                  )
-                : _vm._e()
-            ],
-            2
-          )
+                ],
+                2
+              )
+            : _vm._e()
         ]
       )
     ]

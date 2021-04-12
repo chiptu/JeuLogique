@@ -854,7 +854,7 @@
             },
 
 
-            getStarsStart() // renvoie la position de depart du vaisseau en parcourant le json originel pour remettre le jeu a zerp
+            getStarsStart() // renvoie la position de depart des etoiles en parcourant le json originel pour remettre le jeu a zerp
             {
                 let json =this.parse();
                 let tab=[];
@@ -875,7 +875,7 @@
                 return tab;
             },
 
-            resetStars() // repositionne le vaisseau à son point de depart en enlevant toute rotation
+            resetStars() // repositionne les étoiles à son point de depart en enlevant toute rotation
             {
                 console.log("method reset stars");
                 var grilleJeu = document.getElementById("grilleJeu").childNodes;
@@ -893,13 +893,19 @@
 
                 newStar.className = starClass;
                
-             
+                console.log({newStar});
+
                for (var i=0; i<position.length; i++)
                {
+                   console.log({i});
+                   console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0]);
+                   console.log(grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0]);
                    
                    if (grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].childNodes[0] == null)
                    {
-                       grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0].appendChild(newStar); 
+                       console.log("dans le if");
+                       let element = grilleJeu[position[i].j].childNodes[position[i].i].childNodes[0];
+                       element.appendChild(newStar);
                    }
                   
                    
