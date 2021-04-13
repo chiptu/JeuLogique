@@ -84,7 +84,11 @@
     </div>
 </article>-->
        
-        
+        <video autoplay muted loop  id="bgvid" class="w-full h-full absolute top left">
+  
+            <source :src="this.video()" type="video/mp4">
+
+        </video>
 
         
 

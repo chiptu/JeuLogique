@@ -27,10 +27,11 @@
 
         <form action="{{ route('secret') }}" method="post" class="box">
         
-        <h1>👏🏆  Bravo 🏆👏</h1>
-        <input type="text" name="user" placeholder="User Name">
-        <textarea id="avis" rows="3" type="text" name="avis" placeholder="cette demo est ... ceci pourrait etre ..."></textarea>
-        <input type="submit" value="Envoyer">
+        <h1 >👏🏆  Congratulations 🏆👏</h1>
+        <h2>You just reached the end of the game demo</h2>
+        <input type="text" name="user" placeholder="Your name ">
+        <textarea id="avis" rows="3" type="text" name="avis" placeholder="Your feedback,suggestions"></textarea>
+        <input type="submit" value="Send">
         </form>
     
         </div>
@@ -45,6 +46,10 @@
 </html>
 
 <style>
+
+h1{
+  font-size: 48px;
+}
 
 .galaxy {
 	position: absolute;

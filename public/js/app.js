@@ -688,6 +688,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2784,6 +2788,16 @@ var render = function() {
       _c("div", { attrs: { id: "stars3" } }),
       _vm._v(" "),
       _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "video",
+        {
+          staticClass: "w-full h-full absolute top left",
+          attrs: { autoplay: "", muted: "", loop: "", id: "bgvid" },
+          domProps: { muted: true }
+        },
+        [_c("source", { attrs: { src: this.video(), type: "video/mp4" } })]
+      ),
       _vm._v(" "),
       _c("Jeu", {
         attrs: { leveljson: this.parse() },
