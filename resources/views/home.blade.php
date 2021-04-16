@@ -24,6 +24,7 @@
 
     
     <form action="/rocket/1" class="flex  justify-center fade-in">
+        @csrf
         <input type="image"  id="c4fa" src = "{{ url('/') }}/images/tesla.jpg" class ="relative border rounded p-0 flex flex-col justify-between items-center w-1/2 h-1/2 bg-white 
         transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110  "/>
     </form>
@@ -35,21 +36,40 @@
 
         <div class ="flex h-1/2 w-full items-center justify-center ">
 
-
-        <div class="text-3xl"id="countdown" style="font-family:OCR A Std, monospace;">
+       
+        
+        <div class="text-3xl left-1"id="countdown" style="font-family:OCR A Std, monospace;">
             
-            <span id="days"></span> jours</li>
-            <span id="hours"></span>h</li>
-            
+            <span id="days"></span> jours</li>    
             
         </div>
 
+        <i class="ml-5 fab fa-steam fa-3x left-1"></i>
 
-        <i class="ml-5 fab fa-steam fa-3x"></i>
 
             
         <div class ="text-xs ml-5">
-        Illustrations par Philipon Thomas
+        Illustrations par 
+        <a class="text-blue-800" href="https://www.malt.fr/profile/thomasphilipon"> Philipon Thomas</a>
+        </div>
+
+        <div class="text-black ml-10 mr-2">2021</div>
+
+        <span class="copyleft">&copy;</span>
+
+             <a class="transition duration-500 ease-in-out transform
+              hover:-translate-y-1 hover:scale-110 ml-2 mr-10" href ="https://github.com/chiptu/JeuLogique">
+                <i class="fab fa-github  "></i>
+            </a>
+
+        <div class ="text-xs ml-10">
+            <a class="text-blue-800" href="/mention">Mentions légales  
+            </a>
+        </div>
+
+        <div class ="text-xs ml-10">
+            <a class="text-blue-800" href="/documentation">Documentation 
+            </a>
         </div>
 
         </div>
@@ -108,15 +128,15 @@ animation: fadeIn ease 5s;
         hour = minute * 60,
         day = hour * 24;
 
-  let birthday = "May 5, 2021 00:00:00",
+  let birthday = "June 1, 2021 00:00:00",
       countDown = new Date(birthday).getTime(),
       x = setInterval(function() {    
 
         let now = new Date().getTime(),
             distance = countDown - now;
 
-        document.getElementById("days").innerText = Math.floor(distance / (day)),
-          document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour));
+        document.getElementById("days").innerText = Math.floor(distance / (day))
+          //document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour));
           //document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
           //document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
 

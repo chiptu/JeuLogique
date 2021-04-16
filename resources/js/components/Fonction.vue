@@ -5,9 +5,9 @@
 
          
 
-        <div class ="flex flex-col w-full h-full justify-center content-center ml-4">
+        <div class ="flex flex-col w-full h-full justify-center content-center ml-4 t-0">
 
-            <div class="text-yellow-200 text-xl text-center mb-12 important">
+            <div class="text-yellow-200 text-xl text-center mb-6 important mt-0">
                 🚀 Level {{leveljson.id}} ⭐ 
             </div>
         
@@ -18,12 +18,12 @@
                         class ="flex flex-row  w-full  justify-center content-center overflow-x-auto h-24 important " style =" white-space: nowrap;">
                         
                         <div v-if ="fonction.nombreCase > 4">
-                            <div class =" ml-16 text-3xl mr-4 text-white important mt-4">
+                            <div class ="mt-2 ml-16 text-3xl mr-4 text-white important ">
                                 F{{fonction.idFonction}}
                             </div>
                         </div>
                         <div v-else>
-                            <div class ="ml-8 text-3xl mr-4 text-white important mt-4">
+                            <div class ="mt-2 ml-8 text-3xl mr-4 text-white important ">
                                 F{{fonction.idFonction}}
                             </div>
                         </div>
@@ -31,7 +31,7 @@
 
                             <div  v-for="monNbCase in fonction.nombreCase" :key ="monNbCase" >
 
-                                <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="mt-4  border border-white  rounded w-12 h-12 text-white mr-4 important"  v-on:click="anneau2">
+                                <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="mt-2  border border-white  rounded w-12 h-12 text-white mr-4 important"  v-on:click="anneau2">
                                 </button>
                     
                             </div>
@@ -45,7 +45,7 @@
 
             <div class ="h-auto w-full flex  justify-center">
 
-                <button id="btn-clean" class="ml-10 mt-24 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 " v-on:click="clearFunctions()">
+                <button id="btn-clean" class="ml-10 mt-32 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 " v-on:click="clearFunctions()">
                     <i class="fas fa-undo "></i>
                 </button>
             </div>

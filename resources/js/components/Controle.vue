@@ -27,7 +27,7 @@
                     </button>
 
                    
-                    <div v-for="fonction in leveljson.fonctions" :key ="fonction.idFonction"  >
+                    <div v-if="leveljson.fonctions.length <3" v-for="fonction in leveljson.fonctions" :key ="fonction.idFonction"  >
                      <button :id="'btn-f' +fonction.idFonction" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important" v-on:click="command(fonction.idFonction)">
                         <div class ="text-3xl  text-black">F{{fonction.idFonction}}</div>
                     </button>
@@ -37,6 +37,14 @@
                         
                     </button>
                   
+                </div>
+
+                <div v-if="leveljson.fonctions.length >2" class ="w-2/12 ">
+                     <div v-for="fonction in leveljson.fonctions" :key ="fonction.idFonction"  >
+                     <button :id="'btn-f' +fonction.idFonction" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important top-0" v-on:click="command(fonction.idFonction)">
+                        <div class ="text-3xl  text-black">F{{fonction.idFonction}}</div>
+                    </button>
+                    </div>
                 </div>
 
 

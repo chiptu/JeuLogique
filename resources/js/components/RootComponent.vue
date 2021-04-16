@@ -84,11 +84,6 @@
     </div>
 </article>-->
        
-        <video autoplay muted loop  id="bgvid" class="w-full h-full absolute top left">
-  
-            <source :src="this.video()" type="video/mp4">
-
-        </video>
 
         
 
@@ -155,12 +150,6 @@
             parse()
             {
                 return JSON.parse(this.leveljson)
-            },
-            video()
-            {
-                let json = this.parse();
-                let str = "https://jeu.app/videos/"+(json.id)+".mp4";
-                return str
             },
 
             time(value)
@@ -728,7 +717,7 @@
                 {
                     if (selectColor[0] !=null )// cas avec couleur 
                     {
-                         selectCase[0].className =  selectColor[0].id+ " mt-4 border border-white rounded w-12 h-12 text-white mr-4 focus-color important";   
+                         selectCase[0].className =  selectColor[0].id+ " mt-2 border border-white rounded w-12 h-12 text-white mr-4 focus-color important";   
                     }
                     
                     if (value == 1 || value ==2 || value ==3) // cas ou la case est une fonction
@@ -951,7 +940,7 @@
                        {
                            element.removeChild(element.childNodes[0]);
                        } 
-                       element.className = "mt-4 bg-black border border-white  rounded w-12 h-12 text-white mr-4 important";
+                       element.className = "mt-2 bg-black border border-white  rounded w-12 h-12 text-white mr-4 important";
                        
                    }
                 }

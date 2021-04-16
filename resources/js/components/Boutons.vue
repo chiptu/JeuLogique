@@ -8,9 +8,9 @@
                     <i class="fa fa-play fa-2x"></i>
                 </button>
 
-                <button id="pause" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important">
+                <!--<button id="pause" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important">
                     <i class="fa fa-pause fa-2x"></i>
-                </button>
+                </button>-->
 
                 <button id="stop" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important" v-on:click="stop()">
                     <i class="fa fa-stop fa-2x"></i>

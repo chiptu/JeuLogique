@@ -1,5 +1,6 @@
 {
-    "id": 9,
+    "id": 10,
+    "paint": true,
     "lignes": [
         {
             "cases": [
@@ -762,6 +763,5 @@
             "nombreCase": 3
         }
     ],
-    "nbCouleur": 3,
-    "paint":true
+    "nbCouleur": 3
 }

@@ -273,6 +273,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -687,11 +695,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -719,11 +722,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     parse: function parse() {
       return JSON.parse(this.leveljson);
-    },
-    video: function video() {
-      var json = this.parse();
-      var str = "https://jeu.app/videos/" + json.id + ".mp4";
-      return str;
     },
     time: function time(value) {
       this.delayTime = value;
@@ -1190,7 +1188,7 @@ __webpack_require__.r(__webpack_exports__);
       if (selectCase[0] != null) {
         if (selectColor[0] != null) // cas avec couleur 
           {
-            selectCase[0].className = selectColor[0].id + " mt-4 border border-white rounded w-12 h-12 text-white mr-4 focus-color important";
+            selectCase[0].className = selectColor[0].id + " mt-2 border border-white rounded w-12 h-12 text-white mr-4 focus-color important";
           }
 
         if (value == 1 || value == 2 || value == 3) // cas ou la case est une fonction
@@ -1374,7 +1372,7 @@ __webpack_require__.r(__webpack_exports__);
             element.removeChild(element.childNodes[0]);
           }
 
-          element.className = "mt-4 bg-black border border-white  rounded w-12 h-12 text-white mr-4 important";
+          element.className = "mt-2 bg-black border border-white  rounded w-12 h-12 text-white mr-4 important";
         }
       }
 
@@ -2003,8 +2001,6 @@ var render = function() {
         [_c("i", { staticClass: "fa fa-play fa-2x" })]
       ),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
       _c(
         "button",
         {
@@ -2067,22 +2063,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important",
-        attrs: { id: "pause" }
-      },
-      [_c("i", { staticClass: "fa fa-pause fa-2x" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -2171,26 +2152,28 @@ var render = function() {
               ),
               _vm._v(" "),
               _vm._l(_vm.leveljson.fonctions, function(fonction) {
-                return _c("div", { key: fonction.idFonction }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
-                      attrs: { id: "btn-f" + fonction.idFonction },
-                      on: {
-                        click: function($event) {
-                          return _vm.command(fonction.idFonction)
-                        }
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "text-3xl  text-black" }, [
-                        _vm._v("F" + _vm._s(fonction.idFonction))
-                      ])
-                    ]
-                  )
-                ])
+                return _vm.leveljson.fonctions.length < 3
+                  ? _c("div", { key: fonction.idFonction }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
+                          attrs: { id: "btn-f" + fonction.idFonction },
+                          on: {
+                            click: function($event) {
+                              return _vm.command(fonction.idFonction)
+                            }
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "text-3xl  text-black" }, [
+                            _vm._v("F" + _vm._s(fonction.idFonction))
+                          ])
+                        ]
+                      )
+                    ])
+                  : _vm._e()
               }),
               _vm._v(" "),
               _c("button", {
@@ -2206,6 +2189,36 @@ var render = function() {
             ],
             2
           ),
+          _vm._v(" "),
+          _vm.leveljson.fonctions.length > 2
+            ? _c(
+                "div",
+                { staticClass: "w-2/12 " },
+                _vm._l(_vm.leveljson.fonctions, function(fonction) {
+                  return _c("div", { key: fonction.idFonction }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important top-0",
+                        attrs: { id: "btn-f" + fonction.idFonction },
+                        on: {
+                          click: function($event) {
+                            return _vm.command(fonction.idFonction)
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "text-3xl  text-black" }, [
+                          _vm._v("F" + _vm._s(fonction.idFonction))
+                        ])
+                      ]
+                    )
+                  ])
+                }),
+                0
+              )
+            : _vm._e(),
           _vm._v(" "),
           _vm.leveljson.paint
             ? _c(
@@ -2398,13 +2411,14 @@ var render = function() {
         "div",
         {
           staticClass:
-            "flex flex-col w-full h-full justify-center content-center ml-4"
+            "flex flex-col w-full h-full justify-center content-center ml-4 t-0"
         },
         [
           _c(
             "div",
             {
-              staticClass: "text-yellow-200 text-xl text-center mb-12 important"
+              staticClass:
+                "text-yellow-200 text-xl text-center mb-6 important mt-0"
             },
             [
               _vm._v(
@@ -2434,7 +2448,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              " ml-16 text-3xl mr-4 text-white important mt-4"
+                              "mt-2 ml-16 text-3xl mr-4 text-white important "
                           },
                           [
                             _vm._v(
@@ -2450,7 +2464,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "ml-8 text-3xl mr-4 text-white important mt-4"
+                              "mt-2 ml-8 text-3xl mr-4 text-white important "
                           },
                           [
                             _vm._v(
@@ -2466,7 +2480,7 @@ var render = function() {
                     return _c("div", { key: monNbCase }, [
                       _c("button", {
                         staticClass:
-                          "mt-4  border border-white  rounded w-12 h-12 text-white mr-4 important",
+                          "mt-2  border border-white  rounded w-12 h-12 text-white mr-4 important",
                         attrs: {
                           id:
                             "btn-f" + fonction.idFonction + "-case-" + monNbCase
@@ -2487,7 +2501,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "ml-10 mt-24 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 ",
+                  "ml-10 mt-32 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 ",
                 attrs: { id: "btn-clean" },
                 on: {
                   click: function($event) {
@@ -2788,16 +2802,6 @@ var render = function() {
       _c("div", { attrs: { id: "stars3" } }),
       _vm._v(" "),
       _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "video",
-        {
-          staticClass: "w-full h-full absolute top left",
-          attrs: { autoplay: "", muted: "", loop: "", id: "bgvid" },
-          domProps: { muted: true }
-        },
-        [_c("source", { attrs: { src: this.video(), type: "video/mp4" } })]
-      ),
       _vm._v(" "),
       _c("Jeu", {
         attrs: { leveljson: this.parse() },

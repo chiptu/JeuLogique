@@ -37,3 +37,14 @@ Route::post('/bravo-glados', 'SecretController')->name('secret');
 Route::get('/win', function () {
     return view('win');
 });
+
+Route::post('/win', 'UserController@feedback')->name('feedback');
+
+
+Route::get('/mention', function () {
+    return view('mentionLegale');
+});
+
+Route::get('/documentation', function () {
+    return view('documentation');
+});
