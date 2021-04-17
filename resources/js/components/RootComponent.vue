@@ -84,6 +84,21 @@
     </div>
 </article>-->
        
+       <button v-on:click="openModal()" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-16 h-12 text-black mr-8 mt-4 ripple important" >
+            <i class="fas fa-question fa-2x"></i>
+        </button>
+
+     
+
+        <!-- The Modal -->
+        <div v-on:click="closeModal()" id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
+        </div>
+
+
+
 
         
 
@@ -105,6 +120,96 @@
 
 
 </template>
+
+<style scoped>
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 90%;
+  height: 70%; 
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+</style>
 
 
 <script>
@@ -355,7 +460,7 @@
                         //console.log("i: "+i);
                         //console.log(nbActionFonction);
 
-                        let tab =[];
+                        
 
                         let actionListe = document.getElementById("ListeAction"+(i));
 
@@ -363,12 +468,13 @@
 
                         //let actionListe2 = document.getElementById("ListeAction"+(nbAction+i+1));
 
-                        tab.push(actionListe, actionListe2)
+                        
 
-                        //console.log({actionListe,actionListe2})
+                        console.log({actionListe,actionListe2})
                         
                         //actionListe2.childNodes[0] = actionListe.childNodes[0]; 
                         actionListe2.replaceChild(actionListe.childNodes[0],actionListe2.childNodes[0]) //new old
+                        actionListe2.className = actionListe.className;
 
                         let icon = document.createElement("i");
                         actionListe.appendChild(icon);
@@ -1134,6 +1240,19 @@
 
                  }
             },
+
+            openModal (){
+                let modal = document.getElementById("myModal");
+                var modalImg = document.getElementById("img01");
+                modal.style.display = "block";
+                modalImg.src = "https://jeu.app/images/tuto.png";
+                
+            },
+
+            closeModal() { 
+            let modal = document.getElementById("myModal");
+            modal.style.display = "none";
+            }
 
 
 

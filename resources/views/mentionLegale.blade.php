@@ -35,7 +35,7 @@
             
             <h1 class=" text-5xl"><u>Web server hosting</u></h1><br>
 
-            <p class="text-xl">This site is hosted by the host ovh.
+            <p class="text-xl">This site is hosted with ovh.
             </p><br>
 
             <h1 class=" text-5xl"><u>Cookies, RGPD</u></h1><br>

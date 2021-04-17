@@ -12,7 +12,11 @@
     <!-- /qgpkd-vapsdh  caesar -->
     
 
-    <body class="w-full h-full  flex  justify-center items-center bg-black overflow-hidden">
+    <body class="w-full h-full  bg-black overflow-hidden">
+
+    <h1 class=" text-2xl text-yellow-400 text-center">🖥️ The interface is made for pc, preferably with fullscreen 🖥️ </h1>
+
+    <div class=" w-full h-full  flex  justify-center items-center">
     
     <div id="space">
         <div class="stars22"></div>
@@ -23,54 +27,59 @@
     </div>
 
     
+
     <form action="/rocket/1" class="flex  justify-center fade-in">
         @csrf
         <input type="image"  id="c4fa" src = "{{ url('/') }}/images/tesla.jpg" class ="relative border rounded p-0 flex flex-col justify-between items-center w-1/2 h-1/2 bg-white 
         transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110  "/>
     </form>
 
-    
+    </div>
 
     <footer class="bg-gray-500 absolute bottom-0 w-full">
     
 
-        <div class ="flex h-1/2 w-full items-center justify-center ">
+        <div class ="flex h-1/2 w-full items-center justify-between ">
 
-       
+
+            <div class ="flex h-full  items-center justify-left ">
         
-        <div class="text-3xl left-1"id="countdown" style="font-family:OCR A Std, monospace;">
-            
-            <span id="days"></span> jours</li>    
-            
-        </div>
+                <div class="text-3xl  "id="countdown" style="font-family:OCR A Std, monospace;">
+                    
+                    <span id="days"></span> jours</li>    
+                    
+                </div>
 
-        <i class="ml-5 fab fa-steam fa-3x left-1"></i>
+                <i class="ml-5 fab fa-steam fa-3x left-1"></i>
 
+            </div>
+                
+            <div class ="text-xs ml-5">
+            Illustrations par 
+            <a class="text-blue-800" href="https://www.malt.fr/profile/thomasphilipon"> Philipon Thomas</a>
+            </div>
 
-            
-        <div class ="text-xs ml-5">
-        Illustrations par 
-        <a class="text-blue-800" href="https://www.malt.fr/profile/thomasphilipon"> Philipon Thomas</a>
-        </div>
+            <div class ="flex h-full  items-center mr-24 ">
 
-        <div class="text-black ml-10 mr-2">2021</div>
+                <div class="text-black ml-10 mr-2">2021</div>
 
-        <span class="copyleft">&copy;</span>
+                <span class="copyleft">&copy;</span>
 
-             <a class="transition duration-500 ease-in-out transform
-              hover:-translate-y-1 hover:scale-110 ml-2 mr-10" href ="https://github.com/chiptu/JeuLogique">
-                <i class="fab fa-github  "></i>
-            </a>
+                    <a class="transition duration-500 ease-in-out transform
+                    hover:-translate-y-1 hover:scale-110 ml-2 mr-10" href ="https://github.com/chiptu/JeuLogique">
+                        <i class="fab fa-github  "></i>
+                    </a>
+            </div>
 
-        <div class ="text-xs ml-10">
-            <a class="text-blue-800" href="/mention">Mentions légales  
-            </a>
-        </div>
+            <div class ="text-xs ">
+                <a class="text-blue-800" href="/mention">Mentions légales  
+                </a>
+            </div>
 
-        <div class ="text-xs ml-10">
-            <a class="text-blue-800" href="/documentation">Documentation 
-            </a>
-        </div>
+            <div class ="text-xs mr-10">
+                <a class="text-blue-800" href="/documentation">Documentation 
+                </a>
+            </div>
 
         </div>
     
@@ -147,10 +156,10 @@ animation: fadeIn ease 5s;
 
 /// FADE IMAGE
 var i=0;
-var tabImage =["https://jeu.app/images/tesla.jpg","https://jeu.app/images/vaisseau.jpg"];
+var tabImage =["{{ url('/') }}/images/tesla.jpg","{{ url('/') }}/images/vaisseau.jpg"];
 var intervalId = window.setInterval(function(){
     i++;
-    console.log({i,tabImage});
+    //console.log({i,tabImage});
     $("#c4fa").fadeTo("slow",1, function() {
       $("#c4fa").attr("src",tabImage[i%2]);
       

@@ -26,14 +26,17 @@
 
 <body class="h-full w-full bg-black">
      
-    
+
     <div  class="w-full h-full flex justify-center " >
+
     <a href='/' class="text-white"> <i class="fas fa-arrow-left fa-5x mb-12  "></i> </a>
+    
         
         <div id= "test" class="ml-32 mr-32 text-white"><br>
 
         
-            
+            <h1 class=" text-5xl"><u>Documentation in progress </u></h1><br>
+
             <h1 class=" text-5xl"><u>Configuration </u></h1><br>
 
             <p class="text-xl">This application uses laravel, vuejs, tailwind. 
@@ -42,14 +45,8 @@
 
             <h1 class=" text-5xl"><u>Links </u></h1><br>
 
-            <p class="text-xl"> <a href='https://github.com/chiptu/JeuLogique'>Git</a><br><br>
-            <p class="text-xl">Codepen links :</p><br>
-            <p class="text-xl text-blue-600"> <a href='https://codepen.io/keithclark/pen/ibEnk'>Css star animation 1</a><br>
-            <p class="text-xl text-blue-600"> <a href='https://codepen.io/saransh/pen/BKJun'>Css star animation 2</a><br>
-            <p class="text-xl text-blue-600"> <a href='https://codepen.io/robdimarzo/pen/LMOLer'>Css planet animation </a><br>
-            <p class="text-xl text-blue-600"> <a href='https://codepen.io/neave/pen/auAcm'>Css success animation 1 </a><br>
-            <p class="text-xl text-blue-600"> <a href='https://codepen.io/Arnedo5/pen/NdjYrw'>Css success animation 2 </a><br>
-                
+            <p class="text-xl text-blue-600"> <a href='https://github.com/chiptu/JeuLogique'>Git</a><br><br>
+            
             </p><br>
 
            
