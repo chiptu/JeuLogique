@@ -317,11 +317,11 @@
                 let numero = parseInt(this.parse().id)+1;
                 if ( numero < 11)
                 {
-                    document.location.replace( "https://jeu.app/rocket/"+numero);
+                    document.location.replace( "http://thinkstar.fr/rocket/"+numero);
                 }
                 else
                 {
-                    document.location.replace( "https://jeu.app/win");
+                    document.location.replace( "http://thinkstar.fr/win");
                 }
                 
             },
@@ -1245,7 +1245,7 @@
                 let modal = document.getElementById("myModal");
                 var modalImg = document.getElementById("img01");
                 modal.style.display = "block";
-                modalImg.src = "https://jeu.app/images/tuto.png";
+                modalImg.src = "http://thinkstar.fr/images/tuto.png";
                 
             },
 
