@@ -7,18 +7,17 @@
     <meta charset="utf-8">
     
 
-    <!-- Title  -->
-    <title>StarsThink</title>
+   
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="icon" href="{{ URL::asset('/images/spaceship.png') }}" type="image/x-icon"/>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    
+    <title>ThinkStar</title>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
