@@ -868,9 +868,9 @@ __webpack_require__.r(__webpack_exports__);
       var numero = parseInt(this.parse().id) + 1;
 
       if (numero < 11) {
-        document.location.replace("https://jeu.app/rocket/" + numero);
+        document.location.replace("http://thinkstar.fr/rocket/" + numero);
       } else {
-        document.location.replace("https://jeu.app/win");
+        document.location.replace("http://thinkstar.fr/win");
       }
     },
     getAction: function getAction(grilleJeu, a, b) // ici on verifie la couleur et l action pour appeller la fct de l action
@@ -1605,7 +1605,7 @@ __webpack_require__.r(__webpack_exports__);
       var modal = document.getElementById("myModal");
       var modalImg = document.getElementById("img01");
       modal.style.display = "block";
-      modalImg.src = "https://jeu.app/images/tuto.png";
+      modalImg.src = "http://thinkstar.fr/images/tuto.png";
     },
     closeModal: function closeModal() {
       var modal = document.getElementById("myModal");

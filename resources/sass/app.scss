@@ -251,7 +251,7 @@ $solarSystem: ("mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus
                     -5px 0px 10px -4px #c07158;
       }
       .planet__surface {
-        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/332937/mars.jpg);
+        background-image: url(mars.jpeg);
         transform: rotate(25.2deg)scale(1.2);
         animation: planetRotate calc(50s) linear infinite; 
       }

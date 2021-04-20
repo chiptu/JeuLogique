@@ -10,6 +10,16 @@
        
         <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FRY7KFMM9P"></script>
+        
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-FRY7KFMM9P');
+        </script>
+
         <title>ThinkStar</title>
     </head>
 
