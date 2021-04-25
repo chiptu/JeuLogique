@@ -42,7 +42,7 @@
 
     
 
-    <form action="/rocket/1" class="flex  justify-center fade-in">
+    <form action="/play" class="flex  justify-center fade-in">
         @csrf
         <input type="image"  id="c4fa" src = "{{ url('/') }}/images/tesla.jpg" class ="relative border rounded p-0 flex flex-col justify-between items-center w-1/2 h-1/2 bg-white 
         transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110  "/>
@@ -55,22 +55,15 @@
 
         <div class ="flex h-1/2 w-full items-center justify-between ">
 
-
-            <div class ="flex h-full  items-center justify-left "><!--
-        
-                <div class="text-3xl  "id="countdown" style="font-family:OCR A Std, monospace;">
-                    
-                    <span id="days"></span> jours</li>    
-                    
-                </div>
-
-                <i class="ml-5 fab fa-steam fa-3x left-1"></i>-->
-
-            </div> 
                 
             <div class ="text-xs ml-5">
             Illustrations by
             <a class="text-blue-800" href="https://www.malt.fr/profile/thomasphilipon"> Philipon Thomas</a>
+            </div>
+
+            <div class ="text-xs ">
+            Music by
+            <a class="text-blue-800" href="https://soundcloud.com/psychosound_official"> Lointier Nicolas</a>
             </div>
 
             <div class ="flex h-full  items-center mr-24 ">
@@ -158,7 +151,7 @@ animation: fadeIn ease 5s;
         let now = new Date().getTime(),
             distance = countDown - now;
 
-        document.getElementById("days").innerText = Math.floor(distance / (day))
+           // document.getElementById("days").innerText = Math.floor(distance / (day))
           //document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour));
           //document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
           //document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);

@@ -89,7 +89,6 @@
         </button>
 
      
-
         <!-- The Modal -->
         <div v-on:click="closeModal()" id="myModal" class="modal">
             <span class="close">&times;</span>
@@ -231,7 +230,42 @@
                 boolStop:true,
             }
         },
-        props: ['leveljson'],
+
+        //props: ['leveljson'],
+
+        beforeCreate() // on get , set niveau actuel, max dans le cache et on met en cache le json du bon level
+        {
+           
+            let maxLevel = localStorage.getItem('maxLevel');
+            let currentLevel = localStorage.getItem('currentLevel');
+
+            if (maxLevel == null)   
+            {
+                localStorage.setItem('maxLevel', 1);
+                maxLevel=1;
+            }
+            if (currentLevel == null)   
+            {
+                localStorage.setItem('currentLevel', 1);
+                currentLevel=1;
+            }
+
+            if (currentLevel>maxLevel)
+            {
+                localStorage.setItem('maxLevel', currentLevel);
+            }
+
+            if (localStorage.getItem('lvlJson'+currentLevel)==null)
+            {
+                console.log("le lvlJson "+currentLevel + " n etais pas dans le cache");
+                $.getJSON('https://jeu.app/rocket/'+currentLevel, function(data) {
+                    data= JSON.stringify(data);
+                    localStorage.setItem('lvlJson'+currentLevel , data);
+                });
+            }
+
+        },
+
         mounted() {
             console.log('Component root mounted.')
 
@@ -241,7 +275,6 @@
             this.nettoyageGrille(grilleJeu);
             this.nettoyageListeAction();
 
-           
         }
         ,
         components:
@@ -252,9 +285,27 @@
         },
         methods:
         {
+
             parse()
             {
-                return JSON.parse(this.leveljson)
+                
+                let currentLevel = localStorage.getItem('currentLevel');
+
+                if (localStorage.getItem('lvlJson'+currentLevel)==null)
+                {
+                    console.log("le lvlJson "+currentLevel + " n etais pas dans le cache");
+                    $.getJSON('https://jeu.app/rocket/'+currentLevel, function(data) {
+                        data= JSON.stringify(data);
+                        localStorage.setItem('lvlJson'+currentLevel , data);
+                    });
+                }
+                
+
+                let json = localStorage.getItem('lvlJson'+currentLevel);
+                
+                console.log("parse");
+                console.log({json});
+                return JSON.parse(json);
             },
 
             time(value)
@@ -271,8 +322,6 @@
                 this.resetPaint();
                 this.cleanListeAction();
                 this.updateFunctionAction(1, false);
-
-
 
             },
             
@@ -314,7 +363,7 @@
 
             win() // Charger le niveau avec le json suivant
             {
-                let numero = parseInt(this.parse().id)+1;
+                /*let numero = parseInt(this.parse().id)+1;
                 if ( numero < 11)
                 {
                     document.location.replace( "http://thinkstar.fr/rocket/"+numero);
@@ -322,7 +371,38 @@
                 else
                 {
                     document.location.replace( "http://thinkstar.fr/win");
+                }*/
+                console.log("win");
+
+                let maxLevel = localStorage.getItem('maxLevel');
+
+                let currentLevel = localStorage.getItem('currentLevel');
+
+                currentLevel++;
+                localStorage.setItem('currentLevel', currentLevel);
+                
+
+                console.log("local storage current level");
+                console.log(localStorage.getItem('currentLevel'));
+
+                console.log("var current");
+                console.log(currentLevel);
+
+                if (currentLevel>maxLevel)
+                {
+                    localStorage.setItem('maxLevel', currentLevel);
                 }
+
+                if (currentLevel ==10)
+                {
+                    document.location.replace( "http://thinkstar.fr/win")
+                }
+                else
+                {
+                    this.$forceUpdate(); 
+                }
+                
+                
                 
             },
 

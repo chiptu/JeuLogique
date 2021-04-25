@@ -24,7 +24,12 @@ Route::get('/', function () {
 
 Route::post('/rocket/{id}', 'RocketController@levelJson')->name('levelJson');*/
 
-Route::get('/rocket/{id}', 'RocketController@levelJson')->name('levelJson');
+Route::get('/rocket/{id}', 'RocketController@levelJson')->name('levelJson'); //renvoie json pour api
+
+
+Route::get('/play', function () {
+    return view('rocketLevels');
+});
 
 
 Route::get('/bravo-glados', function () {

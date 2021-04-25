@@ -9,14 +9,19 @@
        
         <title>ThinkStar</title>
         
+       
     </head>
 
     <body class="h-full bg-black overflow-hidden">
 
-   
-    
-    
-    
+
+    <iframe src="https://jeu.app/thinkstar.mp3" type=”audio/mp3″ allow="autoplay" style="display:none;" id="audio" ></iframe>
+
+
+    <audio autoplay>
+    <source src="https://jeu.app/thinkstar.mp3" type=”audio/mp3″>
+    </audio>
+        
     @yield('content')
     
 
@@ -47,5 +52,9 @@
 
 <script>
 
+  
+  /*var audio = new Audio('../thinkstar.mp3');
+  audio.volume = 0.7;
+  audio.play();*/
 
 </script>

@@ -799,7 +799,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -811,7 +810,34 @@ __webpack_require__.r(__webpack_exports__);
       boolStop: true
     };
   },
-  props: ['leveljson'],
+  //props: ['leveljson'],
+  beforeCreate: function beforeCreate() // on get , set niveau actuel, max dans le cache et on met en cache le json du bon level
+  {
+    var maxLevel = localStorage.getItem('maxLevel');
+    var currentLevel = localStorage.getItem('currentLevel');
+
+    if (maxLevel == null) {
+      localStorage.setItem('maxLevel', 1);
+      maxLevel = 1;
+    }
+
+    if (currentLevel == null) {
+      localStorage.setItem('currentLevel', 1);
+      currentLevel = 1;
+    }
+
+    if (currentLevel > maxLevel) {
+      localStorage.setItem('maxLevel', currentLevel);
+    }
+
+    if (localStorage.getItem('lvlJson' + currentLevel) == null) {
+      console.log("le lvlJson " + currentLevel + " n etais pas dans le cache");
+      $.getJSON('https://jeu.app/rocket/' + currentLevel, function (data) {
+        data = JSON.stringify(data);
+        localStorage.setItem('lvlJson' + currentLevel, data);
+      });
+    }
+  },
   mounted: function mounted() {
     console.log('Component root mounted.');
     var grilleJeu = document.getElementById("grilleJeu").childNodes;
@@ -826,7 +852,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     parse: function parse() {
-      return JSON.parse(this.leveljson);
+      var currentLevel = localStorage.getItem('currentLevel');
+
+      if (localStorage.getItem('lvlJson' + currentLevel) == null) {
+        console.log("le lvlJson " + currentLevel + " n etais pas dans le cache");
+        $.getJSON('https://jeu.app/rocket/' + currentLevel, function (data) {
+          data = JSON.stringify(data);
+          localStorage.setItem('lvlJson' + currentLevel, data);
+        });
+      }
+
+      var json = localStorage.getItem('lvlJson' + currentLevel);
+      console.log("parse");
+      console.log({
+        json: json
+      });
+      return JSON.parse(json);
     },
     time: function time(value) {
       this.delayTime = value;
@@ -865,12 +906,33 @@ __webpack_require__.r(__webpack_exports__);
     },
     win: function win() // Charger le niveau avec le json suivant
     {
-      var numero = parseInt(this.parse().id) + 1;
+      /*let numero = parseInt(this.parse().id)+1;
+      if ( numero < 11)
+      {
+          document.location.replace( "http://thinkstar.fr/rocket/"+numero);
+      }
+      else
+      {
+          document.location.replace( "http://thinkstar.fr/win");
+      }*/
+      console.log("win");
+      var maxLevel = localStorage.getItem('maxLevel');
+      var currentLevel = localStorage.getItem('currentLevel');
+      currentLevel++;
+      localStorage.setItem('currentLevel', currentLevel);
+      console.log("local storage current level");
+      console.log(localStorage.getItem('currentLevel'));
+      console.log("var current");
+      console.log(currentLevel);
 
-      if (numero < 11) {
-        document.location.replace("http://thinkstar.fr/rocket/" + numero);
-      } else {
+      if (currentLevel > maxLevel) {
+        localStorage.setItem('maxLevel', currentLevel);
+      }
+
+      if (currentLevel == 10) {
         document.location.replace("http://thinkstar.fr/win");
+      } else {
+        this.$forceUpdate();
       }
     },
     getAction: function getAction(grilleJeu, a, b) // ici on verifie la couleur et l action pour appeller la fct de l action
