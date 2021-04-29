@@ -862,11 +862,9 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      var json = localStorage.getItem('lvlJson' + currentLevel);
-      console.log("parse");
-      console.log({
-        json: json
-      });
+      var json = localStorage.getItem('lvlJson' + currentLevel); //console.log("parse");
+      //console.log({json});
+
       return JSON.parse(json);
     },
     time: function time(value) {
@@ -892,7 +890,7 @@ __webpack_require__.r(__webpack_exports__);
       var position = this.infoGrille(grilleJeu); //console.log({grilleJeu,position});
 
       if (position.nbEtoile == 0) {
-        console.log("win");
+        this.boolStop = true;
         this.win();
       }
 
@@ -906,16 +904,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     win: function win() // Charger le niveau avec le json suivant
     {
-      /*let numero = parseInt(this.parse().id)+1;
-      if ( numero < 11)
-      {
-          document.location.replace( "http://thinkstar.fr/rocket/"+numero);
-      }
-      else
-      {
-          document.location.replace( "http://thinkstar.fr/win");
-      }*/
       console.log("win");
+      this.clearFunctions();
+      this.stop();
       var maxLevel = localStorage.getItem('maxLevel');
       var currentLevel = localStorage.getItem('currentLevel');
       currentLevel++;
@@ -932,7 +923,8 @@ __webpack_require__.r(__webpack_exports__);
       if (currentLevel == 10) {
         document.location.replace("http://thinkstar.fr/win");
       } else {
-        this.$forceUpdate();
+        this.resetShuttle();
+        this.resetStars();
       }
     },
     getAction: function getAction(grilleJeu, a, b) // ici on verifie la couleur et l action pour appeller la fct de l action

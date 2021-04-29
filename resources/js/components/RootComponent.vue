@@ -230,6 +230,29 @@
                 boolStop:true,
             }
         },
+        computed:{
+
+            leveljson: function () {
+                 let currentLevel = localStorage.getItem('currentLevel');
+
+                if (localStorage.getItem('lvlJson'+currentLevel)==null)
+                {
+                    console.log("le lvlJson "+currentLevel + " n etais pas dans le cache");
+                    $.getJSON('https://jeu.app/rocket/'+currentLevel, function(data) {
+                        data= JSON.stringify(data);
+                        localStorage.setItem('lvlJson'+currentLevel , data);
+                    });
+                }
+                
+
+                let json = localStorage.getItem('lvlJson'+currentLevel);
+                
+                //console.log("parse");
+                //console.log({json});
+                return JSON.parse(json);
+            }
+
+        }
 
         //props: ['leveljson'],
 
@@ -265,6 +288,7 @@
             }
 
         },
+        
 
         mounted() {
             console.log('Component root mounted.')
@@ -289,7 +313,7 @@
             parse()
             {
                 
-                let currentLevel = localStorage.getItem('currentLevel');
+               let currentLevel = localStorage.getItem('currentLevel');
 
                 if (localStorage.getItem('lvlJson'+currentLevel)==null)
                 {
@@ -303,9 +327,10 @@
 
                 let json = localStorage.getItem('lvlJson'+currentLevel);
                 
-                console.log("parse");
-                console.log({json});
+                //console.log("parse");
+                //console.log({json});
                 return JSON.parse(json);
+            
             },
 
             time(value)
@@ -341,7 +366,8 @@
                //console.log({grilleJeu,position});
                if (position.nbEtoile ==0)
                {
-                   console.log("win");
+                   
+                   this.boolStop = true;
                    this.win();
                }
             
@@ -363,16 +389,11 @@
 
             win() // Charger le niveau avec le json suivant
             {
-                /*let numero = parseInt(this.parse().id)+1;
-                if ( numero < 11)
-                {
-                    document.location.replace( "http://thinkstar.fr/rocket/"+numero);
-                }
-                else
-                {
-                    document.location.replace( "http://thinkstar.fr/win");
-                }*/
+                
                 console.log("win");
+
+                this.clearFunctions();
+                this.stop();
 
                 let maxLevel = localStorage.getItem('maxLevel');
 
@@ -399,7 +420,8 @@
                 }
                 else
                 {
-                    this.$forceUpdate(); 
+                    this.resetShuttle();
+                    this.resetStars();
                 }
                 
                 
