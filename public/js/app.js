@@ -807,8 +807,33 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       delayTime: 1,
-      boolStop: true
+      boolStop: true,
+      change: 0
     };
+  },
+  computed: {
+    computeJson: function computeJson() {
+      var test = this.change;
+      console.log("leveljson computed property");
+      var currentLevel = localStorage.getItem('currentLevel');
+      console.log(currentLevel);
+
+      if (localStorage.getItem('lvlJson' + currentLevel) == null) {
+        console.log("le lvlJson " + currentLevel + " n etait pas dans le cache");
+        $.getJSON('https://jeu.app/rocket/' + currentLevel, function (data) {
+          data = JSON.stringify(data);
+          localStorage.setItem('lvlJson' + currentLevel, data);
+        });
+      }
+
+      var json = localStorage.getItem('lvlJson' + currentLevel); //console.log("parse");
+
+      console.log({
+        json: json
+      }); //this.$forceUpdate();
+
+      return JSON.parse(json);
+    }
   },
   //props: ['leveljson'],
   beforeCreate: function beforeCreate() // on get , set niveau actuel, max dans le cache et on met en cache le json du bon level
@@ -831,12 +856,18 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     if (localStorage.getItem('lvlJson' + currentLevel) == null) {
-      console.log("le lvlJson " + currentLevel + " n etais pas dans le cache");
+      console.log("le lvlJson " + currentLevel + " n etait pas dans le cache");
       $.getJSON('https://jeu.app/rocket/' + currentLevel, function (data) {
         data = JSON.stringify(data);
         localStorage.setItem('lvlJson' + currentLevel, data);
       });
     }
+
+    console.log("before create");
+    console.log({
+      currentLevel: currentLevel
+    }); //console.log(this.numLevel);
+    //this.numLevel = currentLevel;
   },
   mounted: function mounted() {
     console.log('Component root mounted.');
@@ -855,16 +886,26 @@ __webpack_require__.r(__webpack_exports__);
       var currentLevel = localStorage.getItem('currentLevel');
 
       if (localStorage.getItem('lvlJson' + currentLevel) == null) {
-        console.log("le lvlJson " + currentLevel + " n etais pas dans le cache");
+        console.log("le lvlJson " + currentLevel + " n etait pas dans le cache");
         $.getJSON('https://jeu.app/rocket/' + currentLevel, function (data) {
           data = JSON.stringify(data);
           localStorage.setItem('lvlJson' + currentLevel, data);
         });
       }
 
-      var json = localStorage.getItem('lvlJson' + currentLevel); //console.log("parse");
-      //console.log({json});
+      if (localStorage.getItem('lvlJson' + (parseInt(currentLevel, 10) + 1)) == null) {
+        console.log("le lvlJson " + (parseInt(currentLevel, 10) + 1) + " n etait pas dans le cache");
+        $.getJSON('https://jeu.app/rocket/' + (parseInt(currentLevel, 10) + 1), function (data) {
+          data = JSON.stringify(data);
+          localStorage.setItem('lvlJson' + (parseInt(currentLevel, 10) + 1), data);
+        });
+      }
 
+      var json = localStorage.getItem('lvlJson' + currentLevel);
+      console.log("///parse////");
+      console.log({
+        json: json
+      });
       return JSON.parse(json);
     },
     time: function time(value) {
@@ -892,6 +933,7 @@ __webpack_require__.r(__webpack_exports__);
       if (position.nbEtoile == 0) {
         this.boolStop = true;
         this.win();
+        return;
       }
 
       console.log("avant action");
@@ -907,6 +949,11 @@ __webpack_require__.r(__webpack_exports__);
       console.log("win");
       this.clearFunctions();
       this.stop();
+      /*var grilleJeu = document.getElementById("grilleJeu");
+       while (grilleJeu.firstChild) {
+      grilleJeu.removeChild(grilleJeu.firstChild);
+      }*/
+
       var maxLevel = localStorage.getItem('maxLevel');
       var currentLevel = localStorage.getItem('currentLevel');
       currentLevel++;
@@ -922,10 +969,10 @@ __webpack_require__.r(__webpack_exports__);
 
       if (currentLevel == 10) {
         document.location.replace("http://thinkstar.fr/win");
-      } else {
-        this.resetShuttle();
-        this.resetStars();
-      }
+      } //this.clearDoubleElements(); TO DO SUPPRIMER VAISSEAU ETOILES , avant de refresh 
+
+
+      this.change++; //this.$forceUpdate();
     },
     getAction: function getAction(grilleJeu, a, b) // ici on verifie la couleur et l action pour appeller la fct de l action
     {
@@ -1664,6 +1711,37 @@ __webpack_require__.r(__webpack_exports__);
     closeModal: function closeModal() {
       var modal = document.getElementById("myModal");
       modal.style.display = "none";
+    },
+    clearDoubleElements: function clearDoubleElements() // Retourne la position du vaisseau et le nb d etoile restant 
+    {
+      console.log("clearDoubleElements");
+      var position = {
+        vaisseau: [],
+        nbEtoile: 0
+      };
+      var grilleJeu = document.getElementById("grilleJeu").childNodes;
+
+      for (var i = 0; i < 10; i++) {
+        for (var j = 0; j < 10; j++) {
+          if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null) {
+            //console.log("dans info grille");
+            //console.log(grilleJeu[i].childNodes[j].childNodes[0]);
+            //console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0]);
+            if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star")) {
+              console.log(grilleJeu[i].childNodes[j].childNodes[0]);
+              console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
+            }
+
+            if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-space-shuttle")) {
+              console.log(grilleJeu[i].childNodes[j].childNodes[0]);
+              console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
+            }
+          }
+        }
+      } //console.log({position});
+
+
+      return position;
     }
   }
 });
@@ -3654,7 +3732,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("Jeu", {
-        attrs: { leveljson: this.parse() },
+        attrs: { leveljson: this.computeJson },
         on: { time: _vm.time, play: _vm.play, stop: _vm.stop }
       }),
       _vm._v(" "),
@@ -3663,12 +3741,12 @@ var render = function() {
         { staticClass: "flex w-4/12 flex-col" },
         [
           _c("Fonction", {
-            attrs: { leveljson: this.parse() },
+            attrs: { leveljson: this.computeJson },
             on: { clearFunctions: _vm.clearFunctions }
           }),
           _vm._v(" "),
           _c("Controle", {
-            attrs: { leveljson: this.parse() },
+            attrs: { leveljson: this.computeJson },
             on: { command: _vm.command }
           })
         ],

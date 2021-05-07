@@ -101,15 +101,15 @@
 
         
 
-        <Jeu :leveljson = "this.parse()" @time="time" @play="play" @stop="stop"/>
+        <Jeu :leveljson = "this.computeJson" @time="time" @play="play" @stop="stop"/>
 
         <div class ="flex w-4/12 flex-col">
 
             
-                <Fonction :leveljson = "this.parse()" @clearFunctions="clearFunctions" />
+                <Fonction :leveljson = "this.computeJson" @clearFunctions="clearFunctions" />
 
              
-                <Controle :leveljson = "this.parse()" @command="command"/>
+                <Controle :leveljson = "this.computeJson" @command="command"/>
             
         
         </div>
@@ -228,31 +228,40 @@
             return {
                 delayTime:1,
                 boolStop:true,
+                change:0,
+               
             }
         },
         computed:{
 
-            leveljson: function () {
+            computeJson: function () {
+
+                let test = this.change;
+
+                console.log("leveljson computed property")
                  let currentLevel = localStorage.getItem('currentLevel');
+                 console.log(currentLevel);
 
                 if (localStorage.getItem('lvlJson'+currentLevel)==null)
                 {
-                    console.log("le lvlJson "+currentLevel + " n etais pas dans le cache");
+                    console.log("le lvlJson "+currentLevel + " n etait pas dans le cache");
                     $.getJSON('https://jeu.app/rocket/'+currentLevel, function(data) {
                         data= JSON.stringify(data);
                         localStorage.setItem('lvlJson'+currentLevel , data);
                     });
                 }
                 
-
                 let json = localStorage.getItem('lvlJson'+currentLevel);
                 
                 //console.log("parse");
-                //console.log({json});
+                console.log({json});
+
+                //this.$forceUpdate();
+
                 return JSON.parse(json);
             }
 
-        }
+        },
 
         //props: ['leveljson'],
 
@@ -280,12 +289,16 @@
 
             if (localStorage.getItem('lvlJson'+currentLevel)==null)
             {
-                console.log("le lvlJson "+currentLevel + " n etais pas dans le cache");
+                console.log("le lvlJson "+currentLevel + " n etait pas dans le cache");
                 $.getJSON('https://jeu.app/rocket/'+currentLevel, function(data) {
                     data= JSON.stringify(data);
                     localStorage.setItem('lvlJson'+currentLevel , data);
                 });
             }
+            console.log("before create");
+            console.log({currentLevel});
+            //console.log(this.numLevel);
+            //this.numLevel = currentLevel;
 
         },
         
@@ -293,6 +306,7 @@
         mounted() {
             console.log('Component root mounted.')
 
+           
             let grilleJeu = document.getElementById("grilleJeu").childNodes;
 
             this.nettoyageGrille(grilleJeu);
@@ -317,18 +331,26 @@
 
                 if (localStorage.getItem('lvlJson'+currentLevel)==null)
                 {
-                    console.log("le lvlJson "+currentLevel + " n etais pas dans le cache");
+                    console.log("le lvlJson "+currentLevel + " n etait pas dans le cache");
                     $.getJSON('https://jeu.app/rocket/'+currentLevel, function(data) {
                         data= JSON.stringify(data);
                         localStorage.setItem('lvlJson'+currentLevel , data);
+                    });
+                }
+                if (localStorage.getItem('lvlJson'+(parseInt(currentLevel,10)+1))==null)
+                {
+                    console.log("le lvlJson "+(parseInt(currentLevel,10)+1) + " n etait pas dans le cache");
+                    $.getJSON('https://jeu.app/rocket/'+(parseInt(currentLevel,10)+1), function(data) {
+                        data= JSON.stringify(data);
+                        localStorage.setItem('lvlJson'+(parseInt(currentLevel,10)+1) , data);
                     });
                 }
                 
 
                 let json = localStorage.getItem('lvlJson'+currentLevel);
                 
-                //console.log("parse");
-                //console.log({json});
+                console.log("///parse////");
+                console.log({json});
                 return JSON.parse(json);
             
             },
@@ -369,6 +391,7 @@
                    
                    this.boolStop = true;
                    this.win();
+                   return;
                }
             
                 console.log("avant action");
@@ -393,7 +416,14 @@
                 console.log("win");
 
                 this.clearFunctions();
+                
                 this.stop();
+
+                /*var grilleJeu = document.getElementById("grilleJeu");
+
+                while (grilleJeu.firstChild) {
+                grilleJeu.removeChild(grilleJeu.firstChild);
+                }*/
 
                 let maxLevel = localStorage.getItem('maxLevel');
 
@@ -409,6 +439,7 @@
                 console.log("var current");
                 console.log(currentLevel);
 
+
                 if (currentLevel>maxLevel)
                 {
                     localStorage.setItem('maxLevel', currentLevel);
@@ -418,15 +449,17 @@
                 {
                     document.location.replace( "http://thinkstar.fr/win")
                 }
-                else
-                {
-                    this.resetShuttle();
-                    this.resetStars();
-                }
                 
+               
+                //this.clearDoubleElements(); TO DO SUPPRIMER VAISSEAU ETOILES , avant de refresh 
+
                 
+                this.change++;
+
+                //this.$forceUpdate();
                 
             },
+            
 
             getAction(grilleJeu,a,b) // ici on verifie la couleur et l action pour appeller la fct de l action
             {
@@ -1354,7 +1387,49 @@
             closeModal() { 
             let modal = document.getElementById("myModal");
             modal.style.display = "none";
-            }
+            },
+
+
+            clearDoubleElements() // Retourne la position du vaisseau et le nb d etoile restant 
+            {
+                console.log("clearDoubleElements");
+
+                let position = {vaisseau:[],nbEtoile:0}
+                let grilleJeu = document.getElementById("grilleJeu").childNodes;
+
+                 for (var i = 0; i< 10;i++)
+                 {
+                     for (var j = 0; j< 10;j++)
+                    {
+                    
+                     if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null)
+                     {
+                        //console.log("dans info grille");
+                        //console.log(grilleJeu[i].childNodes[j].childNodes[0]);
+                        //console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0]);
+                         
+                         if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star"))
+                         {
+                             console.log(grilleJeu[i].childNodes[j].childNodes[0]);
+                            console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
+                         }
+                        
+                         if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] !=null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-space-shuttle"))
+                         {
+                             console.log(grilleJeu[i].childNodes[j].childNodes[0]);
+                             console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
+                         }
+            
+                     }
+
+                    }
+                    
+                 }
+                 
+                 //console.log({position});
+                 return position;
+            },
+
 
 
 
