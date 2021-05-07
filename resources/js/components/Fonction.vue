@@ -10,6 +10,16 @@
             <div class="text-yellow-200 text-xl text-center mb-6 important mt-0">
                 🚀 Level {{leveljson.id}} ⭐ 
             </div>
+
+            <div class="text-center">
+                <button id="nextLevel" class="bg-white border border-white hover:border-black rounded w-12 h-8 mr-8 mb-2 important" v-on:click="changeLevel('left')">
+                        <i class="fa fa-arrow-left fa-2x"></i>
+                </button>
+
+                <button id="nextLevel" class="bg-white border border-white hover:border-black rounded w-12 h-8 ml-8 mb-2 important" v-on:click="changeLevel('right')">
+                        <i class="fa fa-arrow-right fa-2x"></i>
+                </button>
+            </div>
         
             <div class ="h-3/12 mr-8"> 
                     

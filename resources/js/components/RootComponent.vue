@@ -101,7 +101,7 @@
 
         
 
-        <Jeu :leveljson = "this.computeJson" @time="time" @play="play" @stop="stop"/>
+        <Jeu :leveljson = "this.computeJson" @time="time" @play="play" @stop="stop" />
 
         <div class ="flex w-4/12 flex-col">
 
@@ -350,7 +350,7 @@
                 let json = localStorage.getItem('lvlJson'+currentLevel);
                 
                 console.log("///parse////");
-                console.log({json});
+                //console.log({json});
                 return JSON.parse(json);
             
             },
@@ -377,10 +377,16 @@
             {
                 console.log("debut fct play ");
 
+                
+
+
                // VERIFIER ICI EN 1er si win 
                this.boolStop= false;
                 
                let grilleJeu = document.getElementById("grilleJeu").childNodes;
+
+                this.nettoyageGrille(grilleJeu);
+                this.nettoyageGrille(grilleJeu);
 
                 console.log("avant infoGrille");
                let position = this.infoGrille(grilleJeu);
@@ -419,11 +425,9 @@
                 
                 this.stop();
 
-                /*var grilleJeu = document.getElementById("grilleJeu");
+                this.clearDoubleElements();
 
-                while (grilleJeu.firstChild) {
-                grilleJeu.removeChild(grilleJeu.firstChild);
-                }*/
+        
 
                 let maxLevel = localStorage.getItem('maxLevel');
 
@@ -445,18 +449,15 @@
                     localStorage.setItem('maxLevel', currentLevel);
                 }
 
-                if (currentLevel ==10)
+                if (currentLevel ==11)
                 {
                     document.location.replace( "http://thinkstar.fr/win")
                 }
                 
-               
-                //this.clearDoubleElements(); TO DO SUPPRIMER VAISSEAU ETOILES , avant de refresh 
 
-                
                 this.change++;
 
-                //this.$forceUpdate();
+                this.$forceUpdate();
                 
             },
             
@@ -1070,8 +1071,12 @@
                    this.setShuttle(grilleJeu,position.vaisseau[0],position.vaisseau[1],position2[0],position2[1]);
                }
                
-             
-               grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
+               
+                if (grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0] != null)
+                {
+                    grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
+                }
+               
                 
                grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle); 
 
@@ -1408,16 +1413,15 @@
                         //console.log(grilleJeu[i].childNodes[j].childNodes[0]);
                         //console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0]);
                          
-                         if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star"))
+                         if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star"))
                          {
-                             console.log(grilleJeu[i].childNodes[j].childNodes[0]);
-                            console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
+                             grilleJeu[i].childNodes[j].childNodes[0].removeChild(grilleJeu[i].childNodes[j].childNodes[0].firstChild);
+                           
                          }
                         
                          if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] !=null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-space-shuttle"))
                          {
-                             console.log(grilleJeu[i].childNodes[j].childNodes[0]);
-                             console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
+                             grilleJeu[i].childNodes[j].childNodes[0].removeChild(grilleJeu[i].childNodes[j].childNodes[0].firstChild);
                          }
             
                      }

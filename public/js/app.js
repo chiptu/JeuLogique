@@ -379,6 +379,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -469,6 +479,11 @@ __webpack_require__.r(__webpack_exports__);
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component Jeu mounted.');
+  },
+  updated: function updated() {
+    console.log("Vuejs Jeu updated");
+    this.$parent.resetStars();
+    this.$parent.resetShuttle();
   },
   components: {
     Listeactions: _ListeActions__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -902,10 +917,8 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       var json = localStorage.getItem('lvlJson' + currentLevel);
-      console.log("///parse////");
-      console.log({
-        json: json
-      });
+      console.log("///parse////"); //console.log({json});
+
       return JSON.parse(json);
     },
     time: function time(value) {
@@ -927,6 +940,8 @@ __webpack_require__.r(__webpack_exports__);
 
       this.boolStop = false;
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
+      this.nettoyageGrille(grilleJeu);
+      this.nettoyageGrille(grilleJeu);
       console.log("avant infoGrille");
       var position = this.infoGrille(grilleJeu); //console.log({grilleJeu,position});
 
@@ -949,11 +964,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log("win");
       this.clearFunctions();
       this.stop();
-      /*var grilleJeu = document.getElementById("grilleJeu");
-       while (grilleJeu.firstChild) {
-      grilleJeu.removeChild(grilleJeu.firstChild);
-      }*/
-
+      this.clearDoubleElements();
       var maxLevel = localStorage.getItem('maxLevel');
       var currentLevel = localStorage.getItem('currentLevel');
       currentLevel++;
@@ -967,12 +978,12 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.setItem('maxLevel', currentLevel);
       }
 
-      if (currentLevel == 10) {
+      if (currentLevel == 11) {
         document.location.replace("http://thinkstar.fr/win");
-      } //this.clearDoubleElements(); TO DO SUPPRIMER VAISSEAU ETOILES , avant de refresh 
+      }
 
-
-      this.change++; //this.$forceUpdate();
+      this.change++;
+      this.$forceUpdate();
     },
     getAction: function getAction(grilleJeu, a, b) // ici on verifie la couleur et l action pour appeller la fct de l action
     {
@@ -1501,7 +1512,10 @@ __webpack_require__.r(__webpack_exports__);
         this.setShuttle(grilleJeu, position.vaisseau[0], position.vaisseau[1], position2[0], position2[1]);
       }
 
-      grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
+      if (grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0] != null) {
+        grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].childNodes[0].remove();
+      }
+
       grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle);
     },
     getShuttleStart: function getShuttleStart() // renvoie la position de depart du vaisseau en parcourant le json originel pour remettre le jeu a zerp
@@ -1727,14 +1741,12 @@ __webpack_require__.r(__webpack_exports__);
             //console.log("dans info grille");
             //console.log(grilleJeu[i].childNodes[j].childNodes[0]);
             //console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[0]);
-            if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star")) {
-              console.log(grilleJeu[i].childNodes[j].childNodes[0]);
-              console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
+            if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-star")) {
+              grilleJeu[i].childNodes[j].childNodes[0].removeChild(grilleJeu[i].childNodes[j].childNodes[0].firstChild);
             }
 
             if (grilleJeu[i].childNodes[j].childNodes[0].childNodes[0] != null && grilleJeu[i].childNodes[j].childNodes[0].childNodes[0].className.includes("fa-space-shuttle")) {
-              console.log(grilleJeu[i].childNodes[j].childNodes[0]);
-              console.log(grilleJeu[i].childNodes[j].childNodes[0].childNodes[1]);
+              grilleJeu[i].childNodes[j].childNodes[0].removeChild(grilleJeu[i].childNodes[j].childNodes[0].firstChild);
             }
           }
         }
@@ -3322,6 +3334,38 @@ var render = function() {
               )
             ]
           ),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-center" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-8 mr-8 mb-2 important",
+                attrs: { id: "nextLevel" },
+                on: {
+                  click: function($event) {
+                    return _vm.changeLevel("left")
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fa fa-arrow-left fa-2x" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-white border border-white hover:border-black rounded w-12 h-8 ml-8 mb-2 important",
+                attrs: { id: "nextLevel" },
+                on: {
+                  click: function($event) {
+                    return _vm.changeLevel("right")
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fa fa-arrow-right fa-2x" })]
+            )
+          ]),
           _vm._v(" "),
           _c(
             "div",

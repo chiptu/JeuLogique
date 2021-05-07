@@ -58,6 +58,13 @@
             console.log('Component Jeu mounted.')
         } ,
 
+        updated()
+        {
+            console.log("Vuejs Jeu updated");
+            this.$parent.resetStars();
+            this.$parent.resetShuttle();
+        },
+
         
         components:
         {
