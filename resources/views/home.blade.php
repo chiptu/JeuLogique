@@ -141,8 +141,8 @@ for (let i=1; i<11 ; i++)
 {
     if (localStorage.getItem('lvlJson'+i)==null)
     {
-        console.log("le lvlJson"+i+ " n etais pas dans le cache");
-        $.getJSON('rocket/'+i, function(data) {
+        console.log("le lvlJson"+i+ " n etait pas dans le cache");
+        $.getJSON('/rocket/'+i, function(data) {
             data= JSON.stringify(data);
             localStorage.setItem('lvlJson'+i, data);
         });
