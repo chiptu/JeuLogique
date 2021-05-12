@@ -26,7 +26,7 @@ class RocketController extends Controller
 
         $leveljson = $leveljson->levelJson; // pour descendre un niveau plus loin dans le json
 
-        return response()->json($leveljson);
+        return response()->json([$leveljson],200);
     }
     
 
