@@ -15,11 +15,11 @@
     <body class="h-full bg-black overflow-hidden">
 
 
-    <iframe src="https://jeu.app/thinkstar.mp3" type=”audio/mp3″ allow="autoplay" style="display:none;" id="audio" ></iframe>
+    <iframe src="https://thinkstar.fr/thinkstar.mp3" type=”audio/mp3″ allow="autoplay" style="display:none;" id="audio" ></iframe>
 
 
     <audio autoplay>
-    <source src="https://jeu.app/thinkstar.mp3" type=”audio/mp3″>
+    <source src="https://thinkstar.fr/thinkstar.mp3" type=”audio/mp3″>
     </audio>
         
     @yield('content')

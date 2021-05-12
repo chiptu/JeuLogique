@@ -142,7 +142,7 @@ for (let i=1; i<11 ; i++)
     if (localStorage.getItem('lvlJson'+i)==null)
     {
         console.log("le lvlJson"+i+ " n etais pas dans le cache");
-        $.getJSON('https://jeu.app/rocket/'+i, function(data) {
+        $.getJSON('https://thinkstar.fr/rocket/'+i, function(data) {
             data= JSON.stringify(data);
             localStorage.setItem('lvlJson'+i, data);
         });
