@@ -63,6 +63,22 @@
             console.log("Vuejs Jeu updated");
             this.$parent.resetStars();
             this.$parent.resetShuttle();
+
+            let currentLevel = localStorage.getItem('currentLevel');
+            let maxLevel = localStorage.getItem('maxLevel');
+
+            document.getElementById("previousLevel").hidden = false;
+            document.getElementById("nextLevel").hidden = false;
+
+            if (currentLevel == maxLevel)
+            {
+                this.$parent.hideNext();
+            }
+            if (currentLevel == "1")
+            {
+                this.$parent.hidePrevious();
+            }
+            
         },
 
         

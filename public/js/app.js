@@ -389,6 +389,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -398,6 +401,14 @@ __webpack_require__.r(__webpack_exports__);
     clearFunctions: function clearFunctions() {
       //console.log("dans fonctions.vue");
       this.$emit('clearFunctions');
+    },
+    previousLevel: function previousLevel() {
+      console.log("dans fonctions.vue");
+      this.$emit('previousLevel');
+    },
+    win: function win() {
+      console.log("dans fonctions.vue");
+      this.$emit('win');
     },
     anneau2: function anneau2(event) {
       if (event) {
@@ -484,6 +495,18 @@ __webpack_require__.r(__webpack_exports__);
     console.log("Vuejs Jeu updated");
     this.$parent.resetStars();
     this.$parent.resetShuttle();
+    var currentLevel = localStorage.getItem('currentLevel');
+    var maxLevel = localStorage.getItem('maxLevel');
+    document.getElementById("previousLevel").hidden = false;
+    document.getElementById("nextLevel").hidden = false;
+
+    if (currentLevel == maxLevel) {
+      this.$parent.hideNext();
+    }
+
+    if (currentLevel == "1") {
+      this.$parent.hidePrevious();
+    }
   },
   components: {
     Listeactions: _ListeActions__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -833,7 +856,7 @@ __webpack_require__.r(__webpack_exports__);
       var currentLevel = localStorage.getItem('currentLevel');
       console.log(currentLevel);
 
-      if (localStorage.getItem('lvlJson' + currentLevel) == null) {
+      if (localStorage.getItem('lvlJson' + currentLevel) == null && currentLevel != "10") {
         console.log("le lvlJson " + currentLevel + " n etait pas dans le cache");
         $.getJSON('https://jeu.app/rocket/' + currentLevel, function (data) {
           data = JSON.stringify(data);
@@ -870,8 +893,8 @@ __webpack_require__.r(__webpack_exports__);
       localStorage.setItem('maxLevel', currentLevel);
     }
 
-    if (localStorage.getItem('lvlJson' + currentLevel) == null) {
-      console.log("le lvlJson " + currentLevel + " n etait pas dans le cache");
+    if (localStorage.getItem('lvlJson' + currentLevel) == null && currentLevel != "10") {
+      console.log("le lvlJson " + currentLevel + " n etait pas dans le cache before create");
       $.getJSON('https://jeu.app/rocket/' + currentLevel, function (data) {
         data = JSON.stringify(data);
         localStorage.setItem('lvlJson' + currentLevel, data);
@@ -908,8 +931,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      if (localStorage.getItem('lvlJson' + (parseInt(currentLevel, 10) + 1)) == null) {
-        console.log("le lvlJson " + (parseInt(currentLevel, 10) + 1) + " n etait pas dans le cache");
+      if (localStorage.getItem('lvlJson' + (parseInt(currentLevel, 10) + 1)) == null && currentLevel != "10") {
+        console.log("le lvlJson " + (parseInt(currentLevel, 10) + 1) + " n etait pas dans le cache parse");
         $.getJSON('https://jeu.app/rocket/' + (parseInt(currentLevel, 10) + 1), function (data) {
           data = JSON.stringify(data);
           localStorage.setItem('lvlJson' + (parseInt(currentLevel, 10) + 1), data);
@@ -982,6 +1005,23 @@ __webpack_require__.r(__webpack_exports__);
         document.location.replace("http://thinkstar.fr/win");
       }
 
+      this.change++;
+      this.$forceUpdate(); //this.nettoyageGrille(grilleJeu);
+      //this.nettoyageGrille(grilleJeu);
+    },
+    previousLevel: function previousLevel() {
+      console.log("previous level");
+      this.clearFunctions();
+      this.stop();
+      this.clearDoubleElements();
+      var maxLevel = localStorage.getItem('maxLevel');
+      var currentLevel = localStorage.getItem('currentLevel');
+
+      if (currentLevel > 1) {
+        currentLevel--;
+      }
+
+      localStorage.setItem('currentLevel', currentLevel);
       this.change++;
       this.$forceUpdate();
     },
@@ -1500,8 +1540,10 @@ __webpack_require__.r(__webpack_exports__);
     {
       console.log("method reset shuttle");
       var grilleJeu = document.getElementById("grilleJeu").childNodes;
-      var position = this.infoGrille(grilleJeu); //console.log("apres grille");
-
+      this.nettoyageGrille(grilleJeu);
+      this.nettoyageGrille(grilleJeu);
+      var position = this.infoGrille(grilleJeu);
+      console.log("apres grille");
       var position2 = this.getShuttleStart(); //console.log({position,position2});
 
       var shuttleClass = "fa fa-space-shuttle text-white fa-3x " + this.parse().rotationStart;
@@ -1517,6 +1559,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle);
+      console.log("fin resetshuttle");
     },
     getShuttleStart: function getShuttleStart() // renvoie la position de depart du vaisseau en parcourant le json originel pour remettre le jeu a zerp
     {
@@ -1754,6 +1797,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
       return position;
+    },
+    hideNext: function hideNext() {
+      document.getElementById("nextLevel").hidden = true;
+    },
+    hidePrevious: function hidePrevious() {
+      document.getElementById("previousLevel").hidden = true;
     }
   }
 });
@@ -3324,48 +3373,52 @@ var render = function() {
             "div",
             {
               staticClass:
-                "text-yellow-200 text-xl text-center mb-6 important mt-0"
+                "flex flex-row  w-full  justify-center content-center overflow-x-auto h-18 important "
             },
             [
-              _vm._v(
-                "\n            🚀 Level " +
-                  _vm._s(_vm.leveljson.id) +
-                  " ⭐ \n        "
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-black border border-white hover:border-white rounded w-12 h-8 mr-8 mb-2 important",
+                  attrs: { id: "previousLevel" },
+                  on: {
+                    click: function($event) {
+                      return _vm.previousLevel()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "text-white fa fa-arrow-left fa-2x" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "text-yellow-200 text-xl mb-6 important mt-0" },
+                [
+                  _vm._v(
+                    "\n            🚀 Level " +
+                      _vm._s(_vm.leveljson.id) +
+                      " ⭐ \n            "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-black border border-white hover:border-white rounded w-12 h-8 ml-8 mb-2 important",
+                  attrs: { id: "nextLevel" },
+                  on: {
+                    click: function($event) {
+                      return _vm.win()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "text-white fa fa-arrow-right fa-2x" })]
               )
             ]
           ),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-center" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "bg-white border border-white hover:border-black rounded w-12 h-8 mr-8 mb-2 important",
-                attrs: { id: "nextLevel" },
-                on: {
-                  click: function($event) {
-                    return _vm.changeLevel("left")
-                  }
-                }
-              },
-              [_c("i", { staticClass: "fa fa-arrow-left fa-2x" })]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "bg-white border border-white hover:border-black rounded w-12 h-8 ml-8 mb-2 important",
-                attrs: { id: "nextLevel" },
-                on: {
-                  click: function($event) {
-                    return _vm.changeLevel("right")
-                  }
-                }
-              },
-              [_c("i", { staticClass: "fa fa-arrow-right fa-2x" })]
-            )
-          ]),
           _vm._v(" "),
           _c(
             "div",
@@ -3786,7 +3839,11 @@ var render = function() {
         [
           _c("Fonction", {
             attrs: { leveljson: this.computeJson },
-            on: { clearFunctions: _vm.clearFunctions }
+            on: {
+              clearFunctions: _vm.clearFunctions,
+              previousLevel: _vm.previousLevel,
+              win: _vm.win
+            }
           }),
           _vm._v(" "),
           _c("Controle", {

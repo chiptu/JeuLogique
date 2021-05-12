@@ -106,7 +106,7 @@
         <div class ="flex w-4/12 flex-col">
 
             
-                <Fonction :leveljson = "this.computeJson" @clearFunctions="clearFunctions" />
+                <Fonction :leveljson = "this.computeJson" @clearFunctions="clearFunctions" @previousLevel="previousLevel" @win="win"/>
 
              
                 <Controle :leveljson = "this.computeJson" @command="command"/>
@@ -242,7 +242,7 @@
                  let currentLevel = localStorage.getItem('currentLevel');
                  console.log(currentLevel);
 
-                if (localStorage.getItem('lvlJson'+currentLevel)==null)
+                if (localStorage.getItem('lvlJson'+currentLevel)==null && currentLevel!="10")
                 {
                     console.log("le lvlJson "+currentLevel + " n etait pas dans le cache");
                     $.getJSON('https://jeu.app/rocket/'+currentLevel, function(data) {
@@ -287,9 +287,9 @@
                 localStorage.setItem('maxLevel', currentLevel);
             }
 
-            if (localStorage.getItem('lvlJson'+currentLevel)==null)
+            if (localStorage.getItem('lvlJson'+currentLevel)==null && currentLevel!="10")
             {
-                console.log("le lvlJson "+currentLevel + " n etait pas dans le cache");
+                console.log("le lvlJson "+currentLevel + " n etait pas dans le cache before create");
                 $.getJSON('https://jeu.app/rocket/'+currentLevel, function(data) {
                     data= JSON.stringify(data);
                     localStorage.setItem('lvlJson'+currentLevel , data);
@@ -337,9 +337,9 @@
                         localStorage.setItem('lvlJson'+currentLevel , data);
                     });
                 }
-                if (localStorage.getItem('lvlJson'+(parseInt(currentLevel,10)+1))==null)
+                if (localStorage.getItem('lvlJson'+(parseInt(currentLevel,10)+1))==null && currentLevel!="10")
                 {
-                    console.log("le lvlJson "+(parseInt(currentLevel,10)+1) + " n etait pas dans le cache");
+                    console.log("le lvlJson "+(parseInt(currentLevel,10)+1) + " n etait pas dans le cache parse");
                     $.getJSON('https://jeu.app/rocket/'+(parseInt(currentLevel,10)+1), function(data) {
                         data= JSON.stringify(data);
                         localStorage.setItem('lvlJson'+(parseInt(currentLevel,10)+1) , data);
@@ -369,6 +369,7 @@
                 this.resetPaint();
                 this.cleanListeAction();
                 this.updateFunctionAction(1, false);
+                
 
             },
             
@@ -376,16 +377,13 @@
             play()
             {
                 console.log("debut fct play ");
-
                 
-
-
                // VERIFIER ICI EN 1er si win 
                this.boolStop= false;
                 
                let grilleJeu = document.getElementById("grilleJeu").childNodes;
 
-                this.nettoyageGrille(grilleJeu);
+               this.nettoyageGrille(grilleJeu);
                 this.nettoyageGrille(grilleJeu);
 
                 console.log("avant infoGrille");
@@ -414,12 +412,15 @@
                
                 }, 1000/this.delayTime);
 
+                
+
             },
 
             win() // Charger le niveau avec le json suivant
             {
                 
                 console.log("win");
+
 
                 this.clearFunctions();
                 
@@ -458,8 +459,45 @@
                 this.change++;
 
                 this.$forceUpdate();
-                
+
+                //this.nettoyageGrille(grilleJeu);
+                //this.nettoyageGrille(grilleJeu);
             },
+
+            previousLevel()
+            {
+
+                console.log("previous level");
+
+                this.clearFunctions();
+                
+                this.stop();
+
+                this.clearDoubleElements();
+
+
+
+                let maxLevel = localStorage.getItem('maxLevel');
+
+                let currentLevel = localStorage.getItem('currentLevel');
+
+                
+                if (currentLevel>1)
+                {
+                    currentLevel--;
+                }
+
+                localStorage.setItem('currentLevel', currentLevel);
+                
+               
+
+                this.change++;
+
+                this.$forceUpdate();
+
+
+            },
+
             
 
             getAction(grilleJeu,a,b) // ici on verifie la couleur et l action pour appeller la fct de l action
@@ -1052,10 +1090,15 @@
             resetShuttle() // repositionne le vaisseau à son point de depart en enlevant toute rotation
             {
                 console.log("method reset shuttle");
+
+
                 var grilleJeu = document.getElementById("grilleJeu").childNodes;
 
+                this.nettoyageGrille(grilleJeu);
+                this.nettoyageGrille(grilleJeu);
+
                 var position = this.infoGrille(grilleJeu);
-                //console.log("apres grille");
+                console.log("apres grille");
                 var position2 = this.getShuttleStart();  
 
                 //console.log({position,position2});
@@ -1079,6 +1122,7 @@
                
                 
                grilleJeu[position2[1]].childNodes[position2[0]].childNodes[0].appendChild(newShuttle); 
+               console.log("fin resetshuttle");
 
             },
 
@@ -1432,6 +1476,15 @@
                  
                  //console.log({position});
                  return position;
+            },
+
+            hideNext()
+            {
+                document.getElementById("nextLevel").hidden = true;
+            },
+            hidePrevious()
+            {
+                document.getElementById("previousLevel").hidden = true;
             },
 
 

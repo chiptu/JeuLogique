@@ -33,18 +33,44 @@
     <footer class="bg-white absolute bottom-0 w-full">
     
 
-        <div class ="flex h-1/2 w-full justify-center ">
+    <div class ="flex h-1/2 w-full items-center justify-between ">
 
-        <div class="text-black mr-2">2021</div>
+            
+        <div class ="text-xs ml-5">
+        Illustrations by
+        <a class="text-blue-800" href="https://www.malt.fr/profile/thomasphilipon"> Philipon Thomas</a>
+        </div>
 
-        <span class="copyleft">&copy;</span>
+        <div class ="text-xs ">
+        Music by
+        <a class="text-blue-800" href="https://soundcloud.com/psychosound_official"> Lointier Nicolas</a>
+        </div>
 
-             <a class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ml-5" href ="https://github.com/chiptu/JeuLogique">
-                <i class="fab fa-github  "></i>
+        <div class ="flex h-full  items-center mr-24 ">
+
+            <div class="text-black ml-10 mr-2">2021</div>
+
+            <span class="copyleft">&copy;</span>
+
+                <a class="transition duration-500 ease-in-out transform
+                hover:-translate-y-1 hover:scale-110 ml-2 mr-10" href ="https://github.com/chiptu/JeuLogique">
+                    <i class="fab fa-github  "></i>
+                </a>
+        </div>
+
+        <div class ="text-xs ">
+            <a class="text-blue-800" href="/mention">Legal Notice 
             </a>
         </div>
-    
-    </footer>
+
+        <div class ="text-xs mr-10">
+            <a class="text-blue-800" href="/documentation">Documentation 
+            </a>
+        </div>
+
+    </div>
+
+</footer>
 
     </body>
     

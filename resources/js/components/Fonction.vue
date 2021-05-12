@@ -7,19 +7,22 @@
 
         <div class ="flex flex-col w-full h-full justify-center content-center ml-4 t-0">
 
-            <div class="text-yellow-200 text-xl text-center mb-6 important mt-0">
+        <div class="flex flex-row  w-full  justify-center content-center overflow-x-auto h-18 important ">
+
+                <button id="previousLevel" class="bg-black border border-white hover:border-white rounded w-12 h-8 mr-8 mb-2 important" v-on:click="previousLevel()">
+                        <i class="text-white fa fa-arrow-left fa-2x"></i>
+                </button>
+
+                <div class="text-yellow-200 text-xl mb-6 important mt-0">
                 🚀 Level {{leveljson.id}} ⭐ 
-            </div>
+                </div>
 
-            <div class="text-center">
-                <button id="nextLevel" class="bg-white border border-white hover:border-black rounded w-12 h-8 mr-8 mb-2 important" v-on:click="changeLevel('left')">
-                        <i class="fa fa-arrow-left fa-2x"></i>
+                <button id="nextLevel" class="bg-black border border-white hover:border-white rounded w-12 h-8 ml-8 mb-2 important" v-on:click="win()">
+                        <i class="text-white fa fa-arrow-right fa-2x"></i>
                 </button>
-
-                <button id="nextLevel" class="bg-white border border-white hover:border-black rounded w-12 h-8 ml-8 mb-2 important" v-on:click="changeLevel('right')">
-                        <i class="fa fa-arrow-right fa-2x"></i>
-                </button>
-            </div>
+    
+        </div>
+            
         
             <div class ="h-3/12 mr-8"> 
                     
@@ -85,6 +88,18 @@
             {
             //console.log("dans fonctions.vue");
             this.$emit('clearFunctions');
+            },
+
+            previousLevel()
+            {
+                console.log("dans fonctions.vue");
+            this.$emit('previousLevel');
+            },
+
+            win()
+            {
+                console.log("dans fonctions.vue");
+            this.$emit('win');
             },
 
             anneau2: function (event) {
