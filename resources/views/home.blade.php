@@ -20,8 +20,6 @@
         gtag('config', 'G-FRY7KFMM9P');
         </script>
 
-        <meta http-equiv="Content-Security-Policy" content="default-src *;">
-
         <title>ThinkStar</title>
     </head>
 
@@ -144,7 +142,7 @@ for (let i=1; i<11 ; i++)
     if (localStorage.getItem('lvlJson'+i)==null)
     {
         console.log("le lvlJson"+i+ " n etais pas dans le cache");
-        $.getJSON('https://thinkstar.fr/rocket/'+i, function(data) {
+        $.getJSON('rocket/'+i, function(data) {
             data= JSON.stringify(data);
             localStorage.setItem('lvlJson'+i, data);
         });

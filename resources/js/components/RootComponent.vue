@@ -245,7 +245,7 @@
                 if (localStorage.getItem('lvlJson'+currentLevel)==null && currentLevel!="10")
                 {
                     console.log("le lvlJson "+currentLevel + " n etait pas dans le cache");
-                    $.getJSON('https://thinkstar.fr/rocket/'+currentLevel, function(data) {
+                    $.getJSON('rocket/'+currentLevel, function(data) {
                         data= JSON.stringify(data);
                         localStorage.setItem('lvlJson'+currentLevel , data);
                     });
@@ -290,7 +290,7 @@
             if (localStorage.getItem('lvlJson'+currentLevel)==null && currentLevel!="10")
             {
                 console.log("le lvlJson "+currentLevel + " n etait pas dans le cache before create");
-                $.getJSON('https://thinkstar.fr/rocket/'+currentLevel, function(data) {
+                $.getJSON('rocket/'+currentLevel, function(data) {
                     data= JSON.stringify(data);
                     localStorage.setItem('lvlJson'+currentLevel , data);
                 });
@@ -332,7 +332,7 @@
                 if (localStorage.getItem('lvlJson'+currentLevel)==null)
                 {
                     console.log("le lvlJson "+currentLevel + " n etait pas dans le cache");
-                    $.getJSON('https://thinkstar.fr/rocket/'+currentLevel, function(data) {
+                    $.getJSON('rocket/'+currentLevel, function(data) {
                         data= JSON.stringify(data);
                         localStorage.setItem('lvlJson'+currentLevel , data);
                     });
@@ -340,7 +340,7 @@
                 if (localStorage.getItem('lvlJson'+(parseInt(currentLevel,10)+1))==null && currentLevel!="10")
                 {
                     console.log("le lvlJson "+(parseInt(currentLevel,10)+1) + " n etait pas dans le cache parse");
-                    $.getJSON('https://thinkstar.fr/rocket/'+(parseInt(currentLevel,10)+1), function(data) {
+                    $.getJSON('rocket/'+(parseInt(currentLevel,10)+1), function(data) {
                         data= JSON.stringify(data);
                         localStorage.setItem('lvlJson'+(parseInt(currentLevel,10)+1) , data);
                     });
