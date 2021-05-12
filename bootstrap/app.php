@@ -28,6 +28,8 @@ $app = new Illuminate\Foundation\Application(
 
 header('Access-Control-Allow-Origin: https://thinkstar.fr/');
 
+header('Access-Control-Allow-Methods', 'GET, POST');
+
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     App\Http\Kernel::class
