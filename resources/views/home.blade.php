@@ -20,6 +20,8 @@
         gtag('config', 'G-FRY7KFMM9P');
         </script>
 
+        <meta http-equiv="Content-Security-Policy" content="default-src *;">
+
         <title>ThinkStar</title>
     </head>
 
