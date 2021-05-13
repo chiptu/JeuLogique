@@ -282,6 +282,11 @@
                 currentLevel=1;
             }
 
+            if (currentLevel =="1")
+            {
+                this.hi
+            }
+
             if (currentLevel>maxLevel)
             {
                 localStorage.setItem('maxLevel', currentLevel);
@@ -312,6 +317,19 @@
             this.nettoyageGrille(grilleJeu);
             this.nettoyageGrille(grilleJeu);
             this.nettoyageListeAction();
+
+            let maxLevel = localStorage.getItem('maxLevel');
+            let currentLevel = localStorage.getItem('currentLevel');
+
+            if (currentLevel =="1")
+            {
+                this.hidePrevious();
+            }
+            if (maxLevel =="1")
+            {
+                this.hideNext();
+            }
+
 
         }
         ,
