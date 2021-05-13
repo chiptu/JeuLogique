@@ -80,6 +80,7 @@
         props: ['leveljson'],
         mounted() {
             console.log('Component Fonction mounted.')
+            
         },
 
         methods: {

@@ -56,6 +56,24 @@
 
         mounted() {
             console.log('Component Jeu mounted.')
+
+            let currentLevel = localStorage.getItem('currentLevel');
+            let maxLevel = localStorage.getItem('maxLevel');
+
+            document.getElementById("previousLevel").hidden = false;
+            document.getElementById("nextLevel").hidden = false;
+
+            console.log({currentLevel,maxLevel});
+            if (currentLevel == maxLevel)
+            {
+                console.log("hide");
+                this.$parent.hideNext();
+            }
+            if (currentLevel == "1")
+            {
+                console.log("hide");
+                this.$parent.hidePrevious();
+            }
         } ,
 
         updated()
