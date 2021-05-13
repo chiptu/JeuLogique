@@ -32,8 +32,8 @@
         
         <h1 >👏🏆  Congratulations 🏆👏</h1>
         <h2>You just reached the end of the game demo</h2>
-        <input type="text" name="name" placeholder="Your name ">
-        <textarea id="avis" rows="3" type="text" name="feedback" placeholder="Your feedback,suggestions"></textarea>
+        <input type="text" name="name" placeholder="Your name " required>
+        <textarea id="avis" rows="3" type="text" name="feedback" placeholder="Your feedback,suggestions" required></textarea>
         <h3>(Optional) If you want to stay tuned about steam release, Sdk</h3>
         <input type="text" name="mail" placeholder="Your mail ">
         <input type="submit" value="Send">

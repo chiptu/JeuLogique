@@ -440,6 +440,7 @@
 
                 let currentLevel = localStorage.getItem('currentLevel');
 
+                
                 currentLevel++;
                 localStorage.setItem('currentLevel', currentLevel);
                 
@@ -458,6 +459,8 @@
 
                 if (currentLevel ==11)
                 {
+                    currentLevel =1;
+                    localStorage.setItem('currentLevel', currentLevel);
                     document.location.replace( "http://thinkstar.fr/win")
                 }
                 
