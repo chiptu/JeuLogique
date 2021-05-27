@@ -7,7 +7,7 @@
     
     <div id="grilleJeu" class=" w-8/12  p-12 ">
     
-        <div v-for="ligne in leveljson.lignes" :key ="ligne.id" class =" h-1/12 w-full inline-flex  justify-center content-center ">
+        <div v-for="ligne in leveljson.lignes" :key ="ligne.id" :id="'ligne-' +ligne.idLigne" class =" h-1/12 w-full inline-flex  justify-center content-center important">
 
                 <div   v-for="maCase in ligne.cases" :key ="maCase.idCase">
 
@@ -73,6 +73,12 @@
             {
                 console.log("hide");
                 this.$parent.hidePrevious();
+            }
+
+            if (maxLevel == "1")
+            {
+                console.log("tutoStart");
+                this.$parent.tutoStart();
             }
         } ,
 

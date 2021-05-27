@@ -21,6 +21,25 @@
         </script>
 
         <title>ThinkStar</title>
+
+            <meta name="description" content="Thinkstar is a logic puzzle based on the principle of the robozzle game ">
+            
+            <meta name="author" content="Le Guillou Alexandre">
+            
+            <meta name="keywords" content="Thinkstar, game, logic, puzzle, robozzle">
+
+
+            <meta property="og:title" content="Thinkstar" />
+            
+            <meta property="og:type" content="Logic puzzle" />
+            
+            <meta property="og:url" content="https://www.thinkstar.fr" />
+
+
+            <meta property="og:image" content="https://thinkstar.fr/images/tesla.jpg"/>
+            
+
+            <meta property=”og:description” content=  "Thinkstar is a logic puzzle based on the principle of the robozzle game" />
     </head>
 
     <!-- /qgpkd-vapsdh  caesar -->

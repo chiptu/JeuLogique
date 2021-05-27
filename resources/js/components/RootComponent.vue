@@ -2,9 +2,14 @@
 
 
 
-<div class ="flex justify-end  h-11/12  " >
+<div class ="flex justify-end  h-11/12  " id="Root">
 
-    
+    <div class="absolute text-center text-yellow-400 text-3xl w-full z-50 invisible " id="nextTuto">
+        <button class="mt-12 rounded-full border p-2 border-yellow-200 " v-on:click="tutoNext()">
+            <i class="fas fa-arrow-right text-yellow-800"></i>
+        </button>
+    </div>
+
 
 <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
         <div id="stars"></div>
@@ -1495,6 +1500,46 @@
             {
                 document.getElementById("previousLevel").hidden = true;
             },
+
+            tutoStart()
+            {
+                
+
+                //let ligne5 = document.getElementById("ligne-5");
+                let boutons = document.getElementById("Boutons");
+                let fonctions = document.getElementById("Fonctions");
+                let controle = document.getElementById("component-controle");
+                let listeAction = document.getElementById("mesActions");
+
+
+                boutons.style.filter="blur(5px)";
+                fonctions.style.filter="blur(5px)";
+                controle.style.filter="blur(5px)";
+                listeAction.style.filter="blur(5px)";
+
+                //ligne5.classList.add("focus-tuto");
+
+
+                let newDiv = document.createElement("div");
+                let newDiv2 = document.createElement("div");
+                let newContent = document.createTextNode('Hey captain wake up , our ship is about to crash 💀');
+                newDiv.classList.add("absolute","text-center","text-yellow-400","text-3xl", "w-full");
+                newDiv2.classList.add("typing-text");
+                newDiv.appendChild(newDiv2);
+                newDiv2.appendChild(newContent);
+
+
+                let root = document.getElementById('Root');
+                
+                root.insertBefore(newDiv,Root.firstChild);
+
+                document.getElementById('nextTuto').classList.remove("invisible")
+            },
+
+            tutoNext()
+            {
+                alert("coucou");
+            }
 
 
 
