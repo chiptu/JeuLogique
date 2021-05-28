@@ -4,8 +4,13 @@
 
 <div class ="flex justify-end  h-11/12  " id="Root">
 
+
     <div class="absolute text-center text-yellow-400 text-3xl w-full z-50 invisible " id="nextTuto">
-        <button class="mt-12 rounded-full border p-2 border-yellow-200 " v-on:click="tutoStart()">
+        <button class="mt-12 rounded-full border p-2 border-yellow-200 mr-16 invisible" id="backTuto"v-on:click="tutoBack()">
+            <i class="fas fa-arrow-left text-yellow-800"></i>
+        </button>
+
+        <button class="mt-12 rounded-full border p-2 border-yellow-200 ml-16" v-on:click="tutoStart()">
             <i class="fas fa-arrow-right text-yellow-800"></i>
         </button>
     </div>
@@ -88,21 +93,6 @@
         </div>
     </div>
 </article>-->
-       
-       <button v-on:click="openModal()" class="bg-white  hover:bg-black border border-white hover:text-white rounded w-16 h-12 text-black mr-8 mt-4 ripple important" >
-            <i class="fas fa-question fa-2x"></i>
-        </button>
-
-     
-        <!-- The Modal -->
-        <div v-on:click="closeModal()" id="myModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="img01">
-            <div id="caption"></div>
-        </div>
-
-
-
 
         
 
@@ -1440,18 +1430,7 @@
                  }
             },
 
-            openModal (){
-                let modal = document.getElementById("myModal");
-                var modalImg = document.getElementById("img01");
-                modal.style.display = "block";
-                modalImg.src = "http://thinkstar.fr/images/tuto.png";
-                
-            },
 
-            closeModal() { 
-            let modal = document.getElementById("myModal");
-            modal.style.display = "none";
-            },
 
 
             clearDoubleElements() // Retourne la position du vaisseau et le nb d etoile restant 
@@ -1502,15 +1481,34 @@
                 document.getElementById("previousLevel").hidden = true;
             },
 
+            tutoBack() // texte qui explique le jeu 
+            {
+                console.log("tutoBack");
+                console.log(this.stepTuto);
+                this.stepTuto = this.stepTuto-2;
+
+                if (this.stepTuto==0){
+                    document.getElementById('backTuto').classList.add("invisible")
+                }
+                console.log(this.stepTuto);
+                this.tutoStart();
+            },
+
             tutoStart() // texte qui explique le jeu 
             {
+                console.log("tutoStart");
                 let stepTuto = this.stepTuto;
                 
-                if (stepTuto != 0){
+                
+                if (stepTuto == 0){
+                    document.getElementById('nextTuto').classList.remove("invisible")
+                }
+
+                if (document.getElementById("texteTuto") != null){
                     let texteTuto = document.getElementById("texteTuto");
                     texteTuto.remove();
                 }
-
+                console.log("test");
                 let ligne5 = document.getElementById("ligne-5");
                 let boutons = document.getElementById("Boutons");
                 let fonctions = document.getElementById("Fonctions");
@@ -1524,12 +1522,51 @@
                 listeAction.style.filter="blur(5px)";
                 ligne5.style.filter="blur(5px)";
 
-                if (this.stepTuto == 1){
+                if (stepTuto == 1){
                     ligne5.classList.add("focus-tuto");
                     ligne5.style.filter="";
                 }
+                if (stepTuto == 2){
+                    ligne5.classList.remove("focus-tuto");
+                    controle.style.filter="";
+                    controle.classList.add("focus-tuto");
+                }
+                if (stepTuto == 3){
+                    controle.classList.remove("focus-tuto");
+                    fonctions.style.filter="";
+                    fonctions.classList.add("focus-tuto");
+                }
+                if (stepTuto == 4){
+                    fonctions.classList.remove("focus-tuto");
+                    listeAction.style.filter="";
+                    listeAction.classList.add("focus-tuto");
+                }
+                if (stepTuto == 5){
+                    listeAction.classList.remove("focus-tuto");
+                    boutons.style.filter="";
+                    boutons.classList.add("focus-tuto");
+                }
+                if (stepTuto == 6){
+                    boutons.classList.remove("focus-tuto");
+                }
+                if (stepTuto == 6){
+                    boutons.style.filter="";
+                    controle.style.filter="";
+                    fonctions.style.filter="";
+                    ligne5.style.filter="";
+                    listeAction.style.filter="";
+                }
 
-                
+                if (stepTuto == 7){
+                    boutons.style.filter="";
+                    controle.style.filter="";
+                    fonctions.style.filter="";
+                    ligne5.style.filter="";
+                    listeAction.style.filter="";
+
+                    document.getElementById('backTuto').classList.add("invisible")
+                    document.getElementById('nextTuto').classList.add("invisible")
+                }
 
 
                 let newDiv = document.createElement("div");
@@ -1538,14 +1575,26 @@
                 let newDiv2 = document.createElement("div");
 
                 if (stepTuto == 0){
-                    
                     var newContent = document.createTextNode('Hey captain wake up , our ship is about to crash 💀');
                 }
                 if (stepTuto == 1){
-                    var newContent = document.createTextNode('We need to go forward thanks to the stars 🌟');
+                    var newContent = document.createTextNode('Get all the stars to move forward 🌟');
+                    document.getElementById('backTuto').classList.remove("invisible")
                 }
                 if (stepTuto == 2){
-                    var newContent = document.createTextNode('You can command ');
+                    var newContent = document.createTextNode('These actions are available to command the ship 🚀');
+                }
+                if (stepTuto == 3){
+                    var newContent = document.createTextNode('Here are memory emplacements, get your actions here 🧠');
+                }
+                if (stepTuto == 4){
+                    var newContent = document.createTextNode('Check the actions which will be executed here ⏱️');
+                }
+                if (stepTuto == 5){
+                    var newContent = document.createTextNode('Finally start stop and accelerate the executions 🚀');
+                }
+                if (stepTuto == 6){
+                    var newContent = document.createTextNode('All is about the journey not the destination ⛰️ ready?');
                 }
                 
 
@@ -1558,16 +1607,12 @@
                 let root = document.getElementById('Root');
                 
                 root.insertBefore(newDiv,Root.firstChild);
-
-                document.getElementById('nextTuto').classList.remove("invisible")
+                
 
                 this.stepTuto ++;
             },
 
             
-
-
-
 
 
         }
