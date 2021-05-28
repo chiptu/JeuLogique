@@ -5,7 +5,7 @@
 <div class ="flex justify-end  h-11/12  " id="Root">
 
     <div class="absolute text-center text-yellow-400 text-3xl w-full z-50 invisible " id="nextTuto">
-        <button class="mt-12 rounded-full border p-2 border-yellow-200 " v-on:click="tutoNext()">
+        <button class="mt-12 rounded-full border p-2 border-yellow-200 " v-on:click="tutoStart()">
             <i class="fas fa-arrow-right text-yellow-800"></i>
         </button>
     </div>
@@ -234,6 +234,7 @@
                 delayTime:1,
                 boolStop:true,
                 change:0,
+                stepTuto:0,
                
             }
         },
@@ -1492,20 +1493,25 @@
                  return position;
             },
 
-            hideNext()
+            hideNext() // cache la fleche niveau superieur
             {
                 document.getElementById("nextLevel").hidden = true;
             },
-            hidePrevious()
+            hidePrevious() // cache la fleche niveau inferieur
             {
                 document.getElementById("previousLevel").hidden = true;
             },
 
-            tutoStart()
+            tutoStart() // texte qui explique le jeu 
             {
+                let stepTuto = this.stepTuto;
                 
+                if (stepTuto != 0){
+                    let texteTuto = document.getElementById("texteTuto");
+                    texteTuto.remove();
+                }
 
-                //let ligne5 = document.getElementById("ligne-5");
+                let ligne5 = document.getElementById("ligne-5");
                 let boutons = document.getElementById("Boutons");
                 let fonctions = document.getElementById("Fonctions");
                 let controle = document.getElementById("component-controle");
@@ -1516,13 +1522,33 @@
                 fonctions.style.filter="blur(5px)";
                 controle.style.filter="blur(5px)";
                 listeAction.style.filter="blur(5px)";
+                ligne5.style.filter="blur(5px)";
 
-                //ligne5.classList.add("focus-tuto");
+                if (this.stepTuto == 1){
+                    ligne5.classList.add("focus-tuto");
+                    ligne5.style.filter="";
+                }
+
+                
 
 
                 let newDiv = document.createElement("div");
+                newDiv.setAttribute("id", "texteTuto");
+
                 let newDiv2 = document.createElement("div");
-                let newContent = document.createTextNode('Hey captain wake up , our ship is about to crash 💀');
+
+                if (stepTuto == 0){
+                    
+                    var newContent = document.createTextNode('Hey captain wake up , our ship is about to crash 💀');
+                }
+                if (stepTuto == 1){
+                    var newContent = document.createTextNode('We need to go forward thanks to the stars 🌟');
+                }
+                if (stepTuto == 2){
+                    var newContent = document.createTextNode('You can command ');
+                }
+                
+
                 newDiv.classList.add("absolute","text-center","text-yellow-400","text-3xl", "w-full");
                 newDiv2.classList.add("typing-text");
                 newDiv.appendChild(newDiv2);
@@ -1534,12 +1560,11 @@
                 root.insertBefore(newDiv,Root.firstChild);
 
                 document.getElementById('nextTuto').classList.remove("invisible")
+
+                this.stepTuto ++;
             },
 
-            tutoNext()
-            {
-                alert("coucou");
-            }
+            
 
 
 
