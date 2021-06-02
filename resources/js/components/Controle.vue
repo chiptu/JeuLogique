@@ -12,17 +12,19 @@
                 <div class ="w-2/12 ml-16">
 
                     
-
-                    <button id="btn-up" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important" v-on:click="command('fa fa-arrow-up fa-2x pointer-events-none')">
+                    <button id="btn-up" draggable="true" ondragstart="drag(event)" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important"
+                     v-on:click="command('fa fa-arrow-up fa-2x pointer-events-none')">
                         <i class="fa fa-arrow-up fa-2x"></i>
                     </button>
                 
-                    <button id="btn-right" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important" v-on:click="command('fa fa-share fa-2x pointer-events-none')">
+                    <button id="btn-right" draggable="true" ondragstart="drag(event)" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important"
+                     v-on:click="command('fa fa-share fa-2x pointer-events-none')">
                         <i class="fa fa-share fa-2x "></i>
                     </button>
 
 
-                    <button id="btn-left" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important" v-on:click="command('fas fa-reply fa-2x pointer-events-none')">
+                    <button id="btn-left" draggable="true" ondragstart="drag(event)" class="bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important"
+                     v-on:click="command('fas fa-reply fa-2x pointer-events-none')">
                         <i class="fas fa-reply fa-2x"></i>
                     </button>
 
@@ -155,7 +157,9 @@
             command(value)
             {
                 this.$emit('command',value);
-            }
+            },
+
+            
 
             
            

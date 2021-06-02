@@ -4,8 +4,13 @@
 
 <div class ="flex justify-end  h-11/12  " id="Root">
 
+    
+    <button v-on:click="switchVolume()" class="mr-5 z-30 bg-white hover:bg-black border border-white hover:text-white rounded w-16 h-12 text-black mr-8 mt-4 ripple " >
+            <i class="fas fa-volume-up fa-2x"></i>
+    </button>
 
-    <div class="absolute text-center text-yellow-400 text-3xl w-full z-50 invisible " id="nextTuto">
+    <div class="absolute text-center text-yellow-400 text-3xl w-full z-20 invisible " id="nextTuto">
+
         <button class="mt-12 rounded-full border p-2 border-yellow-200 mr-16 invisible" id="backTuto"v-on:click="tutoBack()">
             <i class="fas fa-arrow-left text-yellow-800"></i>
         </button>
@@ -125,83 +130,7 @@
 
 #myImg:hover {opacity: 0.7;}
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
 
-/* Modal Content (image) */
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 90%;
-  height: 70%; 
-}
-
-/* Caption of Modal Image */
-#caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
-}
-
-/* Add Animation */
-.modal-content, #caption {  
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.6s;
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
-@-webkit-keyframes zoom {
-  from {-webkit-transform:scale(0)} 
-  to {-webkit-transform:scale(1)}
-}
-
-@keyframes zoom {
-  from {transform:scale(0)} 
-  to {transform:scale(1)}
-}
-
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-}
 
 </style>
 
@@ -225,7 +154,7 @@
                 boolStop:true,
                 change:0,
                 stepTuto:0,
-               
+                volume:true,
             }
         },
         computed:{
@@ -1522,6 +1451,12 @@
                 listeAction.style.filter="blur(5px)";
                 ligne5.style.filter="blur(5px)";
 
+                ligne5.classList.remove("focus-tuto");
+                listeAction.classList.remove("focus-tuto");
+                controle.classList.remove("focus-tuto");
+                fonctions.classList.remove("focus-tuto");
+                boutons.classList.remove("focus-tuto");
+
                 if (stepTuto == 1){
                     ligne5.classList.add("focus-tuto");
                     ligne5.style.filter="";
@@ -1582,7 +1517,7 @@
                     document.getElementById('backTuto').classList.remove("invisible")
                 }
                 if (stepTuto == 2){
-                    var newContent = document.createTextNode('These actions are available to command the ship 🚀');
+                    var newContent = document.createTextNode('Actions are available here to command the ship 🚀');
                 }
                 if (stepTuto == 3){
                     var newContent = document.createTextNode('Here are memory emplacements, get your actions here 🧠');
@@ -1594,7 +1529,7 @@
                     var newContent = document.createTextNode('Finally start stop and accelerate the executions 🚀');
                 }
                 if (stepTuto == 6){
-                    var newContent = document.createTextNode('All is about the journey not the destination ⛰️ ready?');
+                    var newContent = document.createTextNode("Are you ready ? ");
                 }
                 
 
@@ -1612,6 +1547,32 @@
                 this.stepTuto ++;
             },
 
+            switchVolume()
+            {
+                 $('audio,video').each(function(){
+
+                if (!this.volume ) {
+
+                    if( !$(this).paused ) {
+                        $(this).data('muted',true); //Store elements muted by the button.
+                        $(this).pause(); // or .muted=true to keep playing muted
+                    }
+
+                } else {
+
+                    if( $(this).data('muted') ) {
+                        $(this).data('muted',false);
+                        $(this).play(); // or .muted=false
+                    }
+
+                }
+            });
+
+                this.volume = !this.volume;
+            },
+
+            
+
             
 
 
@@ -1620,8 +1581,6 @@
     }
 
  
-    
-    
     
 
     

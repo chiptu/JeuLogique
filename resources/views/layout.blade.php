@@ -77,7 +77,22 @@
 </html>
 
 <script>
+    function drag(ev) {
+        ev.dataTransfer.setData("controleId", ev.target.id);
+    }
 
+    function allowDrop(ev) {
+    ev.preventDefault();
+    }
+
+            
+
+    function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("controleId");
+    alert(data)
+    //ev.target.appendChild(document.getElementById(data));
+    }
   
   /*var audio = new Audio('../thinkstar.mp3');
   audio.volume = 0.7;

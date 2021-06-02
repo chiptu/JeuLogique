@@ -44,7 +44,8 @@
 
                             <div  v-for="monNbCase in fonction.nombreCase" :key ="monNbCase" >
 
-                                <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="mt-2  border border-white  rounded w-12 h-12 text-white mr-4 important"  v-on:click="anneau2">
+                                <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" draggable="true" ondragstart="drag(event)" 
+                                class="mt-2  border border-white  rounded w-12 h-12 text-white mr-4 important"  v-on:click="anneau2">
                                 </button>
                     
                             </div>
