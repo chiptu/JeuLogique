@@ -44,8 +44,7 @@
 
                             <div  v-for="monNbCase in fonction.nombreCase" :key ="monNbCase" >
 
-                                <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" draggable="true" ondragstart="drag(event)" 
-                                class="mt-2  border border-white  rounded w-12 h-12 text-white mr-4 important"  v-on:click="anneau2">
+                                <button :id="'btn-f' +fonction.idFonction+'-case-'+monNbCase" class="mt-2  border border-white  rounded w-12 h-12 text-white mr-4 important"  v-on:click="anneau2">
                                 </button>
                     
                             </div>
@@ -57,12 +56,6 @@
                     
             </div>
 
-            <div class ="h-auto w-full flex  justify-center">
-
-                <button id="btn-clean" class="ml-10 mt-32 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 " v-on:click="clearFunctions()">
-                    <i class="fas fa-undo "></i>
-                </button>
-            </div>
 
 
         </div>

@@ -281,6 +281,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['leveljson'],
   mounted: function mounted() {
@@ -317,12 +319,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -490,6 +486,29 @@ __webpack_require__.r(__webpack_exports__);
   props: ['leveljson'],
   mounted: function mounted() {
     console.log('Component Jeu mounted.');
+    var currentLevel = localStorage.getItem('currentLevel');
+    var maxLevel = localStorage.getItem('maxLevel');
+    document.getElementById("previousLevel").hidden = false;
+    document.getElementById("nextLevel").hidden = false;
+    console.log({
+      currentLevel: currentLevel,
+      maxLevel: maxLevel
+    });
+
+    if (currentLevel == maxLevel) {
+      console.log("hide");
+      this.$parent.hideNext();
+    }
+
+    if (currentLevel == "1") {
+      console.log("hide");
+      this.$parent.hidePrevious();
+    }
+
+    if (maxLevel == "1") {
+      console.log("tutoStart");
+      this.$parent.tutoStart();
+    }
   },
   updated: function updated() {
     console.log("Vuejs Jeu updated");
@@ -761,82 +780,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -846,7 +789,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       delayTime: 1,
       boolStop: true,
-      change: 0
+      change: 0,
+      stepTuto: 0,
+      volume: true
     };
   },
   computed: {
@@ -887,6 +832,10 @@ __webpack_require__.r(__webpack_exports__);
     if (currentLevel == null) {
       localStorage.setItem('currentLevel', 1);
       currentLevel = 1;
+    }
+
+    if (currentLevel == "1") {
+      this.hi;
     }
 
     if (currentLevel > maxLevel) {
@@ -1002,6 +951,8 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (currentLevel == 11) {
+        currentLevel = 1;
+        localStorage.setItem('currentLevel', currentLevel);
         document.location.replace("http://thinkstar.fr/win");
       }
 
@@ -1759,16 +1710,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    openModal: function openModal() {
-      var modal = document.getElementById("myModal");
-      var modalImg = document.getElementById("img01");
-      modal.style.display = "block";
-      modalImg.src = "http://thinkstar.fr/images/tuto.png";
-    },
-    closeModal: function closeModal() {
-      var modal = document.getElementById("myModal");
-      modal.style.display = "none";
-    },
     clearDoubleElements: function clearDoubleElements() // Retourne la position du vaisseau et le nb d etoile restant 
     {
       console.log("clearDoubleElements");
@@ -1798,11 +1739,166 @@ __webpack_require__.r(__webpack_exports__);
 
       return position;
     },
-    hideNext: function hideNext() {
+    hideNext: function hideNext() // cache la fleche niveau superieur
+    {
       document.getElementById("nextLevel").hidden = true;
     },
-    hidePrevious: function hidePrevious() {
+    hidePrevious: function hidePrevious() // cache la fleche niveau inferieur
+    {
       document.getElementById("previousLevel").hidden = true;
+    },
+    tutoBack: function tutoBack() // texte qui explique le jeu 
+    {
+      console.log("tutoBack");
+      console.log(this.stepTuto);
+      this.stepTuto = this.stepTuto - 2;
+
+      if (this.stepTuto == 0) {
+        document.getElementById('backTuto').classList.add("invisible");
+      }
+
+      console.log(this.stepTuto);
+      this.tutoStart();
+    },
+    tutoStart: function tutoStart() // texte qui explique le jeu 
+    {
+      console.log("tutoStart");
+      var stepTuto = this.stepTuto;
+
+      if (stepTuto == 0) {
+        document.getElementById('nextTuto').classList.remove("invisible");
+      }
+
+      if (document.getElementById("texteTuto") != null) {
+        var texteTuto = document.getElementById("texteTuto");
+        texteTuto.remove();
+      }
+
+      console.log("test");
+      var ligne5 = document.getElementById("ligne-5");
+      var boutons = document.getElementById("Boutons");
+      var fonctions = document.getElementById("Fonctions");
+      var controle = document.getElementById("component-controle");
+      var listeAction = document.getElementById("mesActions");
+      boutons.style.filter = "blur(5px)";
+      fonctions.style.filter = "blur(5px)";
+      controle.style.filter = "blur(5px)";
+      listeAction.style.filter = "blur(5px)";
+      ligne5.style.filter = "blur(5px)";
+      ligne5.classList.remove("focus-tuto");
+      listeAction.classList.remove("focus-tuto");
+      controle.classList.remove("focus-tuto");
+      fonctions.classList.remove("focus-tuto");
+      boutons.classList.remove("focus-tuto");
+
+      if (stepTuto == 1) {
+        ligne5.classList.add("focus-tuto");
+        ligne5.style.filter = "";
+      }
+
+      if (stepTuto == 2) {
+        ligne5.classList.remove("focus-tuto");
+        controle.style.filter = "";
+        controle.classList.add("focus-tuto");
+      }
+
+      if (stepTuto == 3) {
+        controle.classList.remove("focus-tuto");
+        fonctions.style.filter = "";
+        fonctions.classList.add("focus-tuto");
+      }
+
+      if (stepTuto == 4) {
+        fonctions.classList.remove("focus-tuto");
+        listeAction.style.filter = "";
+        listeAction.classList.add("focus-tuto");
+      }
+
+      if (stepTuto == 5) {
+        listeAction.classList.remove("focus-tuto");
+        boutons.style.filter = "";
+        boutons.classList.add("focus-tuto");
+      }
+
+      if (stepTuto == 6) {
+        boutons.classList.remove("focus-tuto");
+      }
+
+      if (stepTuto == 6) {
+        boutons.style.filter = "";
+        controle.style.filter = "";
+        fonctions.style.filter = "";
+        ligne5.style.filter = "";
+        listeAction.style.filter = "";
+      }
+
+      if (stepTuto == 7) {
+        boutons.style.filter = "";
+        controle.style.filter = "";
+        fonctions.style.filter = "";
+        ligne5.style.filter = "";
+        listeAction.style.filter = "";
+        document.getElementById('backTuto').classList.add("invisible");
+        document.getElementById('nextTuto').classList.add("invisible");
+      }
+
+      var newDiv = document.createElement("div");
+      newDiv.setAttribute("id", "texteTuto");
+      var newDiv2 = document.createElement("div");
+
+      if (stepTuto == 0) {
+        var newContent = document.createTextNode('Hey captain wake up , our ship is about to crash 💀');
+      }
+
+      if (stepTuto == 1) {
+        var newContent = document.createTextNode('Get all the stars to move forward 🌟');
+        document.getElementById('backTuto').classList.remove("invisible");
+      }
+
+      if (stepTuto == 2) {
+        var newContent = document.createTextNode('Actions are available here to command the ship 🚀');
+      }
+
+      if (stepTuto == 3) {
+        var newContent = document.createTextNode('Here are memory emplacements, get your actions here 🧠');
+      }
+
+      if (stepTuto == 4) {
+        var newContent = document.createTextNode('Check the actions which will be executed here ⏱️');
+      }
+
+      if (stepTuto == 5) {
+        var newContent = document.createTextNode('Finally start stop and accelerate the executions 🚀');
+      }
+
+      if (stepTuto == 6) {
+        var newContent = document.createTextNode("All is about the journey ⛰ Ready ? ");
+      }
+
+      newDiv.classList.add("absolute", "text-center", "text-yellow-400", "text-3xl", "w-full");
+      newDiv2.classList.add("typing-text");
+      newDiv.appendChild(newDiv2);
+      newDiv2.appendChild(newContent);
+      var root = document.getElementById('Root');
+      root.insertBefore(newDiv, Root.firstChild);
+      this.stepTuto++;
+    },
+    switchVolume: function switchVolume() {
+      $('audio,video').each(function () {
+        if (!this.volume) {
+          if (!$(this).paused) {
+            $(this).data('muted', true); //Store elements muted by the button.
+
+            $(this).pause(); // or .muted=true to keep playing muted
+          }
+        } else {
+          if ($(this).data('muted')) {
+            $(this).data('muted', false);
+            $(this).play(); // or .muted=false
+          }
+        }
+      });
+      this.volume = !this.volume;
     }
   }
 });
@@ -1821,7 +1917,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#myImg[data-v-e2f3bf40] {\n  border-radius: 5px;\n  cursor: pointer;\n  transition: 0.3s;\n}\n#myImg[data-v-e2f3bf40]:hover {\n  opacity: 0.7;\n}\n\n/* The Modal (background) */\n.modal[data-v-e2f3bf40] {\n  display: none; /* Hidden by default */\n  position: fixed; /* Stay in place */\n  z-index: 1; /* Sit on top */\n  padding-top: 100px; /* Location of the box */\n  left: 0;\n  top: 0;\n  width: 100%; /* Full width */\n  height: 100%; /* Full height */\n  overflow: auto; /* Enable scroll if needed */\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */\n}\n\n/* Modal Content (image) */\n.modal-content[data-v-e2f3bf40] {\n  margin: auto;\n  display: block;\n  width: 90%;\n  height: 70%;\n}\n\n/* Caption of Modal Image */\n#caption[data-v-e2f3bf40] {\n  margin: auto;\n  display: block;\n  width: 80%;\n  max-width: 700px;\n  text-align: center;\n  color: #ccc;\n  padding: 10px 0;\n  height: 150px;\n}\n\n/* Add Animation */\n.modal-content[data-v-e2f3bf40], #caption[data-v-e2f3bf40] {\n  -webkit-animation-name: zoom-data-v-e2f3bf40;\n  -webkit-animation-duration: 0.6s;\n  animation-name: zoom-data-v-e2f3bf40;\n  animation-duration: 0.6s;\n}\n@-webkit-keyframes zoom-data-v-e2f3bf40 {\nfrom {\n    -webkit-transform:scale(0)\n}\nto {\n    -webkit-transform:scale(1)\n}\n}\n@keyframes zoom-data-v-e2f3bf40 {\nfrom {\n    transform:scale(0)\n}\nto {\n    transform:scale(1)\n}\n}\n\n/* The Close Button */\n.close[data-v-e2f3bf40] {\n  position: absolute;\n  top: 15px;\n  right: 35px;\n  color: #f1f1f1;\n  font-size: 40px;\n  font-weight: bold;\n  transition: 0.3s;\n}\n.close[data-v-e2f3bf40]:hover,\n.close[data-v-e2f3bf40]:focus {\n  color: #bbb;\n  text-decoration: none;\n  cursor: pointer;\n}\n\n/* 100% Image Width on Smaller Screens */\n@media only screen and (max-width: 700px){\n.modal-content[data-v-e2f3bf40] {\n    width: 100%;\n}\n}\n\n", ""]);
+exports.push([module.i, "#myImg[data-v-e2f3bf40] {\n  border-radius: 5px;\n  cursor: pointer;\n  transition: 0.3s;\n}\n#myImg[data-v-e2f3bf40]:hover {\n  opacity: 0.7;\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -2939,7 +3035,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " h-auto w-full flex  justify-center mt-8 important " },
+    {
+      staticClass: " h-auto w-full flex  justify-center mt-8 important ",
+      attrs: { id: "Boutons" }
+    },
     [
       _c(
         "button",
@@ -3366,7 +3465,8 @@ var render = function() {
         "div",
         {
           staticClass:
-            "flex flex-col w-full h-full justify-center content-center ml-4 t-0"
+            "flex flex-col w-full h-full justify-center content-center ml-4 t-0",
+          attrs: { id: "Fonctions" }
         },
         [
           _c(
@@ -3485,24 +3585,7 @@ var render = function() {
               )
             }),
             0
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "h-auto w-full flex  justify-center" }, [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "ml-10 mt-32 bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important mt-12 ",
-                attrs: { id: "btn-clean" },
-                on: {
-                  click: function($event) {
-                    return _vm.clearFunctions()
-                  }
-                }
-              },
-              [_c("i", { staticClass: "fas fa-undo " })]
-            )
-          ])
+          )
         ]
       )
     ]
@@ -3540,7 +3623,8 @@ var render = function() {
           {
             key: ligne.id,
             staticClass:
-              " h-1/12 w-full inline-flex  justify-center content-center "
+              " h-1/12 w-full inline-flex  justify-center content-center important",
+            attrs: { id: "ligne-" + ligne.idLigne }
           },
           _vm._l(ligne.cases, function(maCase) {
             return _c("div", { key: maCase.idCase }, [
@@ -3776,8 +3860,61 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex justify-end  h-11/12  " },
+    { staticClass: "flex justify-end  h-11/12  ", attrs: { id: "Root" } },
     [
+      _c(
+        "button",
+        {
+          staticClass:
+            "mr-5 z-30 bg-white hover:bg-black border border-white hover:text-white rounded w-16 h-12 text-black mr-8 mt-4 ripple ",
+          on: {
+            click: function($event) {
+              return _vm.switchVolume()
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-volume-up fa-2x" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "absolute text-center text-yellow-400 text-3xl w-full z-20 invisible ",
+          attrs: { id: "nextTuto" }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass:
+                "mt-12 rounded-full border p-2 border-yellow-200 mr-16 invisible",
+              attrs: { id: "backTuto" },
+              on: {
+                click: function($event) {
+                  return _vm.tutoBack()
+                }
+              }
+            },
+            [_c("i", { staticClass: "fas fa-arrow-left text-yellow-800" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "mt-12 rounded-full border p-2 border-yellow-200 ml-16",
+              on: {
+                click: function($event) {
+                  return _vm.tutoStart()
+                }
+              }
+            },
+            [_c("i", { staticClass: "fas fa-arrow-right text-yellow-800" })]
+          )
+        ]
+      ),
+      _vm._v(" "),
       _c("link", {
         attrs: {
           href: "https://fonts.googleapis.com/css?family=Lato:300,400,700",
@@ -3793,40 +3930,6 @@ var render = function() {
       _c("div", { attrs: { id: "stars3" } }),
       _vm._v(" "),
       _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass:
-            "bg-white  hover:bg-black border border-white hover:text-white rounded w-16 h-12 text-black mr-8 mt-4 ripple important",
-          on: {
-            click: function($event) {
-              return _vm.openModal()
-            }
-          }
-        },
-        [_c("i", { staticClass: "fas fa-question fa-2x" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "modal",
-          attrs: { id: "myModal" },
-          on: {
-            click: function($event) {
-              return _vm.closeModal()
-            }
-          }
-        },
-        [
-          _c("span", { staticClass: "close" }, [_vm._v("×")]),
-          _vm._v(" "),
-          _c("img", { staticClass: "modal-content", attrs: { id: "img01" } }),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "caption" } })
-        ]
-      ),
       _vm._v(" "),
       _c("Jeu", {
         attrs: { leveljson: this.computeJson },

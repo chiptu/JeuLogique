@@ -1529,7 +1529,7 @@
                     var newContent = document.createTextNode('Finally start stop and accelerate the executions 🚀');
                 }
                 if (stepTuto == 6){
-                    var newContent = document.createTextNode("Are you ready ? ");
+                    var newContent = document.createTextNode("All is about the journey ⛰ Ready ? ");
                 }
                 
 
