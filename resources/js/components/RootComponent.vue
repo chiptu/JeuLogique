@@ -11,7 +11,7 @@
 
     <div class="absolute text-center text-yellow-400 text-3xl w-full z-20 invisible " id="nextTuto">
 
-        <button class="mt-12 rounded-full border p-2 border-yellow-200 mr-16 invisible" id="backTuto"v-on:click="tutoBack()">
+        <button class="mt-12 rounded-full border p-2 border-yellow-200 mr-16 invisible" id="backTuto" v-on:click="tutoBack()">
             <i class="fas fa-arrow-left text-yellow-800"></i>
         </button>
 
@@ -382,7 +382,7 @@
                     localStorage.setItem('maxLevel', currentLevel);
                 }
 
-                if (currentLevel ==11)
+                if (currentLevel ==10)
                 {
                     currentLevel =1;
                     localStorage.setItem('currentLevel', currentLevel);

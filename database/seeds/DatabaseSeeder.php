@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $this->call('Niveau1');
+        $this->call('Niveau2');
+        $this->call('Niveau3');
+        $this->call('Niveau4');
+        $this->call('Niveau5');
     }
 }

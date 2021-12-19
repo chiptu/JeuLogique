@@ -8,7 +8,7 @@ class Niveau extends Model
 {
     protected $table = 'Niveau';
 
-    protected $primaryKey = 'Niveau_id';
+    protected $primaryKey = 'id';
 
 
     protected $attributes = [
