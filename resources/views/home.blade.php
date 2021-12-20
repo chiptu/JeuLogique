@@ -156,7 +156,7 @@ animation: fadeIn ease 5s;
 
 <script>
 
-for (let i=1; i<11 ; i++)
+for (let i=1; i<8 ; i++)
 {
     if (localStorage.getItem('lvlJson'+i)==null)
     {

@@ -950,7 +950,7 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.setItem('maxLevel', currentLevel);
       }
 
-      if (currentLevel == 11) {
+      if (currentLevel == 9) {
         currentLevel = 1;
         localStorage.setItem('currentLevel', currentLevel);
         document.location.replace("http://thinkstar.fr/win");
@@ -3029,7 +3029,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3037,7 +3037,7 @@ var render = function() {
     "div",
     {
       staticClass: " h-auto w-full flex  justify-center mt-8 important ",
-      attrs: { id: "Boutons" }
+      attrs: { id: "Boutons" },
     },
     [
       _c(
@@ -3047,10 +3047,10 @@ var render = function() {
             "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important",
           attrs: { id: "start" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               return _vm.play()
-            }
-          }
+            },
+          },
         },
         [_c("i", { staticClass: "fa fa-play fa-2x" })]
       ),
@@ -3062,10 +3062,10 @@ var render = function() {
             "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black mr-8 mt-4 ripple important",
           attrs: { id: "stop" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               return _vm.stop()
-            }
-          }
+            },
+          },
         },
         [_c("i", { staticClass: "fa fa-stop fa-2x" })]
       ),
@@ -3077,10 +3077,10 @@ var render = function() {
             "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple important",
           attrs: { id: "speed1" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               return _vm.time("1")
-            }
-          }
+            },
+          },
         },
         [_vm._v("\n            x1\n        ")]
       ),
@@ -3092,10 +3092,10 @@ var render = function() {
             "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mr-8 mt-4 ripple important",
           attrs: { id: "speed2" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               return _vm.time("2")
-            }
-          }
+            },
+          },
         },
         [_vm._v("\n            x2\n        ")]
       ),
@@ -3107,13 +3107,13 @@ var render = function() {
             "bg-white  hover:bg-black border border-white hover:text-white rounded w-12 h-12 text-black text-2xl mt-4 ripple important",
           attrs: { id: "speed8" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               return _vm.time("8")
-            }
-          }
+            },
+          },
         },
         [_vm._v("\n            x8\n        ")]
-      )
+      ),
     ]
   )
 }
@@ -3135,7 +3135,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3147,7 +3147,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "flex flex-row w-full h-full justify-center content-center items-center ml-4"
+            "flex flex-row w-full h-full justify-center content-center items-center ml-4",
         },
         [
           _c(
@@ -3161,12 +3161,12 @@ var render = function() {
                     "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
                   attrs: { id: "btn-up" },
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       return _vm.command(
                         "fa fa-arrow-up fa-2x pointer-events-none"
                       )
-                    }
-                  }
+                    },
+                  },
                 },
                 [_c("i", { staticClass: "fa fa-arrow-up fa-2x" })]
               ),
@@ -3178,12 +3178,12 @@ var render = function() {
                     "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
                   attrs: { id: "btn-right" },
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       return _vm.command(
                         "fa fa-share fa-2x pointer-events-none"
                       )
-                    }
-                  }
+                    },
+                  },
                 },
                 [_c("i", { staticClass: "fa fa-share fa-2x " })]
               ),
@@ -3195,17 +3195,17 @@ var render = function() {
                     "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
                   attrs: { id: "btn-left" },
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       return _vm.command(
                         "fas fa-reply fa-2x pointer-events-none"
                       )
-                    }
-                  }
+                    },
+                  },
                 },
                 [_c("i", { staticClass: "fas fa-reply fa-2x" })]
               ),
               _vm._v(" "),
-              _vm._l(_vm.leveljson.fonctions, function(fonction) {
+              _vm._l(_vm.leveljson.fonctions, function (fonction) {
                 return _vm.leveljson.fonctions.length < 3
                   ? _c("div", { key: fonction.idFonction }, [
                       _c(
@@ -3215,17 +3215,17 @@ var render = function() {
                             "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
                           attrs: { id: "btn-f" + fonction.idFonction },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               return _vm.command(fonction.idFonction)
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("div", { staticClass: "text-3xl  text-black" }, [
-                            _vm._v("F" + _vm._s(fonction.idFonction))
-                          ])
+                            _vm._v("F" + _vm._s(fonction.idFonction)),
+                          ]),
                         ]
-                      )
+                      ),
                     ])
                   : _vm._e()
               }),
@@ -3235,11 +3235,11 @@ var render = function() {
                   "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important",
                 attrs: { id: "btn-left" },
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     return _vm.command("null")
-                  }
-                }
-              })
+                  },
+                },
+              }),
             ],
             2
           ),
@@ -3248,7 +3248,7 @@ var render = function() {
             ? _c(
                 "div",
                 { staticClass: "w-2/12 " },
-                _vm._l(_vm.leveljson.fonctions, function(fonction) {
+                _vm._l(_vm.leveljson.fonctions, function (fonction) {
                   return _c("div", { key: fonction.idFonction }, [
                     _c(
                       "button",
@@ -3257,17 +3257,17 @@ var render = function() {
                           "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important top-0",
                         attrs: { id: "btn-f" + fonction.idFonction },
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             return _vm.command(fonction.idFonction)
-                          }
-                        }
+                          },
+                        },
                       },
                       [
                         _c("div", { staticClass: "text-3xl  text-black" }, [
-                          _vm._v("F" + _vm._s(fonction.idFonction))
-                        ])
+                          _vm._v("F" + _vm._s(fonction.idFonction)),
+                        ]),
                       ]
-                    )
+                    ),
                   ])
                 }),
                 0
@@ -3279,7 +3279,7 @@ var render = function() {
                 "div",
                 { staticClass: "w-2/12" },
                 [
-                  _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
+                  _vm._l(_vm.leveljson.nbCouleur, function (couleur) {
                     return _c("div", { key: couleur }, [
                       couleur == 1
                         ? _c(
@@ -3289,18 +3289,18 @@ var render = function() {
                                 "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
                               attrs: { id: "paint-gray-400" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   return _vm.command(
                                     "fas fa-paint-roller  fa-2x text-gray-400 pointer-events-none"
                                   )
-                                }
-                              }
+                                },
+                              },
                             },
                             [
                               _c("i", {
                                 staticClass:
-                                  "fas fa-paint-roller fa-2x text-gray-400"
-                              })
+                                  "fas fa-paint-roller fa-2x text-gray-400",
+                              }),
                             ]
                           )
                         : _vm._e(),
@@ -3313,18 +3313,18 @@ var render = function() {
                                 "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
                               attrs: { id: "paint-gray-800" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   return _vm.command(
                                     "fas fa-paint-roller fa-2x text-gray-800 pointer-events-none"
                                   )
-                                }
-                              }
+                                },
+                              },
                             },
                             [
                               _c("i", {
                                 staticClass:
-                                  "fas fa-paint-roller fa-2x text-gray-800"
-                              })
+                                  "fas fa-paint-roller fa-2x text-gray-800",
+                              }),
                             ]
                           )
                         : _vm._e(),
@@ -3337,21 +3337,21 @@ var render = function() {
                                 "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
                               attrs: { id: "paint-gray-600" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   return _vm.command(
                                     "fas fa-paint-roller fa-2x text-gray-600 pointer-events-none"
                                   )
-                                }
-                              }
+                                },
+                              },
                             },
                             [
                               _c("i", {
                                 staticClass:
-                                  "fas fa-paint-roller fa-2x text-gray-600"
-                              })
+                                  "fas fa-paint-roller fa-2x text-gray-600",
+                              }),
                             ]
                           )
-                        : _vm._e()
+                        : _vm._e(),
                     ])
                   }),
                   _vm._v(" "),
@@ -3363,20 +3363,20 @@ var render = function() {
                             "bg-white border border-white hover:border-black rounded w-12 h-12 mr-4 mb-2 important ",
                           attrs: { id: "paint-black" },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               return _vm.command(
                                 "fas fa-paint-roller fa-2x text-black pointer-events-none"
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", {
-                            staticClass: "fas fa-paint-roller fa-2x text-black"
-                          })
+                            staticClass: "fas fa-paint-roller fa-2x text-black",
+                          }),
                         ]
                       )
-                    : _vm._e()
+                    : _vm._e(),
                 ],
                 2
               )
@@ -3387,14 +3387,14 @@ var render = function() {
                 "div",
                 { staticClass: "w-2/12" },
                 [
-                  _vm._l(_vm.leveljson.nbCouleur, function(couleur) {
+                  _vm._l(_vm.leveljson.nbCouleur, function (couleur) {
                     return _c("div", { key: couleur }, [
                       couleur == 1
                         ? _c("button", {
                             staticClass:
                               "bg-gray-400 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
                             attrs: { id: "bg-gray-400" },
-                            on: { click: _vm.anneau }
+                            on: { click: _vm.anneau },
                           })
                         : _vm._e(),
                       _vm._v(" "),
@@ -3403,7 +3403,7 @@ var render = function() {
                             staticClass:
                               "bg-gray-800 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
                             attrs: { id: "bg-gray-800" },
-                            on: { click: _vm.anneau }
+                            on: { click: _vm.anneau },
                           })
                         : _vm._e(),
                       _vm._v(" "),
@@ -3412,9 +3412,9 @@ var render = function() {
                             staticClass:
                               "bg-gray-600 border border-white hover:border-black rounded w-12 h-12 mr-4 important",
                             attrs: { id: "bg-gray-600" },
-                            on: { click: _vm.anneau }
+                            on: { click: _vm.anneau },
                           })
-                        : _vm._e()
+                        : _vm._e(),
                     ])
                   }),
                   _vm._v(" "),
@@ -3423,15 +3423,15 @@ var render = function() {
                         staticClass:
                           "bg-black border border-white rounded w-12 h-12 mr-4 mt-4 text-3xl important",
                         attrs: { id: "bg-black" },
-                        on: { click: _vm.anneau }
+                        on: { click: _vm.anneau },
                       })
-                    : _vm._e()
+                    : _vm._e(),
                 ],
                 2
               )
-            : _vm._e()
+            : _vm._e(),
         ]
-      )
+      ),
     ]
   )
 }
@@ -3453,7 +3453,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3466,14 +3466,14 @@ var render = function() {
         {
           staticClass:
             "flex flex-col w-full h-full justify-center content-center ml-4 t-0",
-          attrs: { id: "Fonctions" }
+          attrs: { id: "Fonctions" },
         },
         [
           _c(
             "div",
             {
               staticClass:
-                "flex flex-row  w-full  justify-center content-center overflow-x-auto h-18 important "
+                "flex flex-row  w-full  justify-center content-center overflow-x-auto h-18 important ",
             },
             [
               _c(
@@ -3483,10 +3483,10 @@ var render = function() {
                     "bg-black border border-white hover:border-white rounded w-12 h-8 mr-8 mb-2 important",
                   attrs: { id: "previousLevel" },
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       return _vm.previousLevel()
-                    }
-                  }
+                    },
+                  },
                 },
                 [_c("i", { staticClass: "text-white fa fa-arrow-left fa-2x" })]
               ),
@@ -3499,7 +3499,7 @@ var render = function() {
                     "\n            🚀 Level " +
                       _vm._s(_vm.leveljson.id) +
                       " ⭐ \n            "
-                  )
+                  ),
                 ]
               ),
               _vm._v(" "),
@@ -3510,27 +3510,27 @@ var render = function() {
                     "bg-black border border-white hover:border-white rounded w-12 h-8 ml-8 mb-2 important",
                   attrs: { id: "nextLevel" },
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       return _vm.win()
-                    }
-                  }
+                    },
+                  },
                 },
                 [_c("i", { staticClass: "text-white fa fa-arrow-right fa-2x" })]
-              )
+              ),
             ]
           ),
           _vm._v(" "),
           _c(
             "div",
             { staticClass: "h-3/12 mr-8" },
-            _vm._l(_vm.leveljson.fonctions, function(fonction) {
+            _vm._l(_vm.leveljson.fonctions, function (fonction) {
               return _c(
                 "div",
                 {
                   key: fonction.idFonction,
                   staticClass:
                     "flex flex-row  w-full  justify-center content-center overflow-x-auto h-24 important ",
-                  staticStyle: { "white-space": "nowrap" }
+                  staticStyle: { "white-space": "nowrap" },
                 },
                 [
                   fonction.nombreCase > 4
@@ -3539,55 +3539,58 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "mt-2 ml-16 text-3xl mr-4 text-white important "
+                              "mt-2 ml-16 text-3xl mr-4 text-white important ",
                           },
                           [
                             _vm._v(
                               "\n                            F" +
                                 _vm._s(fonction.idFonction) +
                                 "\n                        "
-                            )
+                            ),
                           ]
-                        )
+                        ),
                       ])
                     : _c("div", [
                         _c(
                           "div",
                           {
                             staticClass:
-                              "mt-2 ml-8 text-3xl mr-4 text-white important "
+                              "mt-2 ml-8 text-3xl mr-4 text-white important ",
                           },
                           [
                             _vm._v(
                               "\n                            F" +
                                 _vm._s(fonction.idFonction) +
                                 "\n                        "
-                            )
+                            ),
                           ]
-                        )
+                        ),
                       ]),
                   _vm._v(" "),
-                  _vm._l(fonction.nombreCase, function(monNbCase) {
+                  _vm._l(fonction.nombreCase, function (monNbCase) {
                     return _c("div", { key: monNbCase }, [
                       _c("button", {
                         staticClass:
                           "mt-2  border border-white  rounded w-12 h-12 text-white mr-4 important",
                         attrs: {
                           id:
-                            "btn-f" + fonction.idFonction + "-case-" + monNbCase
+                            "btn-f" +
+                            fonction.idFonction +
+                            "-case-" +
+                            monNbCase,
                         },
-                        on: { click: _vm.anneau2 }
-                      })
+                        on: { click: _vm.anneau2 },
+                      }),
                     ])
-                  })
+                  }),
                 ],
                 2
               )
             }),
             0
-          )
+          ),
         ]
-      )
+      ),
     ]
   )
 }
@@ -3609,7 +3612,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3617,16 +3620,16 @@ var render = function() {
     "div",
     { staticClass: " w-8/12  p-12 ", attrs: { id: "grilleJeu" } },
     [
-      _vm._l(_vm.leveljson.lignes, function(ligne) {
+      _vm._l(_vm.leveljson.lignes, function (ligne) {
         return _c(
           "div",
           {
             key: ligne.id,
             staticClass:
               " h-1/12 w-full inline-flex  justify-center content-center important",
-            attrs: { id: "ligne-" + ligne.idLigne }
+            attrs: { id: "ligne-" + ligne.idLigne },
           },
-          _vm._l(ligne.cases, function(maCase) {
+          _vm._l(ligne.cases, function (maCase) {
             return _c("div", { key: maCase.idCase }, [
               maCase.visible
                 ? _c(
@@ -3636,13 +3639,13 @@ var render = function() {
                         "relative border-4 border-gray-900 rounded p-0 m-0 flex justify-center items-center w-20 h-full  bg-opacity-75 " +
                         maCase.couleur,
                       attrs: {
-                        id: "ligne-" + ligne.idLigne + "-case-" + maCase.idCase
-                      }
+                        id: "ligne-" + ligne.idLigne + "-case-" + maCase.idCase,
+                      },
                     },
                     [
                       maCase.etoileBool
                         ? _c("i", {
-                            staticClass: " fa fa-star text-yellow-500 fa-3x"
+                            staticClass: " fa fa-star text-yellow-500 fa-3x",
                           })
                         : _vm._e(),
                       _vm._v(" "),
@@ -3650,15 +3653,15 @@ var render = function() {
                         ? _c("i", {
                             class:
                               "fa fa-space-shuttle text-white fa-3x " +
-                              _vm.leveljson.rotationStart
+                              _vm.leveljson.rotationStart,
                           })
-                        : _vm._e()
+                        : _vm._e(),
                     ]
                   )
                 : _c("div", {
                     staticClass:
-                      "  relative rounded p-0 m-0 flex justify-center items-center w-20 h-full "
-                  })
+                      "  relative rounded p-0 m-0 flex justify-center items-center w-20 h-full ",
+                  }),
             ])
           }),
           0
@@ -3670,13 +3673,13 @@ var render = function() {
         { staticClass: "grid grid-cols-2" },
         [
           _c("Boutons", {
-            on: { time: _vm.time, play: _vm.play, stop: _vm.stop }
+            on: { time: _vm.time, play: _vm.play, stop: _vm.stop },
           }),
           _vm._v(" "),
-          _c("Listeactions")
+          _c("Listeactions"),
         ],
         1
-      )
+      ),
     ],
     2
   )
@@ -3699,14 +3702,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -3719,7 +3722,7 @@ var staticRenderFns = [
           {
             staticClass: "overflow-x-auto  h-24 important inset-y-1/2",
             staticStyle: { width: "50em", "white-space": "nowrap" },
-            attrs: { id: "mesActions" }
+            attrs: { id: "mesActions" },
           },
           [
             _c(
@@ -3727,7 +3730,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " bg-black border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
-                attrs: { id: "listeAction" }
+                attrs: { id: "listeAction" },
               },
               [_c("i", { staticClass: "relative fas fa-terminal" })]
             ),
@@ -3737,7 +3740,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
-                attrs: { id: "ListeAction1" }
+                attrs: { id: "ListeAction1" },
               },
               [_c("i")]
             ),
@@ -3747,7 +3750,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
-                attrs: { id: "ListeAction2" }
+                attrs: { id: "ListeAction2" },
               },
               [_c("i")]
             ),
@@ -3757,7 +3760,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
-                attrs: { id: "ListeAction3" }
+                attrs: { id: "ListeAction3" },
               },
               [_c("i")]
             ),
@@ -3767,7 +3770,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
-                attrs: { id: "ListeAction4" }
+                attrs: { id: "ListeAction4" },
               },
               [_c("i")]
             ),
@@ -3777,7 +3780,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
-                attrs: { id: "ListeAction5" }
+                attrs: { id: "ListeAction5" },
               },
               [_c("i")]
             ),
@@ -3787,7 +3790,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
-                attrs: { id: "ListeAction6" }
+                attrs: { id: "ListeAction6" },
               },
               [_c("i")]
             ),
@@ -3797,7 +3800,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
-                attrs: { id: "ListeAction7" }
+                attrs: { id: "ListeAction7" },
               },
               [_c("i")]
             ),
@@ -3807,7 +3810,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white  mr-1 pointer-events-none",
-                attrs: { id: "ListeAction8" }
+                attrs: { id: "ListeAction8" },
               },
               [_c("i")]
             ),
@@ -3817,7 +3820,7 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
-                attrs: { id: "ListeAction9" }
+                attrs: { id: "ListeAction9" },
               },
               [_c("i")]
             ),
@@ -3827,15 +3830,15 @@ var staticRenderFns = [
               {
                 staticClass:
                   " border border-white hover:border-black rounded w-12 h-12 text-white mr-1 pointer-events-none",
-                attrs: { id: "ListeAction10" }
+                attrs: { id: "ListeAction10" },
               },
               [_c("i")]
-            )
+            ),
           ]
-        )
+        ),
       ]
     )
-  }
+  },
 ]
 render._withStripped = true
 
@@ -3854,7 +3857,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3868,10 +3871,10 @@ var render = function() {
           staticClass:
             "mr-5 z-30 bg-white hover:bg-black border border-white hover:text-white rounded w-16 h-12 text-black mr-8 mt-4 ripple ",
           on: {
-            click: function($event) {
+            click: function ($event) {
               return _vm.switchVolume()
-            }
-          }
+            },
+          },
         },
         [_c("i", { staticClass: "fas fa-volume-up fa-2x" })]
       ),
@@ -3881,7 +3884,7 @@ var render = function() {
         {
           staticClass:
             "absolute text-center text-yellow-400 text-3xl w-full z-20 invisible ",
-          attrs: { id: "nextTuto" }
+          attrs: { id: "nextTuto" },
         },
         [
           _c(
@@ -3891,10 +3894,10 @@ var render = function() {
                 "mt-12 rounded-full border p-2 border-yellow-200 mr-16 invisible",
               attrs: { id: "backTuto" },
               on: {
-                click: function($event) {
+                click: function ($event) {
                   return _vm.tutoBack()
-                }
-              }
+                },
+              },
             },
             [_c("i", { staticClass: "fas fa-arrow-left text-yellow-800" })]
           ),
@@ -3905,13 +3908,13 @@ var render = function() {
               staticClass:
                 "mt-12 rounded-full border p-2 border-yellow-200 ml-16",
               on: {
-                click: function($event) {
+                click: function ($event) {
                   return _vm.tutoStart()
-                }
-              }
+                },
+              },
             },
             [_c("i", { staticClass: "fas fa-arrow-right text-yellow-800" })]
-          )
+          ),
         ]
       ),
       _vm._v(" "),
@@ -3919,8 +3922,8 @@ var render = function() {
         attrs: {
           href: "https://fonts.googleapis.com/css?family=Lato:300,400,700",
           rel: "stylesheet",
-          type: "text/css"
-        }
+          type: "text/css",
+        },
       }),
       _vm._v(" "),
       _c("div", { attrs: { id: "stars" } }),
@@ -3933,7 +3936,7 @@ var render = function() {
       _vm._v(" "),
       _c("Jeu", {
         attrs: { leveljson: this.computeJson },
-        on: { time: _vm.time, play: _vm.play, stop: _vm.stop }
+        on: { time: _vm.time, play: _vm.play, stop: _vm.stop },
       }),
       _vm._v(" "),
       _c(
@@ -3945,32 +3948,32 @@ var render = function() {
             on: {
               clearFunctions: _vm.clearFunctions,
               previousLevel: _vm.previousLevel,
-              win: _vm.win
-            }
+              win: _vm.win,
+            },
           }),
           _vm._v(" "),
           _c("Controle", {
             attrs: { leveljson: this.computeJson },
-            on: { command: _vm.command }
-          })
+            on: { command: _vm.command },
+          }),
         ],
         1
-      )
+      ),
     ],
     1
   )
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card__planet mt-48" }, [
       _c("div", { staticClass: "planet__atmosphere" }, [
-        _c("div", { staticClass: "planet__surface" })
-      ])
+        _c("div", { staticClass: "planet__surface" }),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -4099,8 +4102,8 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.12
- * (c) 2014-2020 Evan You
+ * Vue.js v2.6.14
+ * (c) 2014-2021 Evan You
  * Released under the MIT License.
  */
 
@@ -5800,13 +5803,14 @@ function assertProp (
       type = [type];
     }
     for (var i = 0; i < type.length && !valid; i++) {
-      var assertedType = assertType(value, type[i]);
+      var assertedType = assertType(value, type[i], vm);
       expectedTypes.push(assertedType.expectedType || '');
       valid = assertedType.valid;
     }
   }
 
-  if (!valid) {
+  var haveExpectedTypes = expectedTypes.some(function (t) { return t; });
+  if (!valid && haveExpectedTypes) {
     warn(
       getInvalidTypeMessage(name, value, expectedTypes),
       vm
@@ -5824,9 +5828,9 @@ function assertProp (
   }
 }
 
-var simpleCheckRE = /^(String|Number|Boolean|Function|Symbol)$/;
+var simpleCheckRE = /^(String|Number|Boolean|Function|Symbol|BigInt)$/;
 
-function assertType (value, type) {
+function assertType (value, type, vm) {
   var valid;
   var expectedType = getType(type);
   if (simpleCheckRE.test(expectedType)) {
@@ -5841,7 +5845,12 @@ function assertType (value, type) {
   } else if (expectedType === 'Array') {
     valid = Array.isArray(value);
   } else {
-    valid = value instanceof type;
+    try {
+      valid = value instanceof type;
+    } catch (e) {
+      warn('Invalid prop type: "' + String(type) + '" is not a constructor', vm);
+      valid = false;
+    }
   }
   return {
     valid: valid,
@@ -5849,13 +5858,15 @@ function assertType (value, type) {
   }
 }
 
+var functionTypeCheckRE = /^\s*function (\w+)/;
+
 /**
  * Use function string name to check built-in types,
  * because a simple equality check will fail when running
  * across different vms / iframes.
  */
 function getType (fn) {
-  var match = fn && fn.toString().match(/^\s*function (\w+)/);
+  var match = fn && fn.toString().match(functionTypeCheckRE);
   return match ? match[1] : ''
 }
 
@@ -5880,18 +5891,19 @@ function getInvalidTypeMessage (name, value, expectedTypes) {
     " Expected " + (expectedTypes.map(capitalize).join(', '));
   var expectedType = expectedTypes[0];
   var receivedType = toRawType(value);
-  var expectedValue = styleValue(value, expectedType);
-  var receivedValue = styleValue(value, receivedType);
   // check if we need to specify expected value
-  if (expectedTypes.length === 1 &&
-      isExplicable(expectedType) &&
-      !isBoolean(expectedType, receivedType)) {
-    message += " with value " + expectedValue;
+  if (
+    expectedTypes.length === 1 &&
+    isExplicable(expectedType) &&
+    isExplicable(typeof value) &&
+    !isBoolean(expectedType, receivedType)
+  ) {
+    message += " with value " + (styleValue(value, expectedType));
   }
   message += ", got " + receivedType + " ";
   // check if we need to specify received value
   if (isExplicable(receivedType)) {
-    message += "with value " + receivedValue + ".";
+    message += "with value " + (styleValue(value, receivedType)) + ".";
   }
   return message
 }
@@ -5906,9 +5918,9 @@ function styleValue (value, type) {
   }
 }
 
+var EXPLICABLE_TYPES = ['string', 'number', 'boolean'];
 function isExplicable (value) {
-  var explicitTypes = ['string', 'number', 'boolean'];
-  return explicitTypes.some(function (elem) { return value.toLowerCase() === elem; })
+  return EXPLICABLE_TYPES.some(function (elem) { return value.toLowerCase() === elem; })
 }
 
 function isBoolean () {
@@ -6135,7 +6147,7 @@ var initProxy;
   var allowedGlobals = makeMap(
     'Infinity,undefined,NaN,isFinite,isNaN,' +
     'parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,' +
-    'Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,' +
+    'Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,BigInt,' +
     'require' // for Webpack/Browserify
   );
 
@@ -6638,6 +6650,12 @@ function isWhitespace (node) {
 
 /*  */
 
+function isAsyncPlaceholder (node) {
+  return node.isComment && node.asyncFactory
+}
+
+/*  */
+
 function normalizeScopedSlots (
   slots,
   normalSlots,
@@ -6694,9 +6712,10 @@ function normalizeScopedSlot(normalSlots, key, fn) {
     res = res && typeof res === 'object' && !Array.isArray(res)
       ? [res] // single vnode
       : normalizeChildren(res);
+    var vnode = res && res[0];
     return res && (
-      res.length === 0 ||
-      (res.length === 1 && res[0].isComment) // #9658
+      !vnode ||
+      (res.length === 1 && vnode.isComment && !isAsyncPlaceholder(vnode)) // #9658, #10391
     ) ? undefined
       : res
   };
@@ -6769,26 +6788,28 @@ function renderList (
  */
 function renderSlot (
   name,
-  fallback,
+  fallbackRender,
   props,
   bindObject
 ) {
   var scopedSlotFn = this.$scopedSlots[name];
   var nodes;
-  if (scopedSlotFn) { // scoped slot
+  if (scopedSlotFn) {
+    // scoped slot
     props = props || {};
     if (bindObject) {
       if (!isObject(bindObject)) {
-        warn(
-          'slot v-bind without argument expects an Object',
-          this
-        );
+        warn('slot v-bind without argument expects an Object', this);
       }
       props = extend(extend({}, bindObject), props);
     }
-    nodes = scopedSlotFn(props) || fallback;
+    nodes =
+      scopedSlotFn(props) ||
+      (typeof fallbackRender === 'function' ? fallbackRender() : fallbackRender);
   } else {
-    nodes = this.$slots[name] || fallback;
+    nodes =
+      this.$slots[name] ||
+      (typeof fallbackRender === 'function' ? fallbackRender() : fallbackRender);
   }
 
   var target = props && props.slot;
@@ -6838,6 +6859,7 @@ function checkKeyCodes (
   } else if (eventKeyName) {
     return hyphenate(eventKeyName) !== key
   }
+  return eventKeyCode === undefined
 }
 
 /*  */
@@ -7369,8 +7391,10 @@ function createComponent (
 }
 
 function createComponentInstanceForVnode (
-  vnode, // we know it's MountedComponentVNode but flow doesn't
-  parent // activeInstance in lifecycle state
+  // we know it's MountedComponentVNode but flow doesn't
+  vnode,
+  // activeInstance in lifecycle state
+  parent
 ) {
   var options = {
     _isComponent: true,
@@ -7509,7 +7533,7 @@ function _createElement (
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
     if (config.isReservedTag(tag)) {
       // platform built-in elements
-      if (isDef(data) && isDef(data.nativeOn)) {
+      if (isDef(data) && isDef(data.nativeOn) && data.tag !== 'component') {
         warn(
           ("The .native modifier for v-on is only valid on components but it was used on <" + tag + ">."),
           context
@@ -7831,12 +7855,6 @@ function resolveAsyncComponent (
       ? factory.loadingComp
       : factory.resolved
   }
-}
-
-/*  */
-
-function isAsyncPlaceholder (node) {
-  return node.isComment && node.asyncFactory
 }
 
 /*  */
@@ -8207,7 +8225,8 @@ function updateChildComponent (
   var hasDynamicScopedSlot = !!(
     (newScopedSlots && !newScopedSlots.$stable) ||
     (oldScopedSlots !== emptyObject && !oldScopedSlots.$stable) ||
-    (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key)
+    (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key) ||
+    (!newScopedSlots && vm.$scopedSlots.$key)
   );
 
   // Any static slot children from the parent may have changed during parent's
@@ -8659,11 +8678,8 @@ Watcher.prototype.run = function run () {
       var oldValue = this.value;
       this.value = value;
       if (this.user) {
-        try {
-          this.cb.call(this.vm, value, oldValue);
-        } catch (e) {
-          handleError(e, this.vm, ("callback for watcher \"" + (this.expression) + "\""));
-        }
+        var info = "callback for watcher \"" + (this.expression) + "\"";
+        invokeWithErrorHandling(this.cb, this.vm, [value, oldValue], this.vm, info);
       } else {
         this.cb.call(this.vm, value, oldValue);
       }
@@ -8885,6 +8901,8 @@ function initComputed (vm, computed) {
         warn(("The computed property \"" + key + "\" is already defined in data."), vm);
       } else if (vm.$options.props && key in vm.$options.props) {
         warn(("The computed property \"" + key + "\" is already defined as a prop."), vm);
+      } else if (vm.$options.methods && key in vm.$options.methods) {
+        warn(("The computed property \"" + key + "\" is already defined as a method."), vm);
       }
     }
   }
@@ -9037,11 +9055,10 @@ function stateMixin (Vue) {
     options.user = true;
     var watcher = new Watcher(vm, expOrFn, cb, options);
     if (options.immediate) {
-      try {
-        cb.call(vm, watcher.value);
-      } catch (error) {
-        handleError(error, vm, ("callback for immediate watcher \"" + (watcher.expression) + "\""));
-      }
+      var info = "callback for immediate watcher \"" + (watcher.expression) + "\"";
+      pushTarget();
+      invokeWithErrorHandling(cb, vm, [watcher.value], vm, info);
+      popTarget();
     }
     return function unwatchFn () {
       watcher.teardown();
@@ -9339,6 +9356,8 @@ function initAssetRegisters (Vue) {
 
 
 
+
+
 function getComponentName (opts) {
   return opts && (opts.Ctor.options.name || opts.tag)
 }
@@ -9360,9 +9379,9 @@ function pruneCache (keepAliveInstance, filter) {
   var keys = keepAliveInstance.keys;
   var _vnode = keepAliveInstance._vnode;
   for (var key in cache) {
-    var cachedNode = cache[key];
-    if (cachedNode) {
-      var name = getComponentName(cachedNode.componentOptions);
+    var entry = cache[key];
+    if (entry) {
+      var name = entry.name;
       if (name && !filter(name)) {
         pruneCacheEntry(cache, key, keys, _vnode);
       }
@@ -9376,9 +9395,9 @@ function pruneCacheEntry (
   keys,
   current
 ) {
-  var cached$$1 = cache[key];
-  if (cached$$1 && (!current || cached$$1.tag !== current.tag)) {
-    cached$$1.componentInstance.$destroy();
+  var entry = cache[key];
+  if (entry && (!current || entry.tag !== current.tag)) {
+    entry.componentInstance.$destroy();
   }
   cache[key] = null;
   remove(keys, key);
@@ -9396,6 +9415,32 @@ var KeepAlive = {
     max: [String, Number]
   },
 
+  methods: {
+    cacheVNode: function cacheVNode() {
+      var ref = this;
+      var cache = ref.cache;
+      var keys = ref.keys;
+      var vnodeToCache = ref.vnodeToCache;
+      var keyToCache = ref.keyToCache;
+      if (vnodeToCache) {
+        var tag = vnodeToCache.tag;
+        var componentInstance = vnodeToCache.componentInstance;
+        var componentOptions = vnodeToCache.componentOptions;
+        cache[keyToCache] = {
+          name: getComponentName(componentOptions),
+          tag: tag,
+          componentInstance: componentInstance,
+        };
+        keys.push(keyToCache);
+        // prune oldest entry
+        if (this.max && keys.length > parseInt(this.max)) {
+          pruneCacheEntry(cache, keys[0], keys, this._vnode);
+        }
+        this.vnodeToCache = null;
+      }
+    }
+  },
+
   created: function created () {
     this.cache = Object.create(null);
     this.keys = [];
@@ -9410,12 +9455,17 @@ var KeepAlive = {
   mounted: function mounted () {
     var this$1 = this;
 
+    this.cacheVNode();
     this.$watch('include', function (val) {
       pruneCache(this$1, function (name) { return matches(val, name); });
     });
     this.$watch('exclude', function (val) {
       pruneCache(this$1, function (name) { return !matches(val, name); });
     });
+  },
+
+  updated: function updated () {
+    this.cacheVNode();
   },
 
   render: function render () {
@@ -9451,12 +9501,9 @@ var KeepAlive = {
         remove(keys, key);
         keys.push(key);
       } else {
-        cache[key] = vnode;
-        keys.push(key);
-        // prune oldest entry
-        if (this.max && keys.length > parseInt(this.max)) {
-          pruneCacheEntry(cache, keys[0], keys, this._vnode);
-        }
+        // delay setting the cache until update
+        this.vnodeToCache = vnode;
+        this.keyToCache = key;
       }
 
       vnode.data.keepAlive = true;
@@ -9539,7 +9586,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.12';
+Vue.version = '2.6.14';
 
 /*  */
 
@@ -9576,7 +9623,7 @@ var isBooleanAttr = makeMap(
   'default,defaultchecked,defaultmuted,defaultselected,defer,disabled,' +
   'enabled,formnovalidate,hidden,indeterminate,inert,ismap,itemscope,loop,multiple,' +
   'muted,nohref,noresize,noshade,novalidate,nowrap,open,pauseonexit,readonly,' +
-  'required,reversed,scoped,seamless,selected,sortable,translate,' +
+  'required,reversed,scoped,seamless,selected,sortable,' +
   'truespeed,typemustmatch,visible'
 );
 
@@ -9700,7 +9747,7 @@ var isHTMLTag = makeMap(
 // contain child elements.
 var isSVG = makeMap(
   'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font-face,' +
-  'foreignObject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
+  'foreignobject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
   'polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view',
   true
 );
@@ -9905,7 +9952,8 @@ var hooks = ['create', 'activate', 'update', 'remove', 'destroy'];
 
 function sameVnode (a, b) {
   return (
-    a.key === b.key && (
+    a.key === b.key &&
+    a.asyncFactory === b.asyncFactory && (
       (
         a.tag === b.tag &&
         a.isComment === b.isComment &&
@@ -9913,7 +9961,6 @@ function sameVnode (a, b) {
         sameInputType(a, b)
       ) || (
         isTrue(a.isAsyncPlaceholder) &&
-        a.asyncFactory === b.asyncFactory &&
         isUndef(b.asyncFactory.error)
       )
     )
@@ -10801,7 +10848,7 @@ function updateAttrs (oldVnode, vnode) {
     cur = attrs[key];
     old = oldAttrs[key];
     if (old !== cur) {
-      setAttr(elm, key, cur);
+      setAttr(elm, key, cur, vnode.data.pre);
     }
   }
   // #4391: in IE9, setting type can reset value for input[type=radio]
@@ -10821,8 +10868,8 @@ function updateAttrs (oldVnode, vnode) {
   }
 }
 
-function setAttr (el, key, value) {
-  if (el.tagName.indexOf('-') > -1) {
+function setAttr (el, key, value, isInPre) {
+  if (isInPre || el.tagName.indexOf('-') > -1) {
     baseSetAttr(el, key, value);
   } else if (isBooleanAttr(key)) {
     // set attribute for blank value
@@ -13343,7 +13390,7 @@ var isNonPhrasingTag = makeMap(
 
 // Regular Expressions for parsing tags and attributes
 var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
-var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
+var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+?\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
 var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + (unicodeRegExp.source) + "]*";
 var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
 var startTagOpen = new RegExp(("^<" + qnameCapture));
@@ -13648,7 +13695,7 @@ var modifierRE = /\.[^.\]]+(?=[^\]]*$)/g;
 var slotRE = /^v-slot(:|$)|^#/;
 
 var lineBreakRE = /[\r\n]/;
-var whitespaceRE$1 = /\s+/g;
+var whitespaceRE$1 = /[ \f\t\r\n]+/g;
 
 var invalidAttributeRE = /[\s"'<>\/=]/;
 
@@ -13696,8 +13743,12 @@ function parse (
   platformMustUseProp = options.mustUseProp || no;
   platformGetTagNamespace = options.getTagNamespace || no;
   var isReservedTag = options.isReservedTag || no;
-  maybeComponent = function (el) { return !!el.component || !isReservedTag(el.tag); };
-
+  maybeComponent = function (el) { return !!(
+    el.component ||
+    el.attrsMap[':is'] ||
+    el.attrsMap['v-bind:is'] ||
+    !(el.attrsMap.is ? isReservedTag(el.attrsMap.is) : isReservedTag(el.tag))
+  ); };
   transforms = pluckModuleFunction(options.modules, 'transformNode');
   preTransforms = pluckModuleFunction(options.modules, 'preTransformNode');
   postTransforms = pluckModuleFunction(options.modules, 'postTransformNode');
@@ -14946,9 +14997,9 @@ function genHandler (handler) {
       code += genModifierCode;
     }
     var handlerCode = isMethodPath
-      ? ("return " + (handler.value) + "($event)")
+      ? ("return " + (handler.value) + ".apply(null, arguments)")
       : isFunctionExpression
-        ? ("return (" + (handler.value) + ")($event)")
+        ? ("return (" + (handler.value) + ").apply(null, arguments)")
         : isFunctionInvocation
           ? ("return " + (handler.value))
           : handler.value;
@@ -15034,7 +15085,8 @@ function generate (
   options
 ) {
   var state = new CodegenState(options);
-  var code = ast ? genElement(ast, state) : '_c("div")';
+  // fix #11483, Root level <script> tags should not be rendered.
+  var code = ast ? (ast.tag === 'script' ? 'null' : genElement(ast, state)) : '_c("div")';
   return {
     render: ("with(this){return " + code + "}"),
     staticRenderFns: state.staticRenderFns
@@ -15496,7 +15548,7 @@ function genComment (comment) {
 function genSlot (el, state) {
   var slotName = el.slotName || '"default"';
   var children = genChildren(el, state);
-  var res = "_t(" + slotName + (children ? ("," + children) : '');
+  var res = "_t(" + slotName + (children ? (",function(){return " + children + "}") : '');
   var attrs = el.attrs || el.dynamicAttrs
     ? genProps((el.attrs || []).concat(el.dynamicAttrs || []).map(function (attr) { return ({
         // slot props are camelized
@@ -16553,7 +16605,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_RootComponent_vue_vue_type_style_index_0_id_e2f3bf40_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./RootComponent.vue?vue&type=style&index=0&id=e2f3bf40&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RootComponent.vue?vue&type=style&index=0&id=e2f3bf40&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_RootComponent_vue_vue_type_style_index_0_id_e2f3bf40_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_RootComponent_vue_vue_type_style_index_0_id_e2f3bf40_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_RootComponent_vue_vue_type_style_index_0_id_e2f3bf40_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_RootComponent_vue_vue_type_style_index_0_id_e2f3bf40_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_RootComponent_vue_vue_type_style_index_0_id_e2f3bf40_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
 
 /***/ }),
 

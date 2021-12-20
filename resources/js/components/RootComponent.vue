@@ -382,7 +382,7 @@
                     localStorage.setItem('maxLevel', currentLevel);
                 }
 
-                if (currentLevel ==10)
+                if (currentLevel ==9)
                 {
                     currentLevel =1;
                     localStorage.setItem('currentLevel', currentLevel);
