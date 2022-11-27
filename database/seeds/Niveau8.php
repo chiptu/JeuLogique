@@ -17,7 +17,7 @@ class Niveau8 extends Seeder
         DB::table('Niveau')->insert([
             'id' => 8,
             'levelJson' => '{
-                {
+                
                     "id":8,
                     "nbCouleur":2,
                     "fonctions":[
